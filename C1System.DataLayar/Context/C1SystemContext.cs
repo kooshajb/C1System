@@ -1,4 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿
+using C1System.DataLayar.Entities;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,5 +15,7 @@ namespace C1System.DataLayar.Context
         {
 
         }
+
+        public DbSet<Slider> sliders { get; set; }
     }
 }

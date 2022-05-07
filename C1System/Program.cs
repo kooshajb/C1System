@@ -1,10 +1,11 @@
 using C1System.DataLayar.Context;
+using Microsoft.EntityFrameworkCore;
 using System.Configuration;
 
 var builder = WebApplication.CreateBuilder(args);
 
-var ConnectionStrings = builder.Configuration.GetConnectionString("C1System");
-builder.Services.AddDbContext<C1SystemContext>(x => x.UseSqlServer(ConnectionStrings));
+var connectionString = builder.Configuration.GetConnectionString("C1System");
+builder.Services.AddDbContext<C1SystemContext>(options => options.UseSqlServer(connectionString));
 
 
 // Add services to the container.
