@@ -20,5 +20,6 @@ namespace C1System.DataLayar.Context
         public DbSet<Category> Categories { get; set; }
         public DbSet<Portfolio> Portfolios { get; set; }
         public DbSet<Tag> Tags { get; set; }
+        public DbSet<CustomerSpeech> CustomerSpeechs { get; set; }
     }
 }
