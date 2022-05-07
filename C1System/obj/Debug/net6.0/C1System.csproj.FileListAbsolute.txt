@@ -37,3 +37,14 @@ F:\Test\C1System\C1System\bin\Debug\net6.0\C1System.Core.dll
 F:\Test\C1System\C1System\bin\Debug\net6.0\C1System.DataLayar.dll
 F:\Test\C1System\C1System\bin\Debug\net6.0\C1System.Core.pdb
 F:\Test\C1System\C1System\bin\Debug\net6.0\C1System.DataLayar.pdb
+F:\Test\C1System\C1System\bin\Debug\net6.0\Microsoft.Win32.SystemEvents.dll
+F:\Test\C1System\C1System\bin\Debug\net6.0\System.Configuration.ConfigurationManager.dll
+F:\Test\C1System\C1System\bin\Debug\net6.0\System.Drawing.Common.dll
+F:\Test\C1System\C1System\bin\Debug\net6.0\System.Security.Cryptography.ProtectedData.dll
+F:\Test\C1System\C1System\bin\Debug\net6.0\System.Security.Permissions.dll
+F:\Test\C1System\C1System\bin\Debug\net6.0\System.Windows.Extensions.dll
+F:\Test\C1System\C1System\bin\Debug\net6.0\runtimes\win\lib\net6.0\Microsoft.Win32.SystemEvents.dll
+F:\Test\C1System\C1System\bin\Debug\net6.0\runtimes\unix\lib\net6.0\System.Drawing.Common.dll
+F:\Test\C1System\C1System\bin\Debug\net6.0\runtimes\win\lib\net6.0\System.Drawing.Common.dll
+F:\Test\C1System\C1System\bin\Debug\net6.0\runtimes\win\lib\net6.0\System.Security.Cryptography.ProtectedData.dll
+F:\Test\C1System\C1System\bin\Debug\net6.0\runtimes\win\lib\net6.0\System.Windows.Extensions.dll
