@@ -8,7 +8,6 @@
 
   <ItemGroup>
     <Folder Include="ExtentionMethod\" />
-    <Folder Include="Services\Interface\" />
     <Folder Include="ViewModel\" />
     <Folder Include="Sender\" />
     <Folder Include="Security\" />
