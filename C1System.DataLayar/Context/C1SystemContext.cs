@@ -16,6 +16,9 @@ namespace C1System.DataLayar.Context
 
         }
 
-        public DbSet<Slider> sliders { get; set; }
+        public DbSet<Slider> Sliders { get; set; }
+        public DbSet<Category> Categories { get; set; }
+        public DbSet<Portfolio> Portfolios { get; set; }
+        public DbSet<Tag> Tags { get; set; }
     }
 }
