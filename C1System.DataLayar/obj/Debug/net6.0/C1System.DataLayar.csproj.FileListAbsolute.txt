@@ -1,0 +1,14 @@
+F:\Test\C1System\C1System.DataLayar\bin\Debug\net6.0\C1System.DataLayar.deps.json
+F:\Test\C1System\C1System.DataLayar\bin\Debug\net6.0\C1System.DataLayar.runtimeconfig.json
+F:\Test\C1System\C1System.DataLayar\bin\Debug\net6.0\C1System.DataLayar.dll
+F:\Test\C1System\C1System.DataLayar\bin\Debug\net6.0\C1System.DataLayar.pdb
+F:\Test\C1System\C1System.DataLayar\obj\Debug\net6.0\C1System.DataLayar.csproj.AssemblyReference.cache
+F:\Test\C1System\C1System.DataLayar\obj\Debug\net6.0\C1System.DataLayar.GeneratedMSBuildEditorConfig.editorconfig
+F:\Test\C1System\C1System.DataLayar\obj\Debug\net6.0\C1System.DataLayar.AssemblyInfoInputs.cache
+F:\Test\C1System\C1System.DataLayar\obj\Debug\net6.0\C1System.DataLayar.AssemblyInfo.cs
+F:\Test\C1System\C1System.DataLayar\obj\Debug\net6.0\C1System.DataLayar.csproj.CoreCompileInputs.cache
+F:\Test\C1System\C1System.DataLayar\obj\Debug\net6.0\C1System.DataLayar.dll
+F:\Test\C1System\C1System.DataLayar\obj\Debug\net6.0\refint\C1System.DataLayar.dll
+F:\Test\C1System\C1System.DataLayar\obj\Debug\net6.0\C1System.DataLayar.pdb
+F:\Test\C1System\C1System.DataLayar\obj\Debug\net6.0\C1System.DataLayar.genruntimeconfig.cache
+F:\Test\C1System\C1System.DataLayar\obj\Debug\net6.0\ref\C1System.DataLayar.dll
