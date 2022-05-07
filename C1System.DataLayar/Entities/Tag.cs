@@ -5,7 +5,7 @@ namespace C1System.DataLayar.Entities;
 public class Tag
 {
     [Key]
-    public Guid Id { get; set; }
+    public Guid TagId { get; set; }
     
     [Display(Name ="عنوان تگ")]
     [Required(ErrorMessage ="لطفا {0} را وارد کنید .")]

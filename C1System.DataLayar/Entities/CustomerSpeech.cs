@@ -5,7 +5,7 @@ namespace C1System.DataLayar.Entities;
 public class CustomerSpeech
 {
     [Key]
-    public Guid Id { get; set; }
+    public Guid CustomerSpeechId { get; set; }
 
     [Display(Name = "تصویر مشتری")]
     public string Avatar { get; set; }

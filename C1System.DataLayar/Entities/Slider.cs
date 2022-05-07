@@ -10,7 +10,7 @@ namespace C1System.DataLayar.Entities
     public class Slider
     {
         [Key]
-        public Guid Id { get; set; }
+        public Guid SliderId { get; set; }
 
         [Display(Name = "تصویر")]
         public string Picture { get; set; }

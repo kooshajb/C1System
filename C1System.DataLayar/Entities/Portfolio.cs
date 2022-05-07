@@ -5,7 +5,7 @@ namespace C1System.DataLayar.Entities;
 public class Portfolio
 {
     [Key]
-    public Guid Id { get; set; }
+    public Guid PortfolioId { get; set; }
 
     [Display(Name = "تصویر")]
     public string Picture { get; set; }

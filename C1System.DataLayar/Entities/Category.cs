@@ -5,7 +5,7 @@ namespace C1System.DataLayar.Entities;
 public class Category
 {
     [Key]
-    public Guid Id { get; set; }
+    public Guid CategoryId { get; set; }
 
     [Display(Name = "تصویر")]
     public string Picture { get; set; }
