@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace C1System.DataLayar.Entities
 {
-    public class SliderPicture
+    public class Slider
     {
         [Key]
         public Guid Id { get; set; }

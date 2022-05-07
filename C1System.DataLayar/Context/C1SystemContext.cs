@@ -16,6 +16,6 @@ namespace C1System.DataLayar.Context
 
         }
 
-        public DbSet<SliderPicture> sliders { get; set; }
+        public DbSet<Slider> sliders { get; set; }
     }
 }
