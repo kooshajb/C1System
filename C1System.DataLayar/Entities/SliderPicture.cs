@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace C1System.DataLayar.Entities
 {
-    public class Slider
+    public class SliderPicture
     {
         [Key]
         public Guid Id { get; set; }
@@ -16,17 +16,19 @@ namespace C1System.DataLayar.Entities
         public string Picture { get; set; }
 
 
-
-        [Display(Name = "ویدیو")]
-        public string Video { get; set; }
-
-
-
         [Display(Name ="عنوان")]
         [Required(ErrorMessage ="لطفا {0} را وارد کنید .")]
         [MinLength(3 , ErrorMessage ="تعداد {0} نباید کمتر از {1} باشد.")]
         [MaxLength(200 , ErrorMessage = "تعداد {0} نباید بیشتر از {1} باشد.")]
         public string Title { get; set; }
+
+
+
+        [Display(Name = "عنوان فرعی")]
+        [Required(ErrorMessage = "لطفا {0} را وارد کنید .")]
+        [MinLength(3, ErrorMessage = "تعداد {0} نباید کمتر از {1} باشد.")]
+        [MaxLength(200, ErrorMessage = "تعداد {0} نباید بیشتر از {1} باشد.")]
+        public string SubTitle { get; set; }
 
 
 
