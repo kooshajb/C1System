@@ -10,7 +10,7 @@ namespace C1System.DataLayar.Entities
     public class Introduction
     {
         [Key]
-        public Guid Id { get; set; }
+        public Guid IntroductionId { get; set; }
 
         [Display(Name = "ویدیو")]
         public string Video { get; set; }
