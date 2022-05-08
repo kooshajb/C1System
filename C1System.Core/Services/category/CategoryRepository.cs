@@ -1,5 +1,4 @@
-﻿using C1System.Core.Services.Interface;
-using C1System.DataLayar.Context;
+﻿using C1System.DataLayar.Context;
 using C1System.DataLayar.Entities;
 using System;
 using System.Collections.Generic;
@@ -7,8 +6,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace C1System.Core.Services
+namespace C1System.Core.Services.category
 {
+    public interface ICategoryService
+    {
+        List<Category> GetAllCategory();
+        Category GetCategoryById(Guid id);
+        bool AddCategory(Category category);
+        bool DeleteCategory(Category category);
+        bool UpdateCategory(Category category);
+    }
+
     public class CategoryService : ICategoryService
     {
         private readonly C1SystemContext _context;
@@ -59,7 +67,7 @@ namespace C1System.Core.Services
 
         public Category GetCategoryById(Guid id)
         {
-           return _context.Categories.Find(id);
+            return _context.Categories.Find(id);
         }
 
         public bool UpdateCategory(Category category)
@@ -82,4 +90,5 @@ namespace C1System.Core.Services
                 return false;
         }
     }
+
 }

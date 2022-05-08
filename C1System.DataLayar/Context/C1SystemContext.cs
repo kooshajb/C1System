@@ -26,6 +26,8 @@ namespace C1System.DataLayar.Context
         public DbSet<CustomerSpeech> CustomerSpeechs { get; set; }
 
         public DbSet<Category> Categories { get; set; }
+        public DbSet<CategoryPackage> CategoryPackages { get; set; }
+        public DbSet<CategoryPackageItem>  CategoryPackageItems { get; set; }
         public DbSet<Portfolio> Portfolios { get; set; }
         public DbSet<Project> Projects { get; set; }
         public DbSet<Podcast> Podcasts { get; set; }
