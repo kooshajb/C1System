@@ -17,7 +17,7 @@ namespace C1System.DataLayar.Context
 
         }
 
-        public DbSet<Slider> Sliders { get; set; }
+        public DbSet<Slider> sliders { get; set; }
         public DbSet<Introduction> Introductions { get; set; }
         public DbSet<CustomerSpeech> CustomerSpeechs { get; set; }
 
