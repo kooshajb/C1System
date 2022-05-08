@@ -37,5 +37,4 @@ public class Podcast
     [Required(ErrorMessage = "لطفا {0} را وارد کنید .")]
     [MinLength(50, ErrorMessage = "تعداد {0} نباید کمتر از {1} باشد.")]
     public string Audio { get; set; }
-    
 }
