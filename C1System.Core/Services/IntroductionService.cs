@@ -9,29 +9,19 @@ using System.Threading.Tasks;
 
 namespace C1System.Core.Services
 {
-    public class PortfolioService : IPortfolioService
+    public class IntroductionService : IIntroductionService
     {
-        private C1SystemContext _context;
-        public PortfolioService(C1SystemContext context)
+        private readonly C1SystemContext _context;
+        public IntroductionService(C1SystemContext context)
         {
             _context = context;
         }
 
-        public List<Portfolio> GetAllPortfolio()
-        {
-            return _context.Portfolios.ToList();
-        }
-
-        public Portfolio GetPortfolioById(Guid id)
-        {
-            return _context.Portfolios.Find(id);
-        }
-
-        public bool AddPortfolio(Portfolio portfolio)
+        public bool AddIntroduction(Introduction introduction)
         {
             try
             {
-                _context.Portfolios.Add(portfolio);
+                _context.Introductions.Add(introduction);
                 _context.SaveChanges();
                 return true;
             }
@@ -42,13 +32,13 @@ namespace C1System.Core.Services
             }
         }
 
-        public bool DeletePortfolio(Portfolio portfolio)
+        public bool DeleteIntroduction(Introduction introduction)
         {
-            if (portfolio != null)
+            if (introduction != null)
             {
                 try
                 {
-                    _context.Portfolios.Remove(portfolio);
+                    _context.Introductions.Remove(introduction);
                     _context.SaveChanges();
                     return true;
                 }
@@ -62,13 +52,23 @@ namespace C1System.Core.Services
                 return false;
         }
 
-        public bool UpdatePortfolio(Portfolio portfolio)
+        public List<Introduction> GetAllIntroduction()
         {
-            if (portfolio != null)
+            return _context.Introductions.ToList();
+        }
+
+        public Introduction GetIntroductionById(Guid id)
+        {
+            return _context.Introductions.Find(id);
+        }
+
+        public bool UpdateIntroduction(Introduction introduction)
+        {
+            if (introduction != null)
             {
                 try
                 {
-                    _context.Portfolios.Update(portfolio);
+                    _context.Introductions.Update(introduction);
                     _context.SaveChanges();
                     return true;
                 }
@@ -81,7 +81,5 @@ namespace C1System.Core.Services
             else
                 return false;
         }
-
-        
     }
 }
