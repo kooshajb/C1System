@@ -46,21 +46,16 @@ public class Portfolio
     [Required(ErrorMessage = "لطفا {0} را وارد کنید .")]
     public string CompanyLogo { get; set; }
     
-<<<<<<< Updated upstream
     [Display(Name = "تصاویر")]
     public string Media { get; set; }
-=======
+    
     [Display(Name = "تصویر شاخص")]
     public string FeatureMedia { get; set; }
     
-    [Display(Name = "تصاویر")]
-    public string Media { get; set; }
-
     [Display(Name ="امتیازدهی")]
     public int? Point { get; set; }
     
     //todo ارتباط با اینیتیت DemoPortfolio اضافه شود 
     //todo ارتباط با TechnologyPortfolio
     //todo ارتباط با برچسب ها
->>>>>>> Stashed changes
 }
