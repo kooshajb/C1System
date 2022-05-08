@@ -44,9 +44,5 @@ public class Category
     public string IconMenuImage { get; set; }
     
     [Display(Name = "ویدئو معرفی")]
-<<<<<<< Updated upstream
-    public string? videoIntro { get; set; }
-=======
     public string? VideoIntro { get; set; }
->>>>>>> Stashed changes
 }
