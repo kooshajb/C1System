@@ -38,4 +38,19 @@ public class Podcast
     [MinLength(50, ErrorMessage = "تعداد {0} نباید کمتر از {1} باشد.")]
     public string Audio { get; set; }
     
+    [Display(Name ="علاقه مندی")]
+    public bool? IsLike { get; set; }
+    
+    [Display(Name ="تگ محبوب")]
+    public bool? IsTopTag { get; set; }
+    
+    [Display(Name ="برگزیده")]
+    public bool? IsSelected { get; set; }
+    
+    [Display(Name ="امتیازدهی")]
+    public int? Point { get; set; }
+    
+    //todo دکمه اشتراگ گذاری
+    //todo برچسب ها
+    //todo bookmark
 }
