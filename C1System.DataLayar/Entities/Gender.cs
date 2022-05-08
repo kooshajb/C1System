@@ -9,8 +9,4 @@ public class Gender
 
     [Display(Name ="جنسیت")]
     public string GenderName { get; set; }
-
-    #region Relation
-    public ICollection<User> Users { get; set; }
-    #endregion
 }

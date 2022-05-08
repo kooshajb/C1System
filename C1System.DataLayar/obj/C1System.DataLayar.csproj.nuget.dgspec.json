@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "F:\\Test\\C1System\\C1System.DataLayar\\C1System.DataLayar.csproj": {}
+    "F:\\sivan\\C1System\\C1System.DataLayar\\C1System.DataLayar.csproj": {}
   },
   "projects": {
-    "F:\\Test\\C1System\\C1System.DataLayar\\C1System.DataLayar.csproj": {
+    "F:\\sivan\\C1System\\C1System.DataLayar\\C1System.DataLayar.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "F:\\Test\\C1System\\C1System.DataLayar\\C1System.DataLayar.csproj",
+        "projectUniqueName": "F:\\sivan\\C1System\\C1System.DataLayar\\C1System.DataLayar.csproj",
         "projectName": "C1System.DataLayar",
-        "projectPath": "F:\\Test\\C1System\\C1System.DataLayar\\C1System.DataLayar.csproj",
+        "projectPath": "F:\\sivan\\C1System\\C1System.DataLayar\\C1System.DataLayar.csproj",
         "packagesPath": "C:\\Users\\Koosha\\.nuget\\packages\\",
-        "outputPath": "F:\\Test\\C1System\\C1System.DataLayar\\obj\\",
+        "outputPath": "F:\\sivan\\C1System\\C1System.DataLayar\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Koosha\\AppData\\Roaming\\NuGet\\NuGet.Config",

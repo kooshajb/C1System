@@ -2093,11 +2093,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "F:\\Test\\C1System\\C1System\\C1System.csproj",
+      "projectUniqueName": "F:\\sivan\\C1System\\C1System\\C1System.csproj",
       "projectName": "C1System",
-      "projectPath": "F:\\Test\\C1System\\C1System\\C1System.csproj",
+      "projectPath": "F:\\sivan\\C1System\\C1System\\C1System.csproj",
       "packagesPath": "C:\\Users\\Koosha\\.nuget\\packages\\",
-      "outputPath": "F:\\Test\\C1System\\C1System\\obj\\",
+      "outputPath": "F:\\sivan\\C1System\\C1System\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Koosha\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -2114,11 +2114,11 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "F:\\Test\\C1System\\C1System.Core\\C1System.Core.csproj": {
-              "projectPath": "F:\\Test\\C1System\\C1System.Core\\C1System.Core.csproj"
+            "F:\\sivan\\C1System\\C1System.Core\\C1System.Core.csproj": {
+              "projectPath": "F:\\sivan\\C1System\\C1System.Core\\C1System.Core.csproj"
             },
-            "F:\\Test\\C1System\\C1System.DataLayar\\C1System.DataLayar.csproj": {
-              "projectPath": "F:\\Test\\C1System\\C1System.DataLayar\\C1System.DataLayar.csproj"
+            "F:\\sivan\\C1System\\C1System.DataLayar\\C1System.DataLayar.csproj": {
+              "projectPath": "F:\\sivan\\C1System\\C1System.DataLayar\\C1System.DataLayar.csproj"
             }
           }
         }

@@ -5,14 +5,14 @@ namespace C1System.DataLayar.Entities;
 public class Portfolio
 {
     [Key]
-    public Guid Id { get; set; }
+    public Guid PortfolioId { get; set; }
 
     [Display(Name = "تصویر")]
     public string Picture { get; set; }
     
     [Display(Name ="عنوان خدمت")]
     [Required(ErrorMessage ="لطفا {0} را وارد کنید .")]
-    [MinLength(20 , ErrorMessage ="تعداد {0} نباید کمتر از {1} باشد.")]
+    [MinLength(5 , ErrorMessage ="تعداد {0} نباید کمتر از {1} باشد.")]
     [MaxLength(150 , ErrorMessage = "تعداد {0} نباید بیشتر از {1} باشد.")]
     public string Title { get; set; }
 
