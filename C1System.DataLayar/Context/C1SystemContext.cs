@@ -17,7 +17,9 @@ namespace C1System.DataLayar.Context
 
         }
 
-        public DbSet<Slider> sliders { get; set; }
+        public DbSet<Slider> Sliders { get; set; }
+        public DbSet<Tag> Tags { get; set; }
+        
         public DbSet<Introduction> Introductions { get; set; }
         public DbSet<CustomerSpeech> CustomerSpeechs { get; set; }
 
@@ -25,7 +27,6 @@ namespace C1System.DataLayar.Context
         public DbSet<Portfolio> Portfolios { get; set; }
         public DbSet<Project> Projects { get; set; }
         public DbSet<Podcast> Podcasts { get; set; }
-        public DbSet<Tag> Tags { get; set; }
 
         public DbSet<Gender> Genders { get; set; }
 
@@ -36,6 +37,5 @@ namespace C1System.DataLayar.Context
         public DbSet<User> Users { get; set; }
         public DbSet<UserRole> UserRoles { get; set; }
         public DbSet<AccountType> AccountTypes { get; set; }
-
     }
 }

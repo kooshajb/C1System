@@ -36,11 +36,9 @@ namespace C1System.Core.Services
         {
             if (category != null)
             {
-                var Category = category;
-                Category.IsDelete = true;
                 try
                 {
-                    _context.Categories.Update(Category);
+                    _context.Categories.Remove(category);
                     _context.SaveChanges();
                     return true;
                 }
@@ -56,7 +54,7 @@ namespace C1System.Core.Services
 
         public List<Category> GetAllCategory()
         {
-            return _context.Categories.Where(x=> x.IsDelete == false).ToList();
+            return _context.Categories.ToList();
         }
 
         public Category GetCategoryById(Guid id)

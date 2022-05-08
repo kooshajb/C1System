@@ -20,7 +20,7 @@ namespace C1System.Core.Services
         {
             try
             {
-                _context.sliders.Add(slider);
+                _context.Sliders.Add(slider);
                 _context.SaveChanges();
                 return true;
             }
@@ -37,7 +37,7 @@ namespace C1System.Core.Services
             {
                 try
                 {
-                    _context.sliders.Remove(slider);
+                    _context.Sliders.Remove(slider);
                     _context.SaveChanges();
                     return true;
                 }
@@ -54,12 +54,12 @@ namespace C1System.Core.Services
 
         public List<Slider> GetAllSlider()
         {
-            return _context.sliders.OrderBy(x=> x.SliderSort).ToList();
+            return _context.Sliders.OrderBy(x=> x.SliderId).ToList();
         }
 
         public Slider GetSliderById(Guid id)
         {
-            return _context.sliders.Find(id);
+            return _context.Sliders.Find(id);
         }
 
         public bool UpdateSlider(Slider slider)
@@ -68,7 +68,7 @@ namespace C1System.Core.Services
             {
                 try
                 {
-                    _context.sliders.Update(slider);
+                    _context.Sliders.Update(slider);
                     _context.SaveChanges();
                     return true;
                 }
@@ -79,7 +79,7 @@ namespace C1System.Core.Services
                 }
             }
             else
-                return false ;
+                return false;
         }
     }
 }
