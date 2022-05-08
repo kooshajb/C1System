@@ -1861,19 +1861,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\ali heidari\\.nuget\\packages\\": {}
+    "C:\\Users\\Koosha\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\sivan\\C1System\\C1System.DataLayar\\C1System.DataLayar.csproj",
+      "projectUniqueName": "F:\\sivan\\C1System\\C1System.DataLayar\\C1System.DataLayar.csproj",
       "projectName": "C1System.DataLayar",
-      "projectPath": "D:\\sivan\\C1System\\C1System.DataLayar\\C1System.DataLayar.csproj",
-      "packagesPath": "C:\\Users\\ali heidari\\.nuget\\packages\\",
-      "outputPath": "D:\\sivan\\C1System\\C1System.DataLayar\\obj\\",
+      "projectPath": "F:\\sivan\\C1System\\C1System.DataLayar\\C1System.DataLayar.csproj",
+      "packagesPath": "C:\\Users\\Koosha\\.nuget\\packages\\",
+      "outputPath": "F:\\sivan\\C1System\\C1System.DataLayar\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\ali heidari\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Koosha\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [

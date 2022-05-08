@@ -2088,19 +2088,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\ali heidari\\.nuget\\packages\\": {}
+    "C:\\Users\\Koosha\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\sivan\\C1System\\C1System\\C1System.csproj",
+      "projectUniqueName": "F:\\sivan\\C1System\\C1System\\C1System.csproj",
       "projectName": "C1System",
-      "projectPath": "D:\\sivan\\C1System\\C1System\\C1System.csproj",
-      "packagesPath": "C:\\Users\\ali heidari\\.nuget\\packages\\",
-      "outputPath": "D:\\sivan\\C1System\\C1System\\obj\\",
+      "projectPath": "F:\\sivan\\C1System\\C1System\\C1System.csproj",
+      "packagesPath": "C:\\Users\\Koosha\\.nuget\\packages\\",
+      "outputPath": "F:\\sivan\\C1System\\C1System\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\ali heidari\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Koosha\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -2114,11 +2114,11 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "D:\\sivan\\C1System\\C1System.Core\\C1System.Core.csproj": {
-              "projectPath": "D:\\sivan\\C1System\\C1System.Core\\C1System.Core.csproj"
+            "F:\\sivan\\C1System\\C1System.Core\\C1System.Core.csproj": {
+              "projectPath": "F:\\sivan\\C1System\\C1System.Core\\C1System.Core.csproj"
             },
-            "D:\\sivan\\C1System\\C1System.DataLayar\\C1System.DataLayar.csproj": {
-              "projectPath": "D:\\sivan\\C1System\\C1System.DataLayar\\C1System.DataLayar.csproj"
+            "F:\\sivan\\C1System\\C1System.DataLayar\\C1System.DataLayar.csproj": {
+              "projectPath": "F:\\sivan\\C1System\\C1System.DataLayar\\C1System.DataLayar.csproj"
             }
           }
         }
