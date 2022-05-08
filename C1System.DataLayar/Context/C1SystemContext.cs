@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using C1System.DataLayar.Entities.Geo;
 using C1System.DataLayar.Entities.Blog;
 using C1System.DataLayar.Entities.CareerOpportunity;
+using C1System.DataLayar.Entities.Faq;
 
 namespace C1System.DataLayar.Context
 {
@@ -43,5 +44,6 @@ namespace C1System.DataLayar.Context
         public DbSet<AccountType> AccountTypes { get; set; }
         public DbSet<Blog> Blogs { get; set; }
         public DbSet<CareerOpportunity> CareerOpportunities { get; set; }
+        public DbSet<Faq> Faqs { get; set; }
     }
 }
