@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "ZmBipo2B4l7wPIXEHX7mWbACRGUvfSbBaux6c1ibxXzG0EKse2eODRds0wARfFOfGFpqzhK7/t/JBj+jZe8XBg==",
+  "dgSpecHash": "NA+cEUHb/Y5F+dFVvuwq5l8lBFq6QSQ10A54VMO82WaXrZOujfnMRQMDQwZ7cv2HHAJP2n7GHY4ddk1Y6sY4dQ==",
   "success": true,
-  "projectFilePath": "F:\\Test\\C1System\\C1System\\C1System.csproj",
+  "projectFilePath": "F:\\sivan\\C1System\\C1System\\C1System.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Koosha\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\Koosha\\.nuget\\packages\\microsoft.csharp\\4.5.0\\microsoft.csharp.4.5.0.nupkg.sha512",
