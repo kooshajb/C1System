@@ -2,7 +2,7 @@
 
 namespace C1System.DataLayar.Entities;
 
-public class Podcast
+public class Podcast 
 {
     [Key]
     public Guid PodcastId { get; set; }
