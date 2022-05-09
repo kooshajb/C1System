@@ -1,5 +1,4 @@
-﻿using C1System.Core.Services.Interface;
-using C1System.DataLayar.Context;
+﻿using C1System.DataLayar.Context;
 using C1System.DataLayar.Entities;
 using System;
 using System.Collections.Generic;
@@ -7,21 +6,30 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace C1System.Core.Services
+namespace C1System.Core.Services.category
 {
-    public class IntroductionService : IIntroductionService
+    public interface ICategoryService
+    {
+        List<Category> GetAllCategory();
+        Category GetCategoryById(Guid id);
+        bool AddCategory(Category category);
+        bool DeleteCategory(Category category);
+        bool UpdateCategory(Category category);
+    }
+
+    public class CategoryService : ICategoryService
     {
         private readonly C1SystemContext _context;
-        public IntroductionService(C1SystemContext context)
+        public CategoryService(C1SystemContext context)
         {
             _context = context;
         }
 
-        public bool AddIntroduction(Introduction introduction)
+        public bool AddCategory(Category category)
         {
             try
             {
-                _context.Introductions.Add(introduction);
+                _context.Categories.Add(category);
                 _context.SaveChanges();
                 return true;
             }
@@ -32,13 +40,13 @@ namespace C1System.Core.Services
             }
         }
 
-        public bool DeleteIntroduction(Introduction introduction)
+        public bool DeleteCategory(Category category)
         {
-            if (introduction != null)
+            if (category != null)
             {
                 try
                 {
-                    _context.Introductions.Remove(introduction);
+                    _context.Categories.Remove(category);
                     _context.SaveChanges();
                     return true;
                 }
@@ -52,23 +60,23 @@ namespace C1System.Core.Services
                 return false;
         }
 
-        public List<Introduction> GetAllIntroduction()
+        public List<Category> GetAllCategory()
         {
-            return _context.Introductions.ToList();
+            return _context.Categories.ToList();
         }
 
-        public Introduction GetIntroductionById(Guid id)
+        public Category GetCategoryById(Guid id)
         {
-            return _context.Introductions.Find(id);
+            return _context.Categories.Find(id);
         }
 
-        public bool UpdateIntroduction(Introduction introduction)
+        public bool UpdateCategory(Category category)
         {
-            if (introduction != null)
+            if (category != null)
             {
                 try
                 {
-                    _context.Introductions.Update(introduction);
+                    _context.Categories.Update(category);
                     _context.SaveChanges();
                     return true;
                 }
@@ -82,4 +90,5 @@ namespace C1System.Core.Services
                 return false;
         }
     }
+
 }

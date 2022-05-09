@@ -1,26 +1,33 @@
-﻿using C1System.Core.Services.Interface;
-using C1System.DataLayar.Context;
-using C1System.DataLayar.Entities;
+﻿using C1System.DataLayar.Context;
+using C1System.DataLayar.Entities.Geo;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace C1System.Core.Services
+namespace C1System.Core.Services.geo
 {
-    public class SliderService : ISliderService
+    public interface IProvinceService
+    {
+        List<Province> GetAllProvince();
+        Province GetProvinceById(Guid id);
+        bool AddProvince(Province province);
+        bool DeleteProvince(Province province);
+        bool UpdateProvince(Province province);
+    }
+    public class ProvinceService : IProvinceService
     {
         private readonly C1SystemContext _context;
-        public SliderService(C1SystemContext context)
+        public ProvinceService(C1SystemContext context)
         {
             _context = context;
         }
-        public bool AddSlider(Slider slider)
+        public bool AddProvince(Province province)
         {
             try
             {
-                _context.Sliders.Add(slider);
+                _context.Provinces.Add(province);
                 _context.SaveChanges();
                 return true;
             }
@@ -31,13 +38,13 @@ namespace C1System.Core.Services
             }
         }
 
-        public bool DeleteSlider(Slider slider)
+        public bool DeleteProvince(Province province)
         {
-            if (slider != null)
+            if (province != null)
             {
                 try
                 {
-                    _context.Sliders.Remove(slider);
+                    _context.Provinces.Remove(province);
                     _context.SaveChanges();
                     return true;
                 }
@@ -49,26 +56,25 @@ namespace C1System.Core.Services
             }
             else
                 return false;
-
         }
 
-        public List<Slider> GetAllSlider()
+        public List<Province> GetAllProvince()
         {
-            return _context.Sliders.OrderBy(x=> x.SliderId).ToList();
+            return _context.Provinces.ToList();
         }
 
-        public Slider GetSliderById(Guid id)
+        public Province GetProvinceById(Guid id)
         {
-            return _context.Sliders.Find(id);
+            return _context.Provinces.Find(id);
         }
 
-        public bool UpdateSlider(Slider slider)
+        public bool UpdateProvince(Province province)
         {
-            if(slider != null)
+            if (province != null)
             {
                 try
                 {
-                    _context.Sliders.Update(slider);
+                    _context.Provinces.Update(province);
                     _context.SaveChanges();
                     return true;
                 }

@@ -1,5 +1,4 @@
-﻿using C1System.Core.Services.Interface;
-using C1System.DataLayar.Context;
+﻿using C1System.DataLayar.Context;
 using C1System.DataLayar.Entities;
 using System;
 using System.Collections.Generic;
@@ -7,20 +6,29 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace C1System.Core.Services
+namespace C1System.Core.Services.slider
 {
-    public class USerService : IUSerService
+    public interface ISliderService
+    {
+        List<Slider> GetAllSlider();
+        Slider GetSliderById(Guid id);
+        bool AddSlider(Slider slider);
+        bool DeleteSlider(Slider slider);
+        bool UpdateSlider(Slider slider);
+    }
+
+    public class SliderService : ISliderService
     {
         private readonly C1SystemContext _context;
-        public USerService(C1SystemContext context)
+        public SliderService(C1SystemContext context)
         {
             _context = context;
         }
-        public bool AddUser(User user)
+        public bool AddSlider(Slider slider)
         {
             try
             {
-                _context.Users.Add(user);
+                _context.Sliders.Add(slider);
                 _context.SaveChanges();
                 return true;
             }
@@ -31,13 +39,13 @@ namespace C1System.Core.Services
             }
         }
 
-        public bool DeleteUser(User user)
+        public bool DeleteSlider(Slider slider)
         {
-            if (user != null)
+            if (slider != null)
             {
                 try
                 {
-                    _context.Users.Remove(user);
+                    _context.Sliders.Remove(slider);
                     _context.SaveChanges();
                     return true;
                 }
@@ -49,25 +57,26 @@ namespace C1System.Core.Services
             }
             else
                 return false;
+
         }
 
-        public List<User> GetAllUser()
+        public List<Slider> GetAllSlider()
         {
-            return _context.Users.ToList();
+            return _context.Sliders.OrderBy(x => x.SliderId).ToList();
         }
 
-        public User GetUserById(Guid id)
+        public Slider GetSliderById(Guid id)
         {
-            return _context.Users.Find(id);
+            return _context.Sliders.Find(id);
         }
 
-        public bool UpdateUser(User user)
+        public bool UpdateSlider(Slider slider)
         {
-            if (user != null)
+            if (slider != null)
             {
                 try
                 {
-                    _context.Users.Update(user);
+                    _context.Sliders.Update(slider);
                     _context.SaveChanges();
                     return true;
                 }

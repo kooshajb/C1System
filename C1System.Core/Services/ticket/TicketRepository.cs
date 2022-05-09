@@ -1,27 +1,34 @@
-﻿using C1System.Core.Services.Interface;
-using C1System.DataLayar.Context;
-using C1System.DataLayar.Entities;
+﻿using C1System.DataLayar.Context;
+using C1System.DataLayar.Entities.Ticket;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace C1System.Core.Services
+namespace C1System.Core.Services.ticket
 {
-    public class CustomerSpeechService : ICustomerSpeechService
+    public interface ITicketService
+    {
+        List<Ticket> GetAllTicket();
+        Ticket GetTicketById(Guid id);
+        bool AddTicket(Ticket ticket);
+        bool DeleteTicket(Ticket ticket);
+        bool UpdateTicket(Ticket ticket);
+    }
+
+    public class TicketService : ITicketService
     {
         private readonly C1SystemContext _context;
-        public CustomerSpeechService(C1SystemContext context)
+        public TicketService(C1SystemContext context)
         {
             _context = context;
         }
-
-        public bool AddCustomerSpeech(CustomerSpeech customerSpeech)
+        public bool AddTicket(Ticket ticket)
         {
             try
             {
-                _context.CustomerSpeechs.Add(customerSpeech);
+                _context.Tickets.Add(ticket);
                 _context.SaveChanges();
                 return true;
             }
@@ -32,13 +39,13 @@ namespace C1System.Core.Services
             }
         }
 
-        public bool DeleteCustomerSpeech(CustomerSpeech customerSpeech)
+        public bool DeleteTicket(Ticket ticket)
         {
-            if (customerSpeech != null)
+            if (ticket != null)
             {
                 try
                 {
-                    _context.CustomerSpeechs.Remove(customerSpeech);
+                    _context.Tickets.Remove(ticket);
                     _context.SaveChanges();
                     return true;
                 }
@@ -52,23 +59,23 @@ namespace C1System.Core.Services
                 return false;
         }
 
-        public List<CustomerSpeech> GetAllCustomerSpeech()
+        public List<Ticket> GetAllTicket()
         {
-            return _context.CustomerSpeechs.ToList();
+            return _context.Tickets.ToList();
         }
 
-        public CustomerSpeech GetCustomerSpeechById(Guid id)
+        public Ticket GetTicketById(Guid id)
         {
-            return _context.CustomerSpeechs.Find(id);
+            return _context.Tickets.Find(id);
         }
 
-        public bool UpdateCustomerSpeech(CustomerSpeech customerSpeech)
+        public bool UpdateTicket(Ticket ticket)
         {
-            if (customerSpeech != null)
+            if (ticket != null)
             {
                 try
                 {
-                    _context.CustomerSpeechs.Update(customerSpeech);
+                    _context.Tickets.Update(ticket);
                     _context.SaveChanges();
                     return true;
                 }

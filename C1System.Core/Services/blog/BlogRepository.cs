@@ -1,27 +1,35 @@
-﻿using C1System.Core.Services.Interface;
-using C1System.DataLayar.Context;
-using C1System.DataLayar.Entities;
+﻿using C1System.DataLayar.Context;
+using C1System.DataLayar.Entities.Blog;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace C1System.Core.Services
+namespace C1System.Core.Services.blog
 {
-    public class PodcastService : IPodcastService
+    public interface IBlogInterface
+    {
+        List<Blog> GetAllBlog();
+        Blog GetBlogById(Guid id);
+        bool AddBlog(Blog blog);
+        bool DeleteBlog(Blog blog);
+        bool UpdateBlog(Blog blog);
+    }
+
+    public class BlogInterface : IBlogInterface
     {
         private readonly C1SystemContext _context;
-        public PodcastService(C1SystemContext context)
+        public BlogInterface(C1SystemContext context)
         {
             _context = context;
         }
 
-        public bool AddPodcastg(Podcast podcast)
+        public bool AddBlog(Blog blog)
         {
             try
             {
-                _context.Podcasts.Add(podcast);
+                _context.Blogs.Add(blog);
                 _context.SaveChanges();
                 return true;
             }
@@ -32,13 +40,13 @@ namespace C1System.Core.Services
             }
         }
 
-        public bool DeleteTag(Podcast podcast)
+        public bool DeleteBlog(Blog blog)
         {
-            if (podcast != null)
+            if (blog != null)
             {
                 try
                 {
-                    _context.Podcasts.Remove(podcast);
+                    _context.Blogs.Remove(blog);
                     _context.SaveChanges();
                     return true;
                 }
@@ -52,23 +60,23 @@ namespace C1System.Core.Services
                 return false;
         }
 
-        public List<Podcast> GetAllTag()
+        public List<Blog> GetAllBlog()
         {
-            return _context.Podcasts.ToList();
+            return _context.Blogs.ToList();
         }
 
-        public Podcast GetPodcastById(Guid id)
+        public Blog GetBlogById(Guid id)
         {
-            return _context.Podcasts.Find(id);
+            return _context.Blogs.Find(id);
         }
 
-        public bool UpdateTag(Podcast podcast)
+        public bool UpdateBlog(Blog blog)
         {
-            if (podcast != null)
+            if (blog != null)
             {
                 try
                 {
-                    _context.Podcasts.Update(podcast);
+                    _context.Blogs.Update(blog);
                     _context.SaveChanges();
                     return true;
                 }
@@ -82,4 +90,6 @@ namespace C1System.Core.Services
                 return false;
         }
     }
+
+
 }

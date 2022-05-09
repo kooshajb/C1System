@@ -1,5 +1,4 @@
-﻿using C1System.Core.Services.Interface;
-using C1System.DataLayar.Context;
+﻿using C1System.DataLayar.Context;
 using C1System.DataLayar.Entities;
 using System;
 using System.Collections.Generic;
@@ -7,21 +6,30 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace C1System.Core.Services
+namespace C1System.Core.Services.tag
 {
-    public class CategoryService : ICategoryService
+    public interface ITagService
+    {
+        List<Tag> GetAllTag();
+        Tag GetTagById(Guid id);
+        bool AddTag(Tag tag);
+        bool DeleteTag(Tag tag);
+        bool UpdateTag(Tag tag);
+    }
+
+    public class TagService : ITagService
     {
         private readonly C1SystemContext _context;
-        public CategoryService(C1SystemContext context)
+        public TagService(C1SystemContext context)
         {
             _context = context;
         }
 
-        public bool AddCategory(Category category)
+        public bool AddTag(Tag tag)
         {
             try
             {
-                _context.Categories.Add(category);
+                _context.Tags.Add(tag);
                 _context.SaveChanges();
                 return true;
             }
@@ -32,15 +40,13 @@ namespace C1System.Core.Services
             }
         }
 
-        public bool DeleteCategory(Category category)
+        public bool DeleteTag(Tag tag)
         {
-            if (category != null)
+            if (tag != null)
             {
-                var Category = category;
-                Category.IsDelete = true;
                 try
                 {
-                    _context.Categories.Update(Category);
+                    _context.Tags.Remove(tag);
                     _context.SaveChanges();
                     return true;
                 }
@@ -54,23 +60,23 @@ namespace C1System.Core.Services
                 return false;
         }
 
-        public List<Category> GetAllCategory()
+        public List<Tag> GetAllTag()
         {
-            return _context.Categories.Where(x=> x.IsDelete == false).ToList();
+            return _context.Tags.ToList();
         }
 
-        public Category GetCategoryById(Guid id)
+        public Tag GetTagById(Guid id)
         {
-           return _context.Categories.Find(id);
+            return _context.Tags.Find(id);
         }
 
-        public bool UpdateCategory(Category category)
+        public bool UpdateTag(Tag tag)
         {
-            if (category != null)
+            if (tag != null)
             {
                 try
                 {
-                    _context.Categories.Update(category);
+                    _context.Tags.Update(tag);
                     _context.SaveChanges();
                     return true;
                 }

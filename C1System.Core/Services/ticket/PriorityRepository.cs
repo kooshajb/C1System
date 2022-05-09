@@ -1,27 +1,34 @@
 ﻿using C1System.DataLayar.Context;
-using C1System.DataLayar.Entities;
-using Microsoft.EntityFrameworkCore;
+using C1System.DataLayar.Entities.Ticket;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace C1System.Core.Services.Interface
+namespace C1System.Core.Services.ticket
 {
-    public class TagService : ITagService
+    public interface IPriorityService
+    {
+        List<Priority> GetAllPriority();
+        Priority GetPriorityById(int id);
+        bool AddPriority(Priority priority);
+        bool DeletePriority(Priority priority);
+        bool UpdatePriority(Priority priority);
+    }
+
+    public class PriorityService : IPriorityService
     {
         private readonly C1SystemContext _context;
-        public TagService(C1SystemContext context)
+        public PriorityService(C1SystemContext context)
         {
             _context = context;
         }
-
-        public bool AddTag(Tag tag)
+        public bool AddPriority(Priority priority)
         {
             try
             {
-                _context.Tags.Add(tag);
+                _context.Priorities.Add(priority);
                 _context.SaveChanges();
                 return true;
             }
@@ -32,13 +39,13 @@ namespace C1System.Core.Services.Interface
             }
         }
 
-        public bool DeleteTag(Tag tag)
+        public bool DeletePriority(Priority priority)
         {
-            if (tag != null)
+            if (priority != null)
             {
                 try
                 {
-                    _context.Tags.Remove(tag);
+                    _context.Priorities.Remove(priority);
                     _context.SaveChanges();
                     return true;
                 }
@@ -52,23 +59,23 @@ namespace C1System.Core.Services.Interface
                 return false;
         }
 
-        public List<Tag> GetAllTag()
+        public List<Priority> GetAllPriority()
         {
-            return _context.Tags.ToList();
+            return _context.Priorities.ToList();
         }
 
-        public Tag GetTagById(Guid id)
+        public Priority GetPriorityById(int id)
         {
-            return _context.Tags.Find(id);
+            return _context.Priorities.Find(id);
         }
 
-        public bool UpdateTag(Tag tag)
+        public bool UpdatePriority(Priority priority)
         {
-            if (tag != null)
+            if (priority != null)
             {
                 try
                 {
-                    _context.Tags.Update(tag);
+                    _context.Priorities.Update(priority);
                     _context.SaveChanges();
                     return true;
                 }

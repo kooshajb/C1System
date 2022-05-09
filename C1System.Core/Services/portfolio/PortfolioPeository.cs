@@ -1,5 +1,4 @@
-﻿using C1System.Core.Services.Interface;
-using C1System.DataLayar.Context;
+﻿using C1System.DataLayar.Context;
 using C1System.DataLayar.Entities;
 using System;
 using System.Collections.Generic;
@@ -7,8 +6,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace C1System.Core.Services
+namespace C1System.Core.Services.portfolio
 {
+    public interface IPortfolioService
+    {
+        List<Portfolio> GetAllPortfolio();
+        Portfolio GetPortfolioById(Guid id);
+        bool AddPortfolio(Portfolio portfolio);
+        bool DeletePortfolio(Portfolio portfolio);
+        bool UpdatePortfolio(Portfolio portfolio);
+    }
+
     public class PortfolioService : IPortfolioService
     {
         private C1SystemContext _context;
@@ -82,6 +90,6 @@ namespace C1System.Core.Services
                 return false;
         }
 
-        
+
     }
 }

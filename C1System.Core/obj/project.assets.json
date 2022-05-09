@@ -1791,11 +1791,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "F:\\sivan\\C1System\\C1System.Core\\C1System.Core.csproj",
+      "projectUniqueName": "F:\\Test\\C1System\\C1System.Core\\C1System.Core.csproj",
       "projectName": "C1System.Core",
-      "projectPath": "F:\\sivan\\C1System\\C1System.Core\\C1System.Core.csproj",
+      "projectPath": "F:\\Test\\C1System\\C1System.Core\\C1System.Core.csproj",
       "packagesPath": "C:\\Users\\Koosha\\.nuget\\packages\\",
-      "outputPath": "F:\\sivan\\C1System\\C1System.Core\\obj\\",
+      "outputPath": "F:\\Test\\C1System\\C1System.Core\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Koosha\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -1812,8 +1812,8 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "F:\\sivan\\C1System\\C1System.DataLayar\\C1System.DataLayar.csproj": {
-              "projectPath": "F:\\sivan\\C1System\\C1System.DataLayar\\C1System.DataLayar.csproj"
+            "F:\\Test\\C1System\\C1System.DataLayar\\C1System.DataLayar.csproj": {
+              "projectPath": "F:\\Test\\C1System\\C1System.DataLayar\\C1System.DataLayar.csproj"
             }
           }
         }
