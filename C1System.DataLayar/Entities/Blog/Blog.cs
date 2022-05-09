@@ -49,4 +49,6 @@ public class Blog : Banner
     //todo برچسب ها
     //todo bookmark
     //todo comment
+    //todo blogCategory
+
 }
