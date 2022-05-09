@@ -1,14 +1,22 @@
 ﻿using C1System.DataLayar.Context;
 using C1System.DataLayar.Entities;
-using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace C1System.Core.Services.Interface
+namespace C1System.Core.Services.tag
 {
+    public interface ITagService
+    {
+        List<Tag> GetAllTag();
+        Tag GetTagById(Guid id);
+        bool AddTag(Tag tag);
+        bool DeleteTag(Tag tag);
+        bool UpdateTag(Tag tag);
+    }
+
     public class TagService : ITagService
     {
         private readonly C1SystemContext _context;
