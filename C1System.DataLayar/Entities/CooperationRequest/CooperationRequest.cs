@@ -24,7 +24,7 @@ public class CooperationRequest
     [Required(ErrorMessage ="لطفا {0} را وارد کنید .")]
     [EmailAddress(ErrorMessage = "لطفا {0} معتبر وارد کنید")]
     [MinLength(50 , ErrorMessage ="تعداد {0} نباید کمتر از {1} باشد.")]
-    [MaxLength(1500 , ErrorMessage = "تعداد {0} نباید بیشتر از {1} باشد.")]
+    [MaxLength(500 , ErrorMessage = "تعداد {0} نباید بیشتر از {1} باشد.")]
     public string Email { get; set; }
     
     [Display(Name = "متن پیام")]
