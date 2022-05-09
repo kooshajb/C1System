@@ -26,7 +26,7 @@ namespace C1System.DataLayar.Entities
         
         [Display(Name = "توضیحات")]
         [Required(ErrorMessage = "لطفا {0} را وارد کنید .")]
-        public string Desc { get; set; }
+        public string Description { get; set; }
         
         [Display(Name = "ویدئو")]
         public string Video { get; set; }

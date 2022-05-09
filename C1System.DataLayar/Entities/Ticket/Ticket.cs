@@ -18,7 +18,7 @@ public class Ticket : BaseEntity
     
     [Display(Name = "موضوع")]
     [Required(ErrorMessage = "لطفا {0} را وارد کنید.")]
-    [StringLength(300, ErrorMessage = "لطفا {0} را وارد کنید.")]
+    [StringLength(500, ErrorMessage = "لطفا {0} را وارد کنید.")]
     public string Subject { get; set; }
     
     //todo ارتباط با جدول deartmantTicket

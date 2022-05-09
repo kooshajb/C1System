@@ -2,7 +2,7 @@
 
 namespace C1System.DataLayar.Entities.Blog;
 
-public class Blog
+public class Blog : Banner
 {
     [Key]
     public Guid BlogId { get; set; }
@@ -10,7 +10,7 @@ public class Blog
     [Display(Name ="عنوان پست")]
     [Required(ErrorMessage ="لطفا {0} را وارد کنید .")]
     [MinLength(20 , ErrorMessage ="تعداد {0} نباید کمتر از {1} باشد.")]
-    [MaxLength(250 , ErrorMessage = "تعداد {0} نباید بیشتر از {1} باشد.")]
+    [MaxLength(700 , ErrorMessage = "تعداد {0} نباید بیشتر از {1} باشد.")]
     public string Title { get; set; }
 
     [Display(Name = "توضیحات")]
@@ -25,6 +25,7 @@ public class Blog
     
     [Display(Name ="زمان مطالعه")]
     [Required(ErrorMessage ="لطفا {0} را وارد کنید .")]
+    [MinLength(5 , ErrorMessage = "تعداد {0} نباید بیشتر از {1} باشد.")]
     [MaxLength(5 , ErrorMessage = "تعداد {0} نباید بیشتر از {1} باشد.")]
     public string StudyTime { get; set; }
     
@@ -47,4 +48,7 @@ public class Blog
     //todo دکمه اشتراگ گذاری
     //todo برچسب ها
     //todo bookmark
+    //todo comment
+    //todo blogCategory
+
 }
