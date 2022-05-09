@@ -19,8 +19,7 @@ public class NeedsAssessment
     [Display(Name ="ایمیل")]
     [Required(ErrorMessage ="لطفا {0} را وارد کنید .")]
     [EmailAddress(ErrorMessage = "لطفا {0} معتبر وارد کنید")]
-    [MinLength(50 , ErrorMessage ="تعداد {0} نباید کمتر از {1} باشد.")]
-    [MaxLength(1500 , ErrorMessage = "تعداد {0} نباید بیشتر از {1} باشد.")]
+    [MaxLength(350 , ErrorMessage = "تعداد {0} نباید بیشتر از {1} باشد.")]
     public string Email { get; set; }
     
     [Display(Name ="شماره موبایل")]
@@ -35,5 +34,5 @@ public class NeedsAssessment
     public string Note { get; set; }
     
     [Display(Name = "فایل پیوست")]
-    public string Media { get; set; }
+    public string? Media { get; set; }
 }
