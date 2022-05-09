@@ -9,7 +9,7 @@ public class Podcast :Banner
     
     [Display(Name ="شماره پادکست")]
     [Required(ErrorMessage ="لطفا {0} را وارد کنید .")]
-    public int PodcastNumber { get; set; }
+    public long PodcastNumber { get; set; }
     
     [Display(Name ="عنوان پادکست")]
     [Required(ErrorMessage ="لطفا {0} را وارد کنید .")]
@@ -20,7 +20,7 @@ public class Podcast :Banner
     [Display(Name ="زمان مطالعه")]
     [Required(ErrorMessage ="لطفا {0} را وارد کنید .")]
     [MinLength(5 , ErrorMessage ="تعداد {0} نباید کمتر از {1} باشد.")]
-    [MaxLength(20 , ErrorMessage = "تعداد {0} نباید بیشتر از {1} باشد.")]
+    [MaxLength(5 , ErrorMessage = "تعداد {0} نباید بیشتر از {1} باشد.")]
     public string StudyTime { get; set; }
     
     [Display(Name ="تصویر شاخص")]
@@ -31,7 +31,7 @@ public class Podcast :Banner
     [Required(ErrorMessage = "لطفا {0} را وارد کنید .")]
     [MinLength(200, ErrorMessage = "تعداد {0} نباید کمتر از {1} باشد.")]
     [MaxLength(1000, ErrorMessage = "تعداد {0} نباید بیشتر از {1} باشد.")]
-    public string Desc { get; set; }
+    public string Description { get; set; }
 
     [Display(Name = "فایل صوتی")]
     [Required(ErrorMessage = "لطفا {0} را وارد کنید .")]
