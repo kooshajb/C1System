@@ -14,6 +14,7 @@ public class Consulting
     
     [Display(Name = "شماره موبایل")]
     [Required(ErrorMessage = "لطفا {0} را وارد کنید.")]
+    [Phone(ErrorMessage = "لطفا {0} معتبر وارد کنید.")]
     [MinLength(11, ErrorMessage = "تعداد {0} نباید کمتر از {1} باشد.")]
     [MaxLength(11, ErrorMessage = "تعداد {0} نباید بیشتر از {1} باشد.")]
     public string MobileNumber { get; set; }
