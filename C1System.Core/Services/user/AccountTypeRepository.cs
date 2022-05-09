@@ -1,5 +1,4 @@
-﻿using C1System.Core.Services.Interface;
-using C1System.DataLayar.Context;
+﻿using C1System.DataLayar.Context;
 using C1System.DataLayar.Entities;
 using System;
 using System.Collections.Generic;
@@ -7,20 +6,29 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace C1System.Core.Services
+namespace C1System.Core.Services.user
 {
-    public class USerService : IUSerService
+    public interface IAccountTypeService
+    {
+        List<AccountType> GetAllAccountType();
+        AccountType GetBlogById(int id);
+        bool AddAccountType(AccountType accountType);
+        bool DeleteAccountType(AccountType accountType);
+        bool UpdateAccountType(AccountType accountType);
+    }
+
+    public class AccountTypeService : IAccountTypeService
     {
         private readonly C1SystemContext _context;
-        public USerService(C1SystemContext context)
+        public AccountTypeService(C1SystemContext context)
         {
             _context = context;
         }
-        public bool AddUser(User user)
+        public bool AddAccountType(AccountType accountType)
         {
             try
             {
-                _context.Users.Add(user);
+                _context.AccountTypes.Add(accountType);
                 _context.SaveChanges();
                 return true;
             }
@@ -31,13 +39,13 @@ namespace C1System.Core.Services
             }
         }
 
-        public bool DeleteUser(User user)
+        public bool DeleteAccountType(AccountType accountType)
         {
-            if (user != null)
+            if (accountType != null)
             {
                 try
                 {
-                    _context.Users.Remove(user);
+                    _context.AccountTypes.Remove(accountType);
                     _context.SaveChanges();
                     return true;
                 }
@@ -51,23 +59,23 @@ namespace C1System.Core.Services
                 return false;
         }
 
-        public List<User> GetAllUser()
+        public List<AccountType> GetAllAccountType()
         {
-            return _context.Users.ToList();
+            return _context.AccountTypes.ToList();
         }
 
-        public User GetUserById(Guid id)
+        public AccountType GetBlogById(int id)
         {
-            return _context.Users.Find(id);
+            return _context.AccountTypes.Find(id);
         }
 
-        public bool UpdateUser(User user)
+        public bool UpdateAccountType(AccountType accountType)
         {
-            if (user != null)
+            if (accountType != null)
             {
                 try
                 {
-                    _context.Users.Update(user);
+                    _context.AccountTypes.Update(accountType);
                     _context.SaveChanges();
                     return true;
                 }

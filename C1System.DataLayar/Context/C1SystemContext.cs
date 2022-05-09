@@ -53,5 +53,6 @@ namespace C1System.DataLayar.Context
         public DbSet<Ticket> Tickets { get; set; }
         public DbSet<Priority> Priorities { get; set; }
         public DbSet<TicketStatus> TicketStatuses { get; set; }
+        
     }
 }
