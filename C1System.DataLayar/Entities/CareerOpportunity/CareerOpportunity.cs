@@ -2,7 +2,7 @@
 
 namespace C1System.DataLayar.Entities.CareerOpportunity;
 
-public class CareerOpportunity
+public class CareerOpportunity : Banner
 {
     [Key] 
     public Guid CareerOpportunityId { get; set; }

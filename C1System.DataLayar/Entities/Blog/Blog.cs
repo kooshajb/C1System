@@ -2,7 +2,7 @@
 
 namespace C1System.DataLayar.Entities.Blog;
 
-public class Blog
+public class Blog : Banner
 {
     [Key]
     public Guid BlogId { get; set; }
