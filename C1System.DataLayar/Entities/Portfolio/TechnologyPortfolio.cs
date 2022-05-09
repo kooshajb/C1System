@@ -10,7 +10,7 @@ public class TechnologyPortfolio
     [Display(Name ="نام تکنولوژی")]
     [Required(ErrorMessage ="لطفا {0} را وارد کنید .")]
     [MinLength(5 , ErrorMessage ="تعداد {0} نباید کمتر از {1} باشد.")]
-    [MaxLength(150 , ErrorMessage = "تعداد {0} نباید بیشتر از {1} باشد.")]
+    [MaxLength(250 , ErrorMessage = "تعداد {0} نباید بیشتر از {1} باشد.")]
     public string Title { get; set; }
     
     [Display(Name = "تصویر تکنولوژی")]
