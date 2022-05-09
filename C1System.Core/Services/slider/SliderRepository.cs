@@ -1,5 +1,4 @@
-﻿using C1System.Core.Services.Interface;
-using C1System.DataLayar.Context;
+﻿using C1System.DataLayar.Context;
 using C1System.DataLayar.Entities;
 using System;
 using System.Collections.Generic;
@@ -7,8 +6,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace C1System.Core.Services
+namespace C1System.Core.Services.slider
 {
+    public interface ISliderService
+    {
+        List<Slider> GetAllSlider();
+        Slider GetSliderById(Guid id);
+        bool AddSlider(Slider slider);
+        bool DeleteSlider(Slider slider);
+        bool UpdateSlider(Slider slider);
+    }
+
     public class SliderService : ISliderService
     {
         private readonly C1SystemContext _context;
@@ -54,7 +62,7 @@ namespace C1System.Core.Services
 
         public List<Slider> GetAllSlider()
         {
-            return _context.Sliders.OrderBy(x=> x.SliderId).ToList();
+            return _context.Sliders.OrderBy(x => x.SliderId).ToList();
         }
 
         public Slider GetSliderById(Guid id)
@@ -64,7 +72,7 @@ namespace C1System.Core.Services
 
         public bool UpdateSlider(Slider slider)
         {
-            if(slider != null)
+            if (slider != null)
             {
                 try
                 {
