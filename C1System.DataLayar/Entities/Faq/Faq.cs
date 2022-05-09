@@ -2,7 +2,7 @@
 
 namespace C1System.DataLayar.Entities.Faq;
 
-public class Faq
+public class Faq : Banner
 {
     [Key] 
     public Guid FaqId { get; set; }
