@@ -22,10 +22,8 @@ public class CustomerSpeech
     [Display(Name = "توضیحات")]
     [Required(ErrorMessage = "لطفا {0} را وارد کنید .")]
     [MinLength(200, ErrorMessage = "تعداد {0} نباید کمتر از {1} باشد.")]
-    [MaxLength(1000, ErrorMessage = "تعداد {0} نباید بیشتر از {1} باشد.")]
-    public string Desc { get; set; }
+    public string Description { get; set; }
     
     [Display(Name = "تصویر مشتری")]
-    [Required(ErrorMessage = "لطفا {0} را وارد کنید .")]
-    public string Avatar { get; set; }
+    public string? Avatar { get; set; }
 }
