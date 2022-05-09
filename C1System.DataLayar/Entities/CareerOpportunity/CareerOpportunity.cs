@@ -20,4 +20,6 @@ public class CareerOpportunity : Banner
     [MinLength(200, ErrorMessage = "تعداد {0} نباید کمتر از {1} باشد.")]
     [MaxLength(1500, ErrorMessage = "تعداد {0} نباید بیشتر از {1} باشد.")]
     public string Description { get; set; }
+    
+    //todo CooperationRequest
 }
