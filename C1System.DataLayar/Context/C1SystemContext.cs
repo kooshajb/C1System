@@ -47,5 +47,7 @@ namespace C1System.DataLayar.Context
         public DbSet<CareerOpportunity> CareerOpportunities { get; set; }
         public DbSet<Faq> Faqs { get; set; }
         public DbSet<NewsLetter>  NewsLetters { get; set; }
+        public DbSet<DemoPortfolio>  DemoPortfolios { get; set; }
+        public DbSet<TechnologyPortfolio> TechnologyPortfolios  { get; set; }
     }
 }
