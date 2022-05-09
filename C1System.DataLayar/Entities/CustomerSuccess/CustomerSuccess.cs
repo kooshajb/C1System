@@ -11,14 +11,14 @@ public class CustomerSuccess : Banner
     [Display(Name ="نام مدیرعامل")]
     [Required(ErrorMessage ="لطفا {0} را وارد کنید.")]
     [MinLength(10 , ErrorMessage ="تعداد {0} نباید کمتر از {1} باشد.")]
-    [MaxLength(80 , ErrorMessage = "تعداد {0} نباید بیشتر از {1} باشد.")]
-    public string Title { get; set; }
+    [MaxLength(120 , ErrorMessage = "تعداد {0} نباید بیشتر از {1} باشد.")]
+    public string ManagerName { get; set; }
     
-    [Display(Name ="سمت مدیرعامل")]
+    [Display(Name ="سمت مدیرعامل ")]
     [Required(ErrorMessage ="لطفا {0} را وارد کنید .")]
     [MinLength(20 , ErrorMessage ="تعداد {0} نباید کمتر از {1} باشد.")]
     [MaxLength(250 , ErrorMessage = "تعداد {0} نباید بیشتر از {1} باشد.")]
-    public string Side { get; set; }
+    public string ManagerSide { get; set; }
 
     [Display(Name ="نام شرکت")]
     [Required(ErrorMessage ="لطفا {0} را وارد کنید .")]
@@ -34,8 +34,8 @@ public class CustomerSuccess : Banner
     
     [Display(Name ="حوزه فعالیت")]
     [Required(ErrorMessage ="لطفا {0} را وارد کنید .")]
-    [MinLength(5 , ErrorMessage ="تعداد {0} نباید کمتر از {1} باشد.")]
-    [MaxLength(400 , ErrorMessage = "تعداد {0} نباید بیشتر از {1} باشد.")]
+    [MinLength(10 , ErrorMessage ="تعداد {0} نباید کمتر از {1} باشد.")]
+    [MaxLength(300 , ErrorMessage = "تعداد {0} نباید بیشتر از {1} باشد.")]
     public string ActivityName { get; set; }
 
     [Display(Name = "لوگو شرکت")]
@@ -50,24 +50,21 @@ public class CustomerSuccess : Banner
     public string Description { get; set; }
     
     [Display(Name = "فایل ویدئو")]
-    [Required(ErrorMessage = "لطفا {0} را وارد کنید.")]
-    public string VideoFile { get; set; }
-    
-    [Display(Name ="عنوان ویدئو")]
-    [Required(ErrorMessage ="لطفا {0} را وارد کنید .")]
-    [MinLength(5 , ErrorMessage ="تعداد {0} نباید کمتر از {1} باشد.")]
-    [MaxLength(100 , ErrorMessage = "تعداد {0} نباید بیشتر از {1} باشد.")]
-    public string VideoTitle { get; set; }
-    
-    [Display(Name ="زیرعنوان ویدئو")]
-    [Required(ErrorMessage ="لطفا {0} را وارد کنید .")]
-    [MinLength(15 , ErrorMessage ="تعداد {0} نباید کمتر از {1} باشد.")]
-    [MaxLength(350 , ErrorMessage = "تعداد {0} نباید بیشتر از {1} باشد.")]
-    public string VideoSubTitle { get; set; }
+    public string? VideoFile { get; set; }
     
     [Display(Name = "عکس کاور ویدئو")]
     public string? CoverVideoImage { get; set; }
     
+    [Display(Name ="عنوان ویدئو")]
+    [MinLength(5 , ErrorMessage ="تعداد {0} نباید کمتر از {1} باشد.")]
+    [MaxLength(100 , ErrorMessage = "تعداد {0} نباید بیشتر از {1} باشد.")]
+    public string? VideoTitle { get; set; }
+    
+    [Display(Name ="زیرعنوان ویدئو")]
+    [MinLength(15 , ErrorMessage ="تعداد {0} نباید کمتر از {1} باشد.")]
+    [MaxLength(350 , ErrorMessage = "تعداد {0} نباید بیشتر از {1} باشد.")]
+    public string? VideoSubTitle { get; set; }
+
     [Display(Name = "گالری تصاویر")]
     public string Media { get; set; }
 }
