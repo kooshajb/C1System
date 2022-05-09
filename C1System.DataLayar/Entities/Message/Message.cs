@@ -15,7 +15,7 @@ public class Message : BaseEntity
     
     [Display(Name = "متن پیام")]
     [Required(ErrorMessage = "لطفا {0} را وارد کنید.")]
-    [StringLength(500, ErrorMessage = "لطفا {0} را وارد کنید.")]
+    [MinLength(10, ErrorMessage = "لطفا {0} را وارد کنید.")]
     public string MessageDesc { get; set; }
 
     [Display(Name = "خوانده شده یا نشده")]
