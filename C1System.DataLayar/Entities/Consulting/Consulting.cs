@@ -1,4 +1,6 @@
-﻿namespace DefaultNamespace;
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace DefaultNamespace;
 
 public class Consulting
 {

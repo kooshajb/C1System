@@ -10,7 +10,8 @@
   <component name="ChangeListManager">
     <list default="true" id="9a581658-4bd8-4394-848d-b84afc3c7c05" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.C1System/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.C1System/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/C1System.DataLayar/Entities/Podcast/Podcast.cs" beforeDir="false" afterPath="$PROJECT_DIR$/C1System.DataLayar/Entities/Podcast/Podcast.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/C1System.DataLayar/Entities/Consulting/Consulting.cs" beforeDir="false" afterPath="$PROJECT_DIR$/C1System.DataLayar/Entities/Consulting/Consulting.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/C1System.DataLayar/Entities/Slider.cs" beforeDir="false" afterPath="$PROJECT_DIR$/C1System.DataLayar/Entities/Slider.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -82,7 +83,7 @@
       <updated>1651983359315</updated>
       <workItem from="1651983372510" duration="4759000" />
       <workItem from="1651989598007" duration="493000" />
-      <workItem from="1652080477406" duration="1119000" />
+      <workItem from="1652080477406" duration="2332000" />
     </task>
     <servers />
   </component>
