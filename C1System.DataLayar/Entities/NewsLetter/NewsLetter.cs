@@ -14,7 +14,7 @@ public class NewsLetter
     
     [Display(Name = "ایمیل")]
     [Required(ErrorMessage = "لطفا {0} را وارد کنید.")]
-    [StringLength(300, ErrorMessage = "لطفا {0} را وارد کنید.")]
+    [StringLength(500, ErrorMessage = "لطفا {0} را وارد کنید.")]
     [EmailAddress(ErrorMessage = "لطفا {0} معتبر وارد کنید.")]
     public string Email { get; set; }
 }
