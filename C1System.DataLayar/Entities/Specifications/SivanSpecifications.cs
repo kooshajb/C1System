@@ -1,4 +1,6 @@
-﻿namespace DefaultNamespace;
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace DefaultNamespace;
 
 public class SivanSpecifications
 {
@@ -25,6 +27,11 @@ public class SivanSpecifications
     [Required(ErrorMessage ="لطفا {0} را وارد کنید .")]
     [MinLength(20 , ErrorMessage ="تعداد {0} نباید کمتر از {1} باشد.")]
     public string SivanFooterDesc { get; set; }
+    
+    [Display(Name ="متن قوانین و مقررات")]
+    [Required(ErrorMessage ="لطفا {0} را وارد کنید .")]
+    [MinLength(20 , ErrorMessage ="تعداد {0} نباید کمتر از {1} باشد.")]
+    public string SivanRules { get; set; }
 
     [Display(Name ="ایمیل اصلی")]
     [Required(ErrorMessage ="لطفا {0} را وارد کنید .")]
