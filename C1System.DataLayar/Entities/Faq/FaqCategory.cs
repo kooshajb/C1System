@@ -9,7 +9,7 @@ public class FaqCategory
     
     [Display(Name = "عنوان دسته بندی")]
     [Required(ErrorMessage = "لطفا {0} را وارد کنید.")]
-    [StringLength(200, ErrorMessage = "لطفا {0} را وارد کنید.")]
+    [StringLength(300, ErrorMessage = "لطفا {0} را وارد کنید.")]
     public string FaqCategoryTitle { get; set; }
     
     [Display(Name ="تصویر دسته بندی")]
