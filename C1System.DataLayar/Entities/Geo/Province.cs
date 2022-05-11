@@ -7,7 +7,6 @@ public class Province
 {
     [Key]
     [Display(Name = "شناسه")]
-    [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     public int ProvinceId { get; set; }
     
     [StringLength(50)]

@@ -7,7 +7,6 @@ public class Country
 {
     [Key]
     [Display(Name = "شناسه")]
-    [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     public int CountryId { get; set; }
     
     [StringLength(200)]

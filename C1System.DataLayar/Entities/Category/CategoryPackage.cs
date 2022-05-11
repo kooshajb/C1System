@@ -19,5 +19,6 @@ public class CategoryPackage
     [MaxLength(150, ErrorMessage = "تعداد {0} نباید بیشتر از {1} باشد.")]
     public string SubTitle { get; set; }
     
-    //todo ارتباط با لیست اتم ها اضافه شود 
+    //todo - category ارتباط با لیست ابتم ها اضافه شود 
+    //todo - with CategoryPackageItem
 }

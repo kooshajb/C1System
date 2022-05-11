@@ -23,21 +23,31 @@ public class Category
     [Required(ErrorMessage = "لطفا {0} را وارد کنید .")]
     public string Description { get; set; }
     
-    [Display(Name = "متن معرفی")]
+    [Display(Name = "تصویر آیکن")]
+    [Required(ErrorMessage = "لطفا {0} را وارد کنید .")]
+    public string IconImage { get; set; }
+    
+    [Display(Name = "متن معرفی صفحه داخلی")]
     [Required(ErrorMessage = "لطفا {0} را وارد کنید .")]
     public string IntroDescription { get; set; }
     
-    [Display(Name = "متن بنر")]
+    [Display(Name = "تصویر معرفی صفحه داخلی")]
+    [Required(ErrorMessage = "لطفا {0} را وارد کنید .")]
+    public string IntroImage { get; set; }
+
+    [Display(Name = "عنوان بنر")]
+    [Required(ErrorMessage = "لطفا {0} را وارد کنید .")]
+    [MinLength(20, ErrorMessage = "تعداد {0} نباید کمتر از {1} باشد.")]
+    [MaxLength(350, ErrorMessage = "تعداد {0} نباید بیشتر از {1} باشد.")]
+    public string BannerTitle { get; set; }
+    
+    [Display(Name = "متن توضیح بنر")]
     [Required(ErrorMessage = "لطفا {0} را وارد کنید .")]
     public string BannerDescription { get; set; }
     
     [Display(Name = "تصویر بنر")]
     [Required(ErrorMessage = "لطفا {0} را وارد کنید .")]
     public string BannerImage { get; set; }
-    
-    [Display(Name = "تصویر آیکن")]
-    [Required(ErrorMessage = "لطفا {0} را وارد کنید .")]
-    public string IconImage { get; set; }
     
     [Display(Name = "تصویر آیکن منو")]
     [Required(ErrorMessage = "لطفا {0} را وارد کنید .")]

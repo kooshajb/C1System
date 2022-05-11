@@ -7,7 +7,6 @@ public class City
 {
     [Key]
     [Display(Name = "شناسه")]
-    [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     public int CityId { get; set; }
     
     [StringLength(50)]
