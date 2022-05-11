@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "F:\\Test\\C1System\\C1System\\C1System.csproj": {}
+    "D:\\c1sys-final\\C1System\\C1System\\C1System.csproj": {}
   },
   "projects": {
-    "F:\\Test\\C1System\\C1System.Core\\C1System.Core.csproj": {
+    "D:\\c1sys-final\\C1System\\C1System.Core\\C1System.Core.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "F:\\Test\\C1System\\C1System.Core\\C1System.Core.csproj",
+        "projectUniqueName": "D:\\c1sys-final\\C1System\\C1System.Core\\C1System.Core.csproj",
         "projectName": "C1System.Core",
-        "projectPath": "F:\\Test\\C1System\\C1System.Core\\C1System.Core.csproj",
-        "packagesPath": "C:\\Users\\Koosha\\.nuget\\packages\\",
-        "outputPath": "F:\\Test\\C1System\\C1System.Core\\obj\\",
+        "projectPath": "D:\\c1sys-final\\C1System\\C1System.Core\\C1System.Core.csproj",
+        "packagesPath": "C:\\Users\\ali heidari\\.nuget\\packages\\",
+        "outputPath": "D:\\c1sys-final\\C1System\\C1System.Core\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Koosha\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\ali heidari\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -28,8 +28,8 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "F:\\Test\\C1System\\C1System.DataLayar\\C1System.DataLayar.csproj": {
-                "projectPath": "F:\\Test\\C1System\\C1System.DataLayar\\C1System.DataLayar.csproj"
+              "D:\\c1sys-final\\C1System\\C1System.DataLayar\\C1System.DataLayar.csproj": {
+                "projectPath": "D:\\c1sys-final\\C1System\\C1System.DataLayar\\C1System.DataLayar.csproj"
               }
             }
           }
@@ -44,6 +44,10 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "dependencies": {
+            "AutoMapper": {
+              "target": "Package",
+              "version": "[11.0.0, )"
+            },
             "Microsoft.EntityFrameworkCore.SqlServer": {
               "target": "Package",
               "version": "[6.0.4, )"
@@ -68,17 +72,17 @@
         }
       }
     },
-    "F:\\Test\\C1System\\C1System.DataLayar\\C1System.DataLayar.csproj": {
+    "D:\\c1sys-final\\C1System\\C1System.DataLayar\\C1System.DataLayar.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "F:\\Test\\C1System\\C1System.DataLayar\\C1System.DataLayar.csproj",
+        "projectUniqueName": "D:\\c1sys-final\\C1System\\C1System.DataLayar\\C1System.DataLayar.csproj",
         "projectName": "C1System.DataLayar",
-        "projectPath": "F:\\Test\\C1System\\C1System.DataLayar\\C1System.DataLayar.csproj",
-        "packagesPath": "C:\\Users\\Koosha\\.nuget\\packages\\",
-        "outputPath": "F:\\Test\\C1System\\C1System.DataLayar\\obj\\",
+        "projectPath": "D:\\c1sys-final\\C1System\\C1System.DataLayar\\C1System.DataLayar.csproj",
+        "packagesPath": "C:\\Users\\ali heidari\\.nuget\\packages\\",
+        "outputPath": "D:\\c1sys-final\\C1System\\C1System.DataLayar\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Koosha\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\ali heidari\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -144,17 +148,17 @@
         }
       }
     },
-    "F:\\Test\\C1System\\C1System\\C1System.csproj": {
+    "D:\\c1sys-final\\C1System\\C1System\\C1System.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "F:\\Test\\C1System\\C1System\\C1System.csproj",
+        "projectUniqueName": "D:\\c1sys-final\\C1System\\C1System\\C1System.csproj",
         "projectName": "C1System",
-        "projectPath": "F:\\Test\\C1System\\C1System\\C1System.csproj",
-        "packagesPath": "C:\\Users\\Koosha\\.nuget\\packages\\",
-        "outputPath": "F:\\Test\\C1System\\C1System\\obj\\",
+        "projectPath": "D:\\c1sys-final\\C1System\\C1System\\C1System.csproj",
+        "packagesPath": "C:\\Users\\ali heidari\\.nuget\\packages\\",
+        "outputPath": "D:\\c1sys-final\\C1System\\C1System\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Koosha\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\ali heidari\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -168,11 +172,11 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "F:\\Test\\C1System\\C1System.Core\\C1System.Core.csproj": {
-                "projectPath": "F:\\Test\\C1System\\C1System.Core\\C1System.Core.csproj"
+              "D:\\c1sys-final\\C1System\\C1System.Core\\C1System.Core.csproj": {
+                "projectPath": "D:\\c1sys-final\\C1System\\C1System.Core\\C1System.Core.csproj"
               },
-              "F:\\Test\\C1System\\C1System.DataLayar\\C1System.DataLayar.csproj": {
-                "projectPath": "F:\\Test\\C1System\\C1System.DataLayar\\C1System.DataLayar.csproj"
+              "D:\\c1sys-final\\C1System\\C1System.DataLayar\\C1System.DataLayar.csproj": {
+                "projectPath": "D:\\c1sys-final\\C1System\\C1System.DataLayar\\C1System.DataLayar.csproj"
               }
             }
           }
@@ -187,6 +191,10 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "dependencies": {
+            "AutoMapper.Extensions.Microsoft.DependencyInjection": {
+              "target": "Package",
+              "version": "[11.0.0, )"
+            },
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
               "version": "[6.0.4, )"
@@ -206,6 +214,10 @@
               "suppressParent": "All",
               "target": "Package",
               "version": "[6.0.4, )"
+            },
+            "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
+              "target": "Package",
+              "version": "[6.0.3, )"
             },
             "Swashbuckle.AspNetCore": {
               "target": "Package",
