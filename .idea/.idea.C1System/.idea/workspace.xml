@@ -8,10 +8,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9a581658-4bd8-4394-848d-b84afc3c7c05" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.C1System/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.C1System/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/C1System/Areas/Admin/Controllers/PodcastController.cs" beforeDir="false" />
-    </list>
+    <list default="true" id="9a581658-4bd8-4394-848d-b84afc3c7c05" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -88,7 +85,7 @@
       <workItem from="1651989598007" duration="493000" />
       <workItem from="1652080477406" duration="9985000" />
       <workItem from="1652168561545" duration="1070000" />
-      <workItem from="1652268427286" duration="737000" />
+      <workItem from="1652268427286" duration="1223000" />
     </task>
     <servers />
   </component>
