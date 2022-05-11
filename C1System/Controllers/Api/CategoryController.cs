@@ -1,4 +1,6 @@
-﻿using C1System.Core.Dtos.Category;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
+using C1System.Core.Dtos.Category;
 using C1System.Core.Services.category;
 using C1System.DataLayar.Entities.Responses;
 using Microsoft.AspNetCore.Mvc;
@@ -31,8 +33,8 @@ public class CategoryController : ControllerBase
         return CreatedAtAction(nameof(GetCategory), new { id = createdCategory.Id}, createdCategory.Result);
     }
         
-    [HttpGet("{id:guid}")]
-    public async Task<ActionResult<GetCategoryDto>> GetCategory(Guid id)
+    [HttpGet("{id:int}")]
+    public async Task<ActionResult<GetCategoryDto>> GetCategory(int id)
     {
         var category = await _categoryRepository.GetById(id);
 
@@ -41,15 +43,15 @@ public class CategoryController : ControllerBase
         return Ok(category.Result);
     }
 
-    [HttpPut("{id:guid}")]
-    public async Task<ActionResult<GetCategoryDto>> UpdateProduct([FromBody]AddUpdateCategoryDto dto, Guid id)
+    [HttpPut("{id:int}")]
+    public async Task<ActionResult<GetCategoryDto>> UpdateProduct([FromBody]AddUpdateCategoryDto dto, int id)
     {
         var category =  await _categoryRepository.Update(id, dto);
         return Ok(category.Result);
     }
 
-    [HttpDelete("{id:guid}")]
-    public async Task<ActionResult> DeleteCategory(Guid id)
+    [HttpDelete("{id:int}")]
+    public async Task<ActionResult> DeleteCategory(int id)
     {
         await _categoryRepository.Delete(id);
         return NoContent();
