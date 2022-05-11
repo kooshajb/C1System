@@ -1,4 +1,6 @@
-﻿using C1System.Core.Dtos.Category;
+﻿using System;
+using System.Threading.Tasks;
+using C1System.Core.Dtos.Category;
 using C1System.Core.Services.category;
 using C1System.DataLayar.Entities;
 using Microsoft.AspNetCore.Mvc;
@@ -15,10 +17,11 @@ public class AdminCategoryController : Controller
         _categoryRepository = categoryRepository;
     }
 
-    public async Task<IActionResult> Index()
+    public async Task<IActionResult> ShowAllCategories()
     {
-        var model = await _categoryRepository.Get();
-        return View(model.Result);
+        var list = await _categoryRepository.Get();
+        var model = list.Result.Where(c => !c.IsDelete && c.SubCategory == null).ToList();
+        return View(model);
     }
 
     [HttpGet]
@@ -38,30 +41,31 @@ public class AdminCategoryController : Controller
         {
             return View(dto);
         }
-        // if (_categoryRepository.ExistCategory(category.CategoryFaTitle, category.CategoryEnTitle, 0))
-        // {
-        //     ModelState.AddModelError("ErrorCategory", "دسته بندی تکراری است");
-        //     return View(dto);
-        // }
+        if (_categoryRepository.ExistCategory(dto.Title,0))
+        {
+            ModelState.AddModelError("ErrorCategory", "دسته بندی تکراری است");
+            return View(dto);
+        }
         var newCategory = await _categoryRepository.Add(dto);
-        TempData["Result"] = newCategory.Result != null  ? "true" : "false";
-        return RedirectToAction(nameof(Index));
+        TempData["Result"] = newCategory.Result.CategoryId > 0  ? "true" : "false";
+        return RedirectToAction(nameof(ShowAllCategories));
     }
     
-    
-    // [HttpGet]
-    // public IActionResult ShowAllSubCategories(int id)
-    // {
-    //     ViewBag.Id = id;
-    //     var model = _categoryRepository.ShowAllSubCategories(id);
-    //     return View(model);
-    // }
-    //
-    // [HttpGet]
-    // public IActionResult ShowAllSubCategoryThree(int id)
-    // {
-    //     ViewBag.Id = id;
-    //     var model = _categoryRepository.ShowAllSubCategories(id);
-    //     return View(model);
-    // }
+    [HttpGet]
+    public async Task<IActionResult> ShowAllSubCategories(int id)
+    {
+        ViewBag.Id = id;
+        // var list = await _categoryRepository.Get();
+        // var model = list.Result.Where(s => !s.IsDelete && s.SubCategory == id);
+        var model = await _categoryRepository.ShowAllSubCategories(id);
+        return View(model.Result);
+    }
+
+    [HttpGet]
+    public async Task<IActionResult> ShowAllSubCategoryThree(int id)
+    {
+        ViewBag.Id = id;
+        var model = await _categoryRepository.ShowAllSubCategories(id);
+        return View(model.Result);
+    }
 }
