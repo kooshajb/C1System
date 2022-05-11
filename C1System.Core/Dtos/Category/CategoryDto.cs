@@ -1,11 +1,14 @@
-﻿// using AutoMapper;
+﻿using System.ComponentModel.DataAnnotations;
+using AutoMapper;
     
 namespace C1System.Core.Dtos.Category;
 
 public class GetCategoryDto
 {
-    public Guid CategoryId { get; set; }
+    public int CategoryId { get; set; }
+
     public string Title { get; set; }
+    
     public string SubTitle { get; set; }
     public string Description { get; set; }
     public string IconImage { get; set; }
@@ -16,6 +19,8 @@ public class GetCategoryDto
     public string BannerImage { get; set; }
     public string IconMenuImage { get; set; }
     public string? VideoIntro { get; set; }
+    public int? SubCategory { get; set; }
+    public bool IsDelete { get; set; }
 }    
 
 
@@ -32,13 +37,15 @@ public class AddUpdateCategoryDto
     public string BannerImage { get; set; }
     public string IconMenuImage { get; set; }
     public string? VideoIntro { get; set; }
+    public int? SubCategory { get; set; }
+    public bool IsDelete { get; set; }
 }
 
 
-// public class AutoMapperCategory : Profile {
-//     public AutoMapperCategory() {
-//         CreateMap<DataLayar.Entities.Category, AddUpdateCategoryDto>().ReverseMap();
-//         CreateMap<DataLayar.Entities.Category, GetCategoryDto>().ReverseMap();
-//         CreateMap<AddUpdateCategoryDto, GetCategoryDto>().ReverseMap();
-//     }
-// }
+public class AutoMapperCategory : Profile {
+    public AutoMapperCategory() {
+        CreateMap<DataLayar.Entities.Category, AddUpdateCategoryDto>().ReverseMap();
+        CreateMap<DataLayar.Entities.Category, GetCategoryDto>().ReverseMap();
+        CreateMap<AddUpdateCategoryDto, GetCategoryDto>().ReverseMap();
+    }
+}
