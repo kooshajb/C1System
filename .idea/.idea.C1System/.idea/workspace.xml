@@ -10,25 +10,7 @@
   <component name="ChangeListManager">
     <list default="true" id="9a581658-4bd8-4394-848d-b84afc3c7c05" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.C1System/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.C1System/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/C1System.Core/C1System.Core.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/C1System.Core/C1System.Core.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/C1System.Core/Dtos/Category/CategoryDto.cs" beforeDir="false" afterPath="$PROJECT_DIR$/C1System.Core/Dtos/Category/CategoryDto.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/C1System.Core/Services/category/CategoryRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/C1System.Core/Services/category/CategoryRepository.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/C1System.Core/obj/C1System.Core.csproj.nuget.dgspec.json" beforeDir="false" afterPath="$PROJECT_DIR$/C1System.Core/obj/C1System.Core.csproj.nuget.dgspec.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/C1System.Core/obj/Debug/net6.0/C1System.Core.assets.cache" beforeDir="false" afterPath="$PROJECT_DIR$/C1System.Core/obj/Debug/net6.0/C1System.Core.assets.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/C1System.Core/obj/Debug/net6.0/C1System.Core.csproj.AssemblyReference.cache" beforeDir="false" afterPath="$PROJECT_DIR$/C1System.Core/obj/Debug/net6.0/C1System.Core.csproj.AssemblyReference.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/C1System.Core/obj/project.assets.json" beforeDir="false" afterPath="$PROJECT_DIR$/C1System.Core/obj/project.assets.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/C1System.Core/obj/project.nuget.cache" beforeDir="false" afterPath="$PROJECT_DIR$/C1System.Core/obj/project.nuget.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/C1System.Core/obj/project.packagespec.json" beforeDir="false" afterPath="$PROJECT_DIR$/C1System.Core/obj/project.packagespec.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/C1System.Core/obj/rider.project.restore.info" beforeDir="false" afterPath="$PROJECT_DIR$/C1System.Core/obj/rider.project.restore.info" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/C1System.DataLayar/obj/rider.project.restore.info" beforeDir="false" afterPath="$PROJECT_DIR$/C1System.DataLayar/obj/rider.project.restore.info" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/C1System/C1System.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/C1System/C1System.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/C1System/obj/C1System.csproj.nuget.dgspec.json" beforeDir="false" afterPath="$PROJECT_DIR$/C1System/obj/C1System.csproj.nuget.dgspec.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/C1System/obj/Debug/net6.0/C1System.assets.cache" beforeDir="false" afterPath="$PROJECT_DIR$/C1System/obj/Debug/net6.0/C1System.assets.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/C1System/obj/Debug/net6.0/C1System.csproj.AssemblyReference.cache" beforeDir="false" afterPath="$PROJECT_DIR$/C1System/obj/Debug/net6.0/C1System.csproj.AssemblyReference.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/C1System/obj/project.assets.json" beforeDir="false" afterPath="$PROJECT_DIR$/C1System/obj/project.assets.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/C1System/obj/project.nuget.cache" beforeDir="false" afterPath="$PROJECT_DIR$/C1System/obj/project.nuget.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/C1System/obj/project.packagespec.json" beforeDir="false" afterPath="$PROJECT_DIR$/C1System/obj/project.packagespec.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/C1System/obj/rider.project.restore.info" beforeDir="false" afterPath="$PROJECT_DIR$/C1System/obj/rider.project.restore.info" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/C1System/Areas/Admin/Controllers/PodcastController.cs" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -44,7 +26,9 @@
     <option name="stateVersion" value="1" />
   </component>
   <component name="ProjectId" id="28rmzvnqHDSh2oXRcHBTJ20KmAK" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -104,7 +88,7 @@
       <workItem from="1651989598007" duration="493000" />
       <workItem from="1652080477406" duration="9985000" />
       <workItem from="1652168561545" duration="1070000" />
-      <workItem from="1652268427286" duration="440000" />
+      <workItem from="1652268427286" duration="737000" />
     </task>
     <servers />
   </component>
