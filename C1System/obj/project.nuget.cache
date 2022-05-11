@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "CefDBQj8ev8Ha2scXCN5wCw0o8hfwfGqz9G+EtnOhpxpaQx1L7MnnSE8R/YEmFRbYtwve8dVv+qWwZjCzxpK3Q==",
+  "dgSpecHash": "Vj/0LtFNEwBN+TAg1Pmc/2B+2nFcLjJOqOzPpScD09DMEo3VmueDpBNIDWI0WvUgPSy8f9scOkUVMwbxRatABw==",
   "success": true,
-  "projectFilePath": "D:\\c1sys\\C1System\\C1System\\C1System.csproj",
+  "projectFilePath": "D:\\c1sys-final\\C1System\\C1System\\C1System.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\ali heidari\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\ali heidari\\.nuget\\packages\\messagepack\\2.1.152\\messagepack.2.1.152.nupkg.sha512",

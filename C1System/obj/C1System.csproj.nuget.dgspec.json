@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\c1sys\\C1System\\C1System\\C1System.csproj": {}
+    "D:\\c1sys-final\\C1System\\C1System\\C1System.csproj": {}
   },
   "projects": {
-    "D:\\c1sys\\C1System\\C1System.Core\\C1System.Core.csproj": {
+    "D:\\c1sys-final\\C1System\\C1System.Core\\C1System.Core.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\c1sys\\C1System\\C1System.Core\\C1System.Core.csproj",
+        "projectUniqueName": "D:\\c1sys-final\\C1System\\C1System.Core\\C1System.Core.csproj",
         "projectName": "C1System.Core",
-        "projectPath": "D:\\c1sys\\C1System\\C1System.Core\\C1System.Core.csproj",
+        "projectPath": "D:\\c1sys-final\\C1System\\C1System.Core\\C1System.Core.csproj",
         "packagesPath": "C:\\Users\\ali heidari\\.nuget\\packages\\",
-        "outputPath": "D:\\c1sys\\C1System\\C1System.Core\\obj\\",
+        "outputPath": "D:\\c1sys-final\\C1System\\C1System.Core\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\ali heidari\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -28,8 +28,8 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "D:\\c1sys\\C1System\\C1System.DataLayar\\C1System.DataLayar.csproj": {
-                "projectPath": "D:\\c1sys\\C1System\\C1System.DataLayar\\C1System.DataLayar.csproj"
+              "D:\\c1sys-final\\C1System\\C1System.DataLayar\\C1System.DataLayar.csproj": {
+                "projectPath": "D:\\c1sys-final\\C1System\\C1System.DataLayar\\C1System.DataLayar.csproj"
               }
             }
           }
@@ -68,14 +68,14 @@
         }
       }
     },
-    "D:\\c1sys\\C1System\\C1System.DataLayar\\C1System.DataLayar.csproj": {
+    "D:\\c1sys-final\\C1System\\C1System.DataLayar\\C1System.DataLayar.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\c1sys\\C1System\\C1System.DataLayar\\C1System.DataLayar.csproj",
+        "projectUniqueName": "D:\\c1sys-final\\C1System\\C1System.DataLayar\\C1System.DataLayar.csproj",
         "projectName": "C1System.DataLayar",
-        "projectPath": "D:\\c1sys\\C1System\\C1System.DataLayar\\C1System.DataLayar.csproj",
+        "projectPath": "D:\\c1sys-final\\C1System\\C1System.DataLayar\\C1System.DataLayar.csproj",
         "packagesPath": "C:\\Users\\ali heidari\\.nuget\\packages\\",
-        "outputPath": "D:\\c1sys\\C1System\\C1System.DataLayar\\obj\\",
+        "outputPath": "D:\\c1sys-final\\C1System\\C1System.DataLayar\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\ali heidari\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -144,14 +144,14 @@
         }
       }
     },
-    "D:\\c1sys\\C1System\\C1System\\C1System.csproj": {
+    "D:\\c1sys-final\\C1System\\C1System\\C1System.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\c1sys\\C1System\\C1System\\C1System.csproj",
+        "projectUniqueName": "D:\\c1sys-final\\C1System\\C1System\\C1System.csproj",
         "projectName": "C1System",
-        "projectPath": "D:\\c1sys\\C1System\\C1System\\C1System.csproj",
+        "projectPath": "D:\\c1sys-final\\C1System\\C1System\\C1System.csproj",
         "packagesPath": "C:\\Users\\ali heidari\\.nuget\\packages\\",
-        "outputPath": "D:\\c1sys\\C1System\\C1System\\obj\\",
+        "outputPath": "D:\\c1sys-final\\C1System\\C1System\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\ali heidari\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -168,11 +168,11 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "D:\\c1sys\\C1System\\C1System.Core\\C1System.Core.csproj": {
-                "projectPath": "D:\\c1sys\\C1System\\C1System.Core\\C1System.Core.csproj"
+              "D:\\c1sys-final\\C1System\\C1System.Core\\C1System.Core.csproj": {
+                "projectPath": "D:\\c1sys-final\\C1System\\C1System.Core\\C1System.Core.csproj"
               },
-              "D:\\c1sys\\C1System\\C1System.DataLayar\\C1System.DataLayar.csproj": {
-                "projectPath": "D:\\c1sys\\C1System\\C1System.DataLayar\\C1System.DataLayar.csproj"
+              "D:\\c1sys-final\\C1System\\C1System.DataLayar\\C1System.DataLayar.csproj": {
+                "projectPath": "D:\\c1sys-final\\C1System\\C1System.DataLayar\\C1System.DataLayar.csproj"
               }
             }
           }

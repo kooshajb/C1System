@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "zr6neCEIRxuKJJmu/CpuvSA1lSmgd46cc+HsThtCDX8lZuIt4VSk5dzQidcLBuS9gFRdndc80nrTJ5BgDP9d9Q==",
+  "dgSpecHash": "ZGw+CXBHVUxFYFCTilhJ01sJxdMprVCFW8PMt3bYLHFkbyJVzmTCt12sDUCEGZcuejQw9w2aLXxbYOrW4697fw==",
   "success": true,
-  "projectFilePath": "D:\\c1sys\\C1System\\C1System.Core\\C1System.Core.csproj",
+  "projectFilePath": "D:\\c1sys-final\\C1System\\C1System.Core\\C1System.Core.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\ali heidari\\.nuget\\packages\\microsoft.csharp\\4.5.0\\microsoft.csharp.4.5.0.nupkg.sha512",
     "C:\\Users\\ali heidari\\.nuget\\packages\\microsoft.data.sqlclient\\2.1.4\\microsoft.data.sqlclient.2.1.4.nupkg.sha512",

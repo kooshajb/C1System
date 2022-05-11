@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "dPFzft+wJ8mn+93iRZrdkGuvGvCKc4eMNl5qL90/CvSIwcQ0Or+UxuBm6FA/0knui89KtYw+2ktQP4fcpe3qrQ==",
+  "dgSpecHash": "TRQsqj5/IgalAX1U7BdZWr9TpKXfthrO/6suSa4ERQYGPx5f9MYyPTnoJduPf7bfmYWySbX2TlnVGnlGZ75OCQ==",
   "success": true,
-  "projectFilePath": "D:\\c1sys\\C1System\\C1System.DataLayar\\C1System.DataLayar.csproj",
+  "projectFilePath": "D:\\c1sys-final\\C1System\\C1System.DataLayar\\C1System.DataLayar.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\ali heidari\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\ali heidari\\.nuget\\packages\\microsoft.csharp\\4.5.0\\microsoft.csharp.4.5.0.nupkg.sha512",

@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\c1sys\\C1System\\C1System.DataLayar\\C1System.DataLayar.csproj": {}
+    "D:\\c1sys-final\\C1System\\C1System.DataLayar\\C1System.DataLayar.csproj": {}
   },
   "projects": {
-    "D:\\c1sys\\C1System\\C1System.DataLayar\\C1System.DataLayar.csproj": {
+    "D:\\c1sys-final\\C1System\\C1System.DataLayar\\C1System.DataLayar.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\c1sys\\C1System\\C1System.DataLayar\\C1System.DataLayar.csproj",
+        "projectUniqueName": "D:\\c1sys-final\\C1System\\C1System.DataLayar\\C1System.DataLayar.csproj",
         "projectName": "C1System.DataLayar",
-        "projectPath": "D:\\c1sys\\C1System\\C1System.DataLayar\\C1System.DataLayar.csproj",
+        "projectPath": "D:\\c1sys-final\\C1System\\C1System.DataLayar\\C1System.DataLayar.csproj",
         "packagesPath": "C:\\Users\\ali heidari\\.nuget\\packages\\",
-        "outputPath": "D:\\c1sys\\C1System\\C1System.DataLayar\\obj\\",
+        "outputPath": "D:\\c1sys-final\\C1System\\C1System.DataLayar\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\ali heidari\\AppData\\Roaming\\NuGet\\NuGet.Config",
