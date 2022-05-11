@@ -1,4 +1,4 @@
-﻿using AutoMapper;
+﻿// using AutoMapper;
     
 namespace C1System.Core.Dtos.Category;
 
@@ -35,10 +35,10 @@ public class AddUpdateCategoryDto
 }
 
 
-public class AutoMapperCategory : Profile {
-    public AutoMapperCategory() {
-        CreateMap<DataLayar.Entities.Category, AddUpdateCategoryDto>().ReverseMap();
-        CreateMap<DataLayar.Entities.Category, GetCategoryDto>().ReverseMap();
-        CreateMap<AddUpdateCategoryDto, GetCategoryDto>().ReverseMap();
-    }
-}
+// public class AutoMapperCategory : Profile {
+//     public AutoMapperCategory() {
+//         CreateMap<DataLayar.Entities.Category, AddUpdateCategoryDto>().ReverseMap();
+//         CreateMap<DataLayar.Entities.Category, GetCategoryDto>().ReverseMap();
+//         CreateMap<AddUpdateCategoryDto, GetCategoryDto>().ReverseMap();
+//     }
+// }
