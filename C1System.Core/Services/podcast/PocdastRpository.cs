@@ -10,11 +10,11 @@ namespace C1System.Core.Services.podcast
 {
     public interface IPodcastService
     {
-        List<Podcast> GetAllTag();
+        List<Podcast> GetAllPodcast();
         Podcast GetPodcastById(Guid id);
-        bool AddPodcastg(Podcast podcast);
-        bool DeleteTag(Podcast podcast);
-        bool UpdateTag(Podcast podcast);
+        bool AddPodcast(Podcast podcast);
+        bool DeletePodcast(Podcast podcast);
+        bool UpdatePodcast(Podcast podcast);
     }
 
     public class PodcastService : IPodcastService
@@ -25,7 +25,7 @@ namespace C1System.Core.Services.podcast
             _context = context;
         }
 
-        public bool AddPodcastg(Podcast podcast)
+        public bool AddPodcast(Podcast podcast)
         {
             try
             {
@@ -40,7 +40,7 @@ namespace C1System.Core.Services.podcast
             }
         }
 
-        public bool DeleteTag(Podcast podcast)
+        public bool DeletePodcast(Podcast podcast)
         {
             if (podcast != null)
             {
@@ -60,7 +60,7 @@ namespace C1System.Core.Services.podcast
                 return false;
         }
 
-        public List<Podcast> GetAllTag()
+        public List<Podcast> GetAllPodcast()
         {
             return _context.Podcasts.ToList();
         }
@@ -70,7 +70,7 @@ namespace C1System.Core.Services.podcast
             return _context.Podcasts.Find(id);
         }
 
-        public bool UpdateTag(Podcast podcast)
+        public bool UpdatePodcast(Podcast podcast)
         {
             if (podcast != null)
             {
