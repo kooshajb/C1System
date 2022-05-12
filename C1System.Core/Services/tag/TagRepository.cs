@@ -10,84 +10,84 @@ namespace C1System.Core.Services.tag
 {
     public interface ITagService
     {
-        List<Tag> GetAllTag();
-        Tag GetTagById(Guid id);
-        bool AddTag(Tag tag);
-        bool DeleteTag(Tag tag);
-        bool UpdateTag(Tag tag);
+        //List<Tag> GetAllTag();
+        //Tag GetTagById(Guid id);
+        //bool AddTag(Tag tag);
+        //bool DeleteTag(Tag tag);
+        //bool UpdateTag(Tag tag);
     }
 
     public class TagService : ITagService
     {
-        private readonly C1SystemContext _context;
-        public TagService(C1SystemContext context)
-        {
-            _context = context;
-        }
+        //private readonly C1SystemContext _context;
+        //public TagService(C1SystemContext context)
+        //{
+        //    _context = context;
+        //}
 
-        public bool AddTag(Tag tag)
-        {
-            try
-            {
-                _context.Tags.Add(tag);
-                _context.SaveChanges();
-                return true;
-            }
-            catch (Exception)
-            {
+        //public bool AddTag(Tag tag)
+        //{
+        //    try
+        //    {
+        //        _context.Tags.Add(tag);
+        //        _context.SaveChanges();
+        //        return true;
+        //    }
+        //    catch (Exception)
+        //    {
 
-                return false;
-            }
-        }
+        //        return false;
+        //    }
+        //}
 
-        public bool DeleteTag(Tag tag)
-        {
-            if (tag != null)
-            {
-                try
-                {
-                    _context.Tags.Remove(tag);
-                    _context.SaveChanges();
-                    return true;
-                }
-                catch (Exception)
-                {
+        //public bool DeleteTag(Tag tag)
+        //{
+        //    if (tag != null)
+        //    {
+        //        try
+        //        {
+        //            _context.Tags.Remove(tag);
+        //            _context.SaveChanges();
+        //            return true;
+        //        }
+        //        catch (Exception)
+        //        {
 
-                    return false;
-                }
-            }
-            else
-                return false;
-        }
+        //            return false;
+        //        }
+        //    }
+        //    else
+        //        return false;
+        //}
 
-        public List<Tag> GetAllTag()
-        {
-            return _context.Tags.ToList();
-        }
+        //public List<Tag> GetAllTag()
+        //{
+        //    return _context.Tags.ToList();
+        //}
 
-        public Tag GetTagById(Guid id)
-        {
-            return _context.Tags.Find(id);
-        }
+        //public Tag GetTagById(Guid id)
+        //{
+        //    return _context.Tags.Find(id);
+        //}
 
-        public bool UpdateTag(Tag tag)
-        {
-            if (tag != null)
-            {
-                try
-                {
-                    _context.Tags.Update(tag);
-                    _context.SaveChanges();
-                    return true;
-                }
-                catch (Exception)
-                {
+        //public bool UpdateTag(Tag tag)
+        //{
+        //    if (tag != null)
+        //    {
+        //        try
+        //        {
+        //            _context.Tags.Update(tag);
+        //            _context.SaveChanges();
+        //            return true;
+        //        }
+        //        catch (Exception)
+        //        {
 
-                    throw;
-                }
-            }
-            else
-                return false;
-        }
+        //            throw;
+        //        }
+        //    }
+        //    else
+        //        return false;
+        //}
     }
 }

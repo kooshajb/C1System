@@ -10,83 +10,83 @@ namespace C1System.Core.Services.ticket
 {
     public interface IPriorityService
     {
-        List<Priority> GetAllPriority();
-        Priority GetPriorityById(int id);
-        bool AddPriority(Priority priority);
-        bool DeletePriority(Priority priority);
-        bool UpdatePriority(Priority priority);
+        //List<Priority> GetAllPriority();
+        //Priority GetPriorityById(int id);
+        //bool AddPriority(Priority priority);
+        //bool DeletePriority(Priority priority);
+        //bool UpdatePriority(Priority priority);
     }
 
     public class PriorityService : IPriorityService
     {
-        private readonly C1SystemContext _context;
-        public PriorityService(C1SystemContext context)
-        {
-            _context = context;
-        }
-        public bool AddPriority(Priority priority)
-        {
-            try
-            {
-                _context.Priorities.Add(priority);
-                _context.SaveChanges();
-                return true;
-            }
-            catch (Exception)
-            {
+        //private readonly C1SystemContext _context;
+        //public PriorityService(C1SystemContext context)
+        //{
+        //    _context = context;
+        //}
+        //public bool AddPriority(Priority priority)
+        //{
+        //    try
+        //    {
+        //        _context.Priorities.Add(priority);
+        //        _context.SaveChanges();
+        //        return true;
+        //    }
+        //    catch (Exception)
+        //    {
 
-                return false;
-            }
-        }
+        //        return false;
+        //    }
+        //}
 
-        public bool DeletePriority(Priority priority)
-        {
-            if (priority != null)
-            {
-                try
-                {
-                    _context.Priorities.Remove(priority);
-                    _context.SaveChanges();
-                    return true;
-                }
-                catch (Exception)
-                {
+        //public bool DeletePriority(Priority priority)
+        //{
+        //    if (priority != null)
+        //    {
+        //        try
+        //        {
+        //            _context.Priorities.Remove(priority);
+        //            _context.SaveChanges();
+        //            return true;
+        //        }
+        //        catch (Exception)
+        //        {
 
-                    return false;
-                }
-            }
-            else
-                return false;
-        }
+        //            return false;
+        //        }
+        //    }
+        //    else
+        //        return false;
+        //}
 
-        public List<Priority> GetAllPriority()
-        {
-            return _context.Priorities.ToList();
-        }
+        //public List<Priority> GetAllPriority()
+        //{
+        //    return _context.Priorities.ToList();
+        //}
 
-        public Priority GetPriorityById(int id)
-        {
-            return _context.Priorities.Find(id);
-        }
+        //public Priority GetPriorityById(int id)
+        //{
+        //    return _context.Priorities.Find(id);
+        //}
 
-        public bool UpdatePriority(Priority priority)
-        {
-            if (priority != null)
-            {
-                try
-                {
-                    _context.Priorities.Update(priority);
-                    _context.SaveChanges();
-                    return true;
-                }
-                catch (Exception)
-                {
+        //public bool UpdatePriority(Priority priority)
+        //{
+        //    if (priority != null)
+        //    {
+        //        try
+        //        {
+        //            _context.Priorities.Update(priority);
+        //            _context.SaveChanges();
+        //            return true;
+        //        }
+        //        catch (Exception)
+        //        {
 
-                    throw;
-                }
-            }
-            else
-                return false;
-        }
+        //            throw;
+        //        }
+        //    }
+        //    else
+        //        return false;
+        //}
     }
 }

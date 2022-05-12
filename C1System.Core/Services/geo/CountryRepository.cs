@@ -10,85 +10,85 @@ namespace C1System.Core.Services.geo
 {
     public interface ICountryService
     {
-        List<Country> GetAllCountry();
-        Country GetCountryById(Guid id);
-        bool AddCountry(Country country);
-        bool DeleteCountry(Country country);
-        bool UpdateCountry(Country country);
+        //List<Country> GetAllCountry();
+        //Country GetCountryById(Guid id);
+        //bool AddCountry(Country country);
+        //bool DeleteCountry(Country country);
+        //bool UpdateCountry(Country country);
     }
 
     public class CountryService : ICountryService
     {
-        private readonly C1SystemContext _context;
-        public CountryService(C1SystemContext context)
-        {
-            _context = context;
-        }
+        //private readonly C1SystemContext _context;
+        //public CountryService(C1SystemContext context)
+        //{
+        //    _context = context;
+        //}
 
 
-        public bool AddCountry(Country country)
-        {
-            try
-            {
-                _context.Countries.Add(country);
-                _context.SaveChanges();
-                return true;
-            }
-            catch (Exception)
-            {
+        //public bool AddCountry(Country country)
+        //{
+        //    try
+        //    {
+        //        _context.Countries.Add(country);
+        //        _context.SaveChanges();
+        //        return true;
+        //    }
+        //    catch (Exception)
+        //    {
 
-                return false;
-            }
-        }
+        //        return false;
+        //    }
+        //}
 
-        public bool DeleteCountry(Country country)
-        {
-            if (country != null)
-            {
-                try
-                {
-                    _context.Countries.Remove(country);
-                    _context.SaveChanges();
-                    return true;
-                }
-                catch (Exception)
-                {
+        //public bool DeleteCountry(Country country)
+        //{
+        //    if (country != null)
+        //    {
+        //        try
+        //        {
+        //            _context.Countries.Remove(country);
+        //            _context.SaveChanges();
+        //            return true;
+        //        }
+        //        catch (Exception)
+        //        {
 
-                    return false;
-                }
-            }
-            else
-                return false;
-        }
+        //            return false;
+        //        }
+        //    }
+        //    else
+        //        return false;
+        //}
 
-        public List<Country> GetAllCountry()
-        {
-            return _context.Countries.ToList();
-        }
+        //public List<Country> GetAllCountry()
+        //{
+        //    return _context.Countries.ToList();
+        //}
 
-        public Country GetCountryById(Guid id)
-        {
-            return _context.Countries.Find(id);
-        }
+        //public Country GetCountryById(Guid id)
+        //{
+        //    return _context.Countries.Find(id);
+        //}
 
-        public bool UpdateCountry(Country country)
-        {
-            if (country != null)
-            {
-                try
-                {
-                    _context.Countries.Update(country);
-                    _context.SaveChanges();
-                    return true;
-                }
-                catch (Exception)
-                {
+        //public bool UpdateCountry(Country country)
+        //{
+        //    if (country != null)
+        //    {
+        //        try
+        //        {
+        //            _context.Countries.Update(country);
+        //            _context.SaveChanges();
+        //            return true;
+        //        }
+        //        catch (Exception)
+        //        {
 
-                    throw;
-                }
-            }
-            else
-                return false;
-        }
+        //            throw;
+        //        }
+        //    }
+        //    else
+        //        return false;
+        //}
     }
 }
