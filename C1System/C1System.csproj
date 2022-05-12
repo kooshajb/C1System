@@ -27,4 +27,24 @@
     <ProjectReference Include="..\C1System.DataLayar\C1System.DataLayar.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Data\CareerOpportunity" />
+    <Folder Include="Data\Geo" />
+    <Folder Include="Data\Introduction" />
+    <Folder Include="Dtos\Blog" />
+    <Folder Include="Dtos\CustomerSpeech" />
+    <Folder Include="Dtos\Faq" />
+    <Folder Include="Dtos\Introduction" />
+    <Folder Include="Dtos\NewsLetter" />
+    <Folder Include="Dtos\Podcast" />
+    <Folder Include="Dtos\Project" />
+    <Folder Include="Dtos\Slider" />
+    <Folder Include="Dtos\Tag" />
+    <Folder Include="Dtos\Ticket" />
+    <Folder Include="Dtos\User" />
+    <Folder Include="Migrations" />
+    <Folder Include="Models\Introduction" />
+    <Folder Include="Profiles" />
+  </ItemGroup>
+
 </Project>
