@@ -6,9 +6,7 @@ namespace C1System.Core.Dtos.Category;
 public class GetCategoryDto
 {
     public int CategoryId { get; set; }
-
     public string Title { get; set; }
-    
     public string SubTitle { get; set; }
     public string Description { get; set; }
     public string IconImage { get; set; }
