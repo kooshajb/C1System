@@ -3,6 +3,8 @@ using C1System.DataLayar.Context;
 using Microsoft.EntityFrameworkCore;
 using System.Configuration;
 using C1System.Core.Services.category;
+using C1System.Core.Services.podcast;
+using C1System.Core.Services.portfolio;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -22,8 +24,11 @@ builder.Services.AddDbContext<C1SystemContext>(options =>
 
 #region IOC
 builder.Services.AddTransient<ICategoryRepository, CategoryRepository>();
-builder.Services.AddTransient<ICategoryPackageService, CategoryPackageService>();
-builder.Services.AddTransient<ICategoryPackageItemService, CategoryPackageItemService>();
+builder.Services.AddTransient<IPortfolioRepository, PortfolioRepository>();
+builder.Services.AddTransient<IPodcastRepository, PodcastRepository>();
+
+// builder.Services.AddTransient<ICategoryPackageService, CategoryPackageService>();
+// builder.Services.AddTransient<ICategoryPackageItemService, CategoryPackageItemService>();
 #endregion
 
 
