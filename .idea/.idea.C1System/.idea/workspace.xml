@@ -9,12 +9,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9a581658-4bd8-4394-848d-b84afc3c7c05" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.C1System/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.C1System/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.vs/C1System/DesignTimeBuild/.dtbcache.v2" beforeDir="false" afterPath="$PROJECT_DIR$/.vs/C1System/DesignTimeBuild/.dtbcache.v2" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.vs/C1System/v17/.futdcache.v1" beforeDir="false" afterPath="$PROJECT_DIR$/.vs/C1System/v17/.futdcache.v1" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.vs/C1System/v17/.suo" beforeDir="false" afterPath="$PROJECT_DIR$/.vs/C1System/v17/.suo" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/C1System.Core/Dtos/Category/CategoryDto.cs" beforeDir="false" afterPath="$PROJECT_DIR$/C1System.Core/Dtos/Category/CategoryDto.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/C1System.Core/Services/blog/BlogRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/C1System.Core/Services/blog/BlogRepository.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/C1System.Core/Services/careerOpportunity/CareerOpportunityRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/C1System.Core/Services/careerOpportunity/CareerOpportunityRepository.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/C1System.Core/Services/category/CategoryRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/C1System.Core/Services/category/CategoryRepository.cs" afterDir="false" />
@@ -41,25 +36,14 @@
       <change beforePath="$PROJECT_DIR$/C1System.Core/bin/Debug/net6.0/C1System.DataLayar.dll" beforeDir="false" afterPath="$PROJECT_DIR$/C1System.Core/bin/Debug/net6.0/C1System.DataLayar.dll" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/C1System.Core/bin/Debug/net6.0/C1System.DataLayar.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/C1System.Core/bin/Debug/net6.0/C1System.DataLayar.pdb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/C1System.Core/obj/Debug/net6.0/C1System.Core.csproj.AssemblyReference.cache" beforeDir="false" afterPath="$PROJECT_DIR$/C1System.Core/obj/Debug/net6.0/C1System.Core.csproj.AssemblyReference.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/C1System.Core/obj/Debug/net6.0/C1System.Core.csproj.CoreCompileInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/C1System.Core/obj/Debug/net6.0/C1System.Core.csproj.CoreCompileInputs.cache" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/C1System.Core/obj/Debug/net6.0/C1System.Core.dll" beforeDir="false" afterPath="$PROJECT_DIR$/C1System.Core/obj/Debug/net6.0/C1System.Core.dll" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/C1System.Core/obj/Debug/net6.0/C1System.Core.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/C1System.Core/obj/Debug/net6.0/C1System.Core.pdb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/C1System.Core/obj/Debug/net6.0/ref/C1System.Core.dll" beforeDir="false" afterPath="$PROJECT_DIR$/C1System.Core/obj/Debug/net6.0/ref/C1System.Core.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/C1System.Core/obj/Debug/net6.0/refint/C1System.Core.dll" beforeDir="false" afterPath="$PROJECT_DIR$/C1System.Core/obj/Debug/net6.0/refint/C1System.Core.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/C1System.Core/obj/rider.project.restore.info" beforeDir="false" afterPath="$PROJECT_DIR$/C1System.Core/obj/rider.project.restore.info" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/C1System.DataLayar/Context/C1SystemContext.cs" beforeDir="false" afterPath="$PROJECT_DIR$/C1System.DataLayar/Context/C1SystemContext.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/C1System.DataLayar/Entities/Category/Category.cs" beforeDir="false" afterPath="$PROJECT_DIR$/C1System.DataLayar/Entities/Category/Category.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/C1System.DataLayar/Migrations/20220511140800_Category.Designer.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/C1System.DataLayar/Migrations/20220511140800_Category.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/C1System.DataLayar/Migrations/C1SystemContextModelSnapshot.cs" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/C1System.DataLayar/bin/Debug/net6.0/C1System.DataLayar.dll" beforeDir="false" afterPath="$PROJECT_DIR$/C1System.DataLayar/bin/Debug/net6.0/C1System.DataLayar.dll" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/C1System.DataLayar/bin/Debug/net6.0/C1System.DataLayar.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/C1System.DataLayar/bin/Debug/net6.0/C1System.DataLayar.pdb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/C1System.DataLayar/obj/Debug/net6.0/C1System.DataLayar.csproj.CoreCompileInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/C1System.DataLayar/obj/Debug/net6.0/C1System.DataLayar.csproj.CoreCompileInputs.cache" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/C1System.DataLayar/obj/Debug/net6.0/C1System.DataLayar.dll" beforeDir="false" afterPath="$PROJECT_DIR$/C1System.DataLayar/obj/Debug/net6.0/C1System.DataLayar.dll" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/C1System.DataLayar/obj/Debug/net6.0/C1System.DataLayar.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/C1System.DataLayar/obj/Debug/net6.0/C1System.DataLayar.pdb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/C1System.DataLayar/obj/Debug/net6.0/ref/C1System.DataLayar.dll" beforeDir="false" afterPath="$PROJECT_DIR$/C1System.DataLayar/obj/Debug/net6.0/ref/C1System.DataLayar.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/C1System.DataLayar/obj/Debug/net6.0/refint/C1System.DataLayar.dll" beforeDir="false" afterPath="$PROJECT_DIR$/C1System.DataLayar/obj/Debug/net6.0/refint/C1System.DataLayar.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/C1System.DataLayar/obj/rider.project.restore.info" beforeDir="false" afterPath="$PROJECT_DIR$/C1System.DataLayar/obj/rider.project.restore.info" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/C1System/Areas/Admin/Controllers/AdminCategoryController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/C1System/Areas/Admin/Controllers/AdminCategoryController.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/C1System/Areas/Admin/Controllers/AdminPortfolioController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/C1System/Areas/Admin/Controllers/AdminPortfolioController.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/C1System/Areas/Admin/Views/AdminCategory/AddCategory.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/C1System/Areas/Admin/Views/AdminCategory/AddCategory.cshtml" afterDir="false" />
@@ -72,14 +56,10 @@
       <change beforePath="$PROJECT_DIR$/C1System/bin/Debug/net6.0/C1System.DataLayar.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/C1System/bin/Debug/net6.0/C1System.DataLayar.pdb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/C1System/bin/Debug/net6.0/C1System.dll" beforeDir="false" afterPath="$PROJECT_DIR$/C1System/bin/Debug/net6.0/C1System.dll" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/C1System/bin/Debug/net6.0/C1System.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/C1System/bin/Debug/net6.0/C1System.pdb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/C1System/obj/Debug/net6.0/C1System.GeneratedMSBuildEditorConfig.editorconfig" beforeDir="false" afterPath="$PROJECT_DIR$/C1System/obj/Debug/net6.0/C1System.GeneratedMSBuildEditorConfig.editorconfig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/C1System/obj/Debug/net6.0/C1System.MvcApplicationPartsAssemblyInfo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/C1System/obj/Debug/net6.0/C1System.MvcApplicationPartsAssemblyInfo.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/C1System/obj/Debug/net6.0/C1System.csproj.AssemblyReference.cache" beforeDir="false" afterPath="$PROJECT_DIR$/C1System/obj/Debug/net6.0/C1System.csproj.AssemblyReference.cache" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/C1System/obj/Debug/net6.0/C1System.dll" beforeDir="false" afterPath="$PROJECT_DIR$/C1System/obj/Debug/net6.0/C1System.dll" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/C1System/obj/Debug/net6.0/C1System.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/C1System/obj/Debug/net6.0/C1System.pdb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/C1System/obj/Debug/net6.0/ref/C1System.dll" beforeDir="false" afterPath="$PROJECT_DIR$/C1System/obj/Debug/net6.0/ref/C1System.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/C1System/obj/Debug/net6.0/refint/C1System.dll" beforeDir="false" afterPath="$PROJECT_DIR$/C1System/obj/Debug/net6.0/refint/C1System.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/C1System/obj/rider.project.restore.info" beforeDir="false" afterPath="$PROJECT_DIR$/C1System/obj/rider.project.restore.info" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/C1System/obj/staticwebassets.pack.sentinel" beforeDir="false" afterPath="$PROJECT_DIR$/C1System/obj/staticwebassets.pack.sentinel" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -178,7 +158,7 @@
       <workItem from="1652333653005" duration="38000" />
       <workItem from="1652333766047" duration="6596000" />
       <workItem from="1652341191495" duration="1642000" />
-      <workItem from="1652344123998" duration="303000" />
+      <workItem from="1652344123998" duration="831000" />
     </task>
     <servers />
   </component>
