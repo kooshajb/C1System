@@ -1,11 +1,12 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace C1System.DataLayar.Entities;
 
 public class Category
 {
     [Key]
-    public Guid CategoryId { get; set; }
+    public int CategoryId { get; set; }
     
     [Display(Name ="عنوان خدمت")]
     [Required(ErrorMessage ="لطفا {0} را وارد کنید .")]
@@ -55,4 +56,13 @@ public class Category
     
     [Display(Name = "ویدئو معرفی")]
     public string? VideoIntro { get; set; }
+    public int? ParentId { get; set; }
+    public bool IsDelete { get; set; }
+    
+    #region Relation
+    
+    [ForeignKey("ParentId")]
+    public Category Parent { get; set; }
+    
+    #endregion
 }
