@@ -36,7 +36,6 @@
     <Folder Include="Dtos\Faq" />
     <Folder Include="Dtos\Introduction" />
     <Folder Include="Dtos\NewsLetter" />
-    <Folder Include="Dtos\Podcast" />
     <Folder Include="Dtos\Project" />
     <Folder Include="Dtos\Slider" />
     <Folder Include="Dtos\Tag" />
@@ -44,7 +43,6 @@
     <Folder Include="Dtos\User" />
     <Folder Include="Migrations" />
     <Folder Include="Models\Introduction" />
-    <Folder Include="Profiles" />
   </ItemGroup>
 
 </Project>
