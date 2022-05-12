@@ -9,7 +9,7 @@ public class Podcast :Banner
     
     [Display(Name ="شماره پادکست")]
     [Required(ErrorMessage ="لطفا {0} را وارد کنید .")]
-    public long PodcastNumber { get; set; }
+    public int PodcastNumber { get; set; }
     
     [Display(Name ="عنوان پادکست")]
     [Required(ErrorMessage ="لطفا {0} را وارد کنید .")]
