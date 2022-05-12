@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using C1System.Core.Dtos.Category;
 using C1System.Core.Services.category;
 using C1System.DataLayar.Entities;
+using C1System.DataLayar.Entities.Utilities.Enums;
 using Microsoft.AspNetCore.Mvc;
 
 namespace C1System.Areas.Admin.Controllers;
@@ -43,7 +44,7 @@ public class AdminCategoryController : Controller
         }
         if (_categoryRepository.ExistCategory(dto.Title,0))
         {
-            ModelState.AddModelError("ErrorCategory", "دسته بندی تکراری است");
+            ModelState.AddModelError("ErrorPortfolio", "دسته بندی تکراری است");
             return View(dto);
         }
         var newCategory = await _categoryRepository.Add(dto);
@@ -68,4 +69,74 @@ public class AdminCategoryController : Controller
         var model = await _categoryRepository.ShowAllSubCategories(id);
         return View(model.Result);
     }
+    
+    [HttpGet]
+    public async Task<IActionResult> UpdateCategory(int id)
+    {
+        var category = await _categoryRepository.GetById(id);
+        if (category.Result == null)
+        {
+            TempData["NotFoundCategory"] = "true";
+            return RedirectToAction(nameof(ShowAllCategories));
+        }
+        return View(category.Result);
+    }
+    
+    [HttpPost]
+    public async Task<IActionResult> UpdateCategory(AddUpdateCategoryDto dto, int id)
+    {
+        // if (file != null)
+        // {
+        //     string imgName = UploadImg.CreateImage(file);
+        //     if (imgName == "false")
+        //     {
+        //         TempData["Result"] = "false";
+        //         return RedirectToAction(nameof(Index));
+        //     }
+        //     bool deleteImage = UploadImg.DeleteImage("ImageSite", mainSlider.SliderImg);
+        //     if (!deleteImage)
+        //     {
+        //         TempData["Result"] = "false";
+        //         return RedirectToAction(nameof(Index));
+        //     }
+        //     mainSlider.SliderImg = imgName;
+        // }
+        var category = await _categoryRepository.GetById(id);
+        if (!ModelState.IsValid)
+        {
+            return View(category.Result);
+        }
+        
+        var updateCategory = await _categoryRepository.Update(id, dto);
+        
+        TempData["Result"] = updateCategory.Result != null ? "true" : "false";
+        return RedirectToAction(nameof(ShowAllCategories));
+    }
+
+
+    [HttpGet]
+    public async Task<IActionResult> DeleteCategory(int id)
+    {
+        var category = await _categoryRepository.GetById(id);
+        if (category.Result == null)
+        {
+            TempData["NotFoundCategory"] = true;
+            return RedirectToAction(nameof(ShowAllCategories));
+        }
+        return View(category.Result);
+    }
+    
+    // [HttpPost]
+    // public async Task<IActionResult> DeleteCategory(int id)
+    // {
+    //     // bool deleteImage = dto.DeleteImage("ImageSite", dto.SliderImg);
+    //     // if (!deleteImage)
+    //     // {
+    //     //     TempData["Result"] = "false";
+    //     //     return RedirectToAction(nameof(ShowAllCategories));
+    //     // }
+    //     var response = await _categoryRepository.Delete(id);
+    //     TempData["Result"] = response.Status == UtilitiesStatusCodes.Success ? "true" : "false";
+    //     return RedirectToAction(nameof(ShowAllCategories));
+    // }
 }
