@@ -33,7 +33,7 @@ namespace C1System.DataLayar.Context
         // public DbSet<CategoryPackageItem>  CategoryPackageItems { get; set; }
         public DbSet<Portfolio> Portfolios { get; set; }
         // public DbSet<Project> Prosjects { get; set; }
-        // public DbSet<Podcast> Podcasts { get; set; }
+        public DbSet<Podcast> Podcasts { get; set; }
         // public DbSet<Gender> Genders { get; set; }
         // public DbSet<City> Cities { get; set; }
         // public DbSet<Province> Provinces { get; set; }
