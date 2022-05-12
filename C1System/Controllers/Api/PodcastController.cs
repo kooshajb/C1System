@@ -1,14 +1,13 @@
 ﻿using C1System.Core.Services.podcast;
 using C1System.DataLayar.Entities;
 using Microsoft.AspNetCore.Mvc;
-using System.Web.Http;
 
 namespace C1System.Controllers.Api
 {
-    //[Route("api/[controller]")]
-    //[ApiController]
-    //public class PodcastController : ControllerBase
-    //{
+    [Route("api/[controller]")]
+    [ApiController]
+    public class PodcastController : ControllerBase
+    {
     //    private readonly IPodcastService _service;
     //    public PodcastController(IPodcastService service)
     //    {
@@ -78,5 +77,5 @@ namespace C1System.Controllers.Api
     //    }
 
 
-    //}
+    }
 }
