@@ -49,7 +49,7 @@ public class Portfolio
 
     [Display(Name ="امتیازدهی")]
     public int? Point { get; set; }
-    
+
     //todo ارتباط با اینیتیت DemoPortfolio اضافه شود 
     //todo ارتباط با TechnologyPortfolio
     //todo ارتباط با برچسب ها
