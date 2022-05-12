@@ -17,7 +17,7 @@ public class GetCategoryDto
     public string BannerImage { get; set; }
     public string IconMenuImage { get; set; }
     public string? VideoIntro { get; set; }
-    public int? SubCategory { get; set; }
+    public int? ParentId { get; set; }
     public bool IsDelete { get; set; }
 }    
 
@@ -35,7 +35,7 @@ public class AddUpdateCategoryDto
     public string BannerImage { get; set; }
     public string IconMenuImage { get; set; }
     public string? VideoIntro { get; set; }
-    public int? SubCategory { get; set; }
+    public int? ParentId { get; set; }
     public bool IsDelete { get; set; }
 }
 

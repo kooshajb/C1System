@@ -59,6 +59,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQWRtaW5Qb3J0Zm9saW9cSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
+[D:/c1sys-final/C1System/C1System/Areas/Admin/Views/AdminPortfolio/UpdatePortfolio.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQWRtaW5Qb3J0Zm9saW9cVXBkYXRlUG9ydGZvbGlvLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [D:/c1sys-final/C1System/C1System/Areas/Admin/Views/Podcast/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcUG9kY2FzdFxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
