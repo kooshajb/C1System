@@ -2,6 +2,7 @@ using C1System.DataLayar.Context;
 using Microsoft.EntityFrameworkCore;
 using System.Configuration;
 using C1System.Core.Services.category;
+using C1System.Core.Services.portfolio;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -19,6 +20,7 @@ builder.Services.AddDbContext<C1SystemContext>(options =>
 builder.Services.AddTransient<ICategoryRepository, CategoryRepository>();
 builder.Services.AddTransient<ICategoryPackageService, CategoryPackageService>();
 builder.Services.AddTransient<ICategoryPackageItemService, CategoryPackageItemService>();
+builder.Services.AddTransient<IPortfolioRepository, PortfolioRepository>();
 #endregion
 
 

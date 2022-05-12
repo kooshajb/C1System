@@ -7,15 +7,23 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="ExtentionMethod\" />
-    <Folder Include="ViewModel\" />
-    <Folder Include="Sender\" />
-    <Folder Include="Security\" />
+    <Compile Remove="ExtentionMethod\**" />
+    <Compile Remove="Security\**" />
+    <Compile Remove="Sender\**" />
+    <Compile Remove="ViewModel\**" />
+    <EmbeddedResource Remove="ExtentionMethod\**" />
+    <EmbeddedResource Remove="Security\**" />
+    <EmbeddedResource Remove="Sender\**" />
+    <EmbeddedResource Remove="ViewModel\**" />
+    <None Remove="ExtentionMethod\**" />
+    <None Remove="Security\**" />
+    <None Remove="Sender\**" />
+    <None Remove="ViewModel\**" />
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="AutoMapper" Version="11.0.0" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.4" />
+    <PackageReference Include="AutoMapper" Version="11.0.1" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.5" />
   </ItemGroup>
 
   <ItemGroup>

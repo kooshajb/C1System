@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "D:\\c1sys-final\\C1System\\C1System.DataLayar\\C1System.DataLayar.csproj": {}
+    "F:\\Test\\C1System\\C1System.DataLayar\\C1System.DataLayar.csproj": {}
   },
   "projects": {
-    "D:\\c1sys-final\\C1System\\C1System.DataLayar\\C1System.DataLayar.csproj": {
+    "F:\\Test\\C1System\\C1System.DataLayar\\C1System.DataLayar.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\c1sys-final\\C1System\\C1System.DataLayar\\C1System.DataLayar.csproj",
+        "projectUniqueName": "F:\\Test\\C1System\\C1System.DataLayar\\C1System.DataLayar.csproj",
         "projectName": "C1System.DataLayar",
-        "projectPath": "D:\\c1sys-final\\C1System\\C1System.DataLayar\\C1System.DataLayar.csproj",
-        "packagesPath": "C:\\Users\\ali heidari\\.nuget\\packages\\",
-        "outputPath": "D:\\c1sys-final\\C1System\\C1System.DataLayar\\obj\\",
+        "projectPath": "F:\\Test\\C1System\\C1System.DataLayar\\C1System.DataLayar.csproj",
+        "packagesPath": "C:\\Users\\Koosha\\.nuget\\packages\\",
+        "outputPath": "F:\\Test\\C1System\\C1System.DataLayar\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\ali heidari\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Koosha\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -42,23 +42,23 @@
           "dependencies": {
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
-              "version": "[6.0.4, )"
+              "version": "[6.0.5, )"
             },
             "Microsoft.EntityFrameworkCore.Design": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
               "suppressParent": "All",
               "target": "Package",
-              "version": "[6.0.4, )"
+              "version": "[6.0.5, )"
             },
             "Microsoft.EntityFrameworkCore.SqlServer": {
               "target": "Package",
-              "version": "[6.0.4, )"
+              "version": "[6.0.5, )"
             },
             "Microsoft.EntityFrameworkCore.Tools": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
               "suppressParent": "All",
               "target": "Package",
-              "version": "[6.0.4, )"
+              "version": "[6.0.5, )"
             }
           },
           "imports": [
