@@ -37,6 +37,24 @@
                         </div> 
                     }
                 }
+                
+                @if (TempData["ResultDelete"] != null)
+                    {
+                        @if (TempData["ResultDelete"].ToString() == "true")
+                        {
+                            <div class="alert alert-success alert-dismissable">
+                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                                با موفقیت حذف شد
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="alert alert-danger alert-dismissable">
+                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                                خطا در انجام عملیات حذف.
+                            </div> 
+                        }
+                }
 
                 @if (TempData["NotFoundCategory"] != null)
                 {
