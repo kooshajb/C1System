@@ -3,9 +3,6 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 using System;
-
-﻿using System;
-
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -37,9 +34,9 @@ namespace C1System;
         public async Task<GenericResponse<GetProjectDto>> Add(AddUpdateProjectDto dto)
         {
             if (dto == null) throw new ArgumentException("Dto must not be null", nameof(dto));
-            Tag entity = _mapper.Map<Tag>(dto);
+            Project entity = _mapper.Map<Project>(dto);
 
-            EntityEntry<Tag> i = await _context.Set<Tag>().AddAsync(entity);
+            EntityEntry<Project> i = await _context.Set<Project>().AddAsync(entity);
             await _context.SaveChangesAsync();
             return new GenericResponse<GetProjectDto>(_mapper.Map<GetProjectDto>(i.Entity));
         }
