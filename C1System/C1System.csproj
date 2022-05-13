@@ -42,7 +42,13 @@
     <Folder Include="Dtos\Ticket" />
     <Folder Include="Dtos\User" />
     <Folder Include="Migrations" />
+    <Folder Include="Migrations\" />
     <Folder Include="Models\Introduction" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <_ContentIncludedByDefault Remove="Areas\Admin\Views\Podcast\Index.cshtml" />
+    <_ContentIncludedByDefault Remove="Areas\Admin\Views\Portfolio\Index.cshtml" />
   </ItemGroup>
 
 </Project>
