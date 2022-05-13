@@ -23,6 +23,7 @@ public class C1SystemContext : DbContext
     // public DbSet<CategoryPackage> CategoryPackages { get; set; }
     // public DbSet<CategoryPackageItem>  CategoryPackageItems { get; set; }
     public DbSet<Portfolio> Portfolios { get; set; }
+    public DbSet<Category_Product> CategoryProducts { get; set; }
     public DbSet<Project> Prosjects { get; set; }
     public DbSet<Podcast> Podcasts { get; set; }
     // public DbSet<Gender> Genders { get; set; }
