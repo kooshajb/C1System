@@ -55,11 +55,6 @@ public class Portfolio
 
     #region Relation
 
-    public Guid CategoryId { get; set; }
-    
-    [ForeignKey("CategoryId")]
-    public Category Category { get; set; }
-    
     public ICollection<Category_Product> CategoryProducts { get; set; }
     
     #endregion
