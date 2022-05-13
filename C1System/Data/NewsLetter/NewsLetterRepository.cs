@@ -1,5 +1,4 @@
 ﻿using AutoMapper;
-using C1System.Dtos.NewsLetter;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 using System;
@@ -18,6 +17,7 @@ public interface INewsLetterRepository
     Task<GenericResponse> Delete(Guid id);
     bool ExistNewsLetter(string FullName, Guid newsletterId);
 }
+
 public class NewsLetterRepository : INewsLetterRepository
 {
     private readonly C1SystemContext _context;
