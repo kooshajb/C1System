@@ -1,10 +1,5 @@
-using System;
 using C1System;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -22,6 +17,7 @@ builder.Services.AddDbContext<C1SystemContext>(options =>
 builder.Services.AddTransient<ICategoryRepository, CategoryRepository>();
 builder.Services.AddTransient<IPortfolioRepository, PortfolioRepository>();
 builder.Services.AddTransient<IPodcastRepository, PodcastRepository>();
+builder.Services.AddTransient<INewsLetterRepository , NewsLetterRepository>();
 
 // builder.Services.AddTransient<ICategoryPackageService, CategoryPackageService>();
 // builder.Services.AddTransient<ICategoryPackageItemService, CategoryPackageItemService>();
