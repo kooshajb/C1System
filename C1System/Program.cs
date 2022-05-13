@@ -17,6 +17,7 @@ builder.Services.AddDbContext<C1SystemContext>(options =>
 builder.Services.AddTransient<ICategoryRepository, CategoryRepository>();
 builder.Services.AddTransient<IPortfolioRepository, PortfolioRepository>();
 builder.Services.AddTransient<IPodcastRepository, PodcastRepository>();
+builder.Services.AddTransient<IBlogRepository, BlogRepository>();
 builder.Services.AddTransient<INewsLetterRepository , NewsLetterRepository>();
 
 // builder.Services.AddTransient<ICategoryPackageService, CategoryPackageService>();
