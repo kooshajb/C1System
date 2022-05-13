@@ -6,7 +6,7 @@ namespace C1System;
 public class Category
 {
     [Key]
-    public int CategoryId { get; set; }
+    public Guid CategoryId { get; set; }
     
     [Display(Name ="عنوان خدمت")]
     [Required(ErrorMessage ="لطفا {0} را وارد کنید .")]
@@ -56,7 +56,7 @@ public class Category
     
     [Display(Name = "ویدئو معرفی")]
     public string? VideoIntro { get; set; }
-    public int? ParentId { get; set; }
+    public Guid? ParentId { get; set; }
     public bool IsDelete { get; set; }
     
     #region Relation
@@ -64,5 +64,9 @@ public class Category
     [ForeignKey("ParentId")]
     public Category Parent { get; set; }
     
+    public ICollection<Portfolio> Portfolios { get; set; }
+    
+    public ICollection<Category_Product> CategoryProducts { get; set; }
+
     #endregion
 }
