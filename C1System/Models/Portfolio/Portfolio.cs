@@ -1,5 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Reflection.Metadata.Ecma335;
 
 namespace C1System;
 
@@ -50,7 +52,17 @@ public class Portfolio
 
     [Display(Name ="امتیازدهی")]
     public int? Point { get; set; }
+
+    #region Relation
+
+    public int CategoryId { get; set; }
     
+    [ForeignKey("CategoryId")]
+    public Category Category { get; set; }
+    
+    public ICollection<Category_Product> CategoryProducts { get; set; }
+    
+    #endregion
     //todo ارتباط با اینیتیت DemoPortfolio اضافه شود 
     //todo ارتباط با TechnologyPortfolio
     //todo ارتباط با برچسب ها
