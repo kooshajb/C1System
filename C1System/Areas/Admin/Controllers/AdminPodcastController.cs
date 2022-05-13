@@ -86,17 +86,11 @@ public class AdminPodcastController : Controller
         return View(podcast.Result);
     }
     
-    // [HttpPost]
-    // public async Task<IActionResult> DeleteCategory(int id)
-    // {
-    //     // bool deleteImage = dto.DeleteImage("ImageSite", dto.SliderImg);
-    //     // if (!deleteImage)
-    //     // {
-    //     //     TempData["Result"] = "false";
-    //     //     return RedirectToAction(nameof(ShowAllCategories));
-    //     // }
-    //     var response = await _categoryRepository.Delete(id);
-    //     TempData["Result"] = response.Status == UtilitiesStatusCodes.Success ? "true" : "false";
-    //     return RedirectToAction(nameof(ShowAllCategories));
-    // }
+    [HttpPost]
+    public async Task<IActionResult> DeletePodcastById(Guid id)
+    {
+        var response = await _podcastRepository.Delete(id);
+        TempData["ResultDelete"] = response.Status == UtilitiesStatusCodes.Success ? "true" : "false";
+        return RedirectToAction(nameof(Index));
+    }
 }
