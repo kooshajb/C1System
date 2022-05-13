@@ -55,7 +55,7 @@ public class Portfolio
 
     #region Relation
 
-    public int CategoryId { get; set; }
+    public Guid CategoryId { get; set; }
     
     [ForeignKey("CategoryId")]
     public Category Category { get; set; }
