@@ -87,10 +87,10 @@ public class AdminPortfolioController : Controller
     }
     
     [HttpPost]
-    public async Task<IActionResult> DeletePortfolio(Guid? id)
+    public async Task<IActionResult> DeletePortfolioById(Guid id)
     {
-        // var response = await _portfolioRepository.Delete(id);
-        // TempData["Result"] = response.Status == UtilitiesStatusCodes.Success ? "true" : "false";
+        var response = await _portfolioRepository.Delete(id);
+        TempData["ResultDelete"] = response.Status == UtilitiesStatusCodes.Success ? "true" : "false";
         return RedirectToAction(nameof(Index));
     }
 }
