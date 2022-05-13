@@ -1,6 +1,4 @@
-﻿
-using C1System.Dtos.Tag;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 
 namespace C1System.Controllers.Api
 {
