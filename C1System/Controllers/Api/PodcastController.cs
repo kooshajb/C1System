@@ -19,7 +19,7 @@ namespace C1System.Controllers.Api
         }
 
         [HttpGet]
-        public async Task<ActionResult<GenericResponse<IEnumerable<GetPodcastDto>>>> GetPortfolios()
+        public async Task<ActionResult<GenericResponse<IEnumerable<GetPodcastDto>>>> GetPodcast()
         {
             var podcasts = await _podcastRepository.Get();
             return Ok(podcasts.Result);
