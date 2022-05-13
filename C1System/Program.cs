@@ -10,6 +10,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using C1System.Core.Services.newsLetter;
+using C1System.Core.Services.tag;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -28,6 +29,7 @@ builder.Services.AddTransient<ICategoryRepository, CategoryRepository>();
 builder.Services.AddTransient<IPortfolioRepository, PortfolioRepository>();
 builder.Services.AddTransient<IPodcastRepository, PodcastRepository>();
 builder.Services.AddTransient<INewsLetterRepository , NewsLetterRepository>();
+builder.Services.AddTransient<ITagRepository, TagRepository>();
 
 // builder.Services.AddTransient<ICategoryPackageService, CategoryPackageService>();
 // builder.Services.AddTransient<ICategoryPackageItemService, CategoryPackageItemService>();
