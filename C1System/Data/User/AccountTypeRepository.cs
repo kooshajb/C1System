@@ -1,17 +1,14 @@
-﻿using C1System.DataLayar.Entities;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace C1System.Core.Services.user
+namespace C1System;
+public interface IAccountTypeRepository
 {
-    public interface IAccountTypeRepository
-    {
-    }
+}
 
-    public class AccountTypeRepository : IAccountTypeRepository
-    {
-    }
+public class AccountTypeRepository : IAccountTypeRepository
+{
 }
