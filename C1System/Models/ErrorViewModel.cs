@@ -1,4 +1,4 @@
-namespace C1System.Models;
+namespace C1System;
 
 public class ErrorViewModel {
     public string? RequestId { get; set; }

@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
+using System;
 
-namespace C1System.DataLayar.Entities;
+namespace C1System;
 
 public class User
 {

@@ -1,7 +1,8 @@
-﻿using C1System.Core.Services.podcast;
+﻿using System;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 
-namespace C1System.Controllers.Api;
+namespace C1System.Areas.Admin.Controllers;
 
 [Area("Admin")]
 public class AdminPodcastController : Controller

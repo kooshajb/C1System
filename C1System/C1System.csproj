@@ -23,11 +23,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\C1System.Core\C1System.Core.csproj" />
-    <ProjectReference Include="..\C1System.DataLayar\C1System.DataLayar.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Folder Include="Data\CareerOpportunity" />
     <Folder Include="Data\Geo" />
     <Folder Include="Data\Introduction" />

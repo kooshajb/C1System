@@ -1,17 +1,14 @@
-﻿using C1System.DataLayar.Entities.NewsLetter;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace C1System.Core.Services.newsLetter
+namespace C1System;
+public interface INewsLetterRepository
 {
-    public interface INewsLetterRepository
-    {
 
-    }
-    public class NewsLetterRepository : INewsLetterRepository
-    {
-    }
+}
+public class NewsLetterRepository : INewsLetterRepository
+{
 }

@@ -1,17 +1,14 @@
-﻿using C1System.DataLayar.Entities;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace C1System.Core.Services.project
+namespace C1System;
+public interface IProjectRepository
 {
-    public interface IProjectRepository
-    {
-    }
+}
 
-    public class ProjectRepository : IProjectRepository 
-    {
-    }
+public class ProjectRepository : IProjectRepository 
+{
 }

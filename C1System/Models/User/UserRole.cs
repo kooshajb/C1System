@@ -1,7 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 
-namespace C1System.DataLayar.Entities;
+namespace C1System;
 
 public class UserRole
 {

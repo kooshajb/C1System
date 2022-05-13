@@ -1,10 +1,6 @@
 ﻿using System;
 using System.Linq;
 using System.Threading.Tasks;
-using C1System.Core.Dtos.Category;
-using C1System.Core.Services.category;
-using C1System.DataLayar.Entities;
-using C1System.DataLayar.Entities.Utilities.Enums;
 using Microsoft.AspNetCore.Mvc;
 
 namespace C1System.Areas.Admin.Controllers;

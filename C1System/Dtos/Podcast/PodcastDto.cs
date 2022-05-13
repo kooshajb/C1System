@@ -1,4 +1,7 @@
-﻿
+﻿using System;
+using AutoMapper;
+using C1System;
+
 public class GetPodcastDto
 {
     public Guid PodcastId { get; set; }
@@ -26,4 +29,12 @@ public class AddUpdatePodcastDto
     public bool? IsTopTag { get; set; }
     public bool? IsSelected { get; set; }
     public int? Point { get; set; }
+}
+
+public class AutoMapperPodcast : Profile {
+    public AutoMapperPodcast() {
+        CreateMap<Podcast, AddUpdatePodcastDto>().ReverseMap();
+        CreateMap<Podcast, GetPodcastDto>().ReverseMap();
+        CreateMap<AddUpdatePodcastDto, GetPodcastDto>().ReverseMap();
+    }
 }

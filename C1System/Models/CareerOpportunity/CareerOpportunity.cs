@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System;
 
-namespace C1System.DataLayar.Entities.CareerOpportunity;
+namespace C1System;
 
 public class CareerOpportunity : Banner
 {

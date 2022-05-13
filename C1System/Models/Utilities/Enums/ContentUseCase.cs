@@ -1,4 +1,4 @@
-namespace Utilities_aspnet.Utilities.Enums;
+namespace C1System;
 
 public enum ContentUseCase
 {
@@ -13,5 +13,4 @@ public enum ContentUseCase
     Learn = 101,
     Monthly = 102,
     Newsletters=103,
-
 }
