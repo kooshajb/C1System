@@ -24,7 +24,7 @@ public class BlogController : ControllerBase
     }
 
     [HttpPost]
-    public async Task<ActionResult> CreatePodcast([FromBody]AddUpdateBlogDto dto)
+    public async Task<ActionResult> CreateBlog([FromBody]AddUpdateBlogDto dto)
     {
         if (dto == null)  return BadRequest();
         var createdBlog = await _blogRepository.Add(dto);
@@ -42,14 +42,14 @@ public class BlogController : ControllerBase
     }
 
     [HttpPut("{id:guid}")]
-    public async Task<ActionResult<GetPortfolioDto>> UpdatePodcast([FromBody]AddUpdateBlogDto dto, Guid id)
+    public async Task<ActionResult<GetPortfolioDto>> UpdateBlog([FromBody]AddUpdateBlogDto dto, Guid id)
     {
         var blog =  await _blogRepository.Update(id, dto);
         return Ok(blog.Result);
     }
 
     [HttpDelete("{id:guid}")]
-    public async Task<ActionResult> DeletePodcast(Guid id)
+    public async Task<ActionResult> DeleteBlog(Guid id)
     {
         await _blogRepository.Delete(id);
         return NoContent();
