@@ -1,7 +1,5 @@
 
-﻿using AutoMapper;
-
-using C1System.Dtos.Tag;
+using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 using System;
