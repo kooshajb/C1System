@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
@@ -14,7 +14,6 @@
     <Compile Remove="Dtos\CustomerSpeech\**" />
     <Compile Remove="Dtos\Faq\**" />
     <Compile Remove="Dtos\Introduction\**" />
-    <Compile Remove="Dtos\Project\**" />
     <Compile Remove="Dtos\Slider\**" />
     <Compile Remove="Dtos\Ticket\**" />
     <Compile Remove="Dtos\User\**" />
@@ -27,7 +26,6 @@
     <Content Remove="Dtos\CustomerSpeech\**" />
     <Content Remove="Dtos\Faq\**" />
     <Content Remove="Dtos\Introduction\**" />
-    <Content Remove="Dtos\Project\**" />
     <Content Remove="Dtos\Slider\**" />
     <Content Remove="Dtos\Ticket\**" />
     <Content Remove="Dtos\User\**" />
@@ -40,7 +38,6 @@
     <EmbeddedResource Remove="Dtos\CustomerSpeech\**" />
     <EmbeddedResource Remove="Dtos\Faq\**" />
     <EmbeddedResource Remove="Dtos\Introduction\**" />
-    <EmbeddedResource Remove="Dtos\Project\**" />
     <EmbeddedResource Remove="Dtos\Slider\**" />
     <EmbeddedResource Remove="Dtos\Ticket\**" />
     <EmbeddedResource Remove="Dtos\User\**" />
@@ -53,7 +50,6 @@
     <None Remove="Dtos\CustomerSpeech\**" />
     <None Remove="Dtos\Faq\**" />
     <None Remove="Dtos\Introduction\**" />
-    <None Remove="Dtos\Project\**" />
     <None Remove="Dtos\Slider\**" />
     <None Remove="Dtos\Ticket\**" />
     <None Remove="Dtos\User\**" />
