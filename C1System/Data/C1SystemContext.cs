@@ -1,17 +1,10 @@
 ﻿
-using C1System.DataLayar.Entities;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using C1System.DataLayar.Entities.Geo;
-using C1System.DataLayar.Entities.Blog;
-using C1System.DataLayar.Entities.CareerOpportunity;
-using C1System.DataLayar.Entities.Faq;
-using C1System.DataLayar.Entities.NewsLetter;
-using C1System.DataLayar.Entities.Ticket;
 
 namespace C1System.DataLayar.Context
 {
