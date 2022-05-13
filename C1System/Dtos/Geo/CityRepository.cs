@@ -1,16 +1,13 @@
-﻿using C1System.DataLayar.Entities.Geo;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace C1System.Core.Services.geo
+using C1System;
+public interface ICityRepository
 {
-    public interface ICityRepository
-    {
-    }
-    public class CityRepository : ICityRepository
-    {
-    }
+}
+public class CityRepository : ICityRepository
+{
 }

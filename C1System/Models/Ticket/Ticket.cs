@@ -1,7 +1,7 @@
-﻿using System.ComponentModel.DataAnnotations;
-using C1System.DataLayar.Entities.Base;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 
-namespace C1System.DataLayar.Entities.Ticket;
+namespace C1System;
 
 public class Ticket : BaseEntity
 {

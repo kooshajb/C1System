@@ -1,6 +1,5 @@
-﻿using C1System.DataLayar.Entities.Utilities.Enums;
-
-namespace C1System.DataLayar.Entities.Responses;
+﻿
+namespace C1System;
 
 public class GenericResponse<T> : GenericResponse {
     public T? Result { get; set; }

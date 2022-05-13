@@ -1,4 +1,4 @@
-﻿namespace C1System.DataLayar.Entities.Utilities.Enums;
+﻿namespace C1System;
 
 public enum UtilitiesStatusCodes
 {

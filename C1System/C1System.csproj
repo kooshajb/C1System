@@ -7,65 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Data\CareerOpportunity\**" />
-    <Compile Remove="Data\Geo\**" />
-    <Compile Remove="Data\Introduction\**" />
-    <Compile Remove="Dtos\Blog\**" />
-    <Compile Remove="Dtos\CustomerSpeech\**" />
-    <Compile Remove="Dtos\Faq\**" />
-    <Compile Remove="Dtos\Introduction\**" />
-    <Compile Remove="Dtos\Project\**" />
-    <Compile Remove="Dtos\Slider\**" />
-    <Compile Remove="Dtos\Tag\**" />
-    <Compile Remove="Dtos\Ticket\**" />
-    <Compile Remove="Dtos\User\**" />
-    <Compile Remove="Migrations\**" />
-    <Compile Remove="Models\Introduction\**" />
-    <Content Remove="Data\CareerOpportunity\**" />
-    <Content Remove="Data\Geo\**" />
-    <Content Remove="Data\Introduction\**" />
-    <Content Remove="Dtos\Blog\**" />
-    <Content Remove="Dtos\CustomerSpeech\**" />
-    <Content Remove="Dtos\Faq\**" />
-    <Content Remove="Dtos\Introduction\**" />
-    <Content Remove="Dtos\Project\**" />
-    <Content Remove="Dtos\Slider\**" />
-    <Content Remove="Dtos\Tag\**" />
-    <Content Remove="Dtos\Ticket\**" />
-    <Content Remove="Dtos\User\**" />
-    <Content Remove="Migrations\**" />
-    <Content Remove="Models\Introduction\**" />
-    <EmbeddedResource Remove="Data\CareerOpportunity\**" />
-    <EmbeddedResource Remove="Data\Geo\**" />
-    <EmbeddedResource Remove="Data\Introduction\**" />
-    <EmbeddedResource Remove="Dtos\Blog\**" />
-    <EmbeddedResource Remove="Dtos\CustomerSpeech\**" />
-    <EmbeddedResource Remove="Dtos\Faq\**" />
-    <EmbeddedResource Remove="Dtos\Introduction\**" />
-    <EmbeddedResource Remove="Dtos\Project\**" />
-    <EmbeddedResource Remove="Dtos\Slider\**" />
-    <EmbeddedResource Remove="Dtos\Tag\**" />
-    <EmbeddedResource Remove="Dtos\Ticket\**" />
-    <EmbeddedResource Remove="Dtos\User\**" />
-    <EmbeddedResource Remove="Migrations\**" />
-    <EmbeddedResource Remove="Models\Introduction\**" />
-    <None Remove="Data\CareerOpportunity\**" />
-    <None Remove="Data\Geo\**" />
-    <None Remove="Data\Introduction\**" />
-    <None Remove="Dtos\Blog\**" />
-    <None Remove="Dtos\CustomerSpeech\**" />
-    <None Remove="Dtos\Faq\**" />
-    <None Remove="Dtos\Introduction\**" />
-    <None Remove="Dtos\Project\**" />
-    <None Remove="Dtos\Slider\**" />
-    <None Remove="Dtos\Tag\**" />
-    <None Remove="Dtos\Ticket\**" />
-    <None Remove="Dtos\User\**" />
-    <None Remove="Migrations\**" />
-    <None Remove="Models\Introduction\**" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="11.0.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.5" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="6.0.5">
@@ -82,8 +23,27 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\C1System.Core\C1System.Core.csproj" />
-    <ProjectReference Include="..\C1System.DataLayar\C1System.DataLayar.csproj" />
+    <Folder Include="Data\CareerOpportunity" />
+    <Folder Include="Data\Geo" />
+    <Folder Include="Data\Introduction" />
+    <Folder Include="Dtos\Blog" />
+    <Folder Include="Dtos\CustomerSpeech" />
+    <Folder Include="Dtos\Faq" />
+    <Folder Include="Dtos\Introduction" />
+    <Folder Include="Dtos\NewsLetter" />
+    <Folder Include="Dtos\Project" />
+    <Folder Include="Dtos\Slider" />
+    <Folder Include="Dtos\Tag" />
+    <Folder Include="Dtos\Ticket" />
+    <Folder Include="Dtos\User" />
+    <Folder Include="Migrations" />
+    <Folder Include="Migrations\" />
+    <Folder Include="Models\Introduction" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <_ContentIncludedByDefault Remove="Areas\Admin\Views\Podcast\Index.cshtml" />
+    <_ContentIncludedByDefault Remove="Areas\Admin\Views\Portfolio\Index.cshtml" />
   </ItemGroup>
 
 </Project>

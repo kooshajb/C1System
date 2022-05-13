@@ -1,6 +1,7 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 
-namespace DefaultNamespace;
+namespace C1System;
 
 public class Manager
 {  

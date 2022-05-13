@@ -1,7 +1,9 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System;
+using System.Collections.Generic;
 
-namespace C1System.DataLayar.Entities.Geo;
+namespace C1System;
 
 public class Province
 {

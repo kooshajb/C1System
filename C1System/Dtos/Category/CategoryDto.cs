@@ -1,7 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
-using AutoMapper;
-    
-namespace C1System.Core.Dtos.Category;
+﻿using AutoMapper;
+using C1System;
 
 public class GetCategoryDto
 {
@@ -42,8 +40,8 @@ public class AddUpdateCategoryDto
 
 public class AutoMapperCategory : Profile {
     public AutoMapperCategory() {
-        CreateMap<DataLayar.Entities.Category, AddUpdateCategoryDto>().ReverseMap();
-        CreateMap<DataLayar.Entities.Category, GetCategoryDto>().ReverseMap();
+        CreateMap<Category, AddUpdateCategoryDto>().ReverseMap();
+        CreateMap<Category, GetCategoryDto>().ReverseMap();
         CreateMap<AddUpdateCategoryDto, GetCategoryDto>().ReverseMap();
     }
 }

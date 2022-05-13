@@ -1,17 +1,14 @@
-﻿using C1System.DataLayar.Entities.Ticket;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace C1System.Core.Services.ticket
+namespace C1System;
+public interface IPriorityRepository
 {
-    public interface IPriorityRepository
-    {
-    }
+}
 
-    public class PriorityRepository : IPriorityRepository
-    {
-    }
+public class PriorityRepository : IPriorityRepository
+{
 }

@@ -1,19 +1,16 @@
-﻿using C1System.DataLayar.Entities;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace C1System.Core.Services.customerSpeech
+namespace C1System;
+public interface ICustomerSpeechRepository
 {
-    public interface ICustomerSpeechRepository
-    {
-        
-    }
+    
+}
 
-    public class CustomerSpeechRepository : ICustomerSpeechRepository
-    {
-     
-    }
+public class CustomerSpeechRepository : ICustomerSpeechRepository
+{
+ 
 }

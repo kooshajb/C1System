@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System;
 
-namespace DefaultNamespace;
+namespace C1System;
 
 public class SymbolsOfTrust
 {
