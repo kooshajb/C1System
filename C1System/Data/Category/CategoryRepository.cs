@@ -11,11 +11,11 @@ public interface ICategoryRepository
 {
     Task<GenericResponse<GetCategoryDto>> Add(AddUpdateCategoryDto dto);
     Task<GenericResponse<IEnumerable<GetCategoryDto>>> Get();
-    Task<GenericResponse<GetCategoryDto>> GetById(int id);
-    Task<GenericResponse<GetCategoryDto>> Update(int id, AddUpdateCategoryDto dto);
-    Task<GenericResponse> Delete(int id);
-    Task<GenericResponse<IEnumerable<GetCategoryDto>>> ShowAllSubCategories(int categoryId);
-    bool ExistCategory(string title, int categoryId);
+    Task<GenericResponse<GetCategoryDto>> GetById(Guid id);
+    Task<GenericResponse<GetCategoryDto>> Update(Guid id, AddUpdateCategoryDto dto);
+    Task<GenericResponse> Delete(Guid id);
+    Task<GenericResponse<IEnumerable<GetCategoryDto>>> ShowAllSubCategories(Guid categoryId);
+    bool ExistCategory(string title, Guid categoryId);
     Task<GenericResponse<IEnumerable<GetCategoryDto>>> ShowSubCategory();
 }
 
@@ -46,14 +46,14 @@ public class CategoryRepository : ICategoryRepository
         return new GenericResponse<IEnumerable<GetCategoryDto>>(_mapper.Map<IEnumerable<GetCategoryDto>>(i));
     }
 
-    public async Task<GenericResponse<GetCategoryDto>> GetById(int id)
+    public async Task<GenericResponse<GetCategoryDto>> GetById(Guid id)
     {
         Category? i = await _context.Set<Category>().AsNoTracking()
             .FirstOrDefaultAsync(i => i.CategoryId == id);
         return new GenericResponse<GetCategoryDto>(_mapper.Map<GetCategoryDto>(i));
     }
 
-    public async Task<GenericResponse<GetCategoryDto>> Update(int id, AddUpdateCategoryDto dto)
+    public async Task<GenericResponse<GetCategoryDto>> Update(Guid id, AddUpdateCategoryDto dto)
     {
         var i = _context.Set<Category>()
             .Where(p => p.CategoryId == id).First();
@@ -75,7 +75,7 @@ public class CategoryRepository : ICategoryRepository
         return new GenericResponse<GetCategoryDto>(_mapper.Map<GetCategoryDto>(i));
     }
 
-    public async Task<GenericResponse> Delete(int id)
+    public async Task<GenericResponse> Delete(Guid id)
     {
         GenericResponse<GetCategoryDto> i = await GetById(id);
         _context.Set<Category>().Remove(_mapper.Map<Category>(i.Result));
@@ -84,14 +84,14 @@ public class CategoryRepository : ICategoryRepository
             $"Category {i.Result.Title} delete Success {i.Result.CategoryId}");
     }
     
-    public async Task<GenericResponse<IEnumerable<GetCategoryDto>>> ShowAllSubCategories(int categoryId)
+    public async Task<GenericResponse<IEnumerable<GetCategoryDto>>> ShowAllSubCategories(Guid categoryId)
     {
         var i = await _context.Set<Category>().AsNoTracking()
             .Where(s => !s.IsDelete && s.ParentId == categoryId).ToListAsync();
         return new GenericResponse<IEnumerable<GetCategoryDto>>(_mapper.Map<IEnumerable<GetCategoryDto>>(i));
     }
 
-    public bool ExistCategory(string title, int categoryId)
+    public bool ExistCategory(string title, Guid categoryId)
     {
         return _context.Categories.Any(c =>
             c.Title == title && c.CategoryId != categoryId);
