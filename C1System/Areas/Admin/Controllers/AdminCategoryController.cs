@@ -39,18 +39,18 @@ public class AdminCategoryController : Controller
         {
             return View(dto);
         }
-        if (_categoryRepository.ExistCategory(dto.Title,0))
-        {
-            ModelState.AddModelError("ErrorPortfolio", "دسته بندی تکراری است");
-            return View(dto);
-        }
+        // if (_categoryRepository.ExistCategory(dto.Title,0))
+        // {
+        //     ModelState.AddModelError("ErrorPortfolio", "دسته بندی تکراری است");
+        //     return View(dto);
+        // }
         var newCategory = await _categoryRepository.Add(dto);
-        TempData["Result"] = newCategory.Result.CategoryId > 0  ? "true" : "false";
+        TempData["Result"] = newCategory.Result.CategoryId != null  ? "true" : "false";
         return RedirectToAction(nameof(ShowAllCategories));
     }
     
     [HttpGet]
-    public async Task<IActionResult> ShowAllSubCategories(int id)
+    public async Task<IActionResult> ShowAllSubCategories(Guid id)
     {
         ViewBag.Id = id;
         // var list = await _categoryRepository.Get();
@@ -60,7 +60,7 @@ public class AdminCategoryController : Controller
     }
 
     [HttpGet]
-    public async Task<IActionResult> ShowAllSubCategoryThree(int id)
+    public async Task<IActionResult> ShowAllSubCategoryThree(Guid id)
     {
         ViewBag.Id = id;
         var model = await _categoryRepository.ShowAllSubCategories(id);
@@ -68,7 +68,7 @@ public class AdminCategoryController : Controller
     }
     
     [HttpGet]
-    public async Task<IActionResult> UpdateCategory(int id)
+    public async Task<IActionResult> UpdateCategory(Guid id)
     {
         var category = await _categoryRepository.GetById(id);
         if (category.Result == null)
@@ -80,7 +80,7 @@ public class AdminCategoryController : Controller
     }
     
     [HttpPost]
-    public async Task<IActionResult> UpdateCategory(AddUpdateCategoryDto dto, int id)
+    public async Task<IActionResult> UpdateCategory(AddUpdateCategoryDto dto, Guid id)
     {
         var category = await _categoryRepository.GetById(id);
         if (!ModelState.IsValid)
@@ -95,9 +95,9 @@ public class AdminCategoryController : Controller
     }
 
     [HttpGet]
-    public async Task<IActionResult> DeleteCategory(int? id)
+    public async Task<IActionResult> DeleteCategory(Guid id)
     {
-        var category = await _categoryRepository.GetById(id ?? 0);
+        var category = await _categoryRepository.GetById(id);
         if (category.Result == null)
         {
             TempData["NotFoundCategory"] = true;
@@ -107,7 +107,7 @@ public class AdminCategoryController : Controller
     }
     
     [HttpPost]
-    public async Task<IActionResult> DeleteCategoryById(int id)
+    public async Task<IActionResult> DeleteCategoryById(Guid id)
     {
         var response = await _categoryRepository.Delete(id);
         TempData["ResultDelete"] = response.Status == UtilitiesStatusCodes.Success ? "true" : "false";
