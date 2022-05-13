@@ -21,7 +21,7 @@ public class AdminBlogController : Controller
     }
     
     [HttpGet]
-    public IActionResult AddPortfolio(int? id)
+    public IActionResult AddBlog(int? id)
     {
         if (id != null)
         {
@@ -31,7 +31,7 @@ public class AdminBlogController : Controller
     }
     
     [HttpPost]
-    public async Task<IActionResult> AddPortfolio(AddUpdatePortfolioDto dto)
+    public async Task<IActionResult> AddBlog(AddUpdatePortfolioDto dto)
     {
         if (!ModelState.IsValid)
         {
@@ -48,7 +48,7 @@ public class AdminBlogController : Controller
     }
 
     [HttpGet]
-    public async Task<IActionResult> UpdatePortfolio(Guid id)
+    public async Task<IActionResult> UpdateBlog(Guid id)
     {
         var portfolio = await _portfolioRepository.GetById(id);
         if (portfolio.Result == null)
@@ -60,7 +60,7 @@ public class AdminBlogController : Controller
     }
     
     [HttpPost]
-    public async Task<IActionResult> UpdatePortfolio(AddUpdatePortfolioDto dto, Guid id)
+    public async Task<IActionResult> UpdateBlog(AddUpdatePortfolioDto dto, Guid id)
     {
         var category = await _portfolioRepository.GetById(id);
         if (!ModelState.IsValid)
@@ -75,7 +75,7 @@ public class AdminBlogController : Controller
     }
 
     [HttpGet]
-    public async Task<IActionResult> DeletePortfolio(Guid id)
+    public async Task<IActionResult> DeleteBlog(Guid id)
     {
         var portfolio = await _portfolioRepository.GetById(id);
         if (portfolio.Result == null)
@@ -87,7 +87,7 @@ public class AdminBlogController : Controller
     }
     
     [HttpPost]
-    public async Task<IActionResult> DeletePortfolioById(Guid id)
+    public async Task<IActionResult> DeleteBlogById(Guid id)
     {
         var response = await _portfolioRepository.Delete(id);
         TempData["ResultDelete"] = response.Status == UtilitiesStatusCodes.Success ? "true" : "false";
