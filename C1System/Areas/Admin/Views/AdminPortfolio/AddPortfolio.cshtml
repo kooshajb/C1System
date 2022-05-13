@@ -57,6 +57,12 @@
                         <input asp-for="Media" class="form-control" placeholder="تصاویر را وارد کنید">
                         <span class="text-danger" asp-validation-for="Media"></span>
                     </div>
+                    
+                    <div class="form-group">
+                        <select class="form-control" id="select-category" asp-items="@(new SelectList(ViewBag.Category, "CategoryId", "Title"))"></select>
+                        <button class="Add-Category btn btn-success" type="button" style="width: 10%; height: 13%; margin-top: 1%; margin-bottom: 1%; padding: 10px; border-radius: 10px;">انتخاب</button>
+                        <div class="ListCategory"></div>
+                    </div>
 
                     <div class="col-md-12">
                         <button asp-action="AddPortfolio" asp-controller="AdminPortfolio" class="btn btn-primary" type="submit">تایید</button>
@@ -67,3 +73,37 @@
         </div>
     </div>
 </div>
+
+
+@section Scripts
+{
+    <script>
+
+        $(".Add-Category").click(function () {
+            if ($("#select-category").val()) {
+                var value = $("#select-category").children("option:selected").val();
+                var text = $("#select-category").children("option:selected").text();
+                $(".ListCategory").append(
+                    "<div style='background: gray;height: 50px;width: 48%;border-radius: 5px;margin-bottom: 1%;margin-left: 1%;display:inline-block;color: whitesmoke;'>"
+                    + "<label class='control-label col-md-12'>" + text + "</label>"
+                    + "<input type='hidden' name='CategoryId' value='" + value + "' />"
+                    + "<a style='float:left;top:-25px;line-height: 36px;position: relative;height: 100%;border-radius: 5px;' class='btn btn-danger remove-category'>حذف</a>"
+                    + "</div>"
+
+                );
+                $("#select-category").children("option:selected").remove();
+            }
+        });
+
+        $('.ListCategory').delegate(".remove-category", 'click', function () {
+            var content = $(this).parent();
+            var text = content.find($("label")).text();
+            var value = content.find($("input[type=hidden]")).val();
+            $("#select-category").append($('<option>', {
+                value: value,
+                text: text
+            }));
+            content.remove();
+        });
+    </script>
+}
