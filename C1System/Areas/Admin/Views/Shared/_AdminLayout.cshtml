@@ -260,7 +260,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a asp-action="Index" asp-controller="AdminCategory">
+                        <a asp-action="ShowAllCategories" asp-controller="AdminCategory">
                             <i class="nav-icon i-Clock-4"></i>
                             <span class="item-name">مدیریت دسته بندی خدمات</span>
                         </a>
@@ -703,11 +703,7 @@
     </div>
     <!-- ============ Search UI End ============= -->
 
-    <!-- ============ This is for validation ============= -->
-<script src="~/admin/assets/js/vendor/jquery-3.3.1.min.js"></script>
-    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
-    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
-
+    <script src="~/admin/assets/js/vendor/jquery-3.3.1.min.js"></script>
     <script src="~/admin/assets/js/vendor/bootstrap.bundle.min.js"></script>
     <script src="~/admin/assets/js/vendor/perfect-scrollbar.min.js"></script>
     <script src="~/admin/assets/js/vendor/echarts.min.js"></script>
@@ -715,6 +711,11 @@
     <script src="~/admin/assets/js/es5/echart.options.min.js"></script>
     <script src="~/admin/assets/js/es5/dashboard.v1.script.min.js"></script>
     <script src="~/admin/assets/js/es5/script.min.js"></script>
+
+    <!-- ============ This is for validation ============= -->
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
     
     @RenderSection("Scripts", false)
 </body>

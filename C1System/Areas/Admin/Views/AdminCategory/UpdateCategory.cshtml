@@ -1,15 +1,15 @@
-﻿@model AddUpdateCategoryDto
+﻿@model GetCategoryDto
 
 @{
-    ViewData["Title"] = "افزودن خدمت";
+    ViewData["Title"] = "بروزرسانی خدمت";
 }
 
 <div class="col-md-12">
     <div class="card mb-4">
         <div class="card-body">
-            <div class="card-title mb-3">افزودن خدمت</div>
-            <form asp-action="AddCategory" method="post" enctype="multipart/form-data">
-                    <input type="hidden" asp-for="ParentId" value="@ViewBag.Id"/>
+            <div class="card-title mb-3">بروز رسانی خدمت</div>
+            <form asp-action="UpdateCategory" method="post" enctype="multipart/form-data">
+                    <input type="hidden" asp-for="CategoryId"/>
                     <div class="row">
                     <div class="col-md-6 form-group mb-3">
                         <label asp-for="Title">عنوان</label>
@@ -78,7 +78,7 @@
                     </div>
 
                     <div class="col-md-12">
-                        <button asp-action="AddCategory" asp-controller="AdminCategory" class="btn btn-primary" type="submit">تایید</button>
+                        <button asp-action="UpdateCategory" asp-controller="AdminCategory" class="btn btn-primary" type="submit">تایید</button>
                         <a asp-action="ShowAllCategories" class="btn btn-danger m-1">لغو</a>
                     </div>
                 </div>

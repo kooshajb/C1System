@@ -1,82 +1,60 @@
-﻿using C1System.Core.Services.podcast;
+﻿using C1System.Core.Dtos.Category;
+using C1System.Core.Dtos.Portfolio;
+using C1System.Core.Services.podcast;
 using C1System.DataLayar.Entities;
+using C1System.DataLayar.Entities.Responses;
 using Microsoft.AspNetCore.Mvc;
-using System.Web.Http;
 
 namespace C1System.Controllers.Api
 {
-    //[Route("api/[controller]")]
-    //[ApiController]
-    //public class PodcastController : ControllerBase
-    //{
-    //    private readonly IPodcastService _service;
-    //    public PodcastController(IPodcastService service)
-    //    {
-    //        _service = service;
-    //    }
+    [Route("api/[controller]")]
+    [ApiController]
+    public class PodcastController : ControllerBase
+    {
+        private readonly IPodcastRepository _podcastRepository;
 
-    //    [HttpGet]
-    //    public IEnumerable<Podcast> GetAllPodcasts()
-    //    {
-    //        return _service.GetAllPodcast();
-    //    }
+        public PodcastController(IPodcastRepository podcastRepository)
+        {
+            _podcastRepository = podcastRepository;
+        }
 
-    //    [HttpGet("{id}")]
-    //    public IActionResult GetPodcast(Guid id)
-    //    {
-    //        Podcast pod = _service.GetPodcastById(id);
-    //        if (pod != null)
-    //        {
-    //            return Ok(pod);
-    //        }
-    //        return NotFound();
-    //    }
+        [HttpGet]
+        public async Task<ActionResult<GenericResponse<IEnumerable<GetPodcastDto>>>> GetPortfolios()
+        {
+            var podcasts = await _podcastRepository.Get();
+            return Ok(podcasts.Result);
+        }
 
+        [HttpPost]
+        public async Task<ActionResult> CreatePodcast([FromBody]AddUpdatePodcastDto dto)
+        {
+            if (dto == null)  return BadRequest();
+            var createdPodcast = await _podcastRepository.Add(dto);
+            return CreatedAtAction(nameof(GetPodcast), new { id = createdPodcast.Id}, createdPodcast.Result);
+        }
         
-    //    [HttpPost]
-    //    public IActionResult AddPodcast([FromBody] Podcast podcast)
-    //    {
-    //        bool pod = _service.AddPodcast(podcast);
-    //        if (pod == true)
-    //        {
-    //            return Ok();
-    //        }
-    //        else
-    //        {
-    //            return BadRequest();
-    //        }
+        [HttpGet("{id:guid}")]
+        public async Task<ActionResult<GetPortfolioDto>> GetPodcast(Guid id)
+        {
+            var podcast = await _podcastRepository.GetById(id);
 
+            if (podcast == null) return NotFound();
 
-    //    }
+            return Ok(podcast.Result);
+        }
 
-    //    [HttpPut]
-    //    public IActionResult UpdatePodcast( [FromBody] Podcast podcast)
-    //    {
-    //        bool pod =_service.UpdatePodcast(podcast);
-    //        if (pod == true)
-    //        {
-    //            return Ok();
-    //        }
-    //        else
-    //        {
-    //            return BadRequest();
-    //        }
-    //    }
+        [HttpPut("{id:guid}")]
+        public async Task<ActionResult<GetPortfolioDto>> UpdatePodcast([FromBody]AddUpdatePodcastDto dto, Guid id)
+        {
+            var podcast =  await _podcastRepository.Update(id, dto);
+            return Ok(podcast.Result);
+        }
 
-    //    [HttpPost]
-    //    public IActionResult DeletePodcast([FromBody] Podcast podcast)
-    //    {
-    //        bool pod = _service.DeletePodcast(podcast);
-    //        if (pod == true)
-    //        {
-    //            return Ok();
-    //        }
-    //        else
-    //        {
-    //            return BadRequest();
-    //        }
-    //    }
-
-
-    //}
+        [HttpDelete("{id:guid}")]
+        public async Task<ActionResult> DeletePodcast(Guid id)
+        {
+            await _podcastRepository.Delete(id);
+            return NoContent();
+        }
+    }
 }
