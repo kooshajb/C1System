@@ -12,11 +12,8 @@ public class Category_Product
     public Guid CategoryId { get; set; }
 
     #region Relation
-
-    [ForeignKey("CategoryId")]
-    public Category Category { get; set; }
     
-    [ForeignKey("PortfolioId")]
+    public Category Category { get; set; }
     public Portfolio Portfolio { get; set; }
 
     #endregion
