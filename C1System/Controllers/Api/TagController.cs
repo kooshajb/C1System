@@ -1,5 +1,4 @@
 ﻿using C1System.Core.Services.tag;
-using C1System.DataLayar.Entities.Responses;
 using C1System.Dtos.Tag;
 using Microsoft.AspNetCore.Mvc;
 
