@@ -24,10 +24,10 @@
 
   <ItemGroup>
     <Folder Include="Data\CareerOpportunity" />
-    <Folder Include="Data\Geo" />
     <Folder Include="Data\Introduction" />
     <Folder Include="Dtos\CustomerSpeech" />
     <Folder Include="Dtos\Faq" />
+    <Folder Include="Dtos\Geo" />
     <Folder Include="Dtos\Introduction" />
     <Folder Include="Dtos\NewsLetter" />
     <Folder Include="Dtos\Project" />
