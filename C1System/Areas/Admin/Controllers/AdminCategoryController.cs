@@ -94,11 +94,10 @@ public class AdminCategoryController : Controller
         return RedirectToAction(nameof(ShowAllCategories));
     }
 
-
     [HttpGet]
-    public async Task<IActionResult> DeleteCategory(int id)
+    public async Task<IActionResult> DeleteCategory(int? id)
     {
-        var category = await _categoryRepository.GetById(id);
+        var category = await _categoryRepository.GetById(id ?? 0);
         if (category.Result == null)
         {
             TempData["NotFoundCategory"] = true;
@@ -107,17 +106,11 @@ public class AdminCategoryController : Controller
         return View(category.Result);
     }
     
-    // [HttpPost]
-    // public async Task<IActionResult> DeleteCategory(int id)
-    // {
-    //     // bool deleteImage = dto.DeleteImage("ImageSite", dto.SliderImg);
-    //     // if (!deleteImage)
-    //     // {
-    //     //     TempData["Result"] = "false";
-    //     //     return RedirectToAction(nameof(ShowAllCategories));
-    //     // }
-    //     var response = await _categoryRepository.Delete(id);
-    //     TempData["Result"] = response.Status == UtilitiesStatusCodes.Success ? "true" : "false";
-    //     return RedirectToAction(nameof(ShowAllCategories));
-    // }
+    [HttpPost]
+    public async Task<IActionResult> DeleteCategory(int id)
+    {
+        var response = await _categoryRepository.Delete(id);
+        TempData["Result"] = response.Status == UtilitiesStatusCodes.Success ? "true" : "false";
+        return RedirectToAction(nameof(ShowAllCategories));
+    }
 }
