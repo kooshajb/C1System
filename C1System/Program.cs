@@ -1,17 +1,10 @@
 using System;
-using C1System.DataLayar.Context;
+using C1System;
 using Microsoft.EntityFrameworkCore;
-using System.Configuration;
-using C1System.Core.Services.category;
-using C1System.Core.Services.podcast;
-using C1System.Core.Services.portfolio;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using C1System.Core.Services.newsLetter;
-using C1System.Core.Services.tag;
-using C1System.Core.Services.project;
 
 var builder = WebApplication.CreateBuilder(args);
 

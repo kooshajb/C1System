@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.Collections.Generic;
 
-namespace C1System.DataLayar.Entities;
+namespace C1System;
 
 public class Gender
 {

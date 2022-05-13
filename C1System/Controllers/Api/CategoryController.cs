@@ -1,11 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using C1System.Core.Dtos.Category;
-using C1System.Core.Services.category;
-using C1System.DataLayar.Entities.Responses;
 using Microsoft.AspNetCore.Mvc;
 
-namespace C1System.Areas.Admin.Controllers;
+namespace C1System.Controllers.Api;
 
 [Route("api/[controller]")]
 [ApiController]

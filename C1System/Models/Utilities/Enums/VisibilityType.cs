@@ -1,4 +1,4 @@
-namespace Utilities_aspnet.Utilities.Enums; 
+namespace C1System;
 
 public enum VisibilityType {
     Public = 0,

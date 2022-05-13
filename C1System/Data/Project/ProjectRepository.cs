@@ -1,19 +1,20 @@
+
 ﻿using AutoMapper;
-using C1System.DataLayar.Context;
-using C1System.DataLayar.Entities;
-using C1System.DataLayar.Entities.Responses;
-using C1System.DataLayar.Entities.Utilities.Enums;
 using C1System.Dtos.Project;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 using System;
+
+﻿using System;
+
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace C1System.Core.Services.project
-{
+namespace C1System;
+
+
     public interface IProjectRepository
     {
         Task<GenericResponse<GetProjectDto>> Add(AddUpdateProjectDto dto);
@@ -88,4 +89,5 @@ namespace C1System.Core.Services.project
             return new GenericResponse<GetProjectDto>(_mapper.Map<GetProjectDto>(i));
         }
     }
-}
+
+

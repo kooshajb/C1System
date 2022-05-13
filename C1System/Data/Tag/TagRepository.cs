@@ -1,19 +1,18 @@
+
 ﻿using AutoMapper;
-using C1System.DataLayar.Context;
-using C1System.DataLayar.Entities;
-using C1System.DataLayar.Entities.Responses;
-using C1System.DataLayar.Entities.Utilities.Enums;
+
 using C1System.Dtos.Tag;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 using System;
+
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace C1System.Core.Services.tag
-{
+namespace C1System;
+
     public interface ITagRepository
     {
         Task<GenericResponse<GetTagDto>> Add(AddUpdateTagDto dto);
@@ -84,5 +83,7 @@ namespace C1System.Core.Services.tag
             await _context.SaveChangesAsync();
             return new GenericResponse<GetTagDto>(_mapper.Map<GetTagDto>(i));
         }
-    }
+    
+
 }
+

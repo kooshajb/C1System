@@ -1,4 +1,4 @@
-﻿namespace C1System.DataLayar.Entities.Base.Enums;
+﻿namespace C1System;
 
 public enum WalletPriceEnum
 {

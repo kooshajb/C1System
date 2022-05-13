@@ -1,4 +1,6 @@
-﻿namespace C1System.Core.Dtos.Portfolio;
+﻿using System;
+using AutoMapper;
+using C1System;
 
 public class GetPortfolioDto
 {
@@ -25,4 +27,12 @@ public class AddUpdatePortfolioDto
     public string FeatureMedia { get; set; }
     public string? Media { get; set; }
     public int? Point { get; set; }
+}
+
+public class AutoMapperPortfolio : Profile {
+    public AutoMapperPortfolio() {
+        CreateMap<Portfolio, AddUpdatePortfolioDto>().ReverseMap();
+        CreateMap<Portfolio, GetPortfolioDto>().ReverseMap();
+        CreateMap<AddUpdatePortfolioDto, GetPortfolioDto>().ReverseMap();
+    }
 }

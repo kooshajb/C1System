@@ -1,17 +1,14 @@
-﻿using C1System.DataLayar.Entities.Geo;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace C1System.Core.Services.geo
+namespace C1System;
+public interface IProvinceRepository
 {
-    public interface IProvinceRepository
-    {
 
-    }
-    public class ProvinceRepository : IProvinceRepository
-    {
-    }
+}
+public class ProvinceRepository : IProvinceRepository
+{
 }

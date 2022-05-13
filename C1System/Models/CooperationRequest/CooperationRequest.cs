@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace C1System.DataLayar.Entities.CooperationRequest;
+namespace C1System;
 
 public class CooperationRequest
 {

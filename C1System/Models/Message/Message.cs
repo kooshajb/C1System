@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using C1System.DataLayar.Entities.Base;
+using System;
 
-namespace C1System.DataLayar.Entities.Message;
+namespace C1System;
 
 public class Message : BaseEntity
 {

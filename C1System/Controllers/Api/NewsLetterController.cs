@@ -1,5 +1,4 @@
-﻿using C1System.Core.Services.newsLetter;
-using C1System.DataLayar.Entities.Responses;
+﻿
 using C1System.Dtos.NewsLetter;
 using Microsoft.AspNetCore.Mvc;
 

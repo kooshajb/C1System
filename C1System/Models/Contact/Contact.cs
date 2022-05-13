@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System;
 
-namespace C1System.DataLayar.Entities.Contact;
+namespace C1System;
 
 public class Contact
 {

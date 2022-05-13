@@ -1,6 +1,7 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 
-namespace C1System.DataLayar.Entities;
+namespace C1System;
 
 public class Expectation
 {
