@@ -30,7 +30,7 @@ public class C1SystemContext : DbContext
     // public DbSet<User> Users { get; set; }
     // public DbSet<UserRole> UserRoles { get; set; }
     // public DbSet<AccountType> AccountTypes { get; set; }
-    // public DbSet<Blog> Blogs { get; set; }
+    public DbSet<Blog> Blogs { get; set; }
     // public DbSet<CareerOpportunity> CareerOpportunities { get; set; }
     // public DbSet<Faq> Faqs { get; set; }
     public DbSet<NewsLetter> NewsLetters { get; set; }
