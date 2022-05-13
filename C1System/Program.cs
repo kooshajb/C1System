@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using C1System.Data.CustomerSuccess;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -25,6 +26,7 @@ builder.Services.AddTransient<IPodcastRepository, PodcastRepository>();
 builder.Services.AddTransient<INewsLetterRepository , NewsLetterRepository>();
 builder.Services.AddTransient<ITagRepository, TagRepository>();
 builder.Services.AddTransient<IProjectRepository, ProjectRepository>();
+builder.Services.AddTransient<ICustomerSuccessRepository, CustomerSuccessRepository>();
 
 // builder.Services.AddTransient<ICategoryPackageService, CategoryPackageService>();
 // builder.Services.AddTransient<ICategoryPackageItemService, CategoryPackageItemService>();
