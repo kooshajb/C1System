@@ -262,21 +262,27 @@
                     <li class="nav-item">
                         <a asp-action="ShowAllCategories" asp-controller="AdminCategory">
                             <i class="nav-icon i-Clock-4"></i>
-                            <span class="item-name">مدیریت دسته بندی خدمات</span>
+                            <span class="item-name">خدمات</span>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="dashboard.v3.html">
+                        <a asp-action="Index" asp-controller="AdminPortfolio">
                             <i class="nav-icon i-Over-Time"></i>
-                            <span class="item-name">مدیریت نمونه کارها</span>
+                            <span class="item-name">نمونه کارها</span>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="dashboard.v4.html">
-                            <i class="nav-icon i-Clock"></i>
-                            <span class="item-name">نسخه 4</span>
+                        <a asp-action="Index" asp-controller="AdminPodcast">
+                            <i class="nav-icon i-Over-Time"></i>
+                            <span class="item-name">پادکست ها</span>
                         </a>
                     </li>
+                   <li class="nav-item">
+                       <a asp-action="Index" asp-controller="AdminBlog">
+                           <i class="nav-icon i-Over-Time"></i>
+                           <span class="item-name">وبلاگ</span>
+                       </a>
+                   </li>
                 </ul>
                 <ul class="childNav" data-parent="forms">
                     <li class="nav-item">
