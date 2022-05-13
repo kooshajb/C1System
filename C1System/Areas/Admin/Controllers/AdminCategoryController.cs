@@ -107,10 +107,10 @@ public class AdminCategoryController : Controller
     }
     
     [HttpPost]
-    public async Task<IActionResult> DeleteCategory(int id)
+    public async Task<IActionResult> DeleteCategoryById(int id)
     {
         var response = await _categoryRepository.Delete(id);
-        TempData["Result"] = response.Status == UtilitiesStatusCodes.Success ? "true" : "false";
+        TempData["ResultDelete"] = response.Status == UtilitiesStatusCodes.Success ? "true" : "false";
         return RedirectToAction(nameof(ShowAllCategories));
     }
 }
