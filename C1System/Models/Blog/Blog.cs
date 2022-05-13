@@ -51,5 +51,4 @@ public class Blog : Banner
     //todo bookmark
     //todo comment
     //todo blogCategory
-
 }
