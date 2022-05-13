@@ -11,6 +11,7 @@ public interface IPortfolioRepository
     Task<GenericResponse<GetPortfolioDto>> Update(Guid id, AddUpdatePortfolioDto dto);
     Task<GenericResponse> Delete(Guid id);
     bool ExistPortfolio(string title, Guid portfolioId);
+    public bool AddPortfoliosForCategory(List<Category_Product> categoryProducts);
 }
 
 public class PortfolioRepository : IPortfolioRepository
@@ -80,5 +81,19 @@ public class PortfolioRepository : IPortfolioRepository
     {
         return _context.Portfolios.Any(p =>
             p.Title == title && p.PortfolioId != portfolioId);
+    }
+    
+    public bool AddPortfoliosForCategory(List<Category_Product> categoryProducts)
+    {
+        try
+        {
+            _context.CategoryProducts.AddRange(categoryProducts);
+            _context.SaveChanges();
+            return true;
+        }
+        catch
+        {
+            return false;
+        }
     }
 }
