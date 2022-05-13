@@ -86,17 +86,11 @@ public class AdminPortfolioController : Controller
         return View(portfolio.Result);
     }
     
-    // [HttpPost]
-    // public async Task<IActionResult> DeleteCategory(int id)
-    // {
-    //     // bool deleteImage = dto.DeleteImage("ImageSite", dto.SliderImg);
-    //     // if (!deleteImage)
-    //     // {
-    //     //     TempData["Result"] = "false";
-    //     //     return RedirectToAction(nameof(ShowAllCategories));
-    //     // }
-    //     var response = await _categoryRepository.Delete(id);
-    //     TempData["Result"] = response.Status == UtilitiesStatusCodes.Success ? "true" : "false";
-    //     return RedirectToAction(nameof(ShowAllCategories));
-    // }
+    [HttpPost]
+    public async Task<IActionResult> DeletePortfolio(Guid? id)
+    {
+        // var response = await _portfolioRepository.Delete(id);
+        // TempData["Result"] = response.Status == UtilitiesStatusCodes.Success ? "true" : "false";
+        return RedirectToAction(nameof(Index));
+    }
 }
