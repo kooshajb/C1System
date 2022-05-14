@@ -13,7 +13,7 @@ public interface IPortfolioRepository
     Task<GenericResponse<GetPortfolioDto>> Update(Guid id, UpdatePortfolioDto dto);
     Task<GenericResponse> Delete(Guid id);
     bool ExistPortfolio(string title, Guid portfolioId);
-    bool AddPortfoliosForCategory(List<Category_Portfolio> categoryPortfolios);
+    bool AddPortfoliosForCategory(List<Category_PortfolioEntity> categoryPortfolios);
     Task<List<UpdatePortfolioViewModel>>ShowPortfoliosForUpdate(Guid portfolioId);
     bool DeletePortfolioForCategory(Guid portfolioId);
 }
@@ -32,29 +32,29 @@ public class PortfolioRepository : IPortfolioRepository
     public async Task<GenericResponse<GetPortfolioDto>> Add(AddPortfolioDto dto)
     {
         if (dto == null) throw new ArgumentException("Dto must not be null", nameof(dto));
-        Portfolio portfolio = _mapper.Map<Portfolio>(dto);
+        PortfolioEntity portfolio = _mapper.Map<PortfolioEntity>(dto);
 
-        EntityEntry<Portfolio> i = await _context.Set<Portfolio>().AddAsync(portfolio);
+        EntityEntry<PortfolioEntity> i = await _context.Set<PortfolioEntity>().AddAsync(portfolio);
         await _context.SaveChangesAsync();
         return new GenericResponse<GetPortfolioDto>(_mapper.Map<GetPortfolioDto>(i.Entity));
     }
 
     public async Task<GenericResponse<IEnumerable<GetPortfolioDto>>> Get()
     {
-        IEnumerable<Portfolio> i = await _context.Set<Portfolio>().AsNoTracking().ToListAsync();
+        IEnumerable<PortfolioEntity> i = await _context.Set<PortfolioEntity>().AsNoTracking().ToListAsync();
         return new GenericResponse<IEnumerable<GetPortfolioDto>>(_mapper.Map<IEnumerable<GetPortfolioDto>>(i));
     }
     
     public async Task<GenericResponse<GetPortfolioDto>> GetById(Guid id)
     {
-        Portfolio? i = await _context.Set<Portfolio>().AsNoTracking()
+        PortfolioEntity? i = await _context.Set<PortfolioEntity>().AsNoTracking()
             .FirstOrDefaultAsync(i => i.PortfolioId == id);
         return new GenericResponse<GetPortfolioDto>(_mapper.Map<GetPortfolioDto>(i));
     }
 
     public async Task<GenericResponse<GetPortfolioDto>> Update(Guid id, UpdatePortfolioDto dto)
     {
-        var i = _context.Set<Portfolio>()
+        var i = _context.Set<PortfolioEntity>()
             .Where(p => p.PortfolioId == id).First();
 
         i.Title = dto.Title;
@@ -67,7 +67,7 @@ public class PortfolioRepository : IPortfolioRepository
         i.Media = dto.Media;
         i.Point = dto.Point;
 
-        _context.Set<Portfolio>().Update(i);
+        _context.Set<PortfolioEntity>().Update(i);
         await _context.SaveChangesAsync();
         return new GenericResponse<GetPortfolioDto>(_mapper.Map<GetPortfolioDto>(i));
     }
@@ -75,7 +75,7 @@ public class PortfolioRepository : IPortfolioRepository
     public async Task<GenericResponse> Delete(Guid id)
     {
         GenericResponse<GetPortfolioDto> i = await GetById(id);
-        _context.Set<Portfolio>().Remove(_mapper.Map<Portfolio>(i.Result));
+        _context.Set<PortfolioEntity>().Remove(_mapper.Map<PortfolioEntity>(i.Result));
         await _context.SaveChangesAsync();
         return new GenericResponse(UtilitiesStatusCodes.Success,
             $"Portfolio {i.Result.Title} delete Success {i.Result.PortfolioId}");
@@ -87,7 +87,7 @@ public class PortfolioRepository : IPortfolioRepository
             p.Title == title && p.PortfolioId != portfolioId);
     }
     
-    public bool AddPortfoliosForCategory(List<Category_Portfolio> categoryPortfolios)
+    public bool AddPortfoliosForCategory(List<Category_PortfolioEntity> categoryPortfolios)
     {
         try
         {
@@ -121,7 +121,7 @@ public class PortfolioRepository : IPortfolioRepository
     {
         try
         {
-            List<Category_Portfolio> categories = _context.CategoryPortfolios.Where(c => c.PortfolioId == portfolioId).ToList();
+            List<Category_PortfolioEntity> categories = _context.CategoryPortfolios.Where(c => c.PortfolioId == portfolioId).ToList();
             _context.CategoryPortfolios.RemoveRange(categories);
             _context.SaveChanges();
             return true;

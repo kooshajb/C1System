@@ -23,7 +23,7 @@ builder.Services.AddTransient<ICategoryRepository, CategoryRepository>();
 builder.Services.AddTransient<IPortfolioRepository, PortfolioRepository>();
 builder.Services.AddTransient<IPodcastRepository, PodcastRepository>();
 builder.Services.AddTransient<IBlogRepository, BlogRepository>();
-builder.Services.AddTransient<INewsLetterRepository , NewsLetterRepository>();
+builder.Services.AddTransient<INewsLetterRepository, NewsLetterRepository>();
 builder.Services.AddTransient<ITagRepository, TagRepository>();
 builder.Services.AddTransient<IProjectRepository, ProjectRepository>();
 builder.Services.AddTransient<ICustomerSuccessRepository, CustomerSuccessRepository>();

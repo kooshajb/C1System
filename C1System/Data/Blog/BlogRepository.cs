@@ -28,29 +28,29 @@ public class BlogRepository : IBlogRepository
     public async Task<GenericResponse<GetBlogDto>> Add(AddUpdateBlogDto dto)
     {
         if (dto == null) throw new ArgumentException("Dto must not be null", nameof(dto));
-        Blog blog = _mapper.Map<Blog>(dto);
+        BlogEntity blog = _mapper.Map<BlogEntity>(dto);
 
-        EntityEntry<Blog> i = await _context.Set<Blog>().AddAsync(blog);
+        EntityEntry<BlogEntity> i = await _context.Set<BlogEntity>().AddAsync(blog);
         await _context.SaveChangesAsync();
         return new GenericResponse<GetBlogDto>(_mapper.Map<GetBlogDto>(i.Entity));
     }
 
     public async Task<GenericResponse<IEnumerable<GetBlogDto>>> Get()
     {
-        IEnumerable<Blog> i = await _context.Set<Blog>().AsNoTracking().ToListAsync();
+        IEnumerable<BlogEntity> i = await _context.Set<BlogEntity>().AsNoTracking().ToListAsync();
         return new GenericResponse<IEnumerable<GetBlogDto>>(_mapper.Map<IEnumerable<GetBlogDto>>(i));
     }
     
     public async Task<GenericResponse<GetBlogDto>> GetById(Guid id)
     {
-        Blog? i = await _context.Set<Blog>().AsNoTracking()
+        BlogEntity? i = await _context.Set<BlogEntity>().AsNoTracking()
             .FirstOrDefaultAsync(i => i.BlogId == id);
         return new GenericResponse<GetBlogDto>(_mapper.Map<GetBlogDto>(i));
     }
 
     public async Task<GenericResponse<GetBlogDto>> Update(Guid id, AddUpdateBlogDto dto)
     {
-        var i = _context.Set<Blog>()
+        var i = _context.Set<BlogEntity>()
             .Where(p => p.BlogId == id).First();
 
         i.Title = dto.Title;
@@ -59,7 +59,7 @@ public class BlogRepository : IBlogRepository
         i.StudyTime = dto.StudyTime;
         i.FeatureImage = dto.FeatureImage;
 
-        _context.Set<Blog>().Update(i);
+        _context.Set<BlogEntity>().Update(i);
         await _context.SaveChangesAsync();
         return new GenericResponse<GetBlogDto>(_mapper.Map<GetBlogDto>(i));
     }
@@ -67,7 +67,7 @@ public class BlogRepository : IBlogRepository
     public async Task<GenericResponse> Delete(Guid id)
     {
         GenericResponse<GetBlogDto> i = await GetById(id);
-        _context.Set<Blog>().Remove(_mapper.Map<Blog>(i.Result));
+        _context.Set<BlogEntity>().Remove(_mapper.Map<BlogEntity>(i.Result));
         await _context.SaveChangesAsync();
         return new GenericResponse(UtilitiesStatusCodes.Success,
             $"Blog {i.Result.Title} delete Success {i.Result.BlogId}");

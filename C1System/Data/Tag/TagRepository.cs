@@ -34,9 +34,9 @@ namespace C1System;
         public async Task<GenericResponse<GetTagDto>> Add(AddUpdateTagDto dto)
         {
             if (dto == null) throw new ArgumentException("Dto must not be null", nameof(dto));
-            Tag entity = _mapper.Map<Tag>(dto);
+            TagEntity entity = _mapper.Map<TagEntity>(dto);
 
-            EntityEntry<Tag> i = await _context.Set<Tag>().AddAsync(entity);
+            EntityEntry<TagEntity> i = await _context.Set<TagEntity>().AddAsync(entity);
             await _context.SaveChangesAsync();
             return new GenericResponse<GetTagDto>(_mapper.Map<GetTagDto>(i.Entity));
         }
@@ -44,7 +44,7 @@ namespace C1System;
         public async Task<GenericResponse> Delete(Guid id)
         {
             GenericResponse<GetTagDto> i = await GetById(id);
-            _context.Set<Tag>().Remove(_mapper.Map<Tag>(i.Result));
+            _context.Set<TagEntity>().Remove(_mapper.Map<TagEntity>(i.Result));
             await _context.SaveChangesAsync();
             return new GenericResponse(UtilitiesStatusCodes.Success,
                 $"Podcast {i.Result.Title} delete Success {i.Result.TagId}");
@@ -58,26 +58,26 @@ namespace C1System;
 
         public async Task<GenericResponse<IEnumerable<GetTagDto>>> Get()
         {
-            IEnumerable<Tag> i = await _context.Set<Tag>().AsNoTracking().ToListAsync();
+            IEnumerable<TagEntity> i = await _context.Set<TagEntity>().AsNoTracking().ToListAsync();
             return new GenericResponse<IEnumerable<GetTagDto>>(_mapper.Map<IEnumerable<GetTagDto>>(i));
         }
 
         public async Task<GenericResponse<GetTagDto>> GetById(Guid id)
         {
-            Tag? i = await _context.Set<Tag>().AsNoTracking()
+            TagEntity? i = await _context.Set<TagEntity>().AsNoTracking()
                 .FirstOrDefaultAsync(i => i.TagId == id);
             return new GenericResponse<GetTagDto>(_mapper.Map<GetTagDto>(i));
         }
 
         public async Task<GenericResponse<GetTagDto>> Update(Guid id, AddUpdateTagDto dto)
         {
-            var i = _context.Set<Tag>()
+            var i = _context.Set<TagEntity>()
                   .Where(p => p.TagId == id).First();
 
            i.Title = dto.Title;
            i.Link = dto.Link;
 
-            _context.Set<Tag>().Update(i);
+            _context.Set<TagEntity>().Update(i);
             await _context.SaveChangesAsync();
             return new GenericResponse<GetTagDto>(_mapper.Map<GetTagDto>(i));
         }

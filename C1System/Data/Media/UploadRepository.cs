@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using C1System.Dtos.Media;
+using Microsoft.EntityFrameworkCore;
 
 namespace C1System.Media;
 public interface IUploadRepository
@@ -60,7 +61,9 @@ public class UploadRepository : IUploadRepository
             {
                 folder = "Users";
                 List<MediaEntity> userMedia =
-                    _context.Set<MediaEntity>().Where(x => x.UserId == model.UserId).ToList();
+                    _context.Set<MediaEntity>()
+                        // .Where(x => x.UserId == model.UserId)
+                        .ToList();
                 if (userMedia.Count > 0)
                 {
                     _context.Set<MediaEntity>().RemoveRange(userMedia);
@@ -74,9 +77,8 @@ public class UploadRepository : IUploadRepository
             {
                 FileName = url,
                 FileType = fileType,
-                UserId = model.UserId,
-                ProductId = model.ProductId,
-
+                // UserId = model.UserId,
+                // ProductId = model.ProductId,
             };
             await _context.Set<MediaEntity>().AddAsync(media);
             await _context.SaveChangesAsync();

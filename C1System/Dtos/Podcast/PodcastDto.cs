@@ -33,8 +33,8 @@ public class AddUpdatePodcastDto
 
 public class AutoMapperPodcast : Profile {
     public AutoMapperPodcast() {
-        CreateMap<Podcast, AddUpdatePodcastDto>().ReverseMap();
-        CreateMap<Podcast, GetPodcastDto>().ReverseMap();
+        CreateMap<PodcastEntity, AddUpdatePodcastDto>().ReverseMap();
+        CreateMap<PodcastEntity, GetPodcastDto>().ReverseMap();
         CreateMap<AddUpdatePodcastDto, GetPodcastDto>().ReverseMap();
     }
 }

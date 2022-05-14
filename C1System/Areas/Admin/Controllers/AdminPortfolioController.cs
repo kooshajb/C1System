@@ -52,11 +52,11 @@ public class AdminPortfolioController : Controller
             return RedirectToAction(nameof(Index));
         }
 
-        List<Category_Portfolio> addCatProduct = new List<Category_Portfolio>();
+        List<Category_PortfolioEntity> addCatProduct = new List<Category_PortfolioEntity>();
         
         foreach (var item in categoryId)
         {
-            addCatProduct.Add(new Category_Portfolio()
+            addCatProduct.Add(new Category_PortfolioEntity()
             {
                 CategoryId = item,
                 PortfolioId = portfolioId
@@ -111,10 +111,10 @@ public class AdminPortfolioController : Controller
             return RedirectToAction(nameof(Index));
         }
         
-        List<Category_Portfolio> categories = new List<Category_Portfolio>();
+        List<Category_PortfolioEntity> categories = new List<Category_PortfolioEntity>();
         foreach (var item in categoryId)
         {
-            categories.Add(new Category_Portfolio
+            categories.Add(new Category_PortfolioEntity
             {
                 CategoryId = item,
                 PortfolioId = dto.PortfolioId,

@@ -23,8 +23,8 @@ public class AddUpdateBlogDto
 
 public class AutoMapperBlog : Profile {
     public AutoMapperBlog() {
-        CreateMap<Blog, AddUpdateBlogDto>().ReverseMap();
-        CreateMap<Blog, GetBlogDto>().ReverseMap();
+        CreateMap<BlogEntity, AddUpdateBlogDto>().ReverseMap();
+        CreateMap<BlogEntity, GetBlogDto>().ReverseMap();
         CreateMap<AddUpdateBlogDto, GetBlogDto>().ReverseMap();
     }
 }

@@ -32,29 +32,29 @@ public class PodcastRepository : IPodcastRepository
     public async Task<GenericResponse<GetPodcastDto>> Add(AddUpdatePodcastDto dto)
     {
         if (dto == null) throw new ArgumentException("Dto must not be null", nameof(dto));
-        Podcast entity = _mapper.Map<Podcast>(dto);
+        PodcastEntity entity = _mapper.Map<PodcastEntity>(dto);
 
-        EntityEntry<Podcast> i = await _context.Set<Podcast>().AddAsync(entity);
+        EntityEntry<PodcastEntity> i = await _context.Set<PodcastEntity>().AddAsync(entity);
         await _context.SaveChangesAsync();
         return new GenericResponse<GetPodcastDto>(_mapper.Map<GetPodcastDto>(i.Entity));
     }
 
     public async Task<GenericResponse<IEnumerable<GetPodcastDto>>> Get()
     {
-        IEnumerable<Podcast> i = await _context.Set<Podcast>().AsNoTracking().ToListAsync();
+        IEnumerable<PodcastEntity> i = await _context.Set<PodcastEntity>().AsNoTracking().ToListAsync();
         return new GenericResponse<IEnumerable<GetPodcastDto>>(_mapper.Map<IEnumerable<GetPodcastDto>>(i));
     }
 
     public async Task<GenericResponse<GetPodcastDto>> GetById(Guid id)
     {
-        Podcast? i = await _context.Set<Podcast>().AsNoTracking()
+        PodcastEntity? i = await _context.Set<PodcastEntity>().AsNoTracking()
             .FirstOrDefaultAsync(i => i.PodcastId == id);
         return new GenericResponse<GetPodcastDto>(_mapper.Map<GetPodcastDto>(i));
     }
 
     public async Task<GenericResponse<GetPodcastDto>> Update(Guid id, AddUpdatePodcastDto dto)
     {
-        var i = _context.Set<Podcast>()
+        var i = _context.Set<PodcastEntity>()
             .Where(p => p.PodcastId == id).First();
 
         i.PodcastNumber = dto.PodcastNumber;
@@ -68,7 +68,7 @@ public class PodcastRepository : IPodcastRepository
         i.IsSelected = dto.IsSelected;
         i.Point = dto.Point;
         
-        _context.Set<Podcast>().Update(i);
+        _context.Set<PodcastEntity>().Update(i);
         await _context.SaveChangesAsync();
         return new GenericResponse<GetPodcastDto>(_mapper.Map<GetPodcastDto>(i));
     }
@@ -76,7 +76,7 @@ public class PodcastRepository : IPodcastRepository
     public async Task<GenericResponse> Delete(Guid id)
     {
         GenericResponse<GetPodcastDto> i = await GetById(id);
-        _context.Set<Podcast>().Remove(_mapper.Map<Podcast>(i.Result));
+        _context.Set<PodcastEntity>().Remove(_mapper.Map<PodcastEntity>(i.Result));
         await _context.SaveChangesAsync();
         return new GenericResponse(UtilitiesStatusCodes.Success,
             $"Podcast {i.Result.Title} delete Success {i.Result.PodcastId}");

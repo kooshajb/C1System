@@ -33,9 +33,9 @@ public class ProjectRepository : IProjectRepository
     public async Task<GenericResponse<GetProjectDto>> Add(AddUpdateProjectDto dto)
     {
         if (dto == null) throw new ArgumentException("Dto must not be null", nameof(dto));
-        Project entity = _mapper.Map<Project>(dto);
+        ProjectEntity entity = _mapper.Map<ProjectEntity>(dto);
 
-        EntityEntry<Project> i = await _context.Set<Project>().AddAsync(entity);
+        EntityEntry<ProjectEntity> i = await _context.Set<ProjectEntity>().AddAsync(entity);
         await _context.SaveChangesAsync();
         return new GenericResponse<GetProjectDto>(_mapper.Map<GetProjectDto>(i.Entity));
     }
@@ -43,7 +43,7 @@ public class ProjectRepository : IProjectRepository
     public async Task<GenericResponse> Delete(Guid id)
     {
         GenericResponse<GetProjectDto> i = await GetById(id);
-        _context.Set<Project>().Remove(_mapper.Map<Project>(i.Result));
+        _context.Set<ProjectEntity>().Remove(_mapper.Map<ProjectEntity>(i.Result));
         await _context.SaveChangesAsync();
         return new GenericResponse(UtilitiesStatusCodes.Success,
             $"Podcast {i.Result.Title} delete Success {i.Result.ProjectId}");
@@ -57,20 +57,20 @@ public class ProjectRepository : IProjectRepository
 
     public async Task<GenericResponse<IEnumerable<GetProjectDto>>> Get()
     {
-        IEnumerable<Project> i = await _context.Set<Project>().AsNoTracking().ToListAsync();
+        IEnumerable<ProjectEntity> i = await _context.Set<ProjectEntity>().AsNoTracking().ToListAsync();
         return new GenericResponse<IEnumerable<GetProjectDto>>(_mapper.Map<IEnumerable<GetProjectDto>>(i));
     }
 
     public async Task<GenericResponse<GetProjectDto>> GetById(Guid id)
     {
-        Project? i = await _context.Set<Project>().AsNoTracking()
+        ProjectEntity? i = await _context.Set<ProjectEntity>().AsNoTracking()
            .FirstOrDefaultAsync(i => i.ProjectId == id);
         return new GenericResponse<GetProjectDto>(_mapper.Map<GetProjectDto>(i));
     }
 
     public async Task<GenericResponse<GetProjectDto>> Update(Guid id, AddUpdateProjectDto dto)
     {
-        var i = _context.Set<Project>()
+        var i = _context.Set<ProjectEntity>()
                .Where(p => p.ProjectId == id).First();
 
        i.Picture = dto.Picture;
@@ -79,7 +79,7 @@ public class ProjectRepository : IProjectRepository
        i.IsDelete = dto.IsDelete;
        i.Media = dto.Media;
 
-        _context.Set<Project>().Update(i);
+        _context.Set<ProjectEntity>().Update(i);
         await _context.SaveChangesAsync();
         return new GenericResponse<GetProjectDto>(_mapper.Map<GetProjectDto>(i));
     }

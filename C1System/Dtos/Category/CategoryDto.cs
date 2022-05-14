@@ -40,8 +40,8 @@ public class AddUpdateCategoryDto
 
 public class AutoMapperCategory : Profile {
     public AutoMapperCategory() {
-        CreateMap<Category, AddUpdateCategoryDto>().ReverseMap();
-        CreateMap<Category, GetCategoryDto>().ReverseMap();
+        CreateMap<CategoryEntity, AddUpdateCategoryDto>().ReverseMap();
+        CreateMap<CategoryEntity, GetCategoryDto>().ReverseMap();
         CreateMap<AddUpdateCategoryDto, GetCategoryDto>().ReverseMap();
     }
 }

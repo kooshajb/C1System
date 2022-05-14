@@ -45,9 +45,9 @@ public class UpdatePortfolioDto
 
 public class AutoMapperPortfolio : Profile {
     public AutoMapperPortfolio() {
-        CreateMap<Portfolio, AddPortfolioDto>().ReverseMap();
-        CreateMap<Portfolio, UpdatePortfolioDto>().ReverseMap();
-        CreateMap<Portfolio, GetPortfolioDto>().ReverseMap();
+        CreateMap<PortfolioEntity, AddPortfolioDto>().ReverseMap();
+        CreateMap<PortfolioEntity, UpdatePortfolioDto>().ReverseMap();
+        CreateMap<PortfolioEntity, GetPortfolioDto>().ReverseMap();
         CreateMap<AddPortfolioDto, GetPortfolioDto>().ReverseMap();
         CreateMap<UpdatePortfolioDto, GetPortfolioDto>().ReverseMap();
     }

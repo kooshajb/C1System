@@ -8,21 +8,21 @@ public class C1SystemContext : DbContext
 
 
     }
-
+    public DbSet<BlogEntity> Blogs { get; set; }
     // public DbSet<Slider> Sliders { get; set; }
-    public DbSet<Tag> Tags { get; set; }
-    public DbSet<CustomerSuccess> CustomerSuccesses { get; set; }
+    public DbSet<TagEntity> Tags { get; set; }
+    public DbSet<CustomerSuccessEntity> CustomerSuccesses { get; set; }
 
     // public DbSet<Introduction> Introductions { get; set; }
     // public DbSet<CustomerSpeech> CustomerSpeechs { get; set; }
 
-    public DbSet<Category> Categories { get; set; }
+    public DbSet<CategoryEntity> Categories { get; set; }
     // public DbSet<CategoryPackage> CategoryPackages { get; set; }
     // public DbSet<CategoryPackageItem>  CategoryPackageItems { get; set; }
-    public DbSet<Portfolio> Portfolios { get; set; }
-    public DbSet<Category_Portfolio> CategoryPortfolios { get; set; }
-    public DbSet<Project> Prosjects { get; set; }
-    public DbSet<Podcast> Podcasts { get; set; }
+    public DbSet<PortfolioEntity> Portfolios { get; set; }
+    public DbSet<Category_PortfolioEntity> CategoryPortfolios { get; set; }
+    public DbSet<ProjectEntity> Prosjects { get; set; }
+    public DbSet<PodcastEntity> Podcasts { get; set; }
     // public DbSet<Gender> Genders { get; set; }
     // public DbSet<City> Cities { get; set; }
     // public DbSet<Province> Provinces { get; set; }
@@ -30,10 +30,9 @@ public class C1SystemContext : DbContext
     // public DbSet<User> Users { get; set; }
     // public DbSet<UserRole> UserRoles { get; set; }
     // public DbSet<AccountType> AccountTypes { get; set; }
-    public DbSet<Blog> Blogs { get; set; }
     // public DbSet<CareerOpportunity> CareerOpportunities { get; set; }
     // public DbSet<Faq> Faqs { get; set; }
-    public DbSet<NewsLetter> NewsLetters { get; set; }
+    public DbSet<NewsLetterEntity> NewsLetters { get; set; }
     // public DbSet<DemoPortfolio>  DemoPortfolios { get; set; }
     // public DbSet<TechnologyPortfolio> TechnologyPortfolios  { get; set; }
     // public DbSet<Ticket> Tickets { get; set; }
