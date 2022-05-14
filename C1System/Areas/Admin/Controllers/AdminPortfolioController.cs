@@ -23,18 +23,20 @@ public class AdminPortfolioController : Controller
     }
     
     [HttpGet]
-    public IActionResult AddPortfolio()
+    public async Task<IActionResult> AddPortfolio()
     {
-        ViewBag.Category = _categoryRepository.ShowSubCategory();
+        var categories = await _categoryRepository.Get();
+        ViewBag.Category = categories.Result;
         return View();
     }
     
     [HttpPost]
-    public async Task<IActionResult> AddPortfolio(AddUpdatePortfolioDto dto, List<Guid> categoryIds)
+    public async Task<IActionResult> AddPortfolio(AddPortfolioDto dto, List<Guid> categoryId)
     {
         if (!ModelState.IsValid)
         {
-            ViewBag.Category = _categoryRepository.ShowSubCategory();
+            var categories = await _categoryRepository.Get();
+            ViewBag.Category = categories.Result;
             return View(dto);
         }
         // if (_portfolioRepository.ExistPortfolio(dto.Title, 0))
@@ -50,11 +52,11 @@ public class AdminPortfolioController : Controller
             return RedirectToAction(nameof(Index));
         }
 
-        List<Category_Product> addCatProduct = new List<Category_Product>();
+        List<Category_Portfolio> addCatProduct = new List<Category_Portfolio>();
         
-        foreach (var item in categoryIds)
+        foreach (var item in categoryId)
         {
-            addCatProduct.Add(new Category_Product()
+            addCatProduct.Add(new Category_Portfolio()
             {
                 CategoryId = item,
                 PortfolioId = portfolioId
@@ -69,27 +71,57 @@ public class AdminPortfolioController : Controller
     [HttpGet]
     public async Task<IActionResult> UpdatePortfolio(Guid id)
     {
-        var portfolio = await _portfolioRepository.GetById(id);
-        if (portfolio.Result == null)
-        {
-            TempData["NotFoundPortfolio"] = "true";
-            return RedirectToAction(nameof(Index));
-        }
+        var categories = await _categoryRepository.Get();
+        ViewBag.Category = categories.Result;
+        ViewBag.Portfolio = await _portfolioRepository.ShowPortfoliosForUpdate(id);
+        
+        var portfolio = _portfolioRepository.GetById(id).Result;
         return View(portfolio.Result);
     }
     
     [HttpPost]
-    public async Task<IActionResult> UpdatePortfolio(AddUpdatePortfolioDto dto, Guid id)
+    public async Task<IActionResult> UpdatePortfolio(UpdatePortfolioDto dto, List<Guid> categoryId)
     {
-        var category = await _portfolioRepository.GetById(id);
         if (!ModelState.IsValid)
         {
-            return View(category.Result);
+            var categoryForUpdate = await _categoryRepository.Get();
+            ViewBag.Category = categoryForUpdate.Result;
+            ViewBag.Property = _portfolioRepository.ShowPortfoliosForUpdate(dto.PortfolioId);
+            return View();
         }
         
-        var updateCategory = await _portfolioRepository.Update(id, dto);
+        // if (_portfolioRepository.ExistPortfolio(dto.Title, dto.PortfolioId))
+        // {
+        //     ModelState.AddModelError("PortfolioTitle", "نمونه کار تکراری است .");
+        //     return View(dto);
+        // }
         
-        TempData["Result"] = updateCategory.Result != null ? "true" : "false";
+        var updatePortfolio = _portfolioRepository.Update(dto.PortfolioId, dto);
+        
+        if (updatePortfolio.Result == null)
+        {
+            TempData["Result"] = "false";
+            return RedirectToAction(nameof(Index));
+        }
+        
+        bool deletePortfolio = _portfolioRepository.DeletePortfolioForCategory(dto.PortfolioId);
+        if (!deletePortfolio)
+        {
+            TempData["Result"] = "false";
+            return RedirectToAction(nameof(Index));
+        }
+        
+        List<Category_Portfolio> categories = new List<Category_Portfolio>();
+        foreach (var item in categoryId)
+        {
+            categories.Add(new Category_Portfolio
+            {
+                CategoryId = item,
+                PortfolioId = dto.PortfolioId,
+            });
+        }
+        bool addPortfolioForCategory = _portfolioRepository.AddPortfoliosForCategory(categories);
+        TempData["Result"] = addPortfolioForCategory ? "true" : "false";
         return RedirectToAction(nameof(Index));
     }
 
