@@ -20,6 +20,7 @@ builder.Services.AddDbContext<C1SystemContext>(options =>
 });
 
 #region IOC
+builder.Services.AddScoped<IBlogRepository, BlogRepository>();
 builder.Services.AddTransient<ICategoryRepository, CategoryRepository>();
 builder.Services.AddTransient<IPortfolioRepository, PortfolioRepository>();
 builder.Services.AddTransient<IPodcastRepository, PodcastRepository>();
