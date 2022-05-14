@@ -53,7 +53,14 @@ public class PortfolioEntity
 
     [Display(Name ="امتیازدهی")]
     public int? Point { get; set; }
+    
+    [Display(Name ="فعال باشد؟")]
+    public bool IsActive { get; set; }
 
+    [Display(Name = "ترتیب نمونه کار")]
+    [Required(ErrorMessage ="لطفا {0} را وارد نمایید .")]
+    public int PortfolioSort { get; set; }
+    
     #region Relation
 
     // public IEnumerable<Category_Product> CategoryProducts { get; set; }
