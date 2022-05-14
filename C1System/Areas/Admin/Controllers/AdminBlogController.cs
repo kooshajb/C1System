@@ -50,13 +50,13 @@ public class AdminBlogController : Controller
     [HttpGet]
     public async Task<IActionResult> UpdateBlog(Guid id)
     {
-        var portfolio = await _blogRepository.GetById(id);
-        if (portfolio.Result == null)
+        var blog = await _blogRepository.GetById(id);
+        if (blog.Result == null)
         {
             TempData["NotFoundBlog"] = "true";
             return RedirectToAction(nameof(Index));
         }
-        return View(portfolio.Result);
+        return View(blog.Result);
     }
     
     [HttpPost]
