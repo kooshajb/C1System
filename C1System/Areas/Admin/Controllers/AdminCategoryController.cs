@@ -23,7 +23,7 @@ public class AdminCategoryController : Controller
     }
 
     [HttpGet]
-    public IActionResult AddCategory(int? id)
+    public IActionResult AddCategory(Guid? id)
     {
         if (id != null)
         {
