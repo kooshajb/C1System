@@ -55,7 +55,7 @@ public class Portfolio
 
     #region Relation
 
-    public ICollection<Category_Product> CategoryProducts { get; set; }
+    // public IEnumerable<Category_Product> CategoryProducts { get; set; }
     
     #endregion
     //todo ارتباط با اینیتیت DemoPortfolio اضافه شود 
