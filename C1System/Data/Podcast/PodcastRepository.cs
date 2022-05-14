@@ -32,16 +32,16 @@ public class PodcastRepository : IPodcastRepository
     public async Task<GenericResponse<GetPodcastDto>> Add(AddUpdatePodcastDto dto)
     {
         if (dto == null) throw new ArgumentException("Dto must not be null", nameof(dto));
-        Category entity = _mapper.Map<Category>(dto);
+        Podcast entity = _mapper.Map<Podcast>(dto);
 
-        EntityEntry<Category> i = await _context.Set<Category>().AddAsync(entity);
+        EntityEntry<Podcast> i = await _context.Set<Podcast>().AddAsync(entity);
         await _context.SaveChangesAsync();
         return new GenericResponse<GetPodcastDto>(_mapper.Map<GetPodcastDto>(i.Entity));
     }
 
     public async Task<GenericResponse<IEnumerable<GetPodcastDto>>> Get()
     {
-        IEnumerable<Category> i = await _context.Set<Category>().AsNoTracking().ToListAsync();
+        IEnumerable<Podcast> i = await _context.Set<Podcast>().AsNoTracking().ToListAsync();
         return new GenericResponse<IEnumerable<GetPodcastDto>>(_mapper.Map<IEnumerable<GetPodcastDto>>(i));
     }
 
