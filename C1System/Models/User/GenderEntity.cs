@@ -1,8 +1,10 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace C1System;
 
+[Table("Gender")]
 public class GenderEntity
 {
     [Key]

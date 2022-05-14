@@ -5,6 +5,7 @@ using System.Reflection.Metadata.Ecma335;
 
 namespace C1System;
 
+[Table("Portfolio")]
 public class PortfolioEntity
 {
     [Key]

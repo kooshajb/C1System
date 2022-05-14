@@ -5,6 +5,7 @@ using System.Collections.Generic;
 
 namespace C1System;
 
+[Table("Province")]
 public class ProvinceEntity
 {
     [Key]

@@ -3,6 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace C1System;
 
+[Table("Base")]
 public class BaseEntity {
     public BaseEntity() {
         CreatedAt = DateTime.Now;

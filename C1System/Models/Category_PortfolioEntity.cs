@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace C1System;
 
+[Table("Category_Portfolio")]
 public class Category_PortfolioEntity
 {
     [Key]

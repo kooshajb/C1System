@@ -5,6 +5,7 @@ using C1System.Dtos.Media;
 
 namespace C1System.Media;
 
+[Table("Media")]
 public class MediaEntity : BaseEntity {
     [Required]
     public string FileName { get; set; }

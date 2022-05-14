@@ -1,6 +1,6 @@
 ﻿namespace C1System;
 
-public enum TicketStatusEnum
+public enum TicketStatus
 {
     SystemClosed = 1,
     Answered = 2,

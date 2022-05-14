@@ -1,8 +1,10 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace C1System;
 
+[Table("NeedsAssessment")]
 public class NeedsAssessmentEntity
 {
     [Key]

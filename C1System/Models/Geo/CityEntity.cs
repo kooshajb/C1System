@@ -3,6 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace C1System;
 
+[Table("City")]
 public class CityEntity
 {
     [Key]

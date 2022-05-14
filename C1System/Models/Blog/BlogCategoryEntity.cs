@@ -1,8 +1,10 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace C1System;
 
-public class BlogCategory : BaseEntity
+[Table("BlogCategory")]
+public class BlogCategoryEntity : BaseEntity
 {
     [Key]
     public int BlogCategoryId { get; set; }

@@ -3,6 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace C1System;
 
+[Table("Language")]
 public class LanguageEntity
 {
     [Key] 

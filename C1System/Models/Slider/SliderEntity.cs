@@ -1,7 +1,10 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace C1System;
+
+[Table("Slider")]
 public class SliderEntity
 {
     [Key]
