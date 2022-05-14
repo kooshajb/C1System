@@ -5,7 +5,7 @@
     <div class="card-body">
         <div class="d-flex justify-content-between align-items-center">
             <h4 class="card-title mb-3">مدیریت پادکست ها</h4>
-            <a class="btn btn-info m-1" asp-action="AddPortfolio" asp-controller="AdminPortfolio">افزودن پادکست</a>
+            <a class="btn btn-info m-1" asp-action="AddPodcast" asp-controller="AdminPodcast">افزودن پادکست</a>
         </div>
         <div class="table-responsive">
             <table class="table table-striped">
@@ -84,7 +84,7 @@
                                 <a asp-action="UpdatePodcast" asp-controller="AdminPodcast" asp-area="Admin" asp-route-id="@item.PodcastId" class="text-success mr-2">
                                     <i class="nav-icon i-Pen-2 font-weight-bold"></i>
                                 </a>
-                                <a asp-action="UpdatePodcast" asp-controller="AdminPodcast" asp-area="Admin" asp-route-id="@item.PodcastId" class="text-danger mr-2">
+                                <a asp-action="DeletePodcast" asp-controller="AdminPodcast" asp-area="Admin" asp-route-id="@item.PodcastId" class="text-danger mr-2">
                                     <i class="nav-icon i-Close-Window font-weight-bold"></i>
                                 </a>
                             </td>
