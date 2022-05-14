@@ -7,7 +7,6 @@ namespace C1System.Controllers.Api;
 [ApiController]
 public class ProjectsController : ControllerBase
 {
-
     private readonly IProjectRepository _projectRepository;
     public ProjectsController(IProjectRepository projectRepository)
     {

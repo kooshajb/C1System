@@ -11,8 +11,7 @@ namespace C1System.Controllers.Api
         {
             _customerSuccessRepository = customerSuccessRepository;
         }
-
-
+        
         [HttpGet]
         public async Task<ActionResult<GenericResponse<IEnumerable<GetCustomerSuccessDto>>>> GetCustomerSuccess()
         {
