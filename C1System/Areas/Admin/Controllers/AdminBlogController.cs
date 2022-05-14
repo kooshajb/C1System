@@ -21,7 +21,7 @@ public class AdminBlogController : Controller
     }
     
     [HttpGet]
-    public IActionResult AddBlog(int? id)
+    public IActionResult AddBlog(Guid? id)
     {
         if (id != null)
         {
