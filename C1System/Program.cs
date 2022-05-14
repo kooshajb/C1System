@@ -5,7 +5,6 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using C1System.Data.CustomerSuccess;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -20,7 +19,7 @@ builder.Services.AddDbContext<C1SystemContext>(options =>
 });
 
 #region IOC
-builder.Services.AddScoped<IBlogRepository, BlogRepository>();
+builder.Services.AddTransient<IBlogRepository, BlogRepository>();
 builder.Services.AddTransient<ICategoryRepository, CategoryRepository>();
 builder.Services.AddTransient<IPortfolioRepository, PortfolioRepository>();
 builder.Services.AddTransient<IPodcastRepository, PodcastRepository>();
