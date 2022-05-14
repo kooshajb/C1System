@@ -1,5 +1,4 @@
-﻿using C1System.Models.CustomerSuccess;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 
 namespace C1System;
 public class C1SystemContext : DbContext
