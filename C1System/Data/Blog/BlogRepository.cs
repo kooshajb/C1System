@@ -16,7 +16,7 @@ public interface IBlogRepository
 
 public class BlogRepository : IBlogRepository
 {
-    private C1SystemContext _context;
+    private readonly C1SystemContext _context;
     private readonly IMapper _mapper;
 
     public BlogRepository(C1SystemContext context, IMapper mapper)
