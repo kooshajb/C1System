@@ -1,16 +1,16 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using System;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace C1System;
 
-public class BaseEntity
-{
-    public BaseEntity()
-    {
+public class BaseEntity {
+    public BaseEntity() {
         CreatedAt = DateTime.Now;
+        UpdatedAt = DateTime.Now;
     }
-    
+
     [Key]
+    [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     public Guid Id { get; set; } = Guid.NewGuid();
 
     [Required]
@@ -19,21 +19,11 @@ public class BaseEntity
     public DateTime UpdatedAt { get; set; } = DateTime.Now;
 
     public DateTime? DeletedAt { get; set; }
-    
-    [Display(Name ="متاتگ Title")]
-    [Required(ErrorMessage ="لطفا {0} را وارد کنید.")]
-    [MinLength(10 , ErrorMessage ="تعداد {0} نباید کمتر از {1} باشد.")]
-    [MaxLength(200 , ErrorMessage = "تعداد {0} نباید بیشتر از {1} باشد.")]
-    public string TitleMetaTag { get; set; }
-    
-    [Display(Name ="متاتگ Description")]
-    [Required(ErrorMessage ="لطفا {0} را وارد کنید.")]
-    [MinLength(10 , ErrorMessage ="تعداد {0} نباید کمتر از {1} باشد.")]
-    [MaxLength(500 , ErrorMessage = "تعداد {0} نباید بیشتر از {1} باشد.")]
-    public string DescriptionMetaTag { get; set; }
-    
-    [Display(Name ="متاتگ keyword")]
-    [Required(ErrorMessage ="لطفا {0} را وارد کنید.")]
-    [MinLength(10 , ErrorMessage ="تعداد {0} نباید کمتر از {1} باشد.")]
-    public string KeywordMetaTag { get; set; }
+}
+
+public class BaseReadDto {
+    public Guid Id { get; set; }
+    public DateTime CreatedAt { get; set; }
+    public DateTime UpdatedAt { get; set; }
+    public DateTime? DeletedAt { get; set; }
 }
