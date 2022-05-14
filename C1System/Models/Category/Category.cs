@@ -64,7 +64,7 @@ public class Category
     [ForeignKey("ParentId")]
     public Category Parent { get; set; }
     
-    public ICollection<Category_Product> CategoryProducts { get; set; }
+    // public IEnumerable<Category_Product> CategoryProducts { get; set; }
 
     #endregion
 }
