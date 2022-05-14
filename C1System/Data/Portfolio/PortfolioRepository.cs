@@ -1,17 +1,21 @@
-﻿using AutoMapper;
+﻿using System.Linq;
+using AutoMapper;
+using C1System.ViewModels;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 
 namespace C1System;
 public interface IPortfolioRepository
 {
-    Task<GenericResponse<GetPortfolioDto>> Add(AddUpdatePortfolioDto dto);
+    Task<GenericResponse<GetPortfolioDto>> Add(AddPortfolioDto dto);
     Task<GenericResponse<IEnumerable<GetPortfolioDto>>> Get();
     Task<GenericResponse<GetPortfolioDto>> GetById(Guid id);
-    Task<GenericResponse<GetPortfolioDto>> Update(Guid id, AddUpdatePortfolioDto dto);
+    Task<GenericResponse<GetPortfolioDto>> Update(Guid id, UpdatePortfolioDto dto);
     Task<GenericResponse> Delete(Guid id);
     bool ExistPortfolio(string title, Guid portfolioId);
-    public bool AddPortfoliosForCategory(List<Category_Product> categoryProducts);
+    bool AddPortfoliosForCategory(List<Category_Portfolio> categoryPortfolios);
+    Task<List<UpdatePortfolioViewModel>>ShowPortfoliosForUpdate(Guid portfolioId);
+    bool DeletePortfolioForCategory(Guid portfolioId);
 }
 
 public class PortfolioRepository : IPortfolioRepository
@@ -25,7 +29,7 @@ public class PortfolioRepository : IPortfolioRepository
         _mapper = mapper;
     }
 
-    public async Task<GenericResponse<GetPortfolioDto>> Add(AddUpdatePortfolioDto dto)
+    public async Task<GenericResponse<GetPortfolioDto>> Add(AddPortfolioDto dto)
     {
         if (dto == null) throw new ArgumentException("Dto must not be null", nameof(dto));
         Portfolio portfolio = _mapper.Map<Portfolio>(dto);
@@ -48,7 +52,7 @@ public class PortfolioRepository : IPortfolioRepository
         return new GenericResponse<GetPortfolioDto>(_mapper.Map<GetPortfolioDto>(i));
     }
 
-    public async Task<GenericResponse<GetPortfolioDto>> Update(Guid id, AddUpdatePortfolioDto dto)
+    public async Task<GenericResponse<GetPortfolioDto>> Update(Guid id, UpdatePortfolioDto dto)
     {
         var i = _context.Set<Portfolio>()
             .Where(p => p.PortfolioId == id).First();
@@ -83,17 +87,48 @@ public class PortfolioRepository : IPortfolioRepository
             p.Title == title && p.PortfolioId != portfolioId);
     }
     
-    public bool AddPortfoliosForCategory(List<Category_Product> categoryProducts)
+    public bool AddPortfoliosForCategory(List<Category_Portfolio> categoryPortfolios)
     {
         try
         {
-            _context.CategoryProducts.AddRange(categoryProducts);
+            _context.CategoryPortfolios.AddRange(categoryPortfolios);
             _context.SaveChanges();
             return true;
         }
         catch
         {
             return false;
+        }
+    }
+    
+    public async Task<List<UpdatePortfolioViewModel>> ShowPortfoliosForUpdate(Guid portfolioId)
+    {
+        List<UpdatePortfolioViewModel> updates = await (from cp in _context.CategoryPortfolios
+            join p in _context.Portfolios on cp.PortfolioId equals p.PortfolioId
+            where (cp.PortfolioId == portfolioId)
+            select new UpdatePortfolioViewModel()
+            {
+                CategoryPortfolioId = cp.CategoryPortfolioId,
+                CategoryId = cp.CategoryId,
+                PortfolioId = p.PortfolioId,
+                PortfolioTitle = p.Title
+            }).ToListAsync();
+    
+        return updates;
+    }
+    
+    public bool DeletePortfolioForCategory(Guid portfolioId)
+    {
+        try
+        {
+            List<Category_Portfolio> categories = _context.CategoryPortfolios.Where(c => c.PortfolioId == portfolioId).ToList();
+            _context.CategoryPortfolios.RemoveRange(categories);
+            _context.SaveChanges();
+            return true;
+        }
+        catch (Exception)
+        {
+            return true;
         }
     }
 }
