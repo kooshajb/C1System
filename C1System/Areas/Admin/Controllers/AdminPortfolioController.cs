@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
+using C1System.Dtos.Media;
+using C1System.Media;
 using Microsoft.AspNetCore.Mvc;
 
 namespace C1System.Areas.Admin.Controllers;
@@ -9,11 +11,12 @@ public class AdminPortfolioController : Controller
 {
     private readonly IPortfolioRepository _portfolioRepository;
     private readonly ICategoryRepository _categoryRepository;
-
-    public AdminPortfolioController(IPortfolioRepository portfolioRepository, ICategoryRepository categoryRepository)
+    private readonly IUploadRepository _uploadRepository;
+    public AdminPortfolioController(IPortfolioRepository portfolioRepository, ICategoryRepository categoryRepository, IUploadRepository uploadRepository)
     {
         _portfolioRepository = portfolioRepository;
         _categoryRepository = categoryRepository;
+        _uploadRepository = uploadRepository;
     }
     
     public async Task<IActionResult> Index()
@@ -31,7 +34,7 @@ public class AdminPortfolioController : Controller
     }
     
     [HttpPost]
-    public async Task<IActionResult> AddPortfolio(AddPortfolioDto dto, List<Guid> categoryId)
+    public async Task<IActionResult> AddPortfolio(AddPortfolioDto dto, List<Guid> categoryId, UploadDto uploadDto)
     {
         if (!ModelState.IsValid)
         {
@@ -44,6 +47,34 @@ public class AdminPortfolioController : Controller
         //     ModelState.AddModelError("PortfolioTitle", "نمونه کار تکراری است");
         //     return View(dto);
         // }
+        
+        if (dto.PortfolioSort <= 0)
+        {
+            ModelState.AddModelError("ErrorSort", "لطفا ترتیب نمونه کار را وارد نمایید .");
+            return View(dto);
+        }
+        
+        if (file == null)
+        {
+            ModelState.AddModelError("PortfolioImg", "لطفا یک تصویر برای نمونه کار انتخاب نمایید .");
+            return View(dto);
+        }
+
+        _uploadRepository.UploadMedia(uploadDto);
+        
+        //image
+        // string imgname = uplodimg.CreateImage(file);
+        // if (imgname == "false")
+        // {
+        //     TempData["Result"] = "false";
+        //     return RedirectToAction(nameof(Index));
+        // }
+        // dto.FeatureMedia = imgname;
+        // var res = _portfolioRepository.Add(dto);
+        // TempData["Result"] = res.Result != null ? "true" : "false";
+        // return RedirectToAction(nameof(Index));
+        
+        
         var portfolio = await _portfolioRepository.Add(dto);
         Guid portfolioId = portfolio.Result.PortfolioId;
         if (portfolioId == null)
