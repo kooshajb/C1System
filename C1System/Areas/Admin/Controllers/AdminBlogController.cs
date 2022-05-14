@@ -37,9 +37,9 @@ public class AdminBlogController : Controller
         {
             return View(dto);
         }
-        // if (_portfolioRepository.ExistPortfolio(dto.Title,0))
+        // if (_blogRepository.ExistBlog(dto.Title,0))
         // {
-        //     ModelState.AddModelError("ErrorPortfolio", "نمونه کار تکراری است");
+        //     ModelState.AddModelError("ErrorBlog", "پست تکراری است");
         //     return View(dto);
         // }
         var newBlog = await _blogRepository.Add(dto);
