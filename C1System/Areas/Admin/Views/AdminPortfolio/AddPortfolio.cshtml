@@ -1,4 +1,4 @@
-﻿@model AddUpdatePortfolioDto
+﻿@model AddPortfolioDto
 
 @{
     ViewData["Title"] = "افزودن نمونه کار";
@@ -57,10 +57,11 @@
                         <input asp-for="Media" class="form-control" placeholder="تصاویر را وارد کنید">
                         <span class="text-danger" asp-validation-for="Media"></span>
                     </div>
-                    
-                    <div class="form-group">
+
+                    <div class="col-md-6 form-group mb-3">
+                        <label asp-for="Media">انتخاب دسته بندی</label>
                         <select class="form-control" id="select-category" asp-items="@(new SelectList(ViewBag.Category, "CategoryId", "Title"))"></select>
-                        <button class="Add-Category btn btn-success" type="button" style="width: 10%; height: 13%; margin-top: 1%; margin-bottom: 1%; padding: 10px; border-radius: 10px;">انتخاب</button>
+                        <button class="Add-Category btn btn-success my-2" type="button">انتخاب</button>
                         <div class="ListCategory"></div>
                     </div>
 
@@ -84,10 +85,10 @@
                 var value = $("#select-category").children("option:selected").val();
                 var text = $("#select-category").children("option:selected").text();
                 $(".ListCategory").append(
-                    "<div style='background: gray;height: 50px;width: 48%;border-radius: 5px;margin-bottom: 1%;margin-left: 1%;display:inline-block;color: whitesmoke;'>"
-                    + "<label class='control-label col-md-12'>" + text + "</label>"
+                    "<div style='background: #8080802b;height: 39px;width: 48%;border-radius: 5px;margin-bottom: 1%;margin-left: 1%;display:flex;color:whitesmoke;'>"
+                    + "<label style='display: flex;align-items: center;justify-items: center;' class='col-md-12'>" + text + "</label>"
                     + "<input type='hidden' name='CategoryId' value='" + value + "' />"
-                    + "<a style='float:left;top:-25px;line-height: 36px;position: relative;height: 100%;border-radius: 5px;' class='btn btn-danger remove-category'>حذف</a>"
+                    + "<a style='display: flex;align-items: center;justify-items: center;' class='btn btn-danger remove-category'>حذف</a>"
                     + "</div>"
 
                 );
