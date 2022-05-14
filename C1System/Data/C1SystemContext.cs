@@ -41,20 +41,12 @@ public class C1SystemContext : DbContext
     // public DbSet<Priority> Priorities { get; set; }
     // public DbSet<TicketStatus> TicketStatuses { get; set; }
 
-
-
-    // public DbSet<Slider> Sliders { get; set; }
-    // public DbSet<Tag> Tags { get; set; }
-
-    // public DbSet<Introduction> Introductions { get; set; }
-    // public DbSet<CustomerSpeech> CustomerSpeechs { get; set; }
-
     
+    // public DbSet<Slider> Sliders { get; set; }
+
+    // public DbSet<CustomerSpeech> CustomerSpeechs { get; set; }
     // public DbSet<CategoryPackage> CategoryPackages { get; set; }
     // public DbSet<CategoryPackageItem>  CategoryPackageItems { get; set; }
-    
-    // public DbSet<Project> Prosjects { get; set; }
-   
     // public DbSet<Gender> Genders { get; set; }
     // public DbSet<City> Cities { get; set; }
     // public DbSet<Province> Provinces { get; set; }
@@ -65,7 +57,6 @@ public class C1SystemContext : DbContext
     // public DbSet<Blog> Blogs { get; set; }
     // public DbSet<CareerOpportunity> CareerOpportunities { get; set; }
     // public DbSet<Faq> Faqs { get; set; }
-    // public DbSet<NewsLetter>  NewsLetters { get; set; }
     // public DbSet<DemoPortfolio>  DemoPortfolios { get; set; }
     // public DbSet<TechnologyPortfolio> TechnologyPortfolios  { get; set; }
     // public DbSet<Ticket> Tickets { get; set; }
