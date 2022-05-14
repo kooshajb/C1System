@@ -32,7 +32,7 @@ public class BlogController : ControllerBase
     }
     
     [HttpGet("{id:guid}")]
-    public async Task<ActionResult<GetPortfolioDto>> GetBlog(Guid id)
+    public async Task<ActionResult<GetBlogDto>> GetBlog(Guid id)
     {
         var blog = await _blogRepository.GetById(id);
 
