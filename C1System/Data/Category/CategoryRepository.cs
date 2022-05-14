@@ -16,7 +16,7 @@ public interface ICategoryRepository
     Task<GenericResponse> Delete(Guid id);
     Task<GenericResponse<IEnumerable<GetCategoryDto>>> ShowAllSubCategories(Guid categoryId);
     bool ExistCategory(string title, Guid categoryId);
-    Task<GenericResponse<IEnumerable<GetCategoryDto>>> ShowSubCategory();
+    Task<GenericResponse<List<GetCategoryDto>>> ShowSubCategory();
 }
 
 public class CategoryRepository : ICategoryRepository
@@ -97,10 +97,10 @@ public class CategoryRepository : ICategoryRepository
             c.Title == title && c.CategoryId != categoryId);
     }
 
-    public async Task<GenericResponse<IEnumerable<GetCategoryDto>>> ShowSubCategory()
+    public async Task<GenericResponse<List<GetCategoryDto>>> ShowSubCategory()
     {
         IEnumerable<Category> i = await _context.Set<Category>().AsNoTracking()
            .Where(c => c.ParentId != null).ToListAsync();
-       return new GenericResponse<IEnumerable<GetCategoryDto>>(_mapper.Map<IEnumerable<GetCategoryDto>>(i));
+       return new GenericResponse<List<GetCategoryDto>>(_mapper.Map<List<GetCategoryDto>>(i));
     }
 }
