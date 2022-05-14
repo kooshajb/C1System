@@ -7,16 +7,16 @@ namespace C1System.Areas.Admin.Controllers;
 [Area("Admin")]
 public class AdminBlogController : Controller
 {
-    private readonly IPortfolioRepository _portfolioRepository;
+    private readonly BlogRepository _blogRepository;
 
-    public AdminBlogController(IPortfolioRepository portfolioRepository)
+    public AdminBlogController(BlogRepository blogRepository)
     {
-        _portfolioRepository = portfolioRepository;
+        _blogRepository = blogRepository;
     }
     
     public async Task<IActionResult> Index()
     {
-        var model = await _portfolioRepository.Get();
+        var model = await _blogRepository.Get();
         return View(model.Result);
     }
     
@@ -31,7 +31,7 @@ public class AdminBlogController : Controller
     }
     
     [HttpPost]
-    public async Task<IActionResult> AddBlog(AddUpdatePortfolioDto dto)
+    public async Task<IActionResult> AddBlog(AddUpdateBlogDto dto)
     {
         if (!ModelState.IsValid)
         {
@@ -42,54 +42,54 @@ public class AdminBlogController : Controller
         //     ModelState.AddModelError("ErrorPortfolio", "نمونه کار تکراری است");
         //     return View(dto);
         // }
-        var newPortfolio = await _portfolioRepository.Add(dto);
-        TempData["Result"] = newPortfolio.Result.PortfolioId != null  ? "true" : "false";
+        var newBlog = await _blogRepository.Add(dto);
+        TempData["Result"] = newBlog.Result.BlogId != null  ? "true" : "false";
         return RedirectToAction(nameof(Index));
     }
 
     [HttpGet]
     public async Task<IActionResult> UpdateBlog(Guid id)
     {
-        var portfolio = await _portfolioRepository.GetById(id);
+        var portfolio = await _blogRepository.GetById(id);
         if (portfolio.Result == null)
         {
-            TempData["NotFoundPortfolio"] = "true";
+            TempData["NotFoundBlog"] = "true";
             return RedirectToAction(nameof(Index));
         }
         return View(portfolio.Result);
     }
     
     [HttpPost]
-    public async Task<IActionResult> UpdateBlog(AddUpdatePortfolioDto dto, Guid id)
+    public async Task<IActionResult> UpdateBlog(AddUpdateBlogDto dto, Guid id)
     {
-        var category = await _portfolioRepository.GetById(id);
+        var blog = await _blogRepository.GetById(id);
         if (!ModelState.IsValid)
         {
-            return View(category.Result);
+            return View(blog.Result);
         }
         
-        var updateCategory = await _portfolioRepository.Update(id, dto);
+        var updateBlog = await _blogRepository.Update(id, dto);
         
-        TempData["Result"] = updateCategory.Result != null ? "true" : "false";
+        TempData["Result"] = updateBlog.Result != null ? "true" : "false";
         return RedirectToAction(nameof(Index));
     }
 
     [HttpGet]
     public async Task<IActionResult> DeleteBlog(Guid id)
     {
-        var portfolio = await _portfolioRepository.GetById(id);
-        if (portfolio.Result == null)
+        var blog = await _blogRepository.GetById(id);
+        if (blog.Result == null)
         {
-            TempData["NotFoundPortfolio"] = true;
+            TempData["NotFoundBlog"] = true;
             return RedirectToAction(nameof(Index));
         }
-        return View(portfolio.Result);
+        return View(blog.Result);
     }
     
     [HttpPost]
     public async Task<IActionResult> DeleteBlogById(Guid id)
     {
-        var response = await _portfolioRepository.Delete(id);
+        var response = await _blogRepository.Delete(id);
         TempData["ResultDelete"] = response.Status == UtilitiesStatusCodes.Success ? "true" : "false";
         return RedirectToAction(nameof(Index));
     }
