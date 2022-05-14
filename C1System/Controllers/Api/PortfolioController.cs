@@ -24,7 +24,7 @@ public class PortfolioController : ControllerBase
     }
 
     [HttpPost]
-    public async Task<ActionResult> CreatePortfolio([FromBody]AddUpdatePortfolioDto dto)
+    public async Task<ActionResult> CreatePortfolio([FromBody]AddPortfolioDto dto)
     {
         if (dto == null)  return BadRequest();
         var createdPortfolio = await _portfolioRepository.Add(dto);
@@ -42,7 +42,7 @@ public class PortfolioController : ControllerBase
     }
 
     [HttpPut("{id:guid}")]
-    public async Task<ActionResult<GetCategoryDto>> UpdatePortfolio([FromBody]AddUpdatePortfolioDto dto, Guid id)
+    public async Task<ActionResult<GetCategoryDto>> UpdatePortfolio([FromBody]UpdatePortfolioDto dto, Guid id)
     {
         var category =  await _portfolioRepository.Update(id, dto);
         return Ok(category.Result);
