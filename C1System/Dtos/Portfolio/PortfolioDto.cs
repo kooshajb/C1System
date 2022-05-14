@@ -14,6 +14,7 @@ public class GetPortfolioDto
     public string FeatureMedia { get; set; }
     public string? Media { get; set; }
     public int? Point { get; set; }
+    public int PortfolioSort { get; set; }
 }
 
 public class AddPortfolioDto
@@ -26,6 +27,8 @@ public class AddPortfolioDto
     public string CompanyLogo { get; set; }
     public string FeatureMedia { get; set; }
     public string? Media { get; set; }
+    public bool IsActive { get; set; }
+    public int PortfolioSort { get; set; }
 }
 
 
@@ -41,6 +44,8 @@ public class UpdatePortfolioDto
     public string FeatureMedia { get; set; }
     public string? Media { get; set; }
     public int? Point { get; set; }
+    public bool IsActive { get; set; }
+    public int PortfolioSort { get; set; }
 }
 
 public class AutoMapperPortfolio : Profile {
