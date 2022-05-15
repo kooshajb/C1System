@@ -24,7 +24,7 @@ public class PodcastController : ControllerBase
     }
 
     [HttpPost]
-    public async Task<ActionResult> CreatePodcast([FromBody]AddUpdatePodcastDto dto)
+    public async Task<ActionResult> CreatePodcast([FromBody]AddPodcastDto dto)
     {
         if (dto == null)  return BadRequest();
         var createdPodcast = await _podcastRepository.Add(dto);
@@ -42,7 +42,7 @@ public class PodcastController : ControllerBase
     }
 
     [HttpPut("{id:guid}")]
-    public async Task<ActionResult<GetPodcastDto>> UpdatePodcast([FromBody]AddUpdatePodcastDto dto, Guid id)
+    public async Task<ActionResult<GetPodcastDto>> UpdatePodcast([FromBody]UpdatePodcastDto dto, Guid id)
     {
         var podcast =  await _podcastRepository.Update(id, dto);
         return Ok(podcast.Result);
