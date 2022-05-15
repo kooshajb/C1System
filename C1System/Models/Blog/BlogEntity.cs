@@ -53,4 +53,6 @@ public class BlogEntity : BannerEntity
     //todo bookmark
     //todo comment
     //todo blogCategory
+
+    public BookMarkEntity BookMark { get; set; }
 }
