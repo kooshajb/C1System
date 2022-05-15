@@ -53,7 +53,8 @@ public class PodcastEntity :BannerEntity
     [Display(Name ="امتیازدهی")]
     public int? Point { get; set; }
     
-    //todo دکمه اشتراگ گذاری
     //todo برچسب ها
     //todo bookmark
+
+    // public BookMarkEntity BookMark { get; set; }
 }
