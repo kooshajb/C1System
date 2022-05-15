@@ -20,7 +20,7 @@ public class TechnologyEntity
 
     #region Relation
 
-    // public List<Portfolio_Technology> PortfolioTechnologies { get; set; }
+    public List<Technology_PortfolioEntity> TechnologyPortfolios { get; set; }
 
     #endregion
 }
