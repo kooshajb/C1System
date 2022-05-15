@@ -52,9 +52,11 @@ public class PodcastEntity :BannerEntity
     
     [Display(Name ="امتیازدهی")]
     public int? Point { get; set; }
-    
-    //todo برچسب ها
-    //todo bookmark
 
+    #region Relation
+    
+    public List<Tag_PodcastEntity> TagPodcasts { get; set; }
+
+    #endregion
     // public BookMarkEntity BookMark { get; set; }
 }
