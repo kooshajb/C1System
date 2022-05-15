@@ -42,7 +42,7 @@ public class BlogController : ControllerBase
     }
 
     [HttpPut("{id:guid}")]
-    public async Task<ActionResult<GetPortfolioDto>> UpdateBlog([FromBody]AddUpdateBlogDto dto, Guid id)
+    public async Task<ActionResult<GetBlogDto>> UpdateBlog([FromBody]AddUpdateBlogDto dto, Guid id)
     {
         var blog =  await _blogRepository.Update(id, dto);
         return Ok(blog.Result);
