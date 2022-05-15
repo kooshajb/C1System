@@ -19,8 +19,8 @@ public interface IPodcastRepository
 }
 
 public class PodcastRepository : IPodcastRepository
-{
-     private readonly C1SystemContext _context;
+{ 
+    private readonly C1SystemContext _context;
     private readonly IMapper _mapper;
 
     public PodcastRepository(C1SystemContext context, IMapper mapper)
