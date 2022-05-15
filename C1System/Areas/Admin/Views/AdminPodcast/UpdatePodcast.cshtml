@@ -2,6 +2,9 @@
 
 @{
     ViewData["Title"] = "بروزرسانی پادکست";
+    List<GetTagDto> tags = ViewBag.Tag;
+    List<UpdatePodcastTagViewModel> podcastsforupdate = ViewBag.Podcast;
+    List<UpdatePodcastTagViewModel> existPodcastTag = new List<UpdatePodcastTagViewModel>();
 }
 
 <div class="col-md-12">
@@ -46,8 +49,41 @@
                         <input asp-for="Audio" class="form-control" placeholder="فایل صوت را وارد کنید">
                         <span class="text-danger" asp-validation-for="Audio"></span>
                     </div>
+                    
+                    
+                     <div class="col-md-6 form-group mb-3">
+                        <select class="form-control" id="select-tag">
+                           @foreach (var tag in tags)
+                           {
+                               if (podcastsforupdate.Where(p => p.TagId == tag.TagId).Any())
+                               {
+                                   existPodcastTag.Add(new UpdatePodcastTagViewModel
+                                   {
+                                       TagId = tag.TagId,
+                                       PodcastTitle = tag.Title
+                                   });
+                               }
+                               else
+                               {
+                                   <option value="@tag.TagId">@tag.Title</option>
+                               }
+                           }
+       
+                       </select>
+                       <button class="Add-Tag btn btn-success" style="width: 10%; height: 13%; margin-top: 1%; margin-bottom: 1%; padding: 10px; border-radius: 10px;" type="button">انتخاب</button>
+                       <div class="ListTag">
+                           @foreach (var item in existPodcastTag)
+                           {
+                               <div style="background: gray;height: 50px;width: 48%;border-radius: 5px;margin-bottom: 1%;margin-left: 1%;display:inline-block;color: whitesmoke;">
+                                   <label class="control-label col-md-12">@item.PodcastTitle  </label>
+                                   <input type="hidden" name="TagId" value="@item.TagId" />
+                                   <a style="float:left;top:-25px;line-height: 36px;position: relative;height: 100%;border-radius: 5px;" class="btn btn-danger remove-tag">حذف</a>
+                               </div>
+                           }
+                       </div>
+                    </div>
 
-                   <div class="col-md-12">
+                    <div class="col-md-12">
                        <button asp-action="UpdatePodcast" asp-controller="AdminPodcast" class="btn btn-primary" type="submit">تایید</button>
                        <a asp-action="Index" class="btn btn-danger m-1">لغو</a>
                    </div>
@@ -56,3 +92,35 @@
         </div>
     </div>
 </div>
+
+
+
+@section Scripts{
+    <script>
+        $(".Add-Tag").click(function () {
+            if ($("#select-tag").val()) {
+                var value = $("#select-tag").children("option:selected").val();
+                var text = $("#select-tag").children("option:selected").text();
+                $(".ListTag").append(
+                    "<div style='background: #8080802b;height: 39px;width: 48%;border-radius: 5px;margin-bottom: 1%;margin-left: 1%;display:flex;color:whitesmoke;'>"
+                      + "<label style='display: flex;align-items: center;justify-items: center;' class='col-md-12'>" + text + "</label>"
+                      + "<input type='hidden' name='TagId' value='" + value + "' />"
+                      + "<a style='display: flex;align-items: center;justify-items: center;' class='btn btn-danger remove-tag'>حذف</a>"
+                      + "</div>"
+                );
+                $("#select-tag").children("option:selected").remove();
+            }
+        });
+
+        $('.ListTag').delegate(".remove-tag", 'click', function () {
+            var content = $(this).parent();
+            var text = content.find($("label")).text();
+            var value = content.find($("input[type=hidden]")).val();
+            $("#select-tag").append($('<option>', {
+                value: value,
+                text: text
+            }));
+            content.remove();
+        });
+    </script>
+}
