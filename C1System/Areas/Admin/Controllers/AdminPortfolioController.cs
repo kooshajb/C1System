@@ -11,12 +11,13 @@ public class AdminPortfolioController : Controller
 {
     private readonly IPortfolioRepository _portfolioRepository;
     private readonly ICategoryRepository _categoryRepository;
+    private readonly ITechnologyRepository _technologyRepository;
     private readonly IUploadRepository _uploadRepository;
-    public AdminPortfolioController(IPortfolioRepository portfolioRepository, ICategoryRepository categoryRepository, IUploadRepository uploadRepository)
+    public AdminPortfolioController(IPortfolioRepository portfolioRepository, ICategoryRepository categoryRepository,ITechnologyRepository technologyRepository)
     {
         _portfolioRepository = portfolioRepository;
         _categoryRepository = categoryRepository;
-        _uploadRepository = uploadRepository;
+        _technologyRepository = technologyRepository;
     }
     
     public async Task<IActionResult> Index()
@@ -30,16 +31,21 @@ public class AdminPortfolioController : Controller
     {
         var categories = await _categoryRepository.Get();
         ViewBag.Category = categories.Result;
+        
+        var technologies = await _technologyRepository.Get();
+        ViewBag.Technology = technologies.Result;
         return View();
     }
     
     [HttpPost]
-    public async Task<IActionResult> AddPortfolio(AddPortfolioDto dto, List<Guid> categoryId, UploadDto uploadDto)
+    public async Task<IActionResult> AddPortfolio(AddPortfolioDto dto, List<Guid> categoryId, List<Guid> technologyId)
     {
         if (!ModelState.IsValid)
         {
             var categories = await _categoryRepository.Get();
             ViewBag.Category = categories.Result;
+            var technologies = await _technologyRepository.Get();
+            ViewBag.Technology = technologies.Result;
             return View(dto);
         }
         // if (_portfolioRepository.ExistPortfolio(dto.Title, 0))
@@ -50,31 +56,28 @@ public class AdminPortfolioController : Controller
         
         if (dto.PortfolioSort <= 0)
         {
-            ModelState.AddModelError("ErrorSort", "لطفا ترتیب نمونه کار را وارد نمایید .");
+            ModelState.AddModelError("ErrorSort", "لطفا ترتیب نمونه کار را وارد نمایید.");
             return View(dto);
         }
         
-        if (file == null)
-        {
-            ModelState.AddModelError("PortfolioImg", "لطفا یک تصویر برای نمونه کار انتخاب نمایید .");
-            return View(dto);
-        }
-
-        _uploadRepository.UploadMedia(uploadDto);
-        
-        //image
-        // string imgname = uplodimg.CreateImage(file);
-        // if (imgname == "false")
+        // if (uploadDto == null)
+        // {
+        //     ModelState.AddModelError("PortfolioImg", "لطفا یک تصویر برای نمونه کار انتخاب نمایید.");
+        //     return View(dto);
+        // }
+        //
+        // //upload images
+        // var resUploadFiles = await _uploadRepository.UploadMedia(uploadDto);
+        // if (resUploadFiles.Status ==  UtilitiesStatusCodes.Success)
+        // {
+        //     TempData["Result"] = "true";
+        // }
+        // else if(resUploadFiles.Status ==  UtilitiesStatusCodes.BadRequest)
         // {
         //     TempData["Result"] = "false";
         //     return RedirectToAction(nameof(Index));
         // }
-        // dto.FeatureMedia = imgname;
-        // var res = _portfolioRepository.Add(dto);
-        // TempData["Result"] = res.Result != null ? "true" : "false";
-        // return RedirectToAction(nameof(Index));
-        
-        
+
         var portfolio = await _portfolioRepository.Add(dto);
         Guid portfolioId = portfolio.Result.PortfolioId;
         if (portfolioId == null)
@@ -83,19 +86,36 @@ public class AdminPortfolioController : Controller
             return RedirectToAction(nameof(Index));
         }
 
-        List<Category_PortfolioEntity> addCatProduct = new List<Category_PortfolioEntity>();
+        //categories
+        List<Category_PortfolioEntity> addCatPortfolio = new List<Category_PortfolioEntity>();
         
         foreach (var item in categoryId)
         {
-            addCatProduct.Add(new Category_PortfolioEntity()
+            addCatPortfolio.Add(new Category_PortfolioEntity()
             {
                 CategoryId = item,
                 PortfolioId = portfolioId
             });
         }
 
-        bool res = _portfolioRepository.AddPortfoliosForCategory(addCatProduct);
-        TempData["Result"] = res ? "true" : "false";
+        bool resCat = _portfolioRepository.AddPortfoliosForCategory(addCatPortfolio);
+        TempData["Result"] = resCat ? "true" : "false";
+        
+        //technology
+        List<Technology_PortfolioEntity> addPortfolioTech = new List<Technology_PortfolioEntity>();
+        
+        foreach (var item in technologyId)
+        {
+            addPortfolioTech.Add(new Technology_PortfolioEntity()
+            {
+                TechnologyId = item,
+                PortfolioId = portfolioId
+            });
+        }
+
+        bool resTech = _portfolioRepository.AddPortfoliosForTechnology(addPortfolioTech);
+        TempData["Result"] = resTech ? "true" : "false";
+        
         return RedirectToAction(nameof(Index));
     }
 
@@ -104,20 +124,31 @@ public class AdminPortfolioController : Controller
     {
         var categories = await _categoryRepository.Get();
         ViewBag.Category = categories.Result;
-        ViewBag.Portfolio = await _portfolioRepository.ShowPortfoliosForUpdate(id);
+        
+        var technologies = await _technologyRepository.Get();
+        ViewBag.Technology = technologies.Result;
+        
+        ViewBag.PortfolioCat = await _portfolioRepository.ShowPortfoliosCatForUpdate(id);
+        ViewBag.PortfolioTech = await _portfolioRepository.ShowPortfoliosTechForUpdate(id);
         
         var portfolio = _portfolioRepository.GetById(id).Result;
         return View(portfolio.Result);
     }
     
     [HttpPost]
-    public async Task<IActionResult> UpdatePortfolio(UpdatePortfolioDto dto, List<Guid> categoryId)
+    public async Task<IActionResult> UpdatePortfolio(UpdatePortfolioDto dto, List<Guid> categoryId, List<Guid> technologyId)
     {
         if (!ModelState.IsValid)
         {
             var categoryForUpdate = await _categoryRepository.Get();
             ViewBag.Category = categoryForUpdate.Result;
-            ViewBag.Property = _portfolioRepository.ShowPortfoliosForUpdate(dto.PortfolioId);
+            
+            var technologies = await _technologyRepository.Get();
+            ViewBag.Technology = technologies.Result;
+            
+            ViewBag.PortfolioCat = await _portfolioRepository.ShowPortfoliosCatForUpdate(dto.PortfolioId);
+            ViewBag.PortfolioTech = await _portfolioRepository.ShowPortfoliosTechForUpdate(dto.PortfolioId);
+            
             return View();
         }
         
@@ -127,6 +158,7 @@ public class AdminPortfolioController : Controller
         //     return View(dto);
         // }
         
+        //category
         var updatePortfolio = _portfolioRepository.Update(dto.PortfolioId, dto);
         
         if (updatePortfolio.Result == null)
@@ -153,6 +185,27 @@ public class AdminPortfolioController : Controller
         }
         bool addPortfolioForCategory = _portfolioRepository.AddPortfoliosForCategory(categories);
         TempData["Result"] = addPortfolioForCategory ? "true" : "false";
+        
+        //technology
+        bool deleteTech = _portfolioRepository.DeletePortfolioForTechnology(dto.PortfolioId);
+        if (!deleteTech)
+        {
+            TempData["Result"] = "false";
+            return RedirectToAction(nameof(Index));
+        }
+        
+        List<Technology_PortfolioEntity> techs = new List<Technology_PortfolioEntity>();
+        foreach (var item in technologyId)
+        {
+            techs.Add(new Technology_PortfolioEntity
+            {
+                TechnologyId = item,
+                PortfolioId = dto.PortfolioId,
+            });
+        }
+        bool addPortfolioForTechnology = _portfolioRepository.AddPortfoliosForTechnology(techs);
+        TempData["Result"] = addPortfolioForTechnology ? "true" : "false";
+
         return RedirectToAction(nameof(Index));
     }
 
