@@ -17,7 +17,7 @@ public class PodcastController : ControllerBase
     }
 
     [HttpGet]
-    public async Task<ActionResult<GenericResponse<IEnumerable<GetPodcastDto>>>> GetPortfolios()
+    public async Task<ActionResult<GenericResponse<IEnumerable<GetPodcastDto>>>> GetPodcast()
     {
         var podcasts = await _podcastRepository.Get();
         return Ok(podcasts.Result);
@@ -42,7 +42,7 @@ public class PodcastController : ControllerBase
     }
 
     [HttpPut("{id:guid}")]
-    public async Task<ActionResult<GetPortfolioDto>> UpdatePodcast([FromBody]AddUpdatePodcastDto dto, Guid id)
+    public async Task<ActionResult<GetPodcastDto>> UpdatePodcast([FromBody]AddUpdatePodcastDto dto, Guid id)
     {
         var podcast =  await _podcastRepository.Update(id, dto);
         return Ok(podcast.Result);
