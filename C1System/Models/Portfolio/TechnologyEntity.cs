@@ -7,7 +7,7 @@ namespace C1System;
 public class TechnologyEntity
 {
     [Key]
-    public Guid TechnologyPortfolioId { get; set; }
+    public Guid TechnologyId { get; set; }
     
     [Display(Name ="نام تکنولوژی")]
     [Required(ErrorMessage ="لطفا {0} را وارد کنید .")]
@@ -20,7 +20,7 @@ public class TechnologyEntity
 
     #region Relation
 
-    public List<Portfolio_Technology> PortfolioTechnologies { get; set; }
+    // public List<Portfolio_Technology> PortfolioTechnologies { get; set; }
 
     #endregion
 }
