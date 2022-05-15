@@ -34,7 +34,7 @@ public class C1SystemContext : DbContext
     // public DbSet<Faq> Faqs { get; set; }
     public DbSet<NewsLetterEntity> NewsLetters { get; set; }
     // public DbSet<DemoPortfolio>  DemoPortfolios { get; set; }
-    // public DbSet<TechnologyPortfolio> TechnologyPortfolios  { get; set; }
+    public DbSet<TechnologyEntity> Technologies  { get; set; }
     // public DbSet<Ticket> Tickets { get; set; }
     // public DbSet<Priority> Priorities { get; set; }
     // public DbSet<TicketStatus> TicketStatuses { get; set; }
