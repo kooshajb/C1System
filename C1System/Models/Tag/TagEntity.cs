@@ -20,4 +20,10 @@ public class TagEntity
     [Required(ErrorMessage ="لطفا {0} را وارد کنید .")]
     [MinLength(150 , ErrorMessage ="تعداد {0} نباید کمتر از {1} باشد.")]
     public string Link { get; set; }
+
+    #region Relation
+
+    public List<Tag_PodcastEntity> TagPodcasts { get; set; }
+    
+    #endregion
 } 
