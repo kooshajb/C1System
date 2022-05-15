@@ -1,20 +1,19 @@
-﻿@model IEnumerable<GetPodcastDto>
+﻿@model IEnumerable<GetTechnologyDto>
 
 <div class="card text-left">
 
     <div class="card-body">
         <div class="d-flex justify-content-between align-items-center">
-            <h4 class="card-title mb-3">مدیریت پادکست ها</h4>
-            <a class="btn btn-info m-1" asp-action="AddPodcast" asp-controller="AdminPodcast">افزودن پادکست</a>
+            <h4 class="card-title mb-3">مدیریت تکنولوژی ها</h4>
+            <a class="btn btn-info m-1" asp-action="AddTechnology" asp-controller="AdminTechnology">افزودن تکنولوژی</a>
         </div>
         <div class="table-responsive">
             <table class="table table-striped">
                 <thead>
                 <tr>
                     <th scope="col">#</th>
-                    <th scope="col">شماره پادکست</th>
                     <th scope="col">عنوان</th>
-                    <th scope="col">توضیحات</th>
+                    <th scope="col">تصویر</th>
                     <th scope="col">عملیات</th>
                 </tr>
                 </thead>
@@ -55,14 +54,14 @@
                         }
                 }
 
-                @if (TempData["NotFoundPodcast"] != null)
+                @if (TempData["NotFoundTechnology"] != null)
                 {
                     <script>
                     setTimeout(function () {
                         Swal.fire({
                             position: 'top-end',
                             icon: 'error',
-                            title: 'پادکست با این مشخصات یافت نشد .',
+                            title: 'تکنولوژی با این مشخصات یافت نشد .',
                             showConfirmButton: false,
                             timer: 3000
                         })
@@ -77,14 +76,15 @@
                     {
                         <tr>
                             <th scope="row">1</th>
-                            <td>@item.PodcastNumber</td>
                             <td>@item.Title</td>
-                            <td>@item.Description</td>
                             <td>
-                                <a asp-action="UpdatePodcast" asp-controller="AdminPodcast" asp-area="Admin" asp-route-id="@item.PodcastId" class="text-success mr-2">
+                                <img class="rounded-circle m-0 avatar-sm-table" src="@item.TechnologyImage" alt="">
+                            </td> 
+                            <td>
+                                <a asp-action="UpdateTechnology" asp-controller="AdminTechnology" asp-area="Admin" asp-route-id="@item.TechnologyId" class="text-success mr-2">
                                     <i class="nav-icon i-Pen-2 font-weight-bold"></i>
                                 </a>
-                                <a asp-action="DeletePodcast" asp-controller="AdminPodcast" asp-area="Admin" asp-route-id="@item.PodcastId" class="text-danger mr-2">
+                                <a asp-action="DeleteTechnology" asp-controller="AdminTechnology" asp-area="Admin" asp-route-id="@item.TechnologyId" class="text-danger mr-2">
                                     <i class="nav-icon i-Close-Window font-weight-bold"></i>
                                 </a>
                             </td>
@@ -94,7 +94,7 @@
                 else
                 {
                     <tr class="gradeX odd" role="row">
-                        <td colspan="5" class="sorting_1">پادکست موجود نمی باشد.</td>
+                        <td colspan="5" class="sorting_1">تکنولوژی موجود نمی باشد.</td>
                     </tr>
                 }
                 </tbody>
