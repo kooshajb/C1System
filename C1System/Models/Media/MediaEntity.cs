@@ -23,10 +23,10 @@ public class MediaEntity : BaseEntity {
     //
     // public UserEntity? User { get; set; }
     // public string? UserId { get; set; }
-    //
-    // public ProductEntity? Product { get; set; }
-    // public Guid? ProductId { get; set; }
-    //
+    
+    public PortfolioEntity? Portfolio { get; set; }
+    public Guid? PortfolioId { get; set; }
+    
     // public ProjectEntity? Project { get; set; }
     // public Guid? ProjectId { get; set; }
     //
@@ -50,9 +50,9 @@ public class MediaEntity : BaseEntity {
     //
     // public MagazineEntity? Magazine { get; set; }
     // public Guid? MagazineId { get; set; }
-    //
-    // public TagEntity? Tag { get; set; }
-    // public Guid? TagId { get; set; }
+    
+    public TagEntity? Tag { get; set; }
+    public Guid? TagId { get; set; }
     //
     // public SpecialityEntity? Speciality { get; set; }
     // public Guid? SpecialityId { get; set; }
