@@ -80,7 +80,7 @@
                     </div>
                     
                     <div class="col-md-6 form-group mb-3">
-                        <label asp-for="Media">انتخاب تکنولوژی ها</label>
+                        <label>انتخاب تکنولوژی ها</label>
                         <select class="form-control" id="select-technology" asp-items="@(new SelectList(ViewBag.Technology, "TechnologyId", "Title"))"></select>
                         <button class="Add-Technology btn btn-success my-2" type="button">انتخاب</button>
                         <div class="ListTechnology"></div>
