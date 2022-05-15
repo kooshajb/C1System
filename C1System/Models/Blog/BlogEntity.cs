@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace C1System;
 
 [Table("Blog")]
-public class BlogEntity : BannerEntity
+public class BlogEntity
 {
     [Key]
     public Guid BlogId { get; set; }
@@ -48,11 +48,10 @@ public class BlogEntity : BannerEntity
     [Display(Name ="امتیازدهی")]
     public int? Point { get; set; }
     
-    //todo دکمه اشتراگ گذاری
     //todo برچسب ها
     //todo bookmark
     //todo comment
     //todo blogCategory
 
-    public BookMarkEntity BookMark { get; set; }
+    // public BookMarkEntity BookMark { get; set; }
 }
