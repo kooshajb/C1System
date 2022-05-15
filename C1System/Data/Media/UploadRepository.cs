@@ -12,9 +12,9 @@ public class UploadRepository : IUploadRepository
 {
     private readonly IWebHostEnvironment _env;
     private readonly IMediaRepository _mediaRepository;
-    private readonly DbContext _context;
+    private readonly C1SystemContext _context;
 
-    public UploadRepository(DbContext context, IWebHostEnvironment env, IMediaRepository mediaRepository)
+    public UploadRepository(C1SystemContext context, IWebHostEnvironment env, IMediaRepository mediaRepository)
     {
         _env = env;
         _mediaRepository = mediaRepository;
@@ -31,6 +31,7 @@ public class UploadRepository : IUploadRepository
         foreach (IFormFile file in model.Files)
         {
             FileTypes fileType = FileTypes.Image;
+            
             if (file.ContentType.Contains("svg"))
             {
                 fileType = FileTypes.Svg;
@@ -57,16 +58,28 @@ public class UploadRepository : IUploadRepository
             }
 
             string folder = "";
-            if (model.UserId != null)
+            // if (model.UserId != null)
+            // {
+            //     folder = "Users";
+            //     List<MediaEntity> userMedia =
+            //         _context.Set<MediaEntity>()
+            //             // .Where(x => x.UserId == model.UserId)
+            //             .ToList();
+            //     if (userMedia.Count > 0)
+            //     {
+            //         _context.Set<MediaEntity>().RemoveRange(userMedia);
+            //         _context.SaveChanges();
+            //     }
+            // }
+
+            if (model.PortfolioId != null)
             {
-                folder = "Users";
-                List<MediaEntity> userMedia =
-                    _context.Set<MediaEntity>()
-                        // .Where(x => x.UserId == model.UserId)
-                        .ToList();
-                if (userMedia.Count > 0)
+                folder = "Portfolios";
+                List<MediaEntity> portfolioMedia =
+                    _context.Set<MediaEntity>().ToList();
+                if (portfolioMedia.Count > 0)
                 {
-                    _context.Set<MediaEntity>().RemoveRange(userMedia);
+                    _context.Set<MediaEntity>().RemoveRange(portfolioMedia);
                     _context.SaveChanges();
                 }
             }
@@ -78,7 +91,7 @@ public class UploadRepository : IUploadRepository
                 FileName = url,
                 FileType = fileType,
                 // UserId = model.UserId,
-                // ProductId = model.ProductId,
+                PortfolioId = model.PortfolioId,
             };
             await _context.Set<MediaEntity>().AddAsync(media);
             await _context.SaveChangesAsync();
