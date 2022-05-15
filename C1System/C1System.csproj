@@ -46,6 +46,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <AdditionalFiles Include="Areas\Admin\Views\AdminTag\Index.cshtml" />
     <AdditionalFiles Include="Areas\Admin\Views\AdminTechnology\Index.cshtml" />
   </ItemGroup>
 
