@@ -32,7 +32,7 @@ public class AdminPodcastController : Controller
     }
     
     [HttpPost]
-    public async Task<IActionResult> AddPodcast(AddUpdatePodcastDto dto, List<Guid> tagId)
+    public async Task<IActionResult> AddPodcast(AddPodcastDto dto, List<Guid> tagId)
     {
         if (!ModelState.IsValid)
         {
@@ -84,23 +84,41 @@ public class AdminPodcastController : Controller
         var tags = await _tagRepository.Get();
         ViewBag.Tag = tags.Result;
         
-        // ViewBag.PortfolioCat = await _podcastRepository.show(id);
-
         return View(podcast.Result);
     }
     
     [HttpPost]
-    public async Task<IActionResult> UpdatePodcast(AddUpdatePodcastDto dto, Guid id)
+    public async Task<IActionResult> UpdatePodcast(UpdatePodcastDto dto, List<Guid> tagId)
     {
-        var podcast = await _podcastRepository.GetById(id);
+
         if (!ModelState.IsValid)
         {
-            return View(podcast.Result);
+            var tagForUpdate = await _tagRepository.Get();
+            ViewBag.Tag = tagForUpdate.Result;
+
+            ViewBag.Podcast = await _podcastRepository.ShowPodcastsForUpdate(dto.PodcastId);
+            
+            return View();
         }
         
-        var updatePodcast = await _podcastRepository.Update(id, dto);
+        bool deletePodcast = _podcastRepository.DeletePodcastForTag(dto.PodcastId);
+        if (!deletePodcast)
+        {
+            TempData["Result"] = "false";
+            return RedirectToAction(nameof(Index));
+        }
         
-        TempData["Result"] = updatePodcast.Result != null ? "true" : "false";
+        List<Tag_PodcastEntity> tags = new List<Tag_PodcastEntity>();
+        foreach (var item in tagId)
+        {
+            tags.Add(new Tag_PodcastEntity
+            {
+                TagId = item,
+                PodcastId = dto.PodcastId,
+            });
+        }
+        bool addPodcastForTag = _podcastRepository.AddPodcastsForTag(tags);
+        TempData["Result"] = addPodcastForTag ? "true" : "false";
         return RedirectToAction(nameof(Index));
     }
 
