@@ -14,8 +14,11 @@ public interface IPortfolioRepository
     Task<GenericResponse> Delete(Guid id);
     bool ExistPortfolio(string title, Guid portfolioId);
     bool AddPortfoliosForCategory(List<Category_PortfolioEntity> categoryPortfolios);
-    Task<List<UpdatePortfolioViewModel>>ShowPortfoliosForUpdate(Guid portfolioId);
+    bool AddPortfoliosForTechnology(List<Technology_PortfolioEntity> portfolioTechnologies);
+    Task<List<UpdatePortfolioCatViewModel>>ShowPortfoliosCatForUpdate(Guid portfolioId);
+    Task<List<UpdatePortfolioTechViewModel>> ShowPortfoliosTechForUpdate(Guid portfolioId);
     bool DeletePortfolioForCategory(Guid portfolioId);
+    bool DeletePortfolioForTechnology(Guid portfolioId);
 }
 
 public class PortfolioRepository : IPortfolioRepository
@@ -66,7 +69,9 @@ public class PortfolioRepository : IPortfolioRepository
         i.FeatureMedia = dto.FeatureMedia;
         i.Media = dto.Media;
         i.Point = dto.Point;
-
+        i.IsActive = dto.IsActive;
+        i.PortfolioSort = dto.PortfolioSort;
+        
         _context.Set<PortfolioEntity>().Update(i);
         await _context.SaveChangesAsync();
         return new GenericResponse<GetPortfolioDto>(_mapper.Map<GetPortfolioDto>(i));
@@ -101,15 +106,45 @@ public class PortfolioRepository : IPortfolioRepository
         }
     }
     
-    public async Task<List<UpdatePortfolioViewModel>> ShowPortfoliosForUpdate(Guid portfolioId)
+    public bool AddPortfoliosForTechnology(List<Technology_PortfolioEntity> portfolioTechnologies)
     {
-        List<UpdatePortfolioViewModel> updates = await (from cp in _context.CategoryPortfolios
+        try
+        {
+            _context.TechnologyPortfolios.AddRange(portfolioTechnologies);
+            _context.SaveChanges();
+            return true;
+        }
+        catch
+        {
+            return false;
+        }
+    }
+    
+    public async Task<List<UpdatePortfolioCatViewModel>> ShowPortfoliosCatForUpdate(Guid portfolioId)
+    {
+        List<UpdatePortfolioCatViewModel> updates = await (from cp in _context.CategoryPortfolios
             join p in _context.Portfolios on cp.PortfolioId equals p.PortfolioId
             where (cp.PortfolioId == portfolioId)
-            select new UpdatePortfolioViewModel()
+            select new UpdatePortfolioCatViewModel()
             {
                 CategoryPortfolioId = cp.CategoryPortfolioId,
                 CategoryId = cp.CategoryId,
+                PortfolioId = p.PortfolioId,
+                PortfolioTitle = p.Title
+            }).ToListAsync();
+    
+        return updates;
+    }
+    
+    public async Task<List<UpdatePortfolioTechViewModel>> ShowPortfoliosTechForUpdate(Guid portfolioId)
+    {
+        List<UpdatePortfolioTechViewModel> updates = await (from tp in _context.TechnologyPortfolios
+            join p in _context.Portfolios on tp.PortfolioId equals p.PortfolioId
+            where (tp.PortfolioId == portfolioId)
+            select new UpdatePortfolioTechViewModel()
+            {
+                TechnologyPortfolioId = tp.TechnologyPortfolioId,
+                TechnologyId = tp.TechnologyId,
                 PortfolioId = p.PortfolioId,
                 PortfolioTitle = p.Title
             }).ToListAsync();
@@ -123,6 +158,21 @@ public class PortfolioRepository : IPortfolioRepository
         {
             List<Category_PortfolioEntity> categories = _context.CategoryPortfolios.Where(c => c.PortfolioId == portfolioId).ToList();
             _context.CategoryPortfolios.RemoveRange(categories);
+            _context.SaveChanges();
+            return true;
+        }
+        catch (Exception)
+        {
+            return true;
+        }
+    }
+    
+    public bool DeletePortfolioForTechnology(Guid portfolioId)
+    {
+        try
+        {
+            List<Technology_PortfolioEntity> technologies = _context.TechnologyPortfolios.Where(t => t.PortfolioId == portfolioId).ToList();
+            _context.TechnologyPortfolios.RemoveRange(technologies);
             _context.SaveChanges();
             return true;
         }
