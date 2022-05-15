@@ -10,7 +10,7 @@ public class BookMarkEntity : BaseEntity
     //todo - podcast 
     //todo -portfolio
 
-    public List<BlogEntity> Blogs { get; set; }
-    public List<PodcastEntity> Podcasts { get; set; }
-    public List<PortfolioEntity> Portfolios { get; set; }
+    // public List<BlogEntity> Blogs { get; set; }
+    // public List<PodcastEntity> Podcasts { get; set; }
+    // public List<PortfolioEntity> Portfolios { get; set; }
 }
