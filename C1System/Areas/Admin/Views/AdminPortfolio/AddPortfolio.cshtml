@@ -51,27 +51,54 @@
                         <input asp-for="FeatureMedia" class="form-control" placeholder="تصویر شاخص را وارد کنید">
                         <span class="text-danger" asp-validation-for="FeatureMedia"></span>
                     </div>
-
+                    
+                    @* <div class="col-md-6 mb-4"> *@
+                    @*     <div class="card text-left"> *@
+                    @* *@
+                    @*         <div class="card-body"> *@
+                    @*             <h4 class="card-title">اپلود چندگانه</h4> *@
+                    @*             <form action="#" class="dropzone" id="multple-file-upload"> *@
+                    @*                 <div class="fallback"> *@
+                    @*                     <input name="file" type="file" multiple="multiple"> *@
+                    @*                 </div> *@
+                    @*             </form> *@
+                    @*         </div> *@
+                    @*     </div> *@
+                    @* </div> *@
+                    
                     <div class="col-md-6 form-group mb-3">
                         <label asp-for="Media">تصاویر</label>
-                        <input asp-for="Media" class="form-control" placeholder="تصاویر را وارد کنید">
+                        <input asp-for="Media" name="uploadDto" type="file" class="form-control" multiple="multiple">
                         <span class="text-danger" asp-validation-for="Media"></span>
                     </div>
 
                     <div class="col-md-6 form-group mb-3">
-                        <label asp-for="Media">انتخاب دسته بندی</label>
+                        <label>انتخاب دسته بندی</label>
                         <select class="form-control" id="select-category" asp-items="@(new SelectList(ViewBag.Category, "CategoryId", "Title"))"></select>
                         <button class="Add-Category btn btn-success my-2" type="button">انتخاب</button>
                         <div class="ListCategory"></div>
                     </div>
+                    
+                    <div class="col-md-6 form-group mb-3">
+                        <label asp-for="Media">انتخاب تکنولوژی ها</label>
+                        <select class="form-control" id="select-technology" asp-items="@(new SelectList(ViewBag.Technology, "TechnologyId", "Title"))"></select>
+                        <button class="Add-Technology btn btn-success my-2" type="button">انتخاب</button>
+                        <div class="ListTechnology"></div>
+                    </div>
 
                     <div class="form-group">
-                         <div class="form-check">
-                           <input class="form-check-input" asp-for="IsActive" type="checkbox">
-                           <label class="form-check-label" asp-for="IsActive">
+                        <label asp-for="PortfolioSort">ترتیب نمونه کار</label>
+                        <input asp-for="PortfolioSort" class="form-control">
+                        <span class="text-danger">@Html.ValidationMessage("ErrorSort")</span>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="form-check">
+                            <input class="form-check-input" asp-for="IsActive" type="checkbox">
+                            <label class="form-check-label" asp-for="IsActive">
                                 آیا فعال باشد ؟!
-                           </label>
-                       </div>
+                            </label>
+                        </div>
                     </div>
 
                     <div class="col-md-12">
@@ -85,10 +112,21 @@
 </div>
 
 
+
 @section Scripts
 {
+    @* <script src="~/admin/assets/js/vendor/bootstrap.bundle.min.js"></script> *@
+    @* <script src="~/admin/assets/js/vendor/perfect-scrollbar.min.js"></script> *@
+    <!-- nuslider js -->
+    @* <script src="~/admin/assets/js/vendor/dropzone.min.js"></script> *@
+    
+    <!-- global js -->
+    @* <script src="~/admin/assets/js/es5/script.min.js"></script> *@
+    @* <!-- page specific script --> *@
+    @* <script src="~/admin/assets/js/dropzone.script.js"></script> *@
+    
     <script>
-
+        //category
         $(".Add-Category").click(function () {
             if ($("#select-category").val()) {
                 var value = $("#select-category").children("option:selected").val();
@@ -115,5 +153,35 @@
             }));
             content.remove();
         });
+        
+       
+        
+        //technology
+                $(".Add-Technology").click(function () {
+                    if ($("#select-technology").val()) {
+                        var value = $("#select-technology").children("option:selected").val();
+                        var text = $("#select-technology").children("option:selected").text();
+                        $(".ListTechnology").append(
+                            "<div style='background: #8080802b;height: 39px;width: 48%;border-radius: 5px;margin-bottom: 1%;margin-left: 1%;display:flex;color:whitesmoke;'>"
+                            + "<label style='display: flex;align-items: center;justify-items: center;' class='col-md-12'>" + text + "</label>"
+                            + "<input type='hidden' name='TechnologyId' value='" + value + "' />"
+                            + "<a style='display: flex;align-items: center;justify-items: center;' class='btn btn-danger remove-technology'>حذف</a>"
+                            + "</div>"
+        
+                        );
+                        $("#select-technology").children("option:selected").remove();
+                    }
+                });
+        
+                $('.ListTechnology').delegate(".remove-technology", 'click', function () {
+                    var content = $(this).parent();
+                    var text = content.find($("label")).text();
+                    var value = content.find($("input[type=hidden]")).val();
+                    $("#select-technology").append($('<option>', {
+                        value: value,
+                        text: text
+                    }));
+                    content.remove();
+                });
     </script>
 }
