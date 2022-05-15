@@ -8,10 +8,12 @@ namespace C1System.Areas.Admin.Controllers;
 public class AdminPodcastController : Controller
 {
     private readonly IPodcastRepository _podcastRepository;
+    private readonly ITagRepository _tagRepository;
 
-    public AdminPodcastController(IPodcastRepository podcastRepository)
+    public AdminPodcastController(IPodcastRepository podcastRepository, ITagRepository tagRepository)
     {
         _podcastRepository = podcastRepository;
+        _tagRepository = tagRepository;
     }
     
     public async Task<IActionResult> Index()
@@ -21,20 +23,21 @@ public class AdminPodcastController : Controller
     }
     
     [HttpGet]
-    public IActionResult AddPodcast(Guid? id)
+    public async Task<IActionResult> AddPodcast(Guid? id)
     {
-        if (id != null)
-        {
-            ViewBag.Id = id;
-        }
+        var tags = await _tagRepository.Get();
+        ViewBag.Tag = tags.Result;
+        
         return View();
     }
     
     [HttpPost]
-    public async Task<IActionResult> AddPodcast(AddUpdatePodcastDto dto)
+    public async Task<IActionResult> AddPodcast(AddUpdatePodcastDto dto, List<Guid> tagId)
     {
         if (!ModelState.IsValid)
         {
+            var tags = await _tagRepository.Get();
+            ViewBag.Tag = tags.Result;
             return View(dto);
         }
         // if (_portfolioRepository.ExistPortfolio(dto.Title,0))
@@ -42,8 +45,29 @@ public class AdminPodcastController : Controller
         //     ModelState.AddModelError("ErrorPortfolio", "نمونه کار تکراری است");
         //     return View(dto);
         // }
-        var newPodcast = await _podcastRepository.Add(dto);
-        TempData["Result"] = newPodcast.Result.PodcastId != null  ? "true" : "false";
+        
+        var podcast = await _podcastRepository.Add(dto);
+        Guid podcastId = podcast.Result.PodcastId;
+        if (podcastId == null)
+        {
+            TempData["Result"] = "false";
+            return RedirectToAction(nameof(Index));
+        }
+        
+                
+        List<Tag_PodcastEntity> addTagPodcast = new List<Tag_PodcastEntity>();
+        
+        foreach (var item in tagId)
+        {
+            addTagPodcast.Add(new Tag_PodcastEntity()
+            {
+                TagId = item,
+                PodcastId = podcastId
+            });
+        }
+
+        bool res = _podcastRepository.AddPodcastsForTag(addTagPodcast);
+        TempData["Result"] = res ? "true" : "false";
         return RedirectToAction(nameof(Index));
     }
 
@@ -56,6 +80,12 @@ public class AdminPodcastController : Controller
             TempData["NotFoundPodcast"] = "true";
             return RedirectToAction(nameof(Index));
         }
+        
+        var tags = await _tagRepository.Get();
+        ViewBag.Tag = tags.Result;
+        
+        // ViewBag.PortfolioCat = await _podcastRepository.show(id);
+
         return View(podcast.Result);
     }
     
