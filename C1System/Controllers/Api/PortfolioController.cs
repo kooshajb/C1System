@@ -34,18 +34,18 @@ public class PortfolioController : ControllerBase
     [HttpGet("{id:guid}")]
     public async Task<ActionResult<GetCategoryDto>> GetPortfolio(Guid id)
     {
-        var category = await _portfolioRepository.GetById(id);
+        var portfolio = await _portfolioRepository.GetById(id);
 
-        if (category == null) return NotFound();
+        if (portfolio == null) return NotFound();
 
-        return Ok(category.Result);
+        return Ok(portfolio.Result);
     }
 
     [HttpPut("{id:guid}")]
-    public async Task<ActionResult<GetCategoryDto>> UpdatePortfolio([FromBody]UpdatePortfolioDto dto, Guid id)
+    public async Task<ActionResult<GetPortfolioDto>> UpdatePortfolio([FromBody]UpdatePortfolioDto dto, Guid id)
     {
-        var category =  await _portfolioRepository.Update(id, dto);
-        return Ok(category.Result);
+        var portfolio =  await _portfolioRepository.Update(id, dto);
+        return Ok(portfolio.Result);
     }
 
     [HttpDelete("{id:guid}")]
