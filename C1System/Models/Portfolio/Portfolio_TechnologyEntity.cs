@@ -1,10 +1,12 @@
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace C1System;
 
-public class Portfolio_TechnologyEntity
+public class Technology_PortfolioEntity
 {
-    public Guid PortfolioTechnologyId { get; set; }
+    [Key]
+    public Guid TechnologyPortfolioId { get; set; }
 
     public Guid PortfolioId { get; set; }
     public Guid TechnologyId { get; set; }
