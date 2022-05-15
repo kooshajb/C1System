@@ -1,5 +1,6 @@
 using System;
 using C1System;
+using C1System.Media;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Configuration;
@@ -27,6 +28,8 @@ builder.Services.AddTransient<INewsLetterRepository, NewsLetterRepository>();
 builder.Services.AddTransient<ITagRepository, TagRepository>();
 builder.Services.AddTransient<IProjectRepository, ProjectRepository>();
 builder.Services.AddTransient<ICustomerSuccessRepository, CustomerSuccessRepository>();
+builder.Services.AddTransient<IUploadRepository, UploadRepository>();
+builder.Services.AddTransient<IMediaRepository, MediaRepository>();
 
 // builder.Services.AddTransient<ICategoryPackageService, CategoryPackageService>();
 // builder.Services.AddTransient<ICategoryPackageItemService, CategoryPackageItemService>();
@@ -51,28 +54,12 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-// Enable middleware to serve generated Swagger as a JSON endpoint.  
-// Enable middleware to serve generated Swagger as a JSON endpoint.  
-app.UseSwagger(c =>  
-{  
-    c.SerializeAsV2 = true;  
-});
-
-// Enable middleware to serve swagger-ui (HTML, JS, CSS, etc.),  
-// specifying the Swagger JSON endpoint.  
-app.UseSwaggerUI(c =>  
-{  
-    c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");  
-    c.RoutePrefix = string.Empty;  
-});  
-
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseRouting();
 app.UseMvcWithDefaultRoute();
 
 app.UseAuthorization();
-
 
 app.MapControllerRoute(
     name: "default",
