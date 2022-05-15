@@ -1,4 +1,4 @@
-﻿@model AddUpdatePodcastDto
+﻿@model AddPodcastDto
 
 @{
     ViewData["Title"] = "افزودن پادکست";
@@ -48,7 +48,7 @@
                     
                    <div class="col-md-6 form-group mb-3">
                         <label>انتخاب برچسب ها</label>
-                        <select class="form-control" id="select-technology" asp-items="@(new SelectList(ViewBag.Tag, "TagId", "Title"))"></select>
+                        <select class="form-control" id="select-tag" asp-items="@(new SelectList(ViewBag.Tag, "TagId", "Title"))"></select>
                         <button class="Add-Tag btn btn-success my-2" type="button">انتخاب</button>
                         <div class="ListTag"></div>
                     </div>
@@ -68,11 +68,11 @@
 {
     <script>
         //category
-        $(".Add-Category").click(function () {
+        $(".Add-Tag").click(function () {
             if ($("#select-tag").val()) {
                 var value = $("#select-tag").children("option:selected").val();
                 var text = $("#select-tag").children("option:selected").text();
-                $(".ListCategory").append(
+                $(".ListTag").append(
                     "<div style='background: #8080802b;height: 39px;width: 48%;border-radius: 5px;margin-bottom: 1%;margin-left: 1%;display:flex;color:whitesmoke;'>"
                     + "<label style='display: flex;align-items: center;justify-items: center;' class='col-md-12'>" + text + "</label>"
                     + "<input type='hidden' name='TagId' value='" + value + "' />"
@@ -88,7 +88,7 @@
             var content = $(this).parent();
             var text = content.find($("label")).text();
             var value = content.find($("input[type=hidden]")).val();
-            $("#select-category").append($('<option>', {
+            $("#select-tag").append($('<option>', {
                 value: value,
                 text: text
             }));
