@@ -64,7 +64,10 @@ public class PortfolioEntity
     #region Relation
 
     // public IEnumerable<Category_Product> CategoryProducts { get; set; }
-    
+    // public BookMarkEntity BookMark { get; set; }
+
+    public List<Technology_PortfolioEntity> TechnologyPortfolios { get; set; }
+
     #endregion
     //todo ارتباط با اینیتیت DemoPortfolio اضافه شود 
     //todo ارتباط با TechnologyPortfolio
