@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
+using C1System.ViewModels;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 
@@ -10,13 +11,15 @@ namespace C1System;
 
 public interface IPodcastRepository
 {
-    Task<GenericResponse<GetPodcastDto>> Add(AddUpdatePodcastDto dto);
+    Task<GenericResponse<GetPodcastDto>> Add(AddPodcastDto dto);
     Task<GenericResponse<IEnumerable<GetPodcastDto>>> Get();
     Task<GenericResponse<GetPodcastDto>> GetById(Guid id);
-    Task<GenericResponse<GetPodcastDto>> Update(Guid id, AddUpdatePodcastDto dto);
+    Task<GenericResponse<GetPodcastDto>> Update(Guid id, UpdatePodcastDto dto);
     Task<GenericResponse> Delete(Guid id);
     bool ExistPodcast(string title, Guid podcastId);
     bool AddPodcastsForTag(List<Tag_PodcastEntity> tagPodcasts);
+    Task<List<UpdatePodcastTagViewModel>> ShowPodcastsForUpdate(Guid podcastId);
+    bool DeletePodcastForTag(Guid podcastId);
 }
 
 public class PodcastRepository : IPodcastRepository
@@ -30,7 +33,7 @@ public class PodcastRepository : IPodcastRepository
         _mapper = mapper;
     }
 
-    public async Task<GenericResponse<GetPodcastDto>> Add(AddUpdatePodcastDto dto)
+    public async Task<GenericResponse<GetPodcastDto>> Add(AddPodcastDto dto)
     {
         if (dto == null) throw new ArgumentException("Dto must not be null", nameof(dto));
         PodcastEntity entity = _mapper.Map<PodcastEntity>(dto);
@@ -53,7 +56,7 @@ public class PodcastRepository : IPodcastRepository
         return new GenericResponse<GetPodcastDto>(_mapper.Map<GetPodcastDto>(i));
     }
 
-    public async Task<GenericResponse<GetPodcastDto>> Update(Guid id, AddUpdatePodcastDto dto)
+    public async Task<GenericResponse<GetPodcastDto>> Update(Guid id, UpdatePodcastDto dto)
     {
         var i = _context.Set<PodcastEntity>()
             .Where(p => p.PodcastId == id).First();
@@ -103,19 +106,34 @@ public class PodcastRepository : IPodcastRepository
         }
     }
 
-    // public async Task<List<UpdatePortfolioCatViewModel>> ShowPodcastsForUpdate(Guid podcastId)
-    // {
-    //     List<UpdatePortfolioCatViewModel> updates = await (from cp in _context.CategoryPortfolios
-    //         join p in _context.Portfolios on cp.PortfolioId equals p.PortfolioId
-    //         where (cp.PortfolioId == portfolioId)
-    //         select new UpdatePortfolioCatViewModel()
-    //         {
-    //             CategoryPortfolioId = cp.CategoryPortfolioId,
-    //             CategoryId = cp.CategoryId,
-    //             PortfolioId = p.PortfolioId,
-    //             PortfolioTitle = p.Title
-    //         }).ToListAsync();
-    //
-    //     return updates;
-    // }
+    public async Task<List<UpdatePodcastTagViewModel>> ShowPodcastsForUpdate(Guid podcastId)
+    {
+        List<UpdatePodcastTagViewModel> updates = await (from tp in _context.TagPodcasts
+            join p in _context.Podcasts on tp.PodcastId equals p.PodcastId
+            where (tp.PodcastId == podcastId)
+            select new UpdatePodcastTagViewModel()
+            {
+                TagPodcastId = tp.TagPodcastId,
+                TagId = tp.TagId,
+                PodcastId = p.PodcastId,
+                PodcastTitle = p.Title
+            }).ToListAsync();
+    
+        return updates;
+    }
+    
+    public bool DeletePodcastForTag(Guid podcastId)
+    {
+        try
+        {
+            List<Tag_PodcastEntity> tags = _context.TagPodcasts.Where(c => c.PodcastId == podcastId).ToList();
+            _context.TagPodcasts.RemoveRange(tags);
+            _context.SaveChanges();
+            return true;
+        }
+        catch (Exception)
+        {
+            return true;
+        }
+    }
 }
