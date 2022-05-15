@@ -45,6 +45,13 @@
                         <input asp-for="Audio" class="form-control" placeholder="فایل صوت را وارد کنید">
                         <span class="text-danger" asp-validation-for="Audio"></span>
                     </div>
+                    
+                   <div class="col-md-6 form-group mb-3">
+                        <label>انتخاب برچسب ها</label>
+                        <select class="form-control" id="select-technology" asp-items="@(new SelectList(ViewBag.Tag, "TagId", "Title"))"></select>
+                        <button class="Add-Tag btn btn-success my-2" type="button">انتخاب</button>
+                        <div class="ListTag"></div>
+                    </div>
 
                     <div class="col-md-12">
                         <button asp-action="AddPodcast" asp-controller="AdminPodcast" class="btn btn-primary" type="submit">تایید</button>
@@ -55,3 +62,37 @@
         </div>
     </div>
 </div>
+
+
+@section Scripts
+{
+    <script>
+        //category
+        $(".Add-Category").click(function () {
+            if ($("#select-tag").val()) {
+                var value = $("#select-tag").children("option:selected").val();
+                var text = $("#select-tag").children("option:selected").text();
+                $(".ListCategory").append(
+                    "<div style='background: #8080802b;height: 39px;width: 48%;border-radius: 5px;margin-bottom: 1%;margin-left: 1%;display:flex;color:whitesmoke;'>"
+                    + "<label style='display: flex;align-items: center;justify-items: center;' class='col-md-12'>" + text + "</label>"
+                    + "<input type='hidden' name='TagId' value='" + value + "' />"
+                    + "<a style='display: flex;align-items: center;justify-items: center;' class='btn btn-danger remove-tag'>حذف</a>"
+                    + "</div>"
+
+                );
+                $("#select-tag").children("option:selected").remove();
+            }
+        });
+
+        $('.ListTag').delegate(".remove-tag", 'click', function () {
+            var content = $(this).parent();
+            var text = content.find($("label")).text();
+            var value = content.find($("input[type=hidden]")).val();
+            $("#select-category").append($('<option>', {
+                value: value,
+                text: text
+            }));
+            content.remove();
+        });
+    </script>
+}
