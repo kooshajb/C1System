@@ -1,0 +1,33 @@
+﻿@model GetTagDto
+
+@{
+    ViewData["Title"] = "حذف برچسب";
+}
+
+<div class="col-md-12">
+    <div class="card mb-4">
+        <div class="card-body">
+            <div class="card-title mb-3">حذف برچسب</div>
+            <form asp-action="DeleteTagById" method="post" enctype="multipart/form-data">
+               <div class="row">
+                 <div class="col-md-6 form-group mb-3">
+                       <label asp-for="Title">عنوان</label>
+                       <input readonly="readonly" asp-for="Title" class="form-control" placeholder="عنوان را وارد کنید">
+                       <span class="text-danger" asp-validation-for="Title"></span>
+                   </div>
+                                   
+                   <div class="col-md-6 form-group mb-3">
+                       <label asp-for="Link">لینک</label>
+                       <input readonly="readonly" asp-for="Link" class="form-control" placeholder="لینک را وارد کنید">
+                       <span class="text-danger" asp-validation-for="Link"></span>
+                   </div>
+
+                   <div class="col-md-12">
+                       <button asp-action="DeleteTagById" asp-controller="AdminTag" asp-route-id="@Model.TagId" class="btn btn-primary" type="submit">تایید</button>
+                       <a asp-action="Index" class="btn btn-danger m-1">لغو</a>
+                  </div>
+               </div>
+            </form>
+        </div>
+    </div>
+</div>
