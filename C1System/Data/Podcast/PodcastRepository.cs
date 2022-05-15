@@ -16,6 +16,7 @@ public interface IPodcastRepository
     Task<GenericResponse<GetPodcastDto>> Update(Guid id, AddUpdatePodcastDto dto);
     Task<GenericResponse> Delete(Guid id);
     bool ExistPodcast(string title, Guid podcastId);
+    bool AddPodcastsForTag(List<Tag_PodcastEntity> tagPodcasts);
 }
 
 public class PodcastRepository : IPodcastRepository
@@ -87,4 +88,34 @@ public class PodcastRepository : IPodcastRepository
         return _context.Podcasts.Any(p =>
             p.Title == title && p.PodcastId != podcastId);
     }
+    
+    public bool AddPodcastsForTag(List<Tag_PodcastEntity> tagPodcasts)
+    {
+        try
+        {
+            _context.TagPodcasts.AddRange(tagPodcasts);
+            _context.SaveChanges();
+            return true;
+        }
+        catch
+        {
+            return false;
+        }
+    }
+
+    // public async Task<List<UpdatePortfolioCatViewModel>> ShowPodcastsForUpdate(Guid podcastId)
+    // {
+    //     List<UpdatePortfolioCatViewModel> updates = await (from cp in _context.CategoryPortfolios
+    //         join p in _context.Portfolios on cp.PortfolioId equals p.PortfolioId
+    //         where (cp.PortfolioId == portfolioId)
+    //         select new UpdatePortfolioCatViewModel()
+    //         {
+    //             CategoryPortfolioId = cp.CategoryPortfolioId,
+    //             CategoryId = cp.CategoryId,
+    //             PortfolioId = p.PortfolioId,
+    //             PortfolioTitle = p.Title
+    //         }).ToListAsync();
+    //
+    //     return updates;
+    // }
 }
