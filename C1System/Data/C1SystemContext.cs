@@ -21,6 +21,7 @@ public class C1SystemContext : DbContext
     // public DbSet<CategoryPackageItem>  CategoryPackageItems { get; set; }
     public DbSet<PortfolioEntity> Portfolios { get; set; }
     public DbSet<Category_PortfolioEntity> CategoryPortfolios { get; set; }
+    public DbSet<Technology_PortfolioEntity> TechnologyPortfolios { get; set; }
     public DbSet<ProjectEntity> Prosjects { get; set; }
     public DbSet<PodcastEntity> Podcasts { get; set; }
     // public DbSet<Gender> Genders { get; set; }
