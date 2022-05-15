@@ -6,7 +6,6 @@ namespace C1System.Controllers.Api
     [ApiController]
     public class TagController : Controller
     {
-        
         private readonly ITagRepository _tagRepository;
         public TagController(ITagRepository tagRepository)
         {
