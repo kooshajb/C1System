@@ -39,7 +39,7 @@ public class AdminPortfolioController : Controller
     }
     
     [HttpPost]
-    public async Task<IActionResult> AddPortfolio(AddPortfolioDto dto, List<Guid> categoryId, List<Guid> technologyId)
+    public async Task<IActionResult> AddPortfolio(AddPortfolioDto dto, List<Guid> categoryId, List<Guid> technologyId, List<IFormFile> files)
     {
         if (!ModelState.IsValid)
         {
@@ -47,6 +47,7 @@ public class AdminPortfolioController : Controller
             ViewBag.Category = categories.Result;
             var technologies = await _technologyRepository.Get();
             ViewBag.Technology = technologies.Result;
+
             return View(dto);
         }
         // if (_portfolioRepository.ExistPortfolio(dto.Title, 0))
@@ -61,23 +62,26 @@ public class AdminPortfolioController : Controller
             return View(dto);
         }
         
-        if (dto.Media == null)
+        if (files == null)
         {
             ModelState.AddModelError("PortfolioImg", "لطفا یک تصویر برای نمونه کار انتخاب نمایید.");
             return View(dto);
         }
         
         //upload images
-        var resUploadFiles = await _uploadRepository.UploadMedia(dto.Media);
-        if (resUploadFiles.Status ==  UtilitiesStatusCodes.Success)
+
+        UploadDto uploadDto = new UploadDto();
+        List<IFormFile> filesResult = new List<IFormFile>();
+        
+        uploadDto.PortfolioId = dto.PortfolioId;
+        
+        foreach (var fileItem in files)
         {
-            TempData["Result"] = "true";
+            filesResult.Add(fileItem);
         }
-        else if(resUploadFiles.Status ==  UtilitiesStatusCodes.BadRequest)
-        {
-            TempData["Result"] = "false";
-            return RedirectToAction(nameof(Index));
-        }
+        uploadDto.Files = filesResult;
+        await _uploadRepository.UploadMedia(uploadDto);
+
 
         var portfolio = await _portfolioRepository.Add(dto);
         Guid portfolioId = portfolio.Result.PortfolioId;
