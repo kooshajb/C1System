@@ -68,8 +68,15 @@ public class AdminPortfolioController : Controller
             return View(dto);
         }
         
-        //upload images
+        var portfolio = await _portfolioRepository.Add(dto);
+        Guid portfolioId = portfolio.Result.PortfolioId;
+        if (portfolioId == null)
+        {
+            TempData["Result"] = "false";
+            return RedirectToAction(nameof(Index));
+        }
 
+        //upload images
         UploadDto uploadDto = new UploadDto();
         List<IFormFile> filesResult = new List<IFormFile>();
         
@@ -81,15 +88,6 @@ public class AdminPortfolioController : Controller
         }
         uploadDto.Files = filesResult;
         await _uploadRepository.UploadMedia(uploadDto);
-
-
-        var portfolio = await _portfolioRepository.Add(dto);
-        Guid portfolioId = portfolio.Result.PortfolioId;
-        if (portfolioId == null)
-        {
-            TempData["Result"] = "false";
-            return RedirectToAction(nameof(Index));
-        }
 
         //categories
         List<Category_PortfolioEntity> addCatPortfolio = new List<Category_PortfolioEntity>();
