@@ -17,7 +17,7 @@ public interface IProjectRepository
     Task<GenericResponse<GetProjectDto>> GetById(Guid id);
     Task<GenericResponse<GetProjectDto>> Update(Guid id, AddUpdateProjectDto dto);
     Task<GenericResponse> Delete(Guid id);
-    bool ExistProject(string Title, Guid projectId);
+    bool ExistProject(string title, Guid projectId);
 }
 
 public class ProjectRepository : IProjectRepository
@@ -49,10 +49,10 @@ public class ProjectRepository : IProjectRepository
             $"Podcast {i.Result.Title} delete Success {i.Result.ProjectId}");
     }
 
-    public bool ExistProject(string Title, Guid projectId)
+    public bool ExistProject(string title, Guid projectId)
     {
-        return _context.Prosjects.Any(p =>
-           p.Title == Title && p.ProjectId != projectId);
+        return _context.Projects.Any(p =>
+           p.Title == title && p.ProjectId != projectId);
     }
 
     public async Task<GenericResponse<IEnumerable<GetProjectDto>>> Get()
