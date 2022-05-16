@@ -1,6 +1,8 @@
 ﻿using System;
 using AutoMapper;
 using C1System;
+using C1System.Dtos.Media;
+using C1System.Media;
 
 public class GetPortfolioDto
 {
@@ -12,13 +14,13 @@ public class GetPortfolioDto
     public string CompanyName { get; set; }
     public string CompanyLogo { get; set; }
     public string FeatureMedia { get; set; }
-    public string? Media { get; set; }
     public int? Point { get; set; }
     public int PortfolioSort { get; set; }
 }
 
 public class AddPortfolioDto
 {
+    public Guid PortfolioId { get; set; } = Guid.NewGuid();
     public string Title { get; set; }
     public string SubTitle { get; set; }
     public string Description { get; set; }
@@ -26,7 +28,6 @@ public class AddPortfolioDto
     public string CompanyName { get; set; }
     public string CompanyLogo { get; set; }
     public string FeatureMedia { get; set; }
-    public string? Media { get; set; }
     public bool IsActive { get; set; }
     public int PortfolioSort { get; set; }
 }
@@ -42,7 +43,6 @@ public class UpdatePortfolioDto
     public string CompanyName { get; set; }
     public string CompanyLogo { get; set; }
     public string FeatureMedia { get; set; }
-    public string? Media { get; set; }
     public int? Point { get; set; }
     public bool IsActive { get; set; }
     public int PortfolioSort { get; set; }
