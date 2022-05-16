@@ -1,0 +1,88 @@
+﻿@model AddUpdateCategoryDto
+
+@{
+    ViewData["Title"] = "افزودن خدمت";
+}
+
+<div class="col-md-12">
+    <div class="card mb-4">
+        <div class="card-body">
+            <div class="card-title mb-3">افزودن خدمت</div>
+            <form asp-action="AddCategory" method="post" enctype="multipart/form-data">
+                    <input type="hidden" asp-for="ParentId" value="@ViewBag.Id"/>
+                    <div class="row">
+                    <div class="col-md-6 form-group mb-3">
+                        <label asp-for="Title">عنوان</label>
+                        <input asp-for="Title" class="form-control" placeholder="عنوان را وارد کنید">
+                        <span class="text-danger" asp-validation-for="Title"></span>
+                    </div>
+
+                    <div class="col-md-6 form-group mb-3">
+                        <label asp-for="SubTitle">زیرعنوان</label>
+                        <input asp-for="SubTitle" class="form-control" placeholder="زیرعنوان را وارد کنید">
+                        <span class="text-danger" asp-validation-for="SubTitle"></span>
+                    </div>
+
+                    <div class="col-md-6 form-group mb-3">
+                        <label asp-for="Description">توضیحات</label>
+                        <input asp-for="Description" class="form-control" placeholder="توضیحات را وارد کنید">
+                        <span class="text-danger" asp-validation-for="Description"></span>
+                    </div>
+
+                    <div class="col-md-6 form-group mb-3">
+                        <label asp-for="IconImage">عکس آیکن خدمت</label>
+                        <input asp-for="IconImage" class="form-control" placeholder="عکس آیکن خدمت را وارد کنید">
+                        <span class="text-danger" asp-validation-for="IconImage"></span>
+                    </div>
+
+                    <div class="col-md-6 form-group mb-3">
+                        <label asp-for="IntroDescription">متن معرفی</label>
+                        <input asp-for="IntroDescription" class="form-control" placeholder="متن معرفی را وارد کنید">
+                        <span class="text-danger" asp-validation-for="IntroDescription"></span>
+                    </div>
+
+                    <div class="col-md-6 form-group mb-3">
+                        <label asp-for="IntroImage">تصویر معرفی خدمت</label>
+                        <input asp-for="IntroImage" class="form-control" placeholder="تصویر معرفی خدمت را وارد کنید">
+                        <span class="text-danger" asp-validation-for="IntroImage"></span>
+                    </div>
+
+                    <div class="col-md-6 form-group mb-3">
+                        <label asp-for="BannerTitle">عنوان بنر</label>
+                        <input asp-for="BannerTitle" class="form-control" placeholder="عنوان بنر را وارد کنید">
+                        <span class="text-danger" asp-validation-for="BannerTitle"></span>
+                    </div>
+
+                    <div class="col-md-6 form-group mb-3">
+                        <label asp-for="BannerDescription">توضیحات بنر</label>
+                        <input asp-for="BannerDescription" class="form-control" placeholder="توضیحات بنر را وارد کنید">
+                        <span class="text-danger" asp-validation-for="BannerDescription"></span>
+                    </div>
+
+                    <div class="col-md-6 form-group mb-3">
+                        <label asp-for="BannerImage">عکس بنر</label>
+                        <input asp-for="BannerImage" class="form-control" placeholder="عکس بنر را وارد کنید">
+                        <span class="text-danger" asp-validation-for="BannerImage"></span>
+                    </div>
+
+                    <div class="col-md-6 form-group mb-3">
+                        <label asp-for="IconMenuImage">آیکن منو خدمت</label>
+                        <input asp-for="IconMenuImage" class="form-control" placeholder="آیکن منو خدمت را وارد کنید">
+                        <span class="text-danger" asp-validation-for="IconMenuImage"></span>
+                    </div>
+
+                    <div class="col-md-6 form-group mb-3">
+                        <label asp-for="VideoIntro">ویدئو معرفی خدمت</label>
+                        <input asp-for="VideoIntro" class="form-control" placeholder="ویدئو معرفی خدمت را وارد کنید">
+                        <span class="text-danger" asp-validation-for="VideoIntro"></span>
+                    </div>
+
+                    <div class="col-md-12">
+                        <button asp-action="AddCategory" asp-controller="AdminCategory" class="btn btn-primary" type="submit">تایید</button>
+                        <a asp-action="ShowAllCategories" class="btn btn-danger m-1">لغو</a>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
