@@ -7,9 +7,9 @@ namespace C1System.Areas.Admin.Controllers;
 [Area("Admin")]
 public class AdminBlogController : Controller
 {
-    private readonly BlogRepository _blogRepository;
+    private readonly IBlogRepository _blogRepository;
 
-    public AdminBlogController(BlogRepository blogRepository)
+    public AdminBlogController(IBlogRepository blogRepository)
     {
         _blogRepository = blogRepository;
     }
@@ -31,19 +31,20 @@ public class AdminBlogController : Controller
     }
     
     [HttpPost]
-    public async Task<IActionResult> AddBlog(AddUpdateBlogDto dto)
+    public async Task<IActionResult> AddBlog(AddBlogDto dto)
     {
         if (!ModelState.IsValid)
         {
             return View(dto);
         }
-        // if (_blogRepository.ExistBlog(dto.Title,0))
+        // if (_tagRepository.ExistTag(dto.Title,0))
         // {
-        //     ModelState.AddModelError("ErrorBlog", "پست تکراری است");
+        //     ModelState.AddModelError("ErrorTag", "برچسب تکراری است");
         //     return View(dto);
         // }
-        var newBlog = await _blogRepository.Add(dto);
-        TempData["Result"] = newBlog.Result.BlogId != null  ? "true" : "false";
+        
+        var blog = await _blogRepository.Add(dto);
+        Guid blogId = blog.Result.BlogId;
         return RedirectToAction(nameof(Index));
     }
 
@@ -56,11 +57,12 @@ public class AdminBlogController : Controller
             TempData["NotFoundBlog"] = "true";
             return RedirectToAction(nameof(Index));
         }
+
         return View(blog.Result);
     }
     
     [HttpPost]
-    public async Task<IActionResult> UpdateBlog(AddUpdateBlogDto dto, Guid id)
+    public async Task<IActionResult> UpdateBlog(UpdateBlogDto dto, Guid id)
     {
         var blog = await _blogRepository.GetById(id);
         if (!ModelState.IsValid)
