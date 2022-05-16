@@ -2,6 +2,7 @@
 using System;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Reflection.Metadata.Ecma335;
+using C1System.Media;
 
 namespace C1System;
 
@@ -48,8 +49,6 @@ public class PortfolioEntity
     [Required(ErrorMessage = "لطفا {0} را وارد کنید .")]
     public string FeatureMedia { get; set; }
     
-    [Display(Name = "تصاویر")]
-    public string? Media { get; set; }
 
     [Display(Name ="امتیازدهی")]
     public int? Point { get; set; }
@@ -67,8 +66,11 @@ public class PortfolioEntity
     // public BookMarkEntity BookMark { get; set; }
 
     public List<Technology_PortfolioEntity> TechnologyPortfolios { get; set; }
+    public List<MediaEntity> Media { get; set; }
 
     #endregion
+    
+    
     //todo ارتباط با اینیتیت DemoPortfolio اضافه شود 
     //todo ارتباط با TechnologyPortfolio
     //todo ارتباط با برچسب ها
