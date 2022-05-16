@@ -1,1 +1,0 @@
-$(document).ready(function(){$("#carouselExampleInterval").carousel({interval:2e3}),$("#carouselExamplePause").carousel({pause:"hover"}),$("#carouselExampleWrap").carousel({wrap:!1}),$("#carouselExampleKeyboard").carousel({keyboard:!0})});
