@@ -3,65 +3,18 @@
 namespace C1System;
 public class C1SystemContext : DbContext
 {
-    public C1SystemContext(DbContextOptions<C1SystemContext> options) : base(options)
-    {
-
-
-    }
-    public DbSet<BlogEntity> Blogs { get; set; }
-    // public DbSet<Slider> Sliders { get; set; }
+    public C1SystemContext(DbContextOptions<C1SystemContext> options) : base(options) { }
+    // public DbSet<BlogEntity> Blogs { get; set; }
     public DbSet<TagEntity> Tags { get; set; }
+    public DbSet<BlogEntity> Blogs { get; set; }
     public DbSet<CustomerSuccessEntity> CustomerSuccesses { get; set; }
-
-    // public DbSet<Introduction> Introductions { get; set; }
-    // public DbSet<CustomerSpeech> CustomerSpeechs { get; set; }
-
     public DbSet<CategoryEntity> Categories { get; set; }
-    // public DbSet<CategoryPackage> CategoryPackages { get; set; }
-    // public DbSet<CategoryPackageItem>  CategoryPackageItems { get; set; }
     public DbSet<PortfolioEntity> Portfolios { get; set; }
     public DbSet<Category_PortfolioEntity> CategoryPortfolios { get; set; }
     public DbSet<Technology_PortfolioEntity> TechnologyPortfolios { get; set; }
     public DbSet<Tag_PodcastEntity> TagPodcasts { get; set; }
-
-    public DbSet<ProjectEntity> Prosjects { get; set; }
+    public DbSet<ProjectEntity> Projects { get; set; }
     public DbSet<PodcastEntity> Podcasts { get; set; }
-    // public DbSet<Gender> Genders { get; set; }
-    // public DbSet<City> Cities { get; set; }
-    // public DbSet<Province> Provinces { get; set; }
-    // public DbSet<Country> Countries { get; set; }
-    // public DbSet<User> Users { get; set; }
-    // public DbSet<UserRole> UserRoles { get; set; }
-    // public DbSet<AccountType> AccountTypes { get; set; }
-    // public DbSet<CareerOpportunity> CareerOpportunities { get; set; }
-    // public DbSet<Faq> Faqs { get; set; }
-    public DbSet<NewsLetterEntity> NewsLetters { get; set; }
-    // public DbSet<DemoPortfolio>  DemoPortfolios { get; set; }
-    public DbSet<TechnologyEntity> Technologies  { get; set; }
-    // public DbSet<Ticket> Tickets { get; set; }
-    // public DbSet<Priority> Priorities { get; set; }
-    // public DbSet<TicketStatus> TicketStatuses { get; set; }
-
-    
-    // public DbSet<Slider> Sliders { get; set; }
-
-    // public DbSet<CustomerSpeech> CustomerSpeechs { get; set; }
-    // public DbSet<CategoryPackage> CategoryPackages { get; set; }
-    // public DbSet<CategoryPackageItem>  CategoryPackageItems { get; set; }
-    // public DbSet<Gender> Genders { get; set; }
-    // public DbSet<City> Cities { get; set; }
-    // public DbSet<Province> Provinces { get; set; }
-    // public DbSet<Country> Countries { get; set; }
-    // public DbSet<User> Users { get; set; }
-    // public DbSet<UserRole> UserRoles { get; set; }
-    // public DbSet<AccountType> AccountTypes { get; set; }
-    // public DbSet<Blog> Blogs { get; set; }
-    // public DbSet<CareerOpportunity> CareerOpportunities { get; set; }
-    // public DbSet<Faq> Faqs { get; set; }
-    // public DbSet<DemoPortfolio>  DemoPortfolios { get; set; }
-    // public DbSet<TechnologyPortfolio> TechnologyPortfolios  { get; set; }
-    // public DbSet<Ticket> Tickets { get; set; }
-    // public DbSet<Priority> Priorities { get; set; }
-    // public DbSet<TicketStatus> TicketStatuses { get; set; }
+    // public DbSet<NewsLetterEntity> NewsLetters { get; set; }
+    // public DbSet<TechnologyEntity> Technologies  { get; set; }
 }
-

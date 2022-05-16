@@ -13,11 +13,12 @@ public class AdminPortfolioController : Controller
     private readonly ICategoryRepository _categoryRepository;
     private readonly ITechnologyRepository _technologyRepository;
     private readonly IUploadRepository _uploadRepository;
-    public AdminPortfolioController(IPortfolioRepository portfolioRepository, ICategoryRepository categoryRepository,ITechnologyRepository technologyRepository)
+    public AdminPortfolioController(IPortfolioRepository portfolioRepository, ICategoryRepository categoryRepository,ITechnologyRepository technologyRepository, IUploadRepository uploadRepository)
     {
         _portfolioRepository = portfolioRepository;
         _categoryRepository = categoryRepository;
         _technologyRepository = technologyRepository;
+        _uploadRepository = uploadRepository;
     }
     
     public async Task<IActionResult> Index()
@@ -60,23 +61,23 @@ public class AdminPortfolioController : Controller
             return View(dto);
         }
         
-        // if (uploadDto == null)
-        // {
-        //     ModelState.AddModelError("PortfolioImg", "لطفا یک تصویر برای نمونه کار انتخاب نمایید.");
-        //     return View(dto);
-        // }
-        //
-        // //upload images
-        // var resUploadFiles = await _uploadRepository.UploadMedia(uploadDto);
-        // if (resUploadFiles.Status ==  UtilitiesStatusCodes.Success)
-        // {
-        //     TempData["Result"] = "true";
-        // }
-        // else if(resUploadFiles.Status ==  UtilitiesStatusCodes.BadRequest)
-        // {
-        //     TempData["Result"] = "false";
-        //     return RedirectToAction(nameof(Index));
-        // }
+        if (dto.Media == null)
+        {
+            ModelState.AddModelError("PortfolioImg", "لطفا یک تصویر برای نمونه کار انتخاب نمایید.");
+            return View(dto);
+        }
+        
+        //upload images
+        var resUploadFiles = await _uploadRepository.UploadMedia(dto.Media);
+        if (resUploadFiles.Status ==  UtilitiesStatusCodes.Success)
+        {
+            TempData["Result"] = "true";
+        }
+        else if(resUploadFiles.Status ==  UtilitiesStatusCodes.BadRequest)
+        {
+            TempData["Result"] = "false";
+            return RedirectToAction(nameof(Index));
+        }
 
         var portfolio = await _portfolioRepository.Add(dto);
         Guid portfolioId = portfolio.Result.PortfolioId;

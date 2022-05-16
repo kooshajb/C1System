@@ -17,14 +17,14 @@ public class BlogController : ControllerBase
     }
 
     [HttpGet]
-    public async Task<ActionResult<GenericResponse<IEnumerable<GetBlogDto>>>> GetBlogs()
+    public async Task<ActionResult<GenericResponse<IEnumerable<GetBlogDto>>>> GetBlog()
     {
-        var blogs = await _blogRepository.Get();
-        return Ok(blogs.Result);
+        var events = await _blogRepository.Get();
+        return Ok(events.Result);
     }
 
     [HttpPost]
-    public async Task<ActionResult> CreateBlog([FromBody]AddUpdateBlogDto dto)
+    public async Task<ActionResult> AddBlog([FromBody]AddBlogDto dto)
     {
         if (dto == null)  return BadRequest();
         var createdBlog = await _blogRepository.Add(dto);
@@ -42,7 +42,7 @@ public class BlogController : ControllerBase
     }
 
     [HttpPut("{id:guid}")]
-    public async Task<ActionResult<GetBlogDto>> UpdateBlog([FromBody]AddUpdateBlogDto dto, Guid id)
+    public async Task<ActionResult<GetBlogDto>> UpdateBlog([FromBody]UpdateBlogDto dto, Guid id)
     {
         var blog =  await _blogRepository.Update(id, dto);
         return Ok(blog.Result);

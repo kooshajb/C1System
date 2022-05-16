@@ -1,4 +1,4 @@
-﻿using AutoMapper;
+using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 
@@ -6,10 +6,10 @@ namespace C1System;
 
 public interface IBlogRepository
 {
-    Task<GenericResponse<GetBlogDto>> Add(AddUpdateBlogDto dto);
+    Task<GenericResponse<GetBlogDto>> Add(AddBlogDto dto);
     Task<GenericResponse<IEnumerable<GetBlogDto>>> Get();
     Task<GenericResponse<GetBlogDto>> GetById(Guid id);
-    Task<GenericResponse<GetBlogDto>> Update(Guid id, AddUpdateBlogDto dto);
+    Task<GenericResponse<GetBlogDto>> Update(Guid id, UpdateBlogDto dto);
     Task<GenericResponse> Delete(Guid id);
     bool ExistBlog(string title, Guid blogId);
 }
@@ -25,7 +25,7 @@ public class BlogRepository : IBlogRepository
         _mapper = mapper;
     }
 
-    public async Task<GenericResponse<GetBlogDto>> Add(AddUpdateBlogDto dto)
+    public async Task<GenericResponse<GetBlogDto>> Add(AddBlogDto dto)
     {
         if (dto == null) throw new ArgumentException("Dto must not be null", nameof(dto));
         BlogEntity blog = _mapper.Map<BlogEntity>(dto);
@@ -48,7 +48,7 @@ public class BlogRepository : IBlogRepository
         return new GenericResponse<GetBlogDto>(_mapper.Map<GetBlogDto>(i));
     }
 
-    public async Task<GenericResponse<GetBlogDto>> Update(Guid id, AddUpdateBlogDto dto)
+    public async Task<GenericResponse<GetBlogDto>> Update(Guid id, UpdateBlogDto dto)
     {
         var i = _context.Set<BlogEntity>()
             .Where(p => p.BlogId == id).First();
