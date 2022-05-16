@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using C1System.Media;
+using Microsoft.EntityFrameworkCore;
 
 namespace C1System;
 public class C1SystemContext : DbContext
@@ -15,6 +16,8 @@ public class C1SystemContext : DbContext
     public DbSet<Tag_PodcastEntity> TagPodcasts { get; set; }
     public DbSet<ProjectEntity> Projects { get; set; }
     public DbSet<PodcastEntity> Podcasts { get; set; }
+    public DbSet<MediaEntity> Media { get; set; }
+
     // public DbSet<NewsLetterEntity> NewsLetters { get; set; }
     // public DbSet<TechnologyEntity> Technologies  { get; set; }
 }
