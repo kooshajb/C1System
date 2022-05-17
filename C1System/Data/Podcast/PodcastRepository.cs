@@ -131,7 +131,7 @@ public class PodcastRepository : IPodcastRepository
             _context.SaveChanges();
             return true;
         }
-        catch (Exception)
+        catch
         {
             return true;
         }
