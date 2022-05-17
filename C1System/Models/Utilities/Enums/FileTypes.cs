@@ -7,5 +7,5 @@ public enum FileTypes {
     Video = 3,
     Voice = 4,
     Pdf = 5,
-    Txt = 6
+    Txt = 6,
 }
