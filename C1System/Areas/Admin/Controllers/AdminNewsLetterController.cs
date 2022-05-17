@@ -29,7 +29,7 @@ public class AdminNewsLetterController : Controller
     }
     
     [HttpPost]
-    public async Task<IActionResult> AddNewsLetter(AddUpdateNewsLetterDto dto)
+    public async Task<IActionResult> AddNewsLetter(AddNewsLetterDto dto)
     {
         if (!ModelState.IsValid)
         {
@@ -59,7 +59,7 @@ public class AdminNewsLetterController : Controller
     }
     
     [HttpPost]
-    public async Task<IActionResult> UpdateNewsLetter(AddUpdateNewsLetterDto dto, Guid id)
+    public async Task<IActionResult> UpdateNewsLetter(UpdateNewsLetterDto dto, Guid id)
     {
         var newsLetter = await _newsLetterRepository.GetById(id);
         if (!ModelState.IsValid)
