@@ -1,4 +1,4 @@
-﻿@model AddPodcastDto
+﻿@model AddUpdateCustomerSuccessDto
 
 @{
     ViewData["Title"] = "افزودن داستان موفقیت";
@@ -8,32 +8,44 @@
     <div class="card mb-4">
         <div class="card-body">
             <div class="card-title mb-3">افزودن داستان موفقیت</div>
-            <form asp-action="AddPodcast" method="post" enctype="multipart/form-data">
+            <form asp-action="AddCustomerSuccess" method="post" enctype="multipart/form-data">
                 <div class="row">
                     <div class="col-md-6 form-group mb-3">
-                        <label asp-for="PodcastNumber">شماره پادکست</label>
-                        <input asp-for="PodcastNumber" class="form-control" placeholder="شماره پادکست را وارد کنید">
-                        <span class="text-danger" asp-validation-for="PodcastNumber"></span>
+                        <label asp-for="ManagerName">نام مدیر</label>
+                        <input asp-for="ManagerName" class="form-control" placeholder="نام مدیر را وارد کنید">
+                        <span class="text-danger" asp-validation-for="ManagerName"></span>
                     </div>
 
                     <div class="col-md-6 form-group mb-3">
-                        <label asp-for="Title">عنوان</label>
-                        <input asp-for="Title" class="form-control" placeholder="عنوان را وارد کنید">
-                        <span class="text-danger" asp-validation-for="Title"></span>
+                        <label asp-for="ManagerSide">سمت مدیرعامل</label>
+                        <input asp-for="ManagerSide" class="form-control" placeholder="سمت مدیرعامل را وارد کنید">
+                        <span class="text-danger" asp-validation-for="ManagerSide"></span>
                     </div>
 
                     <div class="col-md-6 form-group mb-3">
-                        <label asp-for="StudyTime">زمان مطالعه</label>
-                        <input asp-for="StudyTime" class="form-control" placeholder="زمان مطالعه را وارد کنید">
-                        <span class="text-danger" asp-validation-for="StudyTime"></span>
+                        <label asp-for="CompanyName">نام شرکت</label>
+                        <input asp-for="CompanyName" class="form-control" placeholder="نام شرکت را وارد کنید">
+                        <span class="text-danger" asp-validation-for="CompanyName"></span>
                     </div>
 
                     <div class="col-md-6 form-group mb-3">
-                        <label asp-for="FeatureImage">تصویر شاخص</label>
-                        <input asp-for="FeatureImage" class="form-control" placeholder="تصویر را وارد کنید">
-                        <span class="text-danger" asp-validation-for="FeatureImage"></span>
+                        <label asp-for="StartupName">نام استارتاپ</label>
+                        <input asp-for="StartupName" class="form-control" placeholder="نام استارتاپ را وارد کنید">
+                        <span class="text-danger" asp-validation-for="StartupName"></span>
                     </div>
 
+                    <div class="col-md-6 form-group mb-3">
+                        <label asp-for="ActivityName">حوزه فعالیت</label>
+                        <input asp-for="ActivityName" class="form-control" placeholder="حوزه فعالیت را وارد کنید">
+                        <span class="text-danger" asp-validation-for="ActivityName"></span>
+                    </div>
+
+                    <div class="col-md-6 form-group mb-3">
+                        <label asp-for="CompanyLogo">لوگو شرکت</label>
+                        <input asp-for="CompanyLogo" class="form-control" placeholder="لوگو شرکت را وارد کنید">
+                        <span class="text-danger" asp-validation-for="CompanyLogo"></span>
+                    </div>
+                    
                     <div class="col-md-6 form-group mb-3">
                         <label asp-for="Description">توضیحات</label>
                         <input asp-for="Description" class="form-control" placeholder="توضیحات را وارد کنید">
@@ -41,20 +53,31 @@
                     </div>
 
                     <div class="col-md-6 form-group mb-3">
-                        <label asp-for="Audio">فایل صوت</label>
-                        <input asp-for="Audio" class="form-control" placeholder="فایل صوت را وارد کنید">
-                        <span class="text-danger" asp-validation-for="Audio"></span>
+                        <label asp-for="VideoFile">فایل ویدئو</label>
+                        <input asp-for="VideoFile" class="form-control" placeholder="فایل ویدئو را وارد کنید">
+                        <span class="text-danger" asp-validation-for="VideoFile"></span>
                     </div>
                     
-                   <div class="col-md-6 form-group mb-3">
-                        <label>انتخاب برچسب ها</label>
-                        <select class="form-control" id="select-tag" asp-items="@(new SelectList(ViewBag.Tag, "TagId", "Title"))"></select>
-                        <button class="Add-Tag btn btn-success my-2" type="button">انتخاب</button>
-                        <div class="ListTag"></div>
+                    <div class="col-md-6 form-group mb-3">
+                        <label asp-for="CoverVideoImage">کاور ویدئو</label>
+                        <input asp-for="CoverVideoImage" class="form-control" placeholder="کاور ویدئو را وارد کنید">
+                        <span class="text-danger" asp-validation-for="VideoFile"></span>
+                    </div>
+                    
+                    <div class="col-md-6 form-group mb-3">
+                        <label asp-for="VideoTitle">عنوان ویدئو</label>
+                        <input asp-for="VideoTitle" class="form-control" placeholder="عنوان ویدئو را وارد کنید">
+                        <span class="text-danger" asp-validation-for="VideoTitle"></span>
+                    </div>
+                    
+                    <div class="col-md-6 form-group mb-3">
+                        <label asp-for="VideoSubTitle">زیرعنوان ویدئو</label>
+                        <input asp-for="VideoSubTitle" class="form-control" placeholder="زیرعنوان ویدئو را وارد کنید">
+                        <span class="text-danger" asp-validation-for="VideoSubTitle"></span>
                     </div>
 
                     <div class="col-md-12">
-                        <button asp-action="AddPodcast" asp-controller="AdminPodcast" class="btn btn-primary" type="submit">تایید</button>
+                        <button asp-action="AddCustomerSuccess" asp-controller="AdminCustomerSuccess" class="btn btn-primary" type="submit">تایید</button>
                         <a asp-action="Index" class="btn btn-danger m-1">لغو</a>
                     </div>
                 </div>
@@ -62,37 +85,3 @@
         </div>
     </div>
 </div>
-
-
-@section Scripts
-{
-    <script>
-        //category
-        $(".Add-Tag").click(function () {
-            if ($("#select-tag").val()) {
-                var value = $("#select-tag").children("option:selected").val();
-                var text = $("#select-tag").children("option:selected").text();
-                $(".ListTag").append(
-                    "<div style='background: #8080802b;height: 39px;width: 48%;border-radius: 5px;margin-bottom: 1%;margin-left: 1%;display:flex;color:whitesmoke;'>"
-                    + "<label style='display: flex;align-items: center;justify-items: center;' class='col-md-12'>" + text + "</label>"
-                    + "<input type='hidden' name='TagId' value='" + value + "' />"
-                    + "<a style='display: flex;align-items: center;justify-items: center;' class='btn btn-danger remove-tag'>حذف</a>"
-                    + "</div>"
-
-                );
-                $("#select-tag").children("option:selected").remove();
-            }
-        });
-
-        $('.ListTag').delegate(".remove-tag", 'click', function () {
-            var content = $(this).parent();
-            var text = content.find($("label")).text();
-            var value = content.find($("input[type=hidden]")).val();
-            $("#select-tag").append($('<option>', {
-                value: value,
-                text: text
-            }));
-            content.remove();
-        });
-    </script>
-}
