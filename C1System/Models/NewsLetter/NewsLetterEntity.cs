@@ -8,7 +8,7 @@ namespace C1System;
 public class NewsLetterEntity
 {
     [Key] 
-    public Guid NewsLetterId { get; set; }
+    public Guid NewsLetterId { get; set; } = Guid.NewGuid();
     
     [Display(Name = "نام و نام خانوادگی")]
     [Required(ErrorMessage = "لطفا {0} را وارد کنید.")]
