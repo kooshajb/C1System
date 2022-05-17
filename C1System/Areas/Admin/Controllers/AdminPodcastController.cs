@@ -139,6 +139,11 @@ public class AdminPodcastController : Controller
     [HttpGet]
     public async Task<IActionResult> DeletePodcast(Guid id)
     {
+        var tags = await _tagRepository.Get();
+        ViewBag.Tag = tags.Result;
+        
+        ViewBag.PodcastTag = await _podcastRepository.ShowPodcastsForUpdate(id);
+        
         var podcast = await _podcastRepository.GetById(id);
         if (podcast.Result == null)
         {
