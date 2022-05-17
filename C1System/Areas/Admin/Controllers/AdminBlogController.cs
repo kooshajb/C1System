@@ -8,10 +8,12 @@ namespace C1System.Areas.Admin.Controllers;
 public class AdminBlogController : Controller
 {
     private readonly IBlogRepository _blogRepository;
+    private readonly ITagRepository _tagRepository;
 
-    public AdminBlogController(IBlogRepository blogRepository)
+    public AdminBlogController(IBlogRepository blogRepository, ITagRepository tagRepository)
     {
         _blogRepository = blogRepository;
+        _tagRepository = tagRepository;
     }
     
     public async Task<IActionResult> Index()
@@ -21,20 +23,22 @@ public class AdminBlogController : Controller
     }
     
     [HttpGet]
-    public IActionResult AddBlog(Guid? id)
+    public async Task<IActionResult> AddBlog(Guid id)
     {
-        if (id != null)
-        {
-            ViewBag.Id = id;
-        }
+        var tags = await _tagRepository.Get();
+        ViewBag.Tag = tags.Result;
+        
         return View();
     }
     
     [HttpPost]
-    public async Task<IActionResult> AddBlog(AddBlogDto dto)
+    public async Task<IActionResult> AddBlog(AddBlogDto dto, List<Guid> tagId)
     {
         if (!ModelState.IsValid)
         {
+            var tags = await _tagRepository.Get();
+            ViewBag.Tag = tags.Result;
+            
             return View(dto);
         }
         // if (_tagRepository.ExistTag(dto.Title,0))
@@ -42,15 +46,41 @@ public class AdminBlogController : Controller
         //     ModelState.AddModelError("ErrorTag", "برچسب تکراری است");
         //     return View(dto);
         // }
-        
+
         var blog = await _blogRepository.Add(dto);
         Guid blogId = blog.Result.BlogId;
+        if (blogId == null)
+        {
+            TempData["Result"] = "false";
+            return RedirectToAction(nameof(Index));
+        }
+        
+        //tags        
+        List<Tag_BlogEntity> addTagBlog = new List<Tag_BlogEntity>();
+        
+        foreach (var item in tagId)
+        {
+            addTagBlog.Add(new Tag_BlogEntity()
+            {
+                TagId = item,
+                BlogId = blogId
+            });
+        }
+
+        bool res = _blogRepository.AddBlogsForTag(addTagBlog);
+        TempData["Result"] = res ? "true" : "false";
         return RedirectToAction(nameof(Index));
     }
 
     [HttpGet]
     public async Task<IActionResult> UpdateBlog(Guid id)
     {
+        var tags = await _tagRepository.Get();
+        ViewBag.Tag = tags.Result;
+        
+        ViewBag.BlogTag = await _blogRepository.ShowBlogsForUpdate(id);
+
+        
         var blog = await _blogRepository.GetById(id);
         if (blog.Result == null)
         {
@@ -62,17 +92,46 @@ public class AdminBlogController : Controller
     }
     
     [HttpPost]
-    public async Task<IActionResult> UpdateBlog(UpdateBlogDto dto, Guid id)
+    public async Task<IActionResult> UpdateBlog(UpdateBlogDto dto, List<Guid> tagId)
     {
-        var blog = await _blogRepository.GetById(id);
         if (!ModelState.IsValid)
         {
-            return View(blog.Result);
+            var tags = await _tagRepository.Get();
+            ViewBag.Tag = tags.Result;
+            
+            ViewBag.Blog = await _blogRepository.ShowBlogsForUpdate(dto.BlogId);
+
+            return View();
         }
         
-        var updateBlog = await _blogRepository.Update(id, dto);
+        //tag
+        var updateBlog = _blogRepository.Update(dto.BlogId, dto);
         
-        TempData["Result"] = updateBlog.Result != null ? "true" : "false";
+        if (updateBlog.Result == null)
+        {
+            TempData["Result"] = "false";
+            return RedirectToAction(nameof(Index));
+        }
+        
+        bool deleteBlog = _blogRepository.DeleteBlogForTag(dto.BlogId);
+        if (!deleteBlog)
+        {
+            TempData["Result"] = "false";
+            return RedirectToAction(nameof(Index));
+        }
+        
+        List<Tag_BlogEntity> tagResult = new List<Tag_BlogEntity>();
+        foreach (var item in tagId)
+        {
+            tagResult.Add(new Tag_BlogEntity
+            {
+                TagId = item,
+                BlogId = dto.BlogId,
+            });
+        }
+        bool addBlogForTag= _blogRepository.AddBlogsForTag(tagResult);
+        TempData["Result"] = addBlogForTag ? "true" : "false";
+        
         return RedirectToAction(nameof(Index));
     }
 
