@@ -34,12 +34,12 @@ public class MediaRepository : IMediaRepository {
             string nullPath = Path.Combine(webRoot, "Medias", "null.png");
             string path = Path.Combine(webRoot, "Medias", folder, name);
             try {
-                try {
-                    File.Delete(path);
-                }
-                catch (Exception) {
-                    // ignored
-                }
+                // try {
+                //     File.Delete(path);
+                // }
+                // catch (Exception) {
+                //     // ignored
+                // }
 
                 using FileStream stream = new(path, FileMode.Create);
                 image.CopyTo(stream);
