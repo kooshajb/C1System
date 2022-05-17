@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using C1System.Dtos.Media;
 using C1System.Media;
 using Microsoft.AspNetCore.Mvc;
+using IHostingEnvironment = Microsoft.AspNetCore.Hosting.IHostingEnvironment;
 
 namespace C1System.Areas.Admin.Controllers;
 
@@ -13,12 +14,17 @@ public class AdminPortfolioController : Controller
     private readonly ICategoryRepository _categoryRepository;
     private readonly ITechnologyRepository _technologyRepository;
     private readonly IUploadRepository _uploadRepository;
-    public AdminPortfolioController(IPortfolioRepository portfolioRepository, ICategoryRepository categoryRepository,ITechnologyRepository technologyRepository, IUploadRepository uploadRepository)
+    private readonly IMediaRepository _mediaRepository;
+    private readonly IHostingEnvironment _environment;
+
+    public AdminPortfolioController(IPortfolioRepository portfolioRepository, ICategoryRepository categoryRepository,ITechnologyRepository technologyRepository, IUploadRepository uploadRepository, IMediaRepository mediaRepository, IHostingEnvironment environment)
     {
         _portfolioRepository = portfolioRepository;
         _categoryRepository = categoryRepository;
         _technologyRepository = technologyRepository;
         _uploadRepository = uploadRepository;
+        _mediaRepository = mediaRepository;
+        _environment = environment;
     }
     
     public async Task<IActionResult> Index()
@@ -130,16 +136,46 @@ public class AdminPortfolioController : Controller
         
         var technologies = await _technologyRepository.Get();
         ViewBag.Technology = technologies.Result;
-        
+
         ViewBag.PortfolioCat = await _portfolioRepository.ShowPortfoliosCatForUpdate(id);
         ViewBag.PortfolioTech = await _portfolioRepository.ShowPortfoliosTechForUpdate(id);
         
         var portfolio = _portfolioRepository.GetById(id).Result;
+        
+        //image
+        UploadDto uploadDto = new UploadDto();
+        List<IFormFile> filesResult = new List<IFormFile>();
+        
+        //Fetch all files in the Folder (Directory).
+        string[] filePaths = Directory.GetFiles(Path.Combine(_environment.WebRootPath, "Medias/Portfolios/"));
+        
+        //Copy File names to Model collection.
+        foreach (string filePath in filePaths)
+        {
+            if (filePath.Contains(portfolio.Result.PortfolioId.ToString()))
+            {
+                List<string> lists = new List<string>();
+                lists.Add(Path.GetFileName(filePath));
+                
+                // ViewBag.MediaImage =  uploadDto.Files.Add();
+                // files.Add(new FileModel { FileName = Path.GetFileName(filePath) });
+            }
+        }
+        
+
+        // foreach (var item in pathUploadFiles)
+        // {
+        //     Console.WriteLine(item);
+        // }
+        // if (pathUploadFiles == portfolio.Result.PortfolioId.ToString())
+        // {
+        //     ViewBag.Media = filesResult;
+        // }
         return View(portfolio.Result);
     }
     
     [HttpPost]
-    public async Task<IActionResult> UpdatePortfolio(UpdatePortfolioDto dto, List<Guid> categoryId, List<Guid> technologyId)
+    public async Task<IActionResult> UpdatePortfolio(UpdatePortfolioDto dto, List<Guid> categoryId, List<Guid> technologyId, List<IFormFile> files)
     {
         if (!ModelState.IsValid)
         {
@@ -153,6 +189,23 @@ public class AdminPortfolioController : Controller
             ViewBag.PortfolioTech = await _portfolioRepository.ShowPortfoliosTechForUpdate(dto.PortfolioId);
             
             return View();
+        }
+        
+        if (files != null)
+        {
+            
+            UploadDto uploadDto = new UploadDto();
+            List<IFormFile> filesResult = new List<IFormFile>();
+        
+            uploadDto.PortfolioId = dto.PortfolioId;
+        
+            foreach (var fileItem in files)
+            {
+                filesResult.Add(fileItem);
+            }
+
+            uploadDto.Files = filesResult;
+            await _uploadRepository.UploadMedia(uploadDto);
         }
         
         // if (_portfolioRepository.ExistPortfolio(dto.Title, dto.PortfolioId))
