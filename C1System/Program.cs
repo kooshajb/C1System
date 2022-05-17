@@ -3,6 +3,7 @@ using C1System;
 using C1System.Media;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -32,6 +33,8 @@ builder.Services.AddTransient<IProjectRepository, ProjectRepository>();
 builder.Services.AddTransient<ICustomerSuccessRepository, CustomerSuccessRepository>();
 builder.Services.AddTransient<IUploadRepository, UploadRepository>();
 builder.Services.AddTransient<IMediaRepository, MediaRepository>();
+builder.Services.AddTransient<UploadRepository>();
+
 #endregion
 
 
