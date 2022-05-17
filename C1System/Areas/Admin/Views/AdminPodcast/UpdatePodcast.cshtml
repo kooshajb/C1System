@@ -3,7 +3,7 @@
 @{
     ViewData["Title"] = "بروزرسانی پادکست";
     List<GetTagDto> tags = ViewBag.Tag;
-    List<UpdatePodcastTagViewModel> podcastsforupdate = ViewBag.Podcast;
+    List<UpdatePodcastTagViewModel> podcastsforupdate = ViewBag.PodcastTag;
     List<UpdatePodcastTagViewModel> existPodcastTag = new List<UpdatePodcastTagViewModel>();
 }
 
@@ -50,7 +50,7 @@
                         <span class="text-danger" asp-validation-for="Audio"></span>
                     </div>
                     
-                    
+                    @* tags *@
                      <div class="col-md-6 form-group mb-3">
                         <select class="form-control" id="select-tag">
                            @foreach (var tag in tags)
