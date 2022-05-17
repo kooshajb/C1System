@@ -23,7 +23,7 @@ public class AdminPodcastController : Controller
     }
     
     [HttpGet]
-    public async Task<IActionResult> AddPodcast(Guid? id)
+    public async Task<IActionResult> AddPodcast(Guid id)
     {
         var tags = await _tagRepository.Get();
         ViewBag.Tag = tags.Result;
@@ -54,7 +54,7 @@ public class AdminPodcastController : Controller
             return RedirectToAction(nameof(Index));
         }
         
-                
+        //tags        
         List<Tag_PodcastEntity> addTagPodcast = new List<Tag_PodcastEntity>();
         
         foreach (var item in tagId)
@@ -74,16 +74,19 @@ public class AdminPodcastController : Controller
     [HttpGet]
     public async Task<IActionResult> UpdatePodcast(Guid id)
     {
+        var tags = await _tagRepository.Get();
+        ViewBag.Tag = tags.Result;
+        
+        ViewBag.PodcastTag = await _podcastRepository.ShowPodcastsForUpdate(id);
+
+        
         var podcast = await _podcastRepository.GetById(id);
         if (podcast.Result == null)
         {
             TempData["NotFoundPodcast"] = "true";
             return RedirectToAction(nameof(Index));
         }
-        
-        var tags = await _tagRepository.Get();
-        ViewBag.Tag = tags.Result;
-        
+
         return View(podcast.Result);
     }
     
@@ -101,6 +104,15 @@ public class AdminPodcastController : Controller
             return View();
         }
         
+        //tag
+        var updatePodcast = _podcastRepository.Update(dto.PodcastId, dto);
+        
+        if (updatePodcast.Result == null)
+        {
+            TempData["Result"] = "false";
+            return RedirectToAction(nameof(Index));
+        }
+        
         bool deletePodcast = _podcastRepository.DeletePodcastForTag(dto.PodcastId);
         if (!deletePodcast)
         {
@@ -108,17 +120,19 @@ public class AdminPodcastController : Controller
             return RedirectToAction(nameof(Index));
         }
         
-        List<Tag_PodcastEntity> tags = new List<Tag_PodcastEntity>();
+        List<Tag_PodcastEntity> tagResult = new List<Tag_PodcastEntity>();
         foreach (var item in tagId)
         {
-            tags.Add(new Tag_PodcastEntity
+            tagResult.Add(new Tag_PodcastEntity
             {
                 TagId = item,
                 PodcastId = dto.PodcastId,
             });
         }
-        bool addPodcastForTag = _podcastRepository.AddPodcastsForTag(tags);
+        
+        bool addPodcastForTag= _podcastRepository.AddPodcastsForTag(tagResult);
         TempData["Result"] = addPodcastForTag ? "true" : "false";
+        
         return RedirectToAction(nameof(Index));
     }
 
