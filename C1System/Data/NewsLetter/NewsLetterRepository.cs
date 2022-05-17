@@ -10,10 +10,10 @@ using System.Threading.Tasks;
 namespace C1System;
 public interface INewsLetterRepository
 {
-    Task<GenericResponse<GetNewsLetterDto>> Add(AddUpdateNewsLetterDto dto);
+    Task<GenericResponse<GetNewsLetterDto>> Add(AddNewsLetterDto dto);
     Task<GenericResponse<IEnumerable<GetNewsLetterDto>>> Get();
     Task<GenericResponse<GetNewsLetterDto>> GetById(Guid id);
-    Task<GenericResponse<GetNewsLetterDto>> Update(Guid id, AddUpdateNewsLetterDto dto);
+    Task<GenericResponse<GetNewsLetterDto>> Update(Guid id, UpdateNewsLetterDto dto);
     Task<GenericResponse> Delete(Guid id);
     bool ExistNewsLetter(string fullName, Guid newsletterId);
 }
@@ -28,7 +28,7 @@ public class NewsLetterRepository : INewsLetterRepository
         _mapper = mapper;
     }
     
-    public async Task<GenericResponse<GetNewsLetterDto>> Add(AddUpdateNewsLetterDto dto)
+    public async Task<GenericResponse<GetNewsLetterDto>> Add(AddNewsLetterDto dto)
     {
         if (dto == null) throw new ArgumentException("Dto must not be null", nameof(dto));
         NewsLetterEntity entity = _mapper.Map<NewsLetterEntity>(dto);
@@ -66,7 +66,7 @@ public class NewsLetterRepository : INewsLetterRepository
         return new GenericResponse<GetNewsLetterDto>(_mapper.Map<GetNewsLetterDto>(i));
     }
     
-    public async Task<GenericResponse<GetNewsLetterDto>> Update(Guid id, AddUpdateNewsLetterDto dto)
+    public async Task<GenericResponse<GetNewsLetterDto>> Update(Guid id, UpdateNewsLetterDto dto)
     {
         var i = _context.Set<NewsLetterEntity>()
                   .Where(p => p.NewsLetterId == id).First();
