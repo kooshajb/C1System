@@ -3,11 +3,18 @@ using C1System;
 
 public class GetNewsLetterDto
 {
+    public Guid NewsLetterId { get; set; }
     public string FullName { get; set; }
     public string Email { get; set; }
 } 
 
-public class AddUpdateNewsLetterDto
+public class AddNewsLetterDto
+{ 
+    public string FullName { get; set; }
+    public string Email { get; set; }
+}
+
+public class UpdateNewsLetterDto
 {
     public Guid NewsLetterId { get; set; }
     public string FullName { get; set; }
@@ -16,8 +23,10 @@ public class AddUpdateNewsLetterDto
 
 public class AutoMapperNewsLetter : Profile {
     public AutoMapperNewsLetter() {
-        CreateMap<NewsLetterEntity, AddUpdateNewsLetterDto>().ReverseMap();
+        CreateMap<NewsLetterEntity, AddNewsLetterDto>().ReverseMap();
+        CreateMap<NewsLetterEntity, UpdateNewsLetterDto>().ReverseMap();
         CreateMap<NewsLetterEntity, GetNewsLetterDto>().ReverseMap();
-        CreateMap<AddUpdateNewsLetterDto, GetNewsLetterDto>().ReverseMap();
+        CreateMap<AddNewsLetterDto, GetNewsLetterDto>().ReverseMap();
+        CreateMap<UpdateNewsLetterDto, GetNewsLetterDto>().ReverseMap();
     }
 }
