@@ -20,6 +20,7 @@ public interface IPortfolioRepository
     Task<List<UpdatePortfolioTechViewModel>> ShowPortfoliosTechForUpdate(Guid portfolioId);
     bool DeletePortfolioForCategory(Guid portfolioId);
     bool DeletePortfolioForTechnology(Guid portfolioId);
+    bool DeletePortfolioForMedia(Guid mediaId);
     Task<List<UpdatePortfolioMediaViewModel>> ShowPortfoliosMediaForUpdate(Guid portfolioId);
 }
 
@@ -167,7 +168,7 @@ public class PortfolioRepository : IPortfolioRepository
             _context.SaveChanges();
             return true;
         }
-        catch (Exception)
+        catch
         {
             return true;
         }
@@ -182,9 +183,24 @@ public class PortfolioRepository : IPortfolioRepository
             _context.SaveChanges();
             return true;
         }
-        catch (Exception)
+        catch
         {
             return true;
+        }
+    }
+    
+    public bool DeletePortfolioForMedia(Guid mediaId)
+    {
+        try
+        {
+            var media = _context.Media.Where(m => m.Id == mediaId);
+            _context.Media.RemoveRange(media);
+            _context.SaveChanges();
+            return true;
+        }
+        catch
+        {
+            return false;
         }
     }
     
@@ -196,6 +212,7 @@ public class PortfolioRepository : IPortfolioRepository
             select new UpdatePortfolioMediaViewModel()
             {
                 PortfolioId = p.PortfolioId,
+                MediaId = m.Id,
                 FileName = m.FileName,
             }).ToListAsync();
         
