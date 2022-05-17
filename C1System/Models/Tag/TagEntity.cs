@@ -24,6 +24,7 @@ public class TagEntity
     #region Relation
 
     public List<Tag_PodcastEntity> TagPodcasts { get; set; }
-    
+    public List<Tag_BlogEntity> TagBlogs { get; set; }
+
     #endregion
 } 
