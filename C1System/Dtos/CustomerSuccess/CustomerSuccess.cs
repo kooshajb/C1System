@@ -1,4 +1,7 @@
-﻿public class GetCustomerSuccessDto
+﻿using AutoMapper;
+using C1System;
+
+public class GetCustomerSuccessDto
 {
     public Guid CustomerSuccessId { get; set; }
     public string ManagerName { get; set; }
@@ -31,4 +34,13 @@ public class AddUpdateCustomerSuccessDto
     public string? VideoTitle { get; set; }
     public string? VideoSubTitle { get; set; }
     public string Media { get; set; }
+}
+
+public class AutoMapperCustomerSuccess : Profile {
+    public AutoMapperCustomerSuccess() {
+        CreateMap<CustomerSuccessEntity, AddUpdateCustomerSuccessDto>().ReverseMap();
+        CreateMap<CustomerSuccessEntity, GetCustomerSuccessDto>().ReverseMap();
+        CreateMap<AddUpdateCustomerSuccessDto, GetCustomerSuccessDto>().ReverseMap();
+        CreateMap<AddUpdateCustomerSuccessDto, GetCustomerSuccessDto>().ReverseMap();
+    }
 }
