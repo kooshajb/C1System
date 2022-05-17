@@ -138,6 +138,11 @@ public class AdminBlogController : Controller
     [HttpGet]
     public async Task<IActionResult> DeleteBlog(Guid id)
     {
+        var tags = await _tagRepository.Get();
+        ViewBag.Tag = tags.Result;
+        
+        ViewBag.BlogTag = await _blogRepository.ShowBlogsForUpdate(id);
+        
         var blog = await _blogRepository.GetById(id);
         if (blog.Result == null)
         {
