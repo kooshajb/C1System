@@ -1,4 +1,5 @@
 using AutoMapper;
+using C1System.ViewModels;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 
@@ -12,6 +13,9 @@ public interface IBlogRepository
     Task<GenericResponse<GetBlogDto>> Update(Guid id, UpdateBlogDto dto);
     Task<GenericResponse> Delete(Guid id);
     bool ExistBlog(string title, Guid blogId);
+    bool AddBlogsForTag(List<Tag_BlogEntity> tagBlogs);
+    Task<List<UpdateBlogTagViewModel>> ShowBlogsForUpdate(Guid blogId);
+    bool DeleteBlogForTag(Guid blogId);
 }
 
 public class BlogRepository : IBlogRepository
@@ -77,5 +81,50 @@ public class BlogRepository : IBlogRepository
     {
         return _context.Blogs.Any(b =>
             b.Title == title && b.BlogId != blogId);
+    }
+    
+    public bool AddBlogsForTag(List<Tag_BlogEntity> tagBlogs)
+    {
+        try
+        {
+            _context.TagBlogs.AddRange(tagBlogs);
+            _context.SaveChanges();
+            return true;
+        }
+        catch
+        {
+            return false;
+        }
+    }
+    
+    public async Task<List<UpdateBlogTagViewModel>> ShowBlogsForUpdate(Guid blogId)
+    {
+        List<UpdateBlogTagViewModel> updates = await (from tp in _context.TagBlogs
+            join p in _context.Blogs on tp.BlogId equals p.BlogId
+            where (tp.BlogId == blogId)
+            select new UpdateBlogTagViewModel()
+            {
+                TagBlogId = tp.TagBlogId,
+                TagId = tp.TagId,
+                BlogId = p.BlogId,
+                BlogTitle = p.Title
+            }).ToListAsync();
+    
+        return updates;
+    }
+    
+    public bool DeleteBlogForTag(Guid blogId)
+    {
+        try
+        {
+            List<Tag_BlogEntity> tags = _context.TagBlogs.Where(c => c.BlogId == blogId).ToList();
+            _context.TagBlogs.RemoveRange(tags);
+            _context.SaveChanges();
+            return true;
+        }
+        catch
+        {
+            return true;
+        }
     }
 }
