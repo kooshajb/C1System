@@ -6,7 +6,7 @@
     List<GetTechnologyDto> technologies = ViewBag.Technology;
     List<UpdatePortfolioCatViewModel> portfoliosCatforupdate = ViewBag.PortfolioCat;
     List<UpdatePortfolioTechViewModel> portfoliosTechforupdate = ViewBag.PortfolioTech;
-    
+    List<UpdatePortfolioMediaViewModel> portfoliosMediaforupdate = ViewBag.MediaImage;
     
     List<UpdatePortfolioCatViewModel> existpropCat = new List<UpdatePortfolioCatViewModel>();
     List<UpdatePortfolioTechViewModel> existpropTech = new List<UpdatePortfolioTechViewModel>();
@@ -65,25 +65,12 @@
                          <label>تصاویر</label>
                          <input name="files" type="file" class="form-control" multiple="multiple">
                      </div>
-                   @*   @if () *@
-                   @*   { *@
-                   @*       <img class="rounded-circle m-0 avatar-sm-table" src="@item.TechnologyImage" alt=""> *@
-                   @*   } *@
-                   @* @foreach (var item in @Model.PortfolioId) *@
-                   @*    { *@
-                   @*        if (portfoliosCatforupdate.Where(c => c.CategoryId == category.CategoryId).Any()) *@
-                   @*        { *@
-                   @*            existpropCat.Add(new UpdatePortfolioCatViewModel *@
-                   @*            { *@
-                   @*                CategoryId = category.CategoryId, *@
-                   @*                PortfolioTitle = category.Title, *@
-                   @*            }); *@
-                   @*        } *@
-                   @*        else *@
-                   @*        { *@
-                   @*            <option value="@category.CategoryId">@category.Title</option> *@
-                   @*        } *@
-                   @* } *@
+                 
+                     @* medias *@
+                    @foreach (var mediaItem in portfoliosMediaforupdate)
+                    {
+                          <img class="rounded-circle m-0 avatar-sm-table" src="@mediaItem.FileName" alt="" />
+                    }
                     
                      @* Categories *@
                      <div class="col-md-6 form-group mb-3">
