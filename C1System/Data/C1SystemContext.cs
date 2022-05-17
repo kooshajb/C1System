@@ -14,6 +14,8 @@ public class C1SystemContext : DbContext
     public DbSet<Category_PortfolioEntity> CategoryPortfolios { get; set; }
     public DbSet<Technology_PortfolioEntity> TechnologyPortfolios { get; set; }
     public DbSet<Tag_PodcastEntity> TagPodcasts { get; set; }
+    
+    public DbSet<Tag_BlogEntity> TagBlogs { get; set; }
     public DbSet<ProjectEntity> Projects { get; set; }
     public DbSet<PodcastEntity> Podcasts { get; set; }
     public DbSet<MediaEntity> Media { get; set; }
