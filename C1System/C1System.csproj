@@ -23,13 +23,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Data\CareerOpportunity" />
     <Folder Include="Data\Introduction" />
     <Folder Include="Dtos\CustomerSpeech" />
     <Folder Include="Dtos\Faq" />
     <Folder Include="Dtos\Geo" />
     <Folder Include="Dtos\Introduction" />
-    <Folder Include="Dtos\NewsLetter" />
     <Folder Include="Dtos\Project" />
     <Folder Include="Dtos\Slider" />
     <Folder Include="Dtos\Tag" />
@@ -37,7 +35,6 @@
     <Folder Include="Dtos\User" />
     <Folder Include="Migrations" />
     <Folder Include="Migrations\" />
-    <Folder Include="Models\Introduction" />
   </ItemGroup>
 
   <ItemGroup>
