@@ -29,7 +29,7 @@ public class AdminProjectController : Controller
     }
     
     [HttpPost]
-    public async Task<IActionResult> AddProject(AddUpdateProjectDto dto)
+    public async Task<IActionResult> AddProject(AddProjectDto dto)
     {
         if (!ModelState.IsValid)
         {
@@ -60,7 +60,7 @@ public class AdminProjectController : Controller
     }
     
     [HttpPost]
-    public async Task<IActionResult> UpdateProject(AddUpdateProjectDto dto, Guid id)
+    public async Task<IActionResult> UpdateProject(UpdateProjectDto dto, Guid id)
     {
         var tag = await _projectRepository.GetById(id);
         if (!ModelState.IsValid)
