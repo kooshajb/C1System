@@ -61,11 +61,31 @@
                         <span class="text-danger" asp-validation-for="FeatureMedia"></span>
                     </div>
 
-                    <div class="col-md-6 form-group mb-3">
-                        <label >تصاویر</label>
-                        <input class="form-control" placeholder="تصاویر را وارد کنید">
-                    </div>
+                     <div class="col-md-6 form-group mb-3">
+                         <label>تصاویر</label>
+                         <input name="files" type="file" class="form-control" multiple="multiple">
+                     </div>
+                   @*   @if () *@
+                   @*   { *@
+                   @*       <img class="rounded-circle m-0 avatar-sm-table" src="@item.TechnologyImage" alt=""> *@
+                   @*   } *@
+                   @* @foreach (var item in @Model.PortfolioId) *@
+                   @*    { *@
+                   @*        if (portfoliosCatforupdate.Where(c => c.CategoryId == category.CategoryId).Any()) *@
+                   @*        { *@
+                   @*            existpropCat.Add(new UpdatePortfolioCatViewModel *@
+                   @*            { *@
+                   @*                CategoryId = category.CategoryId, *@
+                   @*                PortfolioTitle = category.Title, *@
+                   @*            }); *@
+                   @*        } *@
+                   @*        else *@
+                   @*        { *@
+                   @*            <option value="@category.CategoryId">@category.Title</option> *@
+                   @*        } *@
+                   @* } *@
                     
+                     @* Categories *@
                      <div class="col-md-6 form-group mb-3">
                          <select class="form-control" id="select-category">
                              @foreach (var category in categories)
@@ -98,6 +118,7 @@
                          </div>
                      </div>
 
+                     @* Technologies *@
                      <div class="col-md-6 form-group mb-3">
                         <select class="form-control" id="select-technology">
                            @foreach (var tech in technologies)
@@ -131,9 +152,9 @@
                     </div>
 
                      <div class="col-md-12">
-                      <button asp-action="UpdatePortfolio" asp-controller="AdminPortfolio" class="btn btn-primary" type="submit">تایید</button>
-                      <a asp-action="Index" class="btn btn-danger m-1">لغو</a>
-                  </div>
+                          <button asp-action="UpdatePortfolio" asp-controller="AdminPortfolio" class="btn btn-primary" type="submit">تایید</button>
+                         <a asp-action="Index" class="btn btn-danger m-1">لغو</a>
+                     </div>
                 </div>  
             </form>
         </div>
