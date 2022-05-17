@@ -29,11 +29,10 @@ public class ProjectEntity
     [Required(ErrorMessage = "لطفا {0} را وارد کنید .")]
     [MinLength(200, ErrorMessage = "تعداد {0} نباید کمتر از {1} باشد.")]
     [MaxLength(1000, ErrorMessage = "تعداد {0} نباید بیشتر از {1} باشد.")]
-    public string Desc { get; set; }
+    public string Description { get; set; }
 
     public bool IsDelete { get; set; }
     
     [Display(Name = "تصاویر")]
     public string Media { get; set; }
-
 }
