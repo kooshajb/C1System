@@ -2,6 +2,9 @@
 
 @{
     ViewData["Title"] = "حذف پادکست";
+    List<GetTagDto> tags = ViewBag.Tag;
+    List<UpdatePodcastTagViewModel> podcastsforupdate = ViewBag.PodcastTag;
+    List<UpdatePodcastTagViewModel> existPodcastTag = new List<UpdatePodcastTagViewModel>();
 }
 
 <div class="col-md-12">
@@ -45,6 +48,17 @@
                        <input readonly="readonly" asp-for="Audio" class="form-control" placeholder="فایل صوت را وارد کنید">
                        <span class="text-danger" asp-validation-for="Audio"></span>
                    </div>
+                   
+                   @* tags *@
+                   <div class="col-md-6 form-group mb-3">
+                       <label>برچسب ها</label>
+                       @foreach (var tag in tags)
+                       {
+                           <div class="d-flex text-black mb-2 p-2" style='background: #8080802b;height: 39px;border-radius: 5px;'>
+                               @tag.Title
+                           </div>
+                       }
+                   </div>
 
                    <div class="col-md-12">
                        <button asp-action="DeletePodcastById" asp-controller="AdminPodcast" asp-route-id="@Model.PodcastId" class="btn btn-primary" type="submit">تایید</button>
@@ -55,3 +69,35 @@
         </div>
     </div>
 </div>
+
+
+
+@section Scripts{
+    <script>
+        $(".Add-Tag").click(function () {
+            if ($("#select-tag").val()) {
+                var value = $("#select-tag").children("option:selected").val();
+                var text = $("#select-tag").children("option:selected").text();
+                $(".ListTag").append(
+                    "<div style='background: #8080802b;height: 39px;width: 48%;border-radius: 5px;margin-bottom: 1%;margin-left: 1%;display:flex;color:whitesmoke;'>"
+                      + "<label style='display: flex;align-items: center;justify-items: center;' class='col-md-12'>" + text + "</label>"
+                      + "<input type='hidden' name='TagId' value='" + value + "' />"
+                      + "<a style='display: flex;align-items: center;justify-items: center;' class='btn btn-danger remove-tag'>حذف</a>"
+                      + "</div>"
+                );
+                $("#select-tag").children("option:selected").remove();
+            }
+        });
+
+        $('.ListTag').delegate(".remove-tag", 'click', function () {
+            var content = $(this).parent();
+            var text = content.find($("label")).text();
+            var value = content.find($("input[type=hidden]")).val();
+            $("#select-tag").append($('<option>', {
+                value: value,
+                text: text
+            }));
+            content.remove();
+        });
+    </script>
+}
