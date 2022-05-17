@@ -21,7 +21,7 @@ public class ProjectsController : ControllerBase
     }
 
     [HttpPost]
-    public async Task<ActionResult> CreateProject([FromBody] AddUpdateProjectDto dto)
+    public async Task<ActionResult> CreateProject([FromBody] AddProjectDto dto)
     {
         if (dto == null) return BadRequest();
         var project = await _projectRepository.Add(dto);
@@ -39,7 +39,7 @@ public class ProjectsController : ControllerBase
     }
 
     [HttpPut("{id:guid}")]
-    public async Task<ActionResult<GetProjectDto>> UpdateProject([FromBody] AddUpdateProjectDto dto, Guid id)
+    public async Task<ActionResult<GetProjectDto>> UpdateProject([FromBody] UpdateProjectDto dto, Guid id)
     {
         var project = await _projectRepository.Update(id, dto);
         return Ok(project.Result);
