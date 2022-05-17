@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using C1System.Dtos.Media;
 using C1System.Media;
+using C1System.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using IHostingEnvironment = Microsoft.AspNetCore.Hosting.IHostingEnvironment;
 
@@ -94,7 +95,7 @@ public class AdminPortfolioController : Controller
         }
         uploadDto.Files = filesResult;
         await _uploadRepository.UploadMedia(uploadDto);
-
+        
         //categories
         List<Category_PortfolioEntity> addCatPortfolio = new List<Category_PortfolioEntity>();
         
@@ -146,31 +147,10 @@ public class AdminPortfolioController : Controller
         UploadDto uploadDto = new UploadDto();
         List<IFormFile> filesResult = new List<IFormFile>();
         
-        //Fetch all files in the Folder (Directory).
-        string[] filePaths = Directory.GetFiles(Path.Combine(_environment.WebRootPath, "Medias/Portfolios/"));
-        
-        //Copy File names to Model collection.
-        foreach (string filePath in filePaths)
-        {
-            if (filePath.Contains(portfolio.Result.PortfolioId.ToString()))
-            {
-                List<string> lists = new List<string>();
-                lists.Add(Path.GetFileName(filePath));
-                
-                // ViewBag.MediaImage =  uploadDto.Files.Add();
-                // files.Add(new FileModel { FileName = Path.GetFileName(filePath) });
-            }
-        }
-        
+        List<UpdatePortfolioMediaViewModel> mediaList = await _portfolioRepository.ShowPortfoliosMediaForUpdate(portfolio.Result.PortfolioId);
 
-        // foreach (var item in pathUploadFiles)
-        // {
-        //     Console.WriteLine(item);
-        // }
-        // if (pathUploadFiles == portfolio.Result.PortfolioId.ToString())
-        // {
-        //     ViewBag.Media = filesResult;
-        // }
+        ViewBag.MediaImage = mediaList;
+        
         return View(portfolio.Result);
     }
     
