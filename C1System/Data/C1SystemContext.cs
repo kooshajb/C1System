@@ -19,7 +19,6 @@ public class C1SystemContext : DbContext
     public DbSet<ProjectEntity> Projects { get; set; }
     public DbSet<PodcastEntity> Podcasts { get; set; }
     public DbSet<MediaEntity> Media { get; set; }
-
-    // public DbSet<NewsLetterEntity> NewsLetters { get; set; }
-    // public DbSet<TechnologyEntity> Technologies  { get; set; }
+    public DbSet<NewsLetterEntity> NewsLetters { get; set; }
+    public DbSet<TechnologyEntity> Technologies  { get; set; }
 }
