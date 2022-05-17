@@ -5,5 +5,7 @@ namespace C1System.ViewModels;
 public class UpdatePortfolioMediaViewModel
 {
     public Guid PortfolioId { get; set; }
+
+    public Guid MediaId { get; set; }
     public string FileName { get; set; }
 }
