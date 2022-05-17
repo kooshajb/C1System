@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using C1System.Dtos.Media;
 using C1System.Media;
 using C1System.ViewModels;
+using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Mvc;
 using IHostingEnvironment = Microsoft.AspNetCore.Hosting.IHostingEnvironment;
 
@@ -15,8 +16,6 @@ public class AdminPortfolioController : Controller
     private readonly ICategoryRepository _categoryRepository;
     private readonly ITechnologyRepository _technologyRepository;
     private readonly IUploadRepository _uploadRepository;
-    private readonly IMediaRepository _mediaRepository;
-    private readonly IHostingEnvironment _environment;
 
     public AdminPortfolioController(IPortfolioRepository portfolioRepository, ICategoryRepository categoryRepository,ITechnologyRepository technologyRepository, IUploadRepository uploadRepository, IMediaRepository mediaRepository, IHostingEnvironment environment)
     {
@@ -24,8 +23,6 @@ public class AdminPortfolioController : Controller
         _categoryRepository = categoryRepository;
         _technologyRepository = technologyRepository;
         _uploadRepository = uploadRepository;
-        _mediaRepository = mediaRepository;
-        _environment = environment;
     }
     
     public async Task<IActionResult> Index()
@@ -148,7 +145,6 @@ public class AdminPortfolioController : Controller
         List<IFormFile> filesResult = new List<IFormFile>();
         
         List<UpdatePortfolioMediaViewModel> mediaList = await _portfolioRepository.ShowPortfoliosMediaForUpdate(portfolio.Result.PortfolioId);
-
         ViewBag.MediaImage = mediaList;
         
         return View(portfolio.Result);
@@ -171,22 +167,39 @@ public class AdminPortfolioController : Controller
             return View();
         }
         
-        if (files != null)
-        {
-            
-            UploadDto uploadDto = new UploadDto();
-            List<IFormFile> filesResult = new List<IFormFile>();
-        
-            uploadDto.PortfolioId = dto.PortfolioId;
-        
-            foreach (var fileItem in files)
-            {
-                filesResult.Add(fileItem);
-            }
+        // if (files == null)
+        // {
+        //     ModelState.AddModelError("PortfolioImg", "لطفا یک تصویر برای نمونه کار انتخاب نمایید.");
+        //     return View(dto);
+        // }
 
-            uploadDto.Files = filesResult;
-            await _uploadRepository.UploadMedia(uploadDto);
-        }
+        
+        
+        
+        // var portfolio = await _portfolioRepository.Add(dto);
+        // Guid portfolioId = portfolio.Result.PortfolioId;
+        // if (portfolioId == null)
+        // {
+        //     TempData["Result"] = "false";
+        //     return RedirectToAction(nameof(Index));
+        // }
+        //
+        // //upload images
+        // UploadDto uploadDto = new UploadDto();
+        // List<IFormFile> filesResult = new List<IFormFile>();
+        //
+        // uploadDto.PortfolioId = dto.PortfolioId;
+        //
+        // foreach (var fileItem in files)
+        // {
+        //     filesResult.Add(fileItem);
+        // }
+        // uploadDto.Files = filesResult;
+        // await _uploadRepository.UploadMedia(uploadDto);
+        
+        
+        
+        
         
         // if (_portfolioRepository.ExistPortfolio(dto.Title, dto.PortfolioId))
         // {
@@ -263,5 +276,12 @@ public class AdminPortfolioController : Controller
         var response = await _portfolioRepository.Delete(id);
         TempData["ResultDelete"] = response.Status == UtilitiesStatusCodes.Success ? "true" : "false";
         return RedirectToAction(nameof(Index));
+    }
+    
+    public async Task<IActionResult> DeletePortfolioMediaById(Guid id, Guid portfolioId)
+    {
+         var response =  await _uploadRepository.DeleteMedia(id);
+         return RedirectToAction(nameof(UpdatePortfolio), new { id = portfolioId});
+
     }
 }
