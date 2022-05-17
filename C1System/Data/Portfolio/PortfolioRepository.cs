@@ -1,5 +1,6 @@
 ﻿using System.Linq;
 using AutoMapper;
+using C1System.Media;
 using C1System.ViewModels;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
@@ -19,6 +20,7 @@ public interface IPortfolioRepository
     Task<List<UpdatePortfolioTechViewModel>> ShowPortfoliosTechForUpdate(Guid portfolioId);
     bool DeletePortfolioForCategory(Guid portfolioId);
     bool DeletePortfolioForTechnology(Guid portfolioId);
+    Task<List<UpdatePortfolioMediaViewModel>> ShowPortfoliosMediaForUpdate(Guid portfolioId);
 }
 
 public class PortfolioRepository : IPortfolioRepository
@@ -184,5 +186,19 @@ public class PortfolioRepository : IPortfolioRepository
         {
             return true;
         }
+    }
+    
+    public async Task<List<UpdatePortfolioMediaViewModel>> ShowPortfoliosMediaForUpdate(Guid portfolioId)
+    {
+        var result = await (from p in _context.Portfolios
+            join m in _context.Media on p.PortfolioId equals m.PortfolioId
+            where (p.PortfolioId == portfolioId)
+            select new UpdatePortfolioMediaViewModel()
+            {
+                PortfolioId = p.PortfolioId,
+                FileName = m.FileName,
+            }).ToListAsync();
+        
+        return result;
     }
 }
