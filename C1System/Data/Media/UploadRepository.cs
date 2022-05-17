@@ -77,11 +77,11 @@ public class UploadRepository : IUploadRepository
                 folder = "Portfolios";
                 List<MediaEntity> portfolioMedia =
                     _context.Set<MediaEntity>().ToList();
-                if (portfolioMedia.Count > 0)
-                {
-                    _context.Set<MediaEntity>().RemoveRange(portfolioMedia);
-                    _context.SaveChanges();
-                }
+                // if (portfolioMedia.Count > 0)
+                // {
+                //     _context.Set<MediaEntity>().RemoveRange(portfolioMedia);
+                //     _context.SaveChanges();
+                // }
             }
 
             string name = _mediaRepository.GetFileName(Guid.NewGuid(), Path.GetExtension(file.FileName));
