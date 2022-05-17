@@ -15,7 +15,7 @@ public class CustomerSuccessEntity : BannerEntity
     [MaxLength(120, ErrorMessage = "تعداد {0} نباید بیشتر از {1} باشد.")]
     public string ManagerName { get; set; }
 
-    [Display(Name = "سمت مدیرعامل ")]
+    [Display(Name = "سمت مدیرعامل")]
     [Required(ErrorMessage = "لطفا {0} را وارد کنید .")]
     [MinLength(20, ErrorMessage = "تعداد {0} نباید کمتر از {1} باشد.")]
     [MaxLength(250, ErrorMessage = "تعداد {0} نباید بیشتر از {1} باشد.")]
