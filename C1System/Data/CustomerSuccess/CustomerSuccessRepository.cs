@@ -10,7 +10,7 @@ public interface ICustomerSuccessRepository
     Task<GenericResponse<GetCustomerSuccessDto>> GetById(Guid id);
     Task<GenericResponse<GetCustomerSuccessDto>> Update(Guid id, AddUpdateCustomerSuccessDto dto);
     Task<GenericResponse> Delete(Guid id);
-    bool ExistCustomerSuccess(string ManagerName, Guid CustomerSuccessId);
+    bool ExistCustomerSuccess(string managerName, Guid customerSuccessId);
 }
 
 public class CustomerSuccessRepository : ICustomerSuccessRepository
@@ -42,10 +42,10 @@ public class CustomerSuccessRepository : ICustomerSuccessRepository
             $"Podcast {i.Result.ManagerName} delete Success {i.Result.CustomerSuccessId}");
     }
 
-    public bool ExistCustomerSuccess(string ManagerName, Guid CustomerSuccessId)
+    public bool ExistCustomerSuccess(string managerName, Guid customerSuccessId)
     {
         return _context.CustomerSuccesses.Any(p =>
-           p.ManagerName == ManagerName && p.CustomerSuccessId != CustomerSuccessId);
+           p.ManagerName == managerName && p.CustomerSuccessId != customerSuccessId);
     }
 
     public async Task<GenericResponse<IEnumerable<GetCustomerSuccessDto>>> Get()
@@ -54,8 +54,7 @@ public class CustomerSuccessRepository : ICustomerSuccessRepository
         return new GenericResponse<IEnumerable<GetCustomerSuccessDto>>(_mapper.Map<IEnumerable<GetCustomerSuccessDto>>(i));
     }
 
-   
-
+    
     public async Task<GenericResponse<GetCustomerSuccessDto>> GetById(Guid id)
     {
         //Project? i = await _context.Set<Models.CustomerSuccess.CustomerSuccess>().AsNoTracking()
