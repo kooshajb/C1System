@@ -12,10 +12,10 @@ namespace C1System;
 
 public interface IProjectRepository
 {
-    Task<GenericResponse<GetProjectDto>> Add(AddUpdateProjectDto dto);
+    Task<GenericResponse<GetProjectDto>> Add(AddProjectDto dto);
     Task<GenericResponse<IEnumerable<GetProjectDto>>> Get();
     Task<GenericResponse<GetProjectDto>> GetById(Guid id);
-    Task<GenericResponse<GetProjectDto>> Update(Guid id, AddUpdateProjectDto dto);
+    Task<GenericResponse<GetProjectDto>> Update(Guid id, UpdateProjectDto dto);
     Task<GenericResponse> Delete(Guid id);
     bool ExistProject(string title, Guid projectId);
 }
@@ -30,7 +30,7 @@ public class ProjectRepository : IProjectRepository
         _mapper = mapper;
     }
 
-    public async Task<GenericResponse<GetProjectDto>> Add(AddUpdateProjectDto dto)
+    public async Task<GenericResponse<GetProjectDto>> Add(AddProjectDto dto)
     {
         if (dto == null) throw new ArgumentException("Dto must not be null", nameof(dto));
         ProjectEntity entity = _mapper.Map<ProjectEntity>(dto);
@@ -68,7 +68,7 @@ public class ProjectRepository : IProjectRepository
         return new GenericResponse<GetProjectDto>(_mapper.Map<GetProjectDto>(i));
     }
 
-    public async Task<GenericResponse<GetProjectDto>> Update(Guid id, AddUpdateProjectDto dto)
+    public async Task<GenericResponse<GetProjectDto>> Update(Guid id, UpdateProjectDto dto)
     {
         var i = _context.Set<ProjectEntity>()
                .Where(p => p.ProjectId == id).First();
