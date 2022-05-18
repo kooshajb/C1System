@@ -41,6 +41,11 @@ public class MediaEntity : BaseEntity {
     [ForeignKey("TechnologyId")]
     public TechnologyEntity? Technology { get; set; }
     
+    public Guid? PodcastId { get; set; }
+
+    [ForeignKey("PodcastId")]
+    public PodcastEntity? Podcast { get; set; }
+    
     #endregion
     
     // public ProjectEntity? Project { get; set; }
