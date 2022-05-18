@@ -45,36 +45,37 @@
                        </div>
                        
                     @* tags *@
-                     <div class="col-md-6 form-group mb-3">
+                    <div class="col-md-6 form-group mb-3">
+                        <label>انتخاب برچسب ها</label>
                         <select class="form-control" id="select-tag">
-                           @foreach (var tag in tags)
-                           {
-                               if (blogsforupdate.Where(b => b.TagId == tag.TagId).Any())
-                               {
-                                   existBlogTag.Add(new UpdateBlogTagViewModel()
-                                   {
-                                       TagId = tag.TagId,
-                                       BlogTitle = tag.Title
-                                   });
-                               }
-                               else
-                               {
-                                   <option value="@tag.TagId">@tag.Title</option>
-                               }
-                           }
-       
-                       </select>
-                       <button class="Add-Tag btn btn-success" style="width: 10%; height: 13%; margin-top: 1%; margin-bottom: 1%; padding: 10px; border-radius: 10px;" type="button">انتخاب</button>
-                       <div class="ListTag">
-                           @foreach (var item in existBlogTag)
-                           {
-                               <div style="background: gray;height: 50px;width: 48%;border-radius: 5px;margin-bottom: 1%;margin-left: 1%;display:inline-block;color: whitesmoke;">
-                                   <label class="control-label col-md-12">@item.BlogTitle  </label>
-                                   <input type="hidden" name="TagId" value="@item.TagId" />
-                                   <a style="float:left;top:-25px;line-height: 36px;position: relative;height: 100%;border-radius: 5px;" class="btn btn-danger remove-tag">حذف</a>
-                               </div>
-                           }
-                       </div>
+                            @foreach (var tag in tags)
+                            {
+                                if (blogsforupdate.Where(b => b.TagId == tag.TagId).Any())
+                                {
+                                    existBlogTag.Add(new UpdateBlogTagViewModel()
+                                    {
+                                        TagId = tag.TagId,
+                                        BlogTitle = tag.Title
+                                    });
+                                }
+                                else
+                                {
+                                    <option value="@tag.TagId">@tag.Title</option>
+                                }
+                            }
+
+                        </select>
+                        <button class="Add-Tag btn btn-success my-2" type="button">انتخاب</button>
+                        <div class="ListTag">
+                            @foreach (var item in existBlogTag)
+                            {
+                                <div class="mb-2 d-flex align-items-center text-black w-50 border-4" style="background: #8080802b;height:39px;border-radius: 6px;">
+                                    <label class="col-md-12">@item.BlogTitle</label>
+                                    <input type="hidden" name="TagId" value="@item.TagId"/>
+                                    <a class="btn btn-danger remove-tag">حذف</a>
+                                </div>
+                            }
+                        </div>
                     </div>
                     
                     <div class="col-md-12">
