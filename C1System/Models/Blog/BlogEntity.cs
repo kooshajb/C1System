@@ -47,6 +47,7 @@ public class BlogEntity
     #region Relation
         
     public List<Tag_BlogEntity> TagBlogs { get; set; }
-    
+    public List<Blog_BlogCategoryEntity> BlogBlogCategory { get; set; }
+
     #endregion
 }
