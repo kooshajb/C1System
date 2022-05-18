@@ -4,10 +4,10 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace C1System;
 
 [Table("BlogCategory")]
-public class BlogCategoryEntity : BaseEntity
+public class BlogCategoryEntity
 {
     [Key]
-    public int BlogCategoryId { get; set; }
+    public Guid BlogCategoryId { get; set; }
     
     [Display(Name ="عنوان دسته بندی پست")]
     [Required(ErrorMessage ="لطفا {0} را وارد کنید .")]
