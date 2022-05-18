@@ -68,13 +68,6 @@ public class PortfolioRepository : IPortfolioRepository
         i.Description = dto.Description;
         i.SiteAddress = dto.SiteAddress;
         i.CompanyName = dto.CompanyName;
-        i.CompanyLogo = dto.CompanyLogo;
-        i.FeatureMedia = dto.FeatureMedia;
-        // if ()
-        // {
-        //     i.Media.fi = dto.Media.Files;
-        // }
-        
         i.Point = dto.Point;
         i.IsActive = dto.IsActive;
         i.PortfolioSort = dto.PortfolioSort;
