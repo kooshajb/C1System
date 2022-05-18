@@ -58,8 +58,7 @@ public class TechnologyRepository : ITechnologyRepository
             .Where(p => p.TechnologyId == id).First();
 
         i.Title = dto.Title;
-        i.TechnologyImage = dto.TechnologyImage;
-
+        
         _context.Set<TechnologyEntity>().Update(i);
         await _context.SaveChangesAsync();
         return new GenericResponse<GetTechnologyDto>(_mapper.Map<GetTechnologyDto>(i));
