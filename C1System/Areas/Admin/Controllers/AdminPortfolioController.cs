@@ -43,7 +43,7 @@ public class AdminPortfolioController : Controller
     }
     
     [HttpPost]
-    public async Task<IActionResult> AddPortfolio(AddPortfolioDto dto, List<Guid> categoryId, List<Guid> technologyId, List<IFormFile> files)
+    public async Task<IActionResult> AddPortfolio(AddPortfolioDto dto, List<Guid> categoryId, List<Guid> technologyId, List<IFormFile> galleryFile, List<IFormFile> featureImgFile, List<IFormFile> companyLogoFile)
     {
         if (!ModelState.IsValid)
         {
@@ -66,7 +66,7 @@ public class AdminPortfolioController : Controller
             return View(dto);
         }
         
-        if (files == null)
+        if (galleryFile == null)
         {
             ModelState.AddModelError("PortfolioImg", "لطفا یک تصویر برای نمونه کار انتخاب نمایید.");
             return View(dto);
@@ -86,7 +86,15 @@ public class AdminPortfolioController : Controller
         
         uploadDto.PortfolioId = dto.PortfolioId;
         
-        foreach (var fileItem in files)
+        foreach (var fileItem in galleryFile)
+        {
+            filesResult.Add(fileItem);
+        }
+        foreach (var fileItem in featureImgFile)
+        {
+            filesResult.Add(fileItem);
+        }
+        foreach (var fileItem in companyLogoFile)
         {
             filesResult.Add(fileItem);
         }
