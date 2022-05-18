@@ -41,20 +41,18 @@
                     </div>
 
                     <div class="col-md-6 form-group mb-3">
-                        <label asp-for="CompanyLogo">تصویر لوگو شرکت</label>
-                        <input asp-for="CompanyLogo" class="form-control" placeholder="تصویر لوگو شرکت را وارد کنید">
-                        <span class="text-danger" asp-validation-for="CompanyLogo"></span>
-                    </div>
-
-                    <div class="col-md-6 form-group mb-3">
-                        <label asp-for="FeatureMedia">تصویر شاخص</label>
-                        <input asp-for="FeatureMedia" class="form-control" placeholder="تصویر شاخص را وارد کنید">
-                        <span class="text-danger" asp-validation-for="FeatureMedia"></span>
+                        <label>تصویر لوگو شرکت</label>
+                        <input name="companyLogoFile" type="file" class="form-control" multiple="multiple">
                     </div>
                     
                     <div class="col-md-6 form-group mb-3">
+                        <label>تصویر شاخص</label>
+                        <input name="featureImgFile" type="file" class="form-control" multiple="multiple">
+                    </div>
+
+                    <div class="col-md-6 form-group mb-3">
                         <label>تصاویر</label>
-                        <input name="files" type="file" class="form-control" multiple="multiple">
+                        <input name="galleryFile" type="file" class="form-control" multiple="multiple">
                     </div>
 
                     <div class="col-md-6 form-group mb-3">
@@ -71,13 +69,13 @@
                         <div class="ListTechnology"></div>
                     </div>
 
-                    <div class="form-group">
+                    <div class="col-md-6 form-group mb-3">
                         <label asp-for="PortfolioSort">ترتیب نمونه کار</label>
                         <input asp-for="PortfolioSort" class="form-control">
                         <span class="text-danger">@Html.ValidationMessage("ErrorSort")</span>
                     </div>
 
-                    <div class="form-group">
+                    <div class="col-md-6 form-group mb-3">
                         <div class="form-check">
                             <input class="form-check-input" asp-for="IsActive" type="checkbox">
                             <label class="form-check-label" asp-for="IsActive">
