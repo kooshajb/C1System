@@ -109,12 +109,11 @@
                 var value = $("#select-category").children("option:selected").val();
                 var text = $("#select-category").children("option:selected").text();
                 $(".ListCategory").append(
-                    "<div style='background: #8080802b;height: 39px;width: 48%;border-radius: 5px;margin-bottom: 1%;margin-left: 1%;display:flex;color:whitesmoke;'>"
-                    + "<label style='display: flex;align-items: center;justify-items: center;' class='col-md-12'>" + text + "</label>"
-                    + "<input type='hidden' name='CategoryId' value='" + value + "' />"
-                    + "<a style='display: flex;align-items: center;justify-items: center;' class='btn btn-danger remove-category'>حذف</a>"
-                    + "</div>"
-
+                      "<div style='background: #8080802b;height: 39px;width: 48%;border-radius: 5px;margin-bottom: 1%;margin-left: 1%;display:flex;color:whitesmoke;'>"
+                        + "<label style='display: flex;align-items: center;justify-items: center;' class='col-md-12'>" + text + "</label>"
+                        + "<input type='hidden' name='CategoryId' value='" + value + "' />"
+                        + "<a style='display: flex;align-items: center;justify-items: center;' class='btn btn-danger remove-category'>حذف</a>"
+                        + "</div>"
                 );
                 $("#select-category").children("option:selected").remove();
             }
