@@ -5,10 +5,10 @@ using Microsoft.EntityFrameworkCore.ChangeTracking;
 namespace C1System;
 public interface ICustomerSuccessRepository
 {
-    Task<GenericResponse<GetCustomerSuccessDto>> Add(AddUpdateCustomerSuccessDto dto);
+    Task<GenericResponse<GetCustomerSuccessDto>> Add(AddCustomerSuccessDto dto);
     Task<GenericResponse<IEnumerable<GetCustomerSuccessDto>>> Get();
     Task<GenericResponse<GetCustomerSuccessDto>> GetById(Guid id);
-    Task<GenericResponse<GetCustomerSuccessDto>> Update(Guid id, AddUpdateCustomerSuccessDto dto);
+    Task<GenericResponse<GetCustomerSuccessDto>> Update(Guid id, UpdateCustomerSuccessDto dto);
     Task<GenericResponse> Delete(Guid id);
     bool ExistCustomerSuccess(string startupName, Guid customerSuccessId);
 }
@@ -23,7 +23,7 @@ public class CustomerSuccessRepository : ICustomerSuccessRepository
         _mapper = mapper;
     }
 
-    public async Task<GenericResponse<GetCustomerSuccessDto>> Add(AddUpdateCustomerSuccessDto dto)
+    public async Task<GenericResponse<GetCustomerSuccessDto>> Add(AddCustomerSuccessDto dto)
     {
         if (dto == null) throw new ArgumentException("Dto must not be null", nameof(dto));
         CustomerSuccessEntity entity = _mapper.Map<CustomerSuccessEntity>(dto);
@@ -46,7 +46,7 @@ public class CustomerSuccessRepository : ICustomerSuccessRepository
         return new GenericResponse<GetCustomerSuccessDto>(_mapper.Map<GetCustomerSuccessDto>(i));
     }
     
-    public async Task<GenericResponse<GetCustomerSuccessDto>> Update(Guid id, AddUpdateCustomerSuccessDto dto)
+    public async Task<GenericResponse<GetCustomerSuccessDto>> Update(Guid id, UpdateCustomerSuccessDto dto)
     {
         var i = _context.Set<CustomerSuccessEntity>()
             .Where(p => p.CustomerSuccessId == id).First();
@@ -56,11 +56,8 @@ public class CustomerSuccessRepository : ICustomerSuccessRepository
         i.CompanyName = dto.CompanyName;
         i.StartupName = dto.StartupName;
         i.ActivityName = dto.ActivityName;
-        i.CompanyLogo = dto.CompanyLogo;
         i.ManagerSpeech = dto.ManagerSpeech;
         i.Description = dto.Description;
-        i.VideoFile = dto.VideoFile;
-        i.CoverVideoImage = dto.CoverVideoImage;
         i.VideoTitle = dto.VideoTitle;
         i.VideoSubTitle = dto.VideoSubTitle;
         
@@ -75,7 +72,7 @@ public class CustomerSuccessRepository : ICustomerSuccessRepository
         _context.Set<CustomerSuccessEntity>().Remove(_mapper.Map<CustomerSuccessEntity>(i.Result));
         await _context.SaveChangesAsync();
         return new GenericResponse(UtilitiesStatusCodes.Success,
-            $"Podcast {i.Result.ManagerName} delete Success {i.Result.CustomerSuccessId}");
+            $"CustomerSuccess {i.Result.ManagerName} delete Success {i.Result.CustomerSuccessId}");
     }
 
     public bool ExistCustomerSuccess(string startupName, Guid customerSuccessId)
