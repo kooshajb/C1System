@@ -9,23 +9,23 @@
         <div class="card-body">
             <div class="card-title mb-3">بروز رسانی تکنولوژی</div>
             <form asp-action="UpdateTechnology" method="post" enctype="multipart/form-data">
-                <input type="hidden" asp-for="TechnologyImage"/>
+                @* <input type="hidden" asp-for="TechnologyImage"/> *@
                 <div class="row">
                        <div class="col-md-6 form-group mb-3">
                           <label asp-for="Title">عنوان تکنولوژی</label>
                           <input asp-for="Title" class="form-control" placeholder="عنوان تکنولوژی را وارد کنید">
                           <span class="text-danger" asp-validation-for="Title"></span>
                       </div>
-   
-                      <div class="col-md-6 form-group mb-3">
-                          <label asp-for="TechnologyImage">تصویر تکنولوژی</label>
-                          <input asp-for="TechnologyImage" class="form-control" placeholder="تصویر تکنولوژی را وارد کنید">
-                          <span class="text-danger" asp-validation-for="TechnologyImage"></span>
-                      </div>
-                   <div class="col-md-12">
-                       <button asp-action="UpdateTechnology" asp-controller="AdminTechnology" class="btn btn-primary" type="submit">تایید</button>
-                       <a asp-action="Index" class="btn btn-danger m-1">لغو</a>
-                   </div>
+                      @* *@
+                      @* <div class="col-md-6 form-group mb-3"> *@
+                      @*     <label asp-for="TechnologyImage">تصویر تکنولوژی</label> *@
+                      @*     <input asp-for="TechnologyImage" class="form-control" placeholder="تصویر تکنولوژی را وارد کنید"> *@
+                      @*     <span class="text-danger" asp-validation-for="TechnologyImage"></span> *@
+                      @* </div> *@
+                       <div class="col-md-12">
+                           <button asp-action="UpdateTechnology" asp-controller="AdminTechnology" class="btn btn-primary" type="submit">تایید</button>
+                           <a asp-action="Index" class="btn btn-danger m-1">لغو</a>
+                       </div>
                 </div>
             </form>
         </div>
