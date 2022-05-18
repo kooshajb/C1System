@@ -29,16 +29,16 @@ public class BlogCategoryRepository : IBlogCategoryRepository
     public async Task<GenericResponse<GetBlogCategoryDto>> Add(AddBlogCategoryDto dto)
     {
         if (dto == null) throw new ArgumentException("Dto must not be null", nameof(dto));
-        BlogEntity blog = _mapper.Map<BlogEntity>(dto);
+        BlogCategoryEntity blog = _mapper.Map<BlogCategoryEntity>(dto);
 
-        EntityEntry<BlogEntity> i = await _context.Set<BlogEntity>().AddAsync(blog);
+        EntityEntry<BlogCategoryEntity> i = await _context.Set<BlogCategoryEntity>().AddAsync(blog);
         await _context.SaveChangesAsync();
         return new GenericResponse<GetBlogCategoryDto>(_mapper.Map<GetBlogCategoryDto>(i.Entity));
     }
 
     public async Task<GenericResponse<IEnumerable<GetBlogCategoryDto>>> Get()
     {
-        IEnumerable<BlogEntity> i = await _context.Set<BlogEntity>().AsNoTracking().ToListAsync();
+        IEnumerable<BlogCategoryEntity> i = await _context.Set<BlogCategoryEntity>().AsNoTracking().ToListAsync();
         return new GenericResponse<IEnumerable<GetBlogCategoryDto>>(_mapper.Map<IEnumerable<GetBlogCategoryDto>>(i));
     }
     
