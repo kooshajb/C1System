@@ -111,6 +111,13 @@ public class UploadRepository : IUploadRepository
                 List<MediaEntity> blogMedia =
                     _context.Set<MediaEntity>().ToList();
             }
+            
+            if (model.CustomerSuccessId != null)
+            {
+                folder = "CustomerSuccess";
+                List<MediaEntity> customerSuccessMedia =
+                    _context.Set<MediaEntity>().ToList();
+            }
 
             string name = _mediaRepository.GetFileName(Guid.NewGuid(), Path.GetExtension(file.FileName));
             string url = _mediaRepository.GetFileUrl(name, folder: folder);
@@ -182,6 +189,21 @@ public class UploadRepository : IUploadRepository
                     FileName = url,
                     FileType = fileType,
                     BlogId = model.BlogId,
+                };
+                
+                await _context.Set<MediaEntity>().AddAsync(media);
+                await _context.SaveChangesAsync();
+                ids.Add(media.Id);
+                _mediaRepository.SaveMedia(file, name, folder);
+            }
+            
+            if(model.CustomerSuccessId != null){
+                MediaEntity media = new MediaEntity
+                {
+               
+                    FileName = url,
+                    FileType = fileType,
+                    CustomerSuccessId = model.CustomerSuccessId,
                 };
                 
                 await _context.Set<MediaEntity>().AddAsync(media);
