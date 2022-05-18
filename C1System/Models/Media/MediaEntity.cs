@@ -26,11 +26,21 @@ public class MediaEntity : BaseEntity {
 
     #region Relation
 
-    public Guid? PortfolioId { get; set; } = Guid.NewGuid();
+    public Guid? PortfolioId { get; set; }
 
     [ForeignKey("PortfolioId")]
     public PortfolioEntity? Portfolio { get; set; }
+    
+    public Guid? CategoryId { get; set; }
 
+    [ForeignKey("CategoryId")]
+    public CategoryEntity? Category { get; set; }
+    
+    public Guid? TechnologyId { get; set; }
+
+    [ForeignKey("TechnologyId")]
+    public TechnologyEntity? Technology { get; set; }
+    
     #endregion
     
     // public ProjectEntity? Project { get; set; }
