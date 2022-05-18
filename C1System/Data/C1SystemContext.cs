@@ -9,6 +9,8 @@ public class C1SystemContext : DbContext
     public DbSet<TagEntity> Tags { get; set; }
     public DbSet<BlogEntity> Blogs { get; set; }
     public DbSet<BlogCategoryEntity> BlogCategories { get; set; }
+    public DbSet<Blog_BlogCategoryEntity> BlogBlogCategory { get; set; }
+
     public DbSet<CustomerSuccessEntity> CustomerSuccesses { get; set; }
     public DbSet<CategoryEntity> Categories { get; set; }
     public DbSet<PortfolioEntity> Portfolios { get; set; }
