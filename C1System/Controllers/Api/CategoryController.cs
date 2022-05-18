@@ -23,7 +23,7 @@ public class CategoryController : ControllerBase
     }
 
     [HttpPost]
-    public async Task<ActionResult> CreateCategory([FromBody]AddUpdateCategoryDto dto)
+    public async Task<ActionResult> CreateCategory([FromBody]AddCategoryDto dto)
     {
         if (dto == null)  return BadRequest();
         var createdCategory = await _categoryRepository.Add(dto);
@@ -41,7 +41,7 @@ public class CategoryController : ControllerBase
     }
 
     [HttpPut("{id:guid}")]
-    public async Task<ActionResult<GetCategoryDto>> UpdateProduct([FromBody]AddUpdateCategoryDto dto, Guid id)
+    public async Task<ActionResult<GetCategoryDto>> UpdateProduct([FromBody]UpdateCategoryDto dto, Guid id)
     {
         var category =  await _categoryRepository.Update(id, dto);
         return Ok(category.Result);
