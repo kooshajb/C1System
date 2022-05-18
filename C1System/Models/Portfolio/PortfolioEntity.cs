@@ -40,16 +40,7 @@ public class PortfolioEntity
     [MaxLength(200, ErrorMessage = "تعداد {0} نباید بیشتر از {1} باشد.")]
     [Required(ErrorMessage = "لطفا {0} را وارد کنید .")]
     public string CompanyName { get; set; }
-
-    [Display(Name = "لوگو شرکت")]
-    [Required(ErrorMessage = "لطفا {0} را وارد کنید .")]
-    public string CompanyLogo { get; set; }
     
-    [Display(Name = "تصویر شاخص")]
-    [Required(ErrorMessage = "لطفا {0} را وارد کنید .")]
-    public string FeatureMedia { get; set; }
-    
-
     [Display(Name ="امتیازدهی")]
     public int? Point { get; set; }
     
@@ -61,10 +52,8 @@ public class PortfolioEntity
     public int PortfolioSort { get; set; }
     
     #region Relation
-
+    
     // public IEnumerable<Category_Product> CategoryProducts { get; set; }
-    // public BookMarkEntity BookMark { get; set; }
-
     public List<Technology_PortfolioEntity> TechnologyPortfolios { get; set; }
     public List<MediaEntity> Media { get; set; }
 
