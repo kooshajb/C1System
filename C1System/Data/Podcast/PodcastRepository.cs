@@ -64,9 +64,7 @@ public class PodcastRepository : IPodcastRepository
         i.PodcastNumber = dto.PodcastNumber;
         i.Title = dto.Title;
         i.StudyTime = dto.StudyTime;
-        i.FeatureImage = dto.FeatureImage;
         i.Description = dto.Description;
-        i.Audio = dto.Audio;
         i.IsLike = dto.IsLike;
         i.IsTopTag = dto.IsTopTag;
         i.IsSelected = dto.IsSelected;
