@@ -48,8 +48,6 @@ public class PodcastEntity :BannerEntity
     #region Relation
     
     public List<Tag_PodcastEntity> TagPodcasts { get; set; }
-    // public List<MediaEntity> PodcastFeatureImg { get; set; }
-    // public List<MediaEntity> PodcastAudio { get; set; }
 
     #endregion
     // public BookMarkEntity BookMark { get; set; }
