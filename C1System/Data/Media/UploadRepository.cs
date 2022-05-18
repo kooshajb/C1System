@@ -97,6 +97,13 @@ public class UploadRepository : IUploadRepository
                 List<MediaEntity> technologyMedia =
                     _context.Set<MediaEntity>().ToList();
             }
+            
+            if (model.PodcastId != null)
+            {
+                folder = "Podcasts";
+                List<MediaEntity> podcastMedia =
+                    _context.Set<MediaEntity>().ToList();
+            }
 
             string name = _mediaRepository.GetFileName(Guid.NewGuid(), Path.GetExtension(file.FileName));
             string url = _mediaRepository.GetFileUrl(name, folder: folder);
@@ -138,6 +145,21 @@ public class UploadRepository : IUploadRepository
                     FileName = url,
                     FileType = fileType,
                     TechnologyId = model.TechnologyId,
+                };
+                
+                await _context.Set<MediaEntity>().AddAsync(media);
+                await _context.SaveChangesAsync();
+                ids.Add(media.Id);
+                _mediaRepository.SaveMedia(file, name, folder);
+            }
+            
+            if(model.PodcastId != null){
+                MediaEntity media = new MediaEntity
+                {
+               
+                    FileName = url,
+                    FileType = fileType,
+                    PodcastId = model.PodcastId,
                 };
                 
                 await _context.Set<MediaEntity>().AddAsync(media);
