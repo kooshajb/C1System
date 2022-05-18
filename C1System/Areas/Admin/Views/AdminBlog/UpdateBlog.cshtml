@@ -5,6 +5,10 @@
     List<GetTagDto> tags = ViewBag.Tag;
     List<UpdateBlogTagViewModel> blogsforupdate = ViewBag.BlogTag;
     List<UpdateBlogTagViewModel> existBlogTag = new List<UpdateBlogTagViewModel>();
+    
+    List<GetBlogCategoryDto> blogCats = ViewBag.BlogCat;
+    List<UpdateBlogBlogCategoryViewModel> blogCatsforupdate = ViewBag.BlogCat;
+    List<UpdateBlogBlogCategoryViewModel> existBlogBlogCat = new List<UpdateBlogBlogCategoryViewModel>();
 }
 
 <div class="col-md-12">
@@ -44,7 +48,42 @@
                        @*     <span class="text-danger" asp-validation-for="FeatureImage"></span> *@
                        @* </div> *@
                        
-                    @* tags *@
+                        @* categories blog *@
+                       <div class="col-md-6 form-group mb-3">
+                           <label>انتخاب دسته بندی پست</label>
+                           <select class="form-control" id="select-blogCat">
+                               @foreach (var blogcat in blogCats)
+                               {
+                                   if (blogCatsforupdate.Where(b => b.BlogCategoryId == blogcat.BlogCategoryId).Any())
+                                   {
+                                       existBlogTag.Add(new UpdateBlogTagViewModel()
+                                       {
+                                           TagId = blogcat.BlogCategoryId,
+                                           BlogTitle = blogcat.Title
+                                       });
+                                   }
+                                   else
+                                   {
+                                       <option value="@blogcat.BlogCategoryId">@blogcat.Title</option>
+                                   }
+                               }
+                       
+                           </select>
+                           <button class="Add-blogCat btn btn-success my-2" type="button">انتخاب</button>
+                           <div class="ListBlogCat">
+                               @foreach (var item in existBlogBlogCat)
+                               {
+                                   <div class="mb-2 d-flex align-items-center text-black w-50 border-4" style="background: #8080802b;height:39px;border-radius: 6px;">
+                                       <label class="col-md-12">@item.BlogTitle</label>
+                                       <input type="hidden" name="BlogCatId" value="@item.BlogCategoryId"/>
+                                       <a class="btn btn-danger remove-blogCat">حذف</a>
+                                   </div>
+                               }
+                           </div>
+                       </div>
+                       
+                       
+                       @* tags *@
                     <div class="col-md-6 form-group mb-3">
                         <label>انتخاب برچسب ها</label>
                         <select class="form-control" id="select-tag">
@@ -117,4 +156,33 @@
             content.remove();
         });
     </script>
+    
+    
+        <script>
+            $(".Add-BlogCat").click(function () {
+                if ($("#select-blogCat").val()) {
+                    var value = $("#select-blogCat").children("option:selected").val();
+                    var text = $("#select-blogCat").children("option:selected").text();
+                    $(".ListBlogCat").append(
+                        "<div style='background: #8080802b;height: 39px;width: 48%;border-radius: 5px;margin-bottom: 1%;margin-left: 1%;display:flex;color:whitesmoke;'>"
+                          + "<label style='display: flex;align-items: center;justify-items: center;' class='col-md-12'>" + text + "</label>"
+                          + "<input type='hidden' name='BlogCatId' value='" + value + "' />"
+                          + "<a style='display: flex;align-items: center;justify-items: center;' class='btn btn-danger remove-blogCat'>حذف</a>"
+                          + "</div>"
+                    );
+                    $("#select-blogCat").children("option:selected").remove();
+                }
+            });
+    
+            $('.ListBlogCat').delegate(".remove-blogCat", 'click', function () {
+                var content = $(this).parent();
+                var text = content.find($("label")).text();
+                var value = content.find($("input[type=hidden]")).val();
+                $("#select-blogCat").append($('<option>', {
+                    value: value,
+                    text: text
+                }));
+                content.remove();
+            });
+        </script>
 }
