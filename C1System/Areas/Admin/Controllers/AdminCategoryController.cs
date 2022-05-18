@@ -51,7 +51,7 @@ public class AdminCategoryController : Controller
         var newCategory = await _categoryRepository.Add(dto);
         TempData["Result"] = newCategory.Result.CategoryId != null  ? "true" : "false";
         
-        //upload images
+        //upload images and videoIntro
         UploadDto uploadDto = new UploadDto();
         List<IFormFile> filesResult = new List<IFormFile>();
 
@@ -61,24 +61,13 @@ public class AdminCategoryController : Controller
         {
             filesResult.Add(fileItem);
         }
-
+        foreach (var video in videoIntroFile)
+        {
+            filesResult.Add(video);
+        }
         uploadDto.Files = filesResult;
         await _uploadRepository.UploadMedia(uploadDto);
         
-        //upload videoIntro
-        UploadDto uploadDtovideo = new UploadDto();
-        List<IFormFile> videoFileResult = new List<IFormFile>();
-
-        uploadDtovideo.CategoryId = newCategory.Result.CategoryId;
-
-        foreach (var video in videoIntroFile)
-        {
-            videoFileResult.Add(video);
-        }
-
-        uploadDto.Files = videoFileResult;
-        await _uploadRepository.UploadMedia(uploadDto);
-
         return RedirectToAction(nameof(ShowAllCategories));
     }
     
