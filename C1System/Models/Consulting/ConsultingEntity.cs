@@ -8,7 +8,7 @@ namespace C1System;
 public class ConsultingEntity
 {
     [Key] 
-    public Guid ConsultingId { get; set; }
+    public Guid ConsultingId { get; set; } = Guid.NewGuid();
     
     [Display(Name = "نام و نام خانوادگی")]
     [Required(ErrorMessage = "لطفا {0} را وارد کنید.")]
@@ -21,4 +21,6 @@ public class ConsultingEntity
     [MinLength(11, ErrorMessage = "تعداد {0} نباید کمتر از {1} باشد.")]
     [MaxLength(11, ErrorMessage = "تعداد {0} نباید بیشتر از {1} باشد.")]
     public string MobileNumber { get; set; }
+
+    // public bool? IsRead { get; set; } = false;
 }
