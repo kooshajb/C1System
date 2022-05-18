@@ -10,7 +10,7 @@ public interface ICustomerSuccessRepository
     Task<GenericResponse<GetCustomerSuccessDto>> GetById(Guid id);
     Task<GenericResponse<GetCustomerSuccessDto>> Update(Guid id, AddUpdateCustomerSuccessDto dto);
     Task<GenericResponse> Delete(Guid id);
-    bool ExistCustomerSuccess(string managerName, Guid customerSuccessId);
+    bool ExistCustomerSuccess(string startupName, Guid customerSuccessId);
 }
 
 public class CustomerSuccessRepository : ICustomerSuccessRepository
@@ -33,42 +33,25 @@ public class CustomerSuccessRepository : ICustomerSuccessRepository
         return new GenericResponse<GetCustomerSuccessDto>(_mapper.Map<GetCustomerSuccessDto>(i.Entity));
     }
 
-    public async Task<GenericResponse> Delete(Guid id)
-    {
-        GenericResponse<GetCustomerSuccessDto> i = await GetById(id);
-        _context.Set<CustomerSuccessEntity>().Remove(_mapper.Map<CustomerSuccessEntity>(i.Result));
-        await _context.SaveChangesAsync();
-        return new GenericResponse(UtilitiesStatusCodes.Success,
-            $"Podcast {i.Result.ManagerName} delete Success {i.Result.CustomerSuccessId}");
-    }
-
-    public bool ExistCustomerSuccess(string managerName, Guid customerSuccessId)
-    {
-        return _context.CustomerSuccesses.Any(p =>
-           p.ManagerName == managerName && p.CustomerSuccessId != customerSuccessId);
-    }
-
     public async Task<GenericResponse<IEnumerable<GetCustomerSuccessDto>>> Get()
     {
         IEnumerable<CustomerSuccessEntity> i = await _context.Set<CustomerSuccessEntity>().AsNoTracking().ToListAsync();
         return new GenericResponse<IEnumerable<GetCustomerSuccessDto>>(_mapper.Map<IEnumerable<GetCustomerSuccessDto>>(i));
     }
-
     
     public async Task<GenericResponse<GetCustomerSuccessDto>> GetById(Guid id)
     {
-        //Project? i = await _context.Set<Models.CustomerSuccess.CustomerSuccess>().AsNoTracking()
-        //   .FirstAsync(i=> i.CustomerSuccessId == id);
-        //return new GenericResponse<GetCustomerSuccessDto>(_mapper.Map<GetCustomerSuccessDto>(i));
-        throw new NotImplementedException();
+        CustomerSuccessEntity? i = await _context.Set<CustomerSuccessEntity>().AsNoTracking()
+            .FirstOrDefaultAsync(i => i.CustomerSuccessId == id);
+        return new GenericResponse<GetCustomerSuccessDto>(_mapper.Map<GetCustomerSuccessDto>(i));
     }
-
+    
     public async Task<GenericResponse<GetCustomerSuccessDto>> Update(Guid id, AddUpdateCustomerSuccessDto dto)
     {
         var i = _context.Set<CustomerSuccessEntity>()
-              .Where(p => p.CustomerSuccessId == id).First();
+            .Where(p => p.CustomerSuccessId == id).First();
 
-     i.ManagerName = dto.ManagerName;
+        i.ManagerName = dto.ManagerName;
         i.ManagerSide = dto.ManagerSide;
         i.CompanyName = dto.CompanyName;
         i.StartupName = dto.StartupName;
@@ -80,10 +63,24 @@ public class CustomerSuccessRepository : ICustomerSuccessRepository
         i.CoverVideoImage = dto.CoverVideoImage;
         i.VideoTitle = dto.VideoTitle;
         i.VideoSubTitle = dto.VideoSubTitle;
-        i.Media = dto.Media;
-
+        
         _context.Set<CustomerSuccessEntity>().Update(i);
         await _context.SaveChangesAsync();
         return new GenericResponse<GetCustomerSuccessDto>(_mapper.Map<GetCustomerSuccessDto>(i));
+    }
+
+    public async Task<GenericResponse> Delete(Guid id)
+    {
+        GenericResponse<GetCustomerSuccessDto> i = await GetById(id);
+        _context.Set<CustomerSuccessEntity>().Remove(_mapper.Map<CustomerSuccessEntity>(i.Result));
+        await _context.SaveChangesAsync();
+        return new GenericResponse(UtilitiesStatusCodes.Success,
+            $"Podcast {i.Result.ManagerName} delete Success {i.Result.CustomerSuccessId}");
+    }
+
+    public bool ExistCustomerSuccess(string startupName, Guid customerSuccessId)
+    {
+        return _context.CustomerSuccesses.Any(p =>
+           p.ManagerName == startupName && p.CustomerSuccessId != customerSuccessId);
     }
 }
