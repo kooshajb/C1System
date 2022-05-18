@@ -20,7 +20,7 @@ public class CustomerSuccessController : ControllerBase
     }
 
     [HttpPost]
-    public async Task<ActionResult> CreateCustomerSuccess([FromBody] AddUpdateCustomerSuccessDto dto)
+    public async Task<ActionResult> CreateCustomerSuccess([FromBody] AddCustomerSuccessDto dto)
     {
         if (dto == null) return BadRequest();
         var createdCustomerSuccess = await _customerSuccessRepository.Add(dto);
@@ -38,7 +38,7 @@ public class CustomerSuccessController : ControllerBase
     }
 
     [HttpPut("{id:guid}")]
-    public async Task<ActionResult<GetCustomerSuccessDto>> UpdateCustomerSuccess([FromBody] AddUpdateCustomerSuccessDto dto, Guid id)
+    public async Task<ActionResult<GetCustomerSuccessDto>> UpdateCustomerSuccess([FromBody] UpdateCustomerSuccessDto dto, Guid id)
     {
         var customerSuccess = await _customerSuccessRepository.Update(id, dto);
         return Ok(customerSuccess.Result);
