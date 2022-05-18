@@ -14,7 +14,9 @@ public interface IBlogRepository
     Task<GenericResponse> Delete(Guid id);
     bool ExistBlog(string title, Guid blogId);
     bool AddBlogsForTag(List<Tag_BlogEntity> tagBlogs);
-    Task<List<UpdateBlogTagViewModel>> ShowBlogsForUpdate(Guid blogId);
+    bool AddBlogsForCategory(List<Blog_BlogCategoryEntity> blogCategories);
+    Task<List<UpdateBlogTagViewModel>> ShowBlogsTagForUpdate(Guid blogId);
+    Task<List<UpdateBlogBlogCategoryViewModel>> ShowBlogsCatForUpdate(Guid blogCatId);
     bool DeleteBlogForTag(Guid blogId);
 }
 
@@ -96,7 +98,21 @@ public class BlogRepository : IBlogRepository
         }
     }
     
-    public async Task<List<UpdateBlogTagViewModel>> ShowBlogsForUpdate(Guid blogId)
+    public bool AddBlogsForCategory(List<Blog_BlogCategoryEntity> blogCategories)
+    {
+        try
+        {
+            _context.BlogBlogCategory.AddRange(blogCategories);
+            _context.SaveChanges();
+            return true;
+        }
+        catch
+        {
+            return false;
+        }
+    }
+    
+    public async Task<List<UpdateBlogTagViewModel>> ShowBlogsTagForUpdate(Guid blogId)
     {
         List<UpdateBlogTagViewModel> updates = await (from tp in _context.TagBlogs
             join p in _context.Blogs on tp.BlogId equals p.BlogId
@@ -107,6 +123,22 @@ public class BlogRepository : IBlogRepository
                 TagId = tp.TagId,
                 BlogId = p.BlogId,
                 BlogTitle = p.Title
+            }).ToListAsync();
+    
+        return updates;
+    }
+    
+    public async Task<List<UpdateBlogBlogCategoryViewModel>> ShowBlogsCatForUpdate(Guid blogCatId)
+    {
+        List<UpdateBlogBlogCategoryViewModel> updates = await (from bc in _context.BlogBlogCategory
+            join c in _context.BlogCategories on bc.BlogCategoryId equals c.BlogCategoryId
+            where (bc.BlogCategoryId == blogCatId)
+            select new UpdateBlogBlogCategoryViewModel()
+            {
+                BlogBlogCategoryId =  bc.BlogBlogCategoryId,
+                BlogCategoryId = bc.BlogCategoryId,
+                BlogId = c.BlogCategoryId,
+                BlogTitle = c.Title
             }).ToListAsync();
     
         return updates;
