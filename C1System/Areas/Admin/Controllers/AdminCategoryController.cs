@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Linq;
 using System.Threading.Tasks;
+using C1System.Dtos.Media;
+using C1System.Media;
 using Microsoft.AspNetCore.Mvc;
 
 namespace C1System.Areas.Admin.Controllers;
@@ -9,10 +11,12 @@ namespace C1System.Areas.Admin.Controllers;
 public class AdminCategoryController : Controller
 {
     private readonly ICategoryRepository _categoryRepository;
+    private readonly IUploadRepository _uploadRepository;
 
-    public AdminCategoryController(ICategoryRepository categoryRepository)
+    public AdminCategoryController(ICategoryRepository categoryRepository, IUploadRepository uploadRepository)
     {
         _categoryRepository = categoryRepository;
+        _uploadRepository = uploadRepository;
     }
 
     public async Task<IActionResult> ShowAllCategories()
@@ -33,7 +37,7 @@ public class AdminCategoryController : Controller
     }
     
     [HttpPost]
-    public async Task<IActionResult> AddCategory(AddUpdateCategoryDto dto)
+    public async Task<IActionResult> AddCategory(AddCategoryDto dto, List<IFormFile> iconImageFile, List<IFormFile> videoIntroFile)
     {
         if (!ModelState.IsValid)
         {
@@ -46,6 +50,35 @@ public class AdminCategoryController : Controller
         // }
         var newCategory = await _categoryRepository.Add(dto);
         TempData["Result"] = newCategory.Result.CategoryId != null  ? "true" : "false";
+        
+        //upload images
+        UploadDto uploadDto = new UploadDto();
+        List<IFormFile> filesResult = new List<IFormFile>();
+
+        uploadDto.CategoryId = newCategory.Result.CategoryId;
+
+        foreach (var fileItem in iconImageFile)
+        {
+            filesResult.Add(fileItem);
+        }
+
+        uploadDto.Files = filesResult;
+        await _uploadRepository.UploadMedia(uploadDto);
+        
+        //upload videoIntro
+        UploadDto uploadDtovideo = new UploadDto();
+        List<IFormFile> videoFileResult = new List<IFormFile>();
+
+        uploadDtovideo.CategoryId = newCategory.Result.CategoryId;
+
+        foreach (var video in videoIntroFile)
+        {
+            videoFileResult.Add(video);
+        }
+
+        uploadDto.Files = videoFileResult;
+        await _uploadRepository.UploadMedia(uploadDto);
+
         return RedirectToAction(nameof(ShowAllCategories));
     }
     
@@ -80,7 +113,7 @@ public class AdminCategoryController : Controller
     }
     
     [HttpPost]
-    public async Task<IActionResult> UpdateCategory(AddUpdateCategoryDto dto, Guid id)
+    public async Task<IActionResult> UpdateCategory(UpdateCategoryDto dto, Guid id)
     {
         var category = await _categoryRepository.GetById(id);
         if (!ModelState.IsValid)
