@@ -26,6 +26,7 @@ builder.Services.AddTransient<IPortfolioRepository, PortfolioRepository>();
 builder.Services.AddTransient<IPodcastRepository, PodcastRepository>();
 builder.Services.AddTransient<ITechnologyRepository, TechnologyRepository>();
 builder.Services.AddTransient<IBlogRepository, BlogRepository>();
+builder.Services.AddTransient<IBlogCategoryRepository, BlogCategoryRepository>();
 builder.Services.AddTransient<ITechnologyRepository, TechnologyRepository>();
 builder.Services.AddTransient<INewsLetterRepository, NewsLetterRepository>();
 builder.Services.AddTransient<ITagRepository, TagRepository>();
