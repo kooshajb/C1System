@@ -78,10 +78,13 @@
                     {
                         <tr>
                             <th scope="row">1</th>
-                            <td>@item.Title</td>
-                            <td>@item.Description</td>
-                            <td>@item.SiteAddress</td>
-                            <td>
+                                <td>
+                                     <img class="rounded-circle m-0 avatar-sm-table" src="@item.CompanyLogo" alt="">
+                                </td> 
+                                <td>@item.Title</td>
+                                <td>@item.Description</td>
+                                <td>@item.SiteAddress</td>
+                                <td>
                                 <a asp-action="UpdatePortfolio" asp-controller="AdminPortfolio" asp-area="Admin" asp-route-id="@item.PortfolioId" class="text-success mr-2">
                                     <i class="nav-icon i-Pen-2 font-weight-bold"></i>
                                 </a>
