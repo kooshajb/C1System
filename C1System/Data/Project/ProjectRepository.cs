@@ -77,7 +77,6 @@ public class ProjectRepository : IProjectRepository
        i.Title = dto.Title;
        i.SubTitle = dto.SubTitle;
        i.IsDelete = dto.IsDelete;
-       i.Media = dto.Media;
 
         _context.Set<ProjectEntity>().Update(i);
         await _context.SaveChangesAsync();
