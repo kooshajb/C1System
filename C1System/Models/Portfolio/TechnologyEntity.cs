@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using C1System.Media;
 
 namespace C1System;
 
@@ -15,12 +16,10 @@ public class TechnologyEntity
     [MaxLength(250 , ErrorMessage = "تعداد {0} نباید بیشتر از {1} باشد.")]
     public string Title { get; set; }
     
-    [Display(Name = "تصویر تکنولوژی")]
-    public string TechnologyImage { get; set; }
-
     #region Relation
 
     public List<Technology_PortfolioEntity> TechnologyPortfolios { get; set; }
+    public List<MediaEntity> IconTechnology { get; set; }
 
     #endregion
 }
