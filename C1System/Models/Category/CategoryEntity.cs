@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using C1System.Media;
 
 namespace C1System;
 
@@ -25,17 +26,13 @@ public class CategoryEntity
     [Required(ErrorMessage = "لطفا {0} را وارد کنید .")]
     public string Description { get; set; }
     
-    [Display(Name = "تصویر آیکن")]
-    [Required(ErrorMessage = "لطفا {0} را وارد کنید .")]
-    public string IconImage { get; set; }
+    // [Display(Name = "تصویر آیکن")]
+    // [Required(ErrorMessage = "لطفا {0} را وارد کنید .")]
+    // public string IconImage { get; set; }
     
     [Display(Name = "متن معرفی صفحه داخلی")]
-    [Required(ErrorMessage = "لطفا {0} را وارد کنید .")]
+    [Required(ErrorMessage = "لطفا {0} را وارد کنید.")]
     public string IntroDescription { get; set; }
-    
-    [Display(Name = "تصویر معرفی صفحه داخلی")]
-    [Required(ErrorMessage = "لطفا {0} را وارد کنید .")]
-    public string IntroImage { get; set; }
 
     [Display(Name = "عنوان بنر")]
     [Required(ErrorMessage = "لطفا {0} را وارد کنید .")]
@@ -46,17 +43,7 @@ public class CategoryEntity
     [Display(Name = "متن توضیح بنر")]
     [Required(ErrorMessage = "لطفا {0} را وارد کنید .")]
     public string BannerDescription { get; set; }
-    
-    [Display(Name = "تصویر بنر")]
-    [Required(ErrorMessage = "لطفا {0} را وارد کنید .")]
-    public string BannerImage { get; set; }
-    
-    [Display(Name = "تصویر آیکن منو")]
-    [Required(ErrorMessage = "لطفا {0} را وارد کنید .")]
-    public string IconMenuImage { get; set; }
-    
-    [Display(Name = "ویدئو معرفی")]
-    public string? VideoIntro { get; set; }
+
     public Guid? ParentId { get; set; }
     public bool IsDelete { get; set; }
     
@@ -66,6 +53,9 @@ public class CategoryEntity
     public CategoryEntity Parent { get; set; }
     
     // public IEnumerable<Category_Product> CategoryProducts { get; set; }
-
+    
+    public List<MediaEntity> IconCategory { get; set; }
+    // public List<MediaEntity> VideoIntro { get; set; }
+    
     #endregion
 }
