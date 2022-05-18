@@ -27,11 +27,10 @@
                         <input asp-for="StudyTime" class="form-control" placeholder="زمان مطالعه را وارد کنید">
                         <span class="text-danger" asp-validation-for="StudyTime"></span>
                     </div>
-
+                    
                     <div class="col-md-6 form-group mb-3">
-                        <label asp-for="FeatureImage">تصویر شاخص</label>
-                        <input asp-for="FeatureImage" class="form-control" placeholder="تصویر را وارد کنید">
-                        <span class="text-danger" asp-validation-for="FeatureImage"></span>
+                        <label>تصویر شاخص</label>
+                        <input name="featureImgFile" type="file" class="form-control">
                     </div>
 
                     <div class="col-md-6 form-group mb-3">
@@ -39,14 +38,13 @@
                         <input asp-for="Description" class="form-control" placeholder="توضیحات را وارد کنید">
                         <span class="text-danger" asp-validation-for="Description"></span>
                     </div>
-
+                    
                     <div class="col-md-6 form-group mb-3">
-                        <label asp-for="Audio">فایل صوت</label>
-                        <input asp-for="Audio" class="form-control" placeholder="فایل صوت را وارد کنید">
-                        <span class="text-danger" asp-validation-for="Audio"></span>
+                        <label>فایل صوت</label>
+                        <input name="audioFile" type="file" class="form-control">
                     </div>
                     
-                   <div class="col-md-6 form-group mb-3">
+                    <div class="col-md-6 form-group mb-3">
                         <label>انتخاب برچسب ها</label>
                         <select class="form-control" id="select-tag" asp-items="@(new SelectList(ViewBag.Tag, "TagId", "Title"))"></select>
                         <button class="Add-Tag btn btn-success my-2" type="button">انتخاب</button>
