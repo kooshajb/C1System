@@ -18,6 +18,14 @@ public class AdminCategoryController : Controller
         _categoryRepository = categoryRepository;
         _uploadRepository = uploadRepository;
     }
+    public IActionResult AddCategory(Guid? id)
+    {
+        if (id != null)
+        {
+            ViewBag.Id = id;
+        }
+        return View();
+    }
 
     public async Task<IActionResult> ShowAllCategories()
     {
@@ -27,14 +35,6 @@ public class AdminCategoryController : Controller
     }
 
     [HttpGet]
-    public IActionResult AddCategory(Guid? id)
-    {
-        if (id != null)
-        {
-            ViewBag.Id = id;
-        }
-        return View();
-    }
     
     [HttpPost]
     public async Task<IActionResult> AddCategory(AddCategoryDto dto, List<IFormFile> iconImageFile, List<IFormFile> videoIntroFile)
