@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
+using C1System.Dtos.Media;
+using C1System.Media;
 using Microsoft.AspNetCore.Mvc;
 
 namespace C1System.Areas.Admin.Controllers;
@@ -8,10 +10,12 @@ namespace C1System.Areas.Admin.Controllers;
 public class AdminTechnologyController : Controller
 {
     private readonly ITechnologyRepository _technologyRepository;
+    private readonly IUploadRepository _uploadRepository;
 
-    public AdminTechnologyController(ITechnologyRepository technologyRepository)
+    public AdminTechnologyController(ITechnologyRepository technologyRepository, IUploadRepository uploadRepository)
     {
         _technologyRepository = technologyRepository;
+        _uploadRepository = uploadRepository;
     }
     
     public async Task<IActionResult> Index()
@@ -31,7 +35,7 @@ public class AdminTechnologyController : Controller
     }
     
     [HttpPost]
-    public async Task<IActionResult> AddTechnology(AddUpdateTechnologyDto dto)
+    public async Task<IActionResult> AddTechnology(AddUpdateTechnologyDto dto, List<IFormFile> iconTechFile)
     {
         if (!ModelState.IsValid)
         {
@@ -44,6 +48,20 @@ public class AdminTechnologyController : Controller
         // }
         var newTechnology = await _technologyRepository.Add(dto);
         TempData["Result"] = newTechnology.Result.TechnologyId != null  ? "true" : "false";
+        
+        //upload images
+        UploadDto uploadDto = new UploadDto();
+        List<IFormFile> filesResult = new List<IFormFile>();
+
+        uploadDto.TechnologyId = newTechnology.Result.TechnologyId;
+
+        foreach (var fileItem in iconTechFile)
+        {
+            filesResult.Add(fileItem);
+        }
+
+        uploadDto.Files = filesResult;
+        await _uploadRepository.UploadMedia(uploadDto);
         return RedirectToAction(nameof(Index));
     }
 
