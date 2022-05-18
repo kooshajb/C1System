@@ -1,4 +1,4 @@
-﻿@model AddUpdateCustomerSuccessDto
+﻿@model AddCustomerSuccessDto
 
 @{
     ViewData["Title"] = "افزودن داستان موفقیت";
@@ -41,9 +41,8 @@
                     </div>
 
                     <div class="col-md-6 form-group mb-3">
-                        <label asp-for="CompanyLogo">لوگو شرکت</label>
-                        <input asp-for="CompanyLogo" class="form-control" placeholder="لوگو شرکت را وارد کنید">
-                        <span class="text-danger" asp-validation-for="CompanyLogo"></span>
+                        <label>لوگو شرکت</label>
+                        <input name="companyLogoFile" type="file" class="form-control">
                     </div>
                     
                     <div class="col-md-6 form-group mb-3">
@@ -57,17 +56,15 @@
                         <input asp-for="Description" class="form-control" placeholder="توضیحات را وارد کنید">
                         <span class="text-danger" asp-validation-for="Description"></span>
                     </div>
-
+                    
                     <div class="col-md-6 form-group mb-3">
-                        <label asp-for="VideoFile">فایل ویدئو</label>
-                        <input asp-for="VideoFile" class="form-control" placeholder="فایل ویدئو را وارد کنید">
-                        <span class="text-danger" asp-validation-for="VideoFile"></span>
+                        <label>فایل ویدئو</label>
+                        <input name="videoFile" type="file" class="form-control">
                     </div>
                     
                     <div class="col-md-6 form-group mb-3">
-                        <label asp-for="CoverVideoImage">کاور ویدئو</label>
-                        <input asp-for="CoverVideoImage" class="form-control" placeholder="کاور ویدئو را وارد کنید">
-                        <span class="text-danger" asp-validation-for="VideoFile"></span>
+                        <label>کاور ویدئو</label>
+                        <input name="videoCoverFile" type="file" class="form-control">
                     </div>
                     
                     <div class="col-md-6 form-group mb-3">
