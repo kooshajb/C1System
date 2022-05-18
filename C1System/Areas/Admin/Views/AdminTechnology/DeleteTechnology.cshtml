@@ -16,11 +16,11 @@
                        <span class="text-danger" asp-validation-for="Title"></span>
                    </div>
 
-                   <div class="col-md-6 form-group mb-3">
-                       <label asp-for="TechnologyImage">تصویر تکنولوژی</label>
-                       <input readonly="readonly" asp-for="TechnologyImage" class="form-control" placeholder="تصویر تکنولوژی را وارد کنید">
-                       <span class="text-danger" asp-validation-for="TechnologyImage"></span>
-                   </div>
+                   @* <div class="col-md-6 form-group mb-3"> *@
+                   @*     <label asp-for="TechnologyImage">تصویر تکنولوژی</label> *@
+                   @*     <input readonly="readonly" asp-for="TechnologyImage" class="form-control" placeholder="تصویر تکنولوژی را وارد کنید"> *@
+                   @*     <span class="text-danger" asp-validation-for="TechnologyImage"></span> *@
+                   @* </div> *@
 
                    <div class="col-md-12">
                        <button asp-action="DeleteTechnologyById" asp-controller="AdminTechnology" asp-route-id="@Model.TechnologyId" class="btn btn-primary" type="submit">تایید</button>
