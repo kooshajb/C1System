@@ -33,11 +33,10 @@
                         <input asp-for="StudyTime" class="form-control" placeholder="زمان مطالعه را وارد کنید">
                         <span class="text-danger" asp-validation-for="StudyTime"></span>
                     </div>
-
+                    
                     <div class="col-md-6 form-group mb-3">
-                        <label asp-for="FeatureImage">تصویر شاخص</label>
-                        <input asp-for="FeatureImage" class="form-control" placeholder="تصویر شاخص را وارد کنید">
-                        <span class="text-danger" asp-validation-for="FeatureImage"></span>
+                        <label>تصویر شاخص</label>
+                        <input name="featureImgFile" type="file" class="form-control">
                     </div>
                     
                     <div class="col-md-6 form-group mb-3">
