@@ -11,6 +11,7 @@ public class UploadDto
     public Guid? PortfolioId { get; set; }
     public Guid? CategoryId { get; set; }
     public Guid? TechnologyId { get; set; }
+    public Guid? PodcastId { get; set; }
 
     // public Guid? TenderId { get; set; }
 }
