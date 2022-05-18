@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
+using C1System.Dtos.Media;
+using C1System.Media;
 using Microsoft.AspNetCore.Mvc;
 
 namespace C1System.Areas.Admin.Controllers;
@@ -9,11 +11,13 @@ public class AdminPodcastController : Controller
 {
     private readonly IPodcastRepository _podcastRepository;
     private readonly ITagRepository _tagRepository;
+    private readonly IUploadRepository _uploadRepository;
 
-    public AdminPodcastController(IPodcastRepository podcastRepository, ITagRepository tagRepository)
+    public AdminPodcastController(IPodcastRepository podcastRepository, ITagRepository tagRepository, IUploadRepository uploadRepository)
     {
         _podcastRepository = podcastRepository;
         _tagRepository = tagRepository;
+        _uploadRepository = uploadRepository;
     }
     
     public async Task<IActionResult> Index()
@@ -32,7 +36,7 @@ public class AdminPodcastController : Controller
     }
     
     [HttpPost]
-    public async Task<IActionResult> AddPodcast(AddPodcastDto dto, List<Guid> tagId)
+    public async Task<IActionResult> AddPodcast(AddPodcastDto dto, List<Guid> tagId, List<IFormFile> featureImgFile, List<IFormFile> audioFile)
     {
         if (!ModelState.IsValid)
         {
@@ -46,8 +50,8 @@ public class AdminPodcastController : Controller
         //     return View(dto);
         // }
         
-        var podcast = await _podcastRepository.Add(dto);
-        Guid podcastId = podcast.Result.PodcastId;
+        var newPodcast = await _podcastRepository.Add(dto);
+        Guid podcastId = newPodcast.Result.PodcastId;
         if (podcastId == null)
         {
             TempData["Result"] = "false";
@@ -68,6 +72,25 @@ public class AdminPodcastController : Controller
 
         bool res = _podcastRepository.AddPodcastsForTag(addTagPodcast);
         TempData["Result"] = res ? "true" : "false";
+        
+        //upload images and audio
+        UploadDto uploadDto = new UploadDto();
+        List<IFormFile> fileResult = new List<IFormFile>();
+
+        uploadDto.PodcastId = newPodcast.Result.PodcastId;
+
+        foreach (var fileItem in featureImgFile)
+        {
+            fileResult.Add(fileItem);
+        }
+        foreach (var audio in audioFile)
+        {
+            fileResult.Add(audio);
+        }
+        
+        uploadDto.Files = fileResult;
+        await _uploadRepository.UploadMedia(uploadDto);
+        
         return RedirectToAction(nameof(Index));
     }
 
