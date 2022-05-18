@@ -8,7 +8,6 @@ public class GetBlogDto
     public string Description { get; set; }
     public string Lid { get; set; }
     public string StudyTime { get; set; }
-    public string FeatureImage { get; set; }
 }
 
 public class AddBlogDto
@@ -17,7 +16,6 @@ public class AddBlogDto
     public string Description { get; set; }
     public string Lid { get; set; }
     public string StudyTime { get; set; }
-    public string FeatureImage { get; set; }
 }
 
 public class UpdateBlogDto
@@ -27,7 +25,6 @@ public class UpdateBlogDto
     public string Description { get; set; }
     public string Lid { get; set; }
     public string StudyTime { get; set; }
-    public string FeatureImage { get; set; }
 }
 
 
