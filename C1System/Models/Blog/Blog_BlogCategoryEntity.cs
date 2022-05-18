@@ -7,7 +7,7 @@ namespace C1System;
 public class Blog_BlogCategoryEntity
 {
     [Key]
-    public int Blog_BlogCategoryId { get; set; }
+    public Guid BlogBlogCategoryId { get; set; }
     
     public Guid BlogId { get; set; }
     public Guid BlogCategoryId { get; set; }
