@@ -12,13 +12,13 @@
                 <div class="row">
                    <div class="col-md-6 form-group mb-3">
                         <label asp-for="FullName">نام کامل</label>
-                         <input asp-for="FullName" class="form-control" placeholder="نام کامل را وارد کنید">
+                         <input readonly="readonly" asp-for="FullName" class="form-control">
                          <span class="text-danger" asp-validation-for="FullName"></span>
                      </div>
                                      
                      <div class="col-md-6 form-group mb-3">
                          <label asp-for="Email">ایمیل</label>
-                         <input asp-for="Email" class="form-control" placeholder="ایمیل را وارد کنید">
+                         <input readonly="readonly" asp-for="Email" class="form-control">
                          <span class="text-danger" asp-validation-for="Email"></span>
                      </div>
 
