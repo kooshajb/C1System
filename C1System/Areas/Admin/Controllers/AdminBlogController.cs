@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
+using C1System.Dtos.Media;
+using C1System.Media;
 using Microsoft.AspNetCore.Mvc;
 
 namespace C1System.Areas.Admin.Controllers;
@@ -9,11 +11,13 @@ public class AdminBlogController : Controller
 {
     private readonly IBlogRepository _blogRepository;
     private readonly ITagRepository _tagRepository;
+    private readonly IUploadRepository _uploadRepository;
 
-    public AdminBlogController(IBlogRepository blogRepository, ITagRepository tagRepository)
+    public AdminBlogController(IBlogRepository blogRepository, ITagRepository tagRepository, IUploadRepository uploadRepository)
     {
         _blogRepository = blogRepository;
         _tagRepository = tagRepository;
+        _uploadRepository = uploadRepository;
     }
     
     public async Task<IActionResult> Index()
@@ -32,7 +36,7 @@ public class AdminBlogController : Controller
     }
     
     [HttpPost]
-    public async Task<IActionResult> AddBlog(AddBlogDto dto, List<Guid> tagId)
+    public async Task<IActionResult> AddBlog(AddBlogDto dto, List<Guid> tagId,List<IFormFile> featureImgFile)
     {
         if (!ModelState.IsValid)
         {
@@ -47,8 +51,8 @@ public class AdminBlogController : Controller
         //     return View(dto);
         // }
 
-        var blog = await _blogRepository.Add(dto);
-        Guid blogId = blog.Result.BlogId;
+        var newBlog = await _blogRepository.Add(dto);
+        Guid blogId = newBlog.Result.BlogId;
         if (blogId == null)
         {
             TempData["Result"] = "false";
@@ -69,6 +73,20 @@ public class AdminBlogController : Controller
 
         bool res = _blogRepository.AddBlogsForTag(addTagBlog);
         TempData["Result"] = res ? "true" : "false";
+        
+        // upload image
+         UploadDto uploadDto = new UploadDto();
+         List<IFormFile> fileResult = new List<IFormFile>();
+
+         uploadDto.BlogId = newBlog.Result.BlogId;
+        
+         foreach (var fileItem in featureImgFile)
+         {
+             fileResult.Add(fileItem);
+         }
+         uploadDto.Files = fileResult;
+         await _uploadRepository.UploadMedia(uploadDto);
+        
         return RedirectToAction(nameof(Index));
     }
 
