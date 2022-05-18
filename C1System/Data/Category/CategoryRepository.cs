@@ -9,10 +9,10 @@ using Microsoft.EntityFrameworkCore.ChangeTracking;
 namespace C1System;
 public interface ICategoryRepository
 {
-    Task<GenericResponse<GetCategoryDto>> Add(AddUpdateCategoryDto dto);
+    Task<GenericResponse<GetCategoryDto>> Add(AddCategoryDto dto);
     Task<GenericResponse<IEnumerable<GetCategoryDto>>> Get();
     Task<GenericResponse<GetCategoryDto>> GetById(Guid id);
-    Task<GenericResponse<GetCategoryDto>> Update(Guid id, AddUpdateCategoryDto dto);
+    Task<GenericResponse<GetCategoryDto>> Update(Guid id, UpdateCategoryDto dto);
     Task<GenericResponse> Delete(Guid id);
     Task<GenericResponse<IEnumerable<GetCategoryDto>>> ShowAllSubCategories(Guid categoryId);
     bool ExistCategory(string title, Guid categoryId);
@@ -30,7 +30,7 @@ public class CategoryRepository : ICategoryRepository
         _mapper = mapper;
     }
 
-    public async Task<GenericResponse<GetCategoryDto>> Add(AddUpdateCategoryDto dto)
+    public async Task<GenericResponse<GetCategoryDto>> Add(AddCategoryDto dto)
     {
         if (dto == null) throw new ArgumentException("Dto must not be null", nameof(dto));
         CategoryEntity entity = _mapper.Map<CategoryEntity>(dto);
@@ -53,7 +53,7 @@ public class CategoryRepository : ICategoryRepository
         return new GenericResponse<GetCategoryDto>(_mapper.Map<GetCategoryDto>(i));
     }
 
-    public async Task<GenericResponse<GetCategoryDto>> Update(Guid id, AddUpdateCategoryDto dto)
+    public async Task<GenericResponse<GetCategoryDto>> Update(Guid id, UpdateCategoryDto dto)
     {
         var i = _context.Set<CategoryEntity>()
             .Where(p => p.CategoryId == id).First();
@@ -61,14 +61,9 @@ public class CategoryRepository : ICategoryRepository
         i.Title = dto.Title;
         i.SubTitle = dto.SubTitle;
         i.Description = dto.Description;
-        i.IconImage = dto.IconImage;
         i.IntroDescription = dto.IntroDescription;
-        i.IntroImage = dto.IntroImage;
         i.BannerTitle = dto.BannerTitle;
         i.BannerDescription = dto.BannerDescription;
-        i.BannerImage = dto.BannerImage;
-        i.IconMenuImage = dto.IconMenuImage;
-        i.VideoIntro = dto.VideoIntro;
 
         _context.Set<CategoryEntity>().Update(i);
         await _context.SaveChangesAsync();
