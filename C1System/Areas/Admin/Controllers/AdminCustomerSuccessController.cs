@@ -19,7 +19,7 @@ public class AdminCustomerSuccessController : Controller
     }
     
     [HttpGet]
-    public IActionResult AddCustomerSuccess(Guid? id)
+    public IActionResult AddCustomerSuccess(Guid id)
     {
         if (id != null)
         {
@@ -62,15 +62,15 @@ public class AdminCustomerSuccessController : Controller
     [HttpPost]
     public async Task<IActionResult> UpdateCustomerSuccess(AddUpdateCustomerSuccessDto dto, Guid id)
     {
-        var tag = await _customerSuccessRepository.GetById(id);
+        var customerSuccess = await _customerSuccessRepository.GetById(id);
         if (!ModelState.IsValid)
         {
-            return View(tag.Result);
+            return View(customerSuccess.Result);
         }
         
-        var updateTag = await _customerSuccessRepository.Update(id, dto);
+        var updateCustomerSuccess = await _customerSuccessRepository.Update(id, dto);
         
-        TempData["Result"] = updateTag.Result != null ? "true" : "false";
+        TempData["Result"] = updateCustomerSuccess.Result != null ? "true" : "false";
         return RedirectToAction(nameof(Index));
     }
 

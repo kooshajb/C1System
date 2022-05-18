@@ -16,7 +16,6 @@ public class GetCustomerSuccessDto
     public string? CoverVideoImage { get; set; }
     public string? VideoTitle { get; set; }
     public string? VideoSubTitle { get; set; }
-    public string Media { get; set; }
 }
 
 public class AddUpdateCustomerSuccessDto
@@ -33,7 +32,6 @@ public class AddUpdateCustomerSuccessDto
     public string? CoverVideoImage { get; set; }
     public string? VideoTitle { get; set; }
     public string? VideoSubTitle { get; set; }
-    public string Media { get; set; }
 }
 
 public class AutoMapperCustomerSuccess : Profile {
