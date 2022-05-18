@@ -47,6 +47,12 @@
                     </div>
                     
                     <div class="col-md-6 form-group mb-3">
+                       <label asp-for="ManagerSpeech">سخن مدیر</label>
+                        <input asp-for="ManagerSpeech" class="form-control" placeholder="سخن مدیر را وارد کنید">
+                        <span class="text-danger" asp-validation-for="ManagerSpeech"></span>
+                    </div>
+                    
+                    <div class="col-md-6 form-group mb-3">
                         <label asp-for="Description">توضیحات</label>
                         <input asp-for="Description" class="form-control" placeholder="توضیحات را وارد کنید">
                         <span class="text-danger" asp-validation-for="Description"></span>
@@ -75,7 +81,7 @@
                         <input asp-for="VideoSubTitle" class="form-control" placeholder="زیرعنوان ویدئو را وارد کنید">
                         <span class="text-danger" asp-validation-for="VideoSubTitle"></span>
                     </div>
-
+                    @* media *@
                     <div class="col-md-12">
                         <button asp-action="AddCustomerSuccess" asp-controller="AdminCustomerSuccess" class="btn btn-primary" type="submit">تایید</button>
                         <a asp-action="Index" class="btn btn-danger m-1">لغو</a>
