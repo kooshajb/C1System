@@ -61,7 +61,6 @@ public class BlogRepository : IBlogRepository
         i.Description = dto.Description;
         i.Lid = dto.Lid;
         i.StudyTime = dto.StudyTime;
-        i.FeatureImage = dto.FeatureImage;
 
         _context.Set<BlogEntity>().Update(i);
         await _context.SaveChangesAsync();
