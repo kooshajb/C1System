@@ -4,7 +4,7 @@ namespace C1System.Controllers.Api
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class NewsLetterController : Controller
+    public class NewsLetterController : ControllerBase
     {
         private readonly INewsLetterRepository _newsLetterRepository;
         public NewsLetterController(INewsLetterRepository newsLetterRepository)
