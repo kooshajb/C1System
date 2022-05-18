@@ -82,7 +82,7 @@
                                 <a asp-action="UpdateNewsLetter" asp-controller="AdminNewsLetter" asp-area="Admin" asp-route-id="@item.NewsLetterId" class="text-success mr-2">
                                     <i class="nav-icon i-Pen-2 font-weight-bold"></i>
                                 </a>
-                                <a asp-action="DeleteNewsLetterById" asp-controller="AdminNewsLetter" asp-area="Admin" asp-route-id="@item.NewsLetterId" class="text-danger mr-2">
+                                <a asp-action="DeleteNewsLetter" asp-controller="AdminNewsLetter" asp-area="Admin" asp-route-id="@item.NewsLetterId" class="text-danger mr-2">
                                     <i class="nav-icon i-Close-Window font-weight-bold"></i>
                                 </a>
                             </td>
@@ -92,7 +92,7 @@
                 else
                 {
                     <tr class="gradeX odd" role="row">
-                        <td colspan="5" class="sorting_1">برچسبی موجود نمی باشد.</td>
+                        <td colspan="5" class="sorting_1">فردی موجود نمی باشد.</td>
                     </tr>
                 }
                 </tbody>
