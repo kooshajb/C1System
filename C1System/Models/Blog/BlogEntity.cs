@@ -31,10 +31,6 @@ public class BlogEntity
     [MaxLength(5 , ErrorMessage = "تعداد {0} نباید بیشتر از {1} باشد.")]
     public string StudyTime { get; set; }
     
-    [Display(Name ="تصویر شاخص")]
-    [Required(ErrorMessage ="لطفا {0} را وارد کنید .")]
-    public string FeatureImage { get; set; }
-    
     [Display(Name ="علاقه مندی")]
     public bool? IsLike { get; set; }
     
@@ -46,11 +42,11 @@ public class BlogEntity
     
     [Display(Name ="امتیازدهی")]
     public int? Point { get; set; }
-    
-    //todo برچسب ها
     //todo bookmark
-    //todo comment
-    //todo blogCategory
 
-    // public BookMarkEntity BookMark { get; set; }
+    #region Relation
+        
+    public List<Tag_BlogEntity> TagBlogs { get; set; }
+    
+    #endregion
 }
