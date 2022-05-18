@@ -51,6 +51,11 @@ public class MediaEntity : BaseEntity {
     [ForeignKey("BlogId")]
     public BlogEntity? Blog { get; set; }
     
+    public Guid? CustomerSuccessId { get; set; }
+
+    [ForeignKey("CustomerSuccessId")]
+    public CustomerSuccessEntity? CustomerSuccess { get; set; }
+    
     #endregion
     
     // public ProjectEntity? Project { get; set; }
