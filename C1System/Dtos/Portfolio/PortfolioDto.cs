@@ -12,8 +12,6 @@ public class GetPortfolioDto
     public string Description { get; set; }
     public string? SiteAddress { get; set; }
     public string CompanyName { get; set; }
-    public string CompanyLogo { get; set; }
-    public string FeatureMedia { get; set; }
     public int? Point { get; set; }
     public int PortfolioSort { get; set; }
 }
@@ -26,8 +24,6 @@ public class AddPortfolioDto
     public string Description { get; set; }
     public string? SiteAddress { get; set; }
     public string CompanyName { get; set; }
-    public string CompanyLogo { get; set; }
-    public string FeatureMedia { get; set; }
     public bool IsActive { get; set; }
     public int PortfolioSort { get; set; }
 }
@@ -41,8 +37,6 @@ public class UpdatePortfolioDto
     public string Description { get; set; }
     public string? SiteAddress { get; set; }
     public string CompanyName { get; set; }
-    public string CompanyLogo { get; set; }
-    public string FeatureMedia { get; set; }
     public int? Point { get; set; }
     public bool IsActive { get; set; }
     public int PortfolioSort { get; set; }
