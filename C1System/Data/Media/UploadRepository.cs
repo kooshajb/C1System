@@ -83,20 +83,68 @@ public class UploadRepository : IUploadRepository
                 //     _context.SaveChanges();
                 // }
             }
+            
+            if (model.CategoryId != null)
+            {
+                folder = "Categories";
+                List<MediaEntity> categoryMedia =
+                    _context.Set<MediaEntity>().ToList();
+            }
+            
+            if (model.TechnologyId != null)
+            {
+                folder = "Technologies";
+                List<MediaEntity> technologyMedia =
+                    _context.Set<MediaEntity>().ToList();
+            }
 
             string name = _mediaRepository.GetFileName(Guid.NewGuid(), Path.GetExtension(file.FileName));
             string url = _mediaRepository.GetFileUrl(name, folder: folder);
-            MediaEntity media = new MediaEntity
-            {
-                FileName = url,
-                FileType = fileType,
-                // UserId = model.UserId,
-                PortfolioId = model.PortfolioId,
-            };
-            await _context.Set<MediaEntity>().AddAsync(media);
-            await _context.SaveChangesAsync();
-            ids.Add(media.Id);
-            _mediaRepository.SaveMedia(file, name, folder);
+            
+            if(model.PortfolioId != null){
+                MediaEntity media = new MediaEntity
+                {
+               
+                    FileName = url,
+                    FileType = fileType,
+                    PortfolioId = model.PortfolioId,
+                };
+                
+                await _context.Set<MediaEntity>().AddAsync(media);
+                await _context.SaveChangesAsync();
+                ids.Add(media.Id);
+                _mediaRepository.SaveMedia(file, name, folder);
+            }
+            
+            if(model.CategoryId != null){
+                MediaEntity media = new MediaEntity
+                {
+               
+                    FileName = url,
+                    FileType = fileType,
+                    CategoryId = model.CategoryId,
+                };
+                
+                await _context.Set<MediaEntity>().AddAsync(media);
+                await _context.SaveChangesAsync();
+                ids.Add(media.Id);
+                _mediaRepository.SaveMedia(file, name, folder);
+            }
+            
+            if(model.TechnologyId != null){
+                MediaEntity media = new MediaEntity
+                {
+               
+                    FileName = url,
+                    FileType = fileType,
+                    TechnologyId = model.TechnologyId,
+                };
+                
+                await _context.Set<MediaEntity>().AddAsync(media);
+                await _context.SaveChangesAsync();
+                ids.Add(media.Id);
+                _mediaRepository.SaveMedia(file, name, folder);
+            }
         }
 
         return new GenericResponse(UtilitiesStatusCodes.Success, "File uploaded", ids);
