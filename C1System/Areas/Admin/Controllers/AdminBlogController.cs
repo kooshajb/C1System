@@ -11,12 +11,14 @@ public class AdminBlogController : Controller
 {
     private readonly IBlogRepository _blogRepository;
     private readonly ITagRepository _tagRepository;
+    private readonly IBlogCategoryRepository _blogCategoryRepository;
     private readonly IUploadRepository _uploadRepository;
 
-    public AdminBlogController(IBlogRepository blogRepository, ITagRepository tagRepository, IUploadRepository uploadRepository)
+    public AdminBlogController(IBlogRepository blogRepository, ITagRepository tagRepository,IBlogCategoryRepository blogCategoryRepository, IUploadRepository uploadRepository)
     {
         _blogRepository = blogRepository;
         _tagRepository = tagRepository;
+        _blogCategoryRepository = blogCategoryRepository;
         _uploadRepository = uploadRepository;
     }
     
@@ -32,16 +34,22 @@ public class AdminBlogController : Controller
         var tags = await _tagRepository.Get();
         ViewBag.Tag = tags.Result;
         
+        var blogCats = await _blogCategoryRepository.Get();
+        ViewBag.BlogCat = blogCats.Result;
+        
         return View();
     }
     
     [HttpPost]
-    public async Task<IActionResult> AddBlog(AddBlogDto dto, List<Guid> tagId,List<IFormFile> featureImgFile)
+    public async Task<IActionResult> AddBlog(AddBlogDto dto, List<Guid> tagId,List<Guid> blogCatId, List<IFormFile> featureImgFile)
     {
         if (!ModelState.IsValid)
         {
             var tags = await _tagRepository.Get();
             ViewBag.Tag = tags.Result;
+            
+            var blogCats = await _blogCategoryRepository.Get();
+            ViewBag.BlogCat = blogCats.Result;
             
             return View(dto);
         }
@@ -58,7 +66,7 @@ public class AdminBlogController : Controller
             TempData["Result"] = "false";
             return RedirectToAction(nameof(Index));
         }
-        
+
         //tags        
         List<Tag_BlogEntity> addTagBlog = new List<Tag_BlogEntity>();
         
@@ -71,8 +79,23 @@ public class AdminBlogController : Controller
             });
         }
 
-        bool res = _blogRepository.AddBlogsForTag(addTagBlog);
-        TempData["Result"] = res ? "true" : "false";
+        bool resTag = _blogRepository.AddBlogsForTag(addTagBlog);
+        TempData["Result"] = resTag ? "true" : "false";
+        
+        //blog categories        
+        List<Blog_BlogCategoryEntity> addBlogCat = new List<Blog_BlogCategoryEntity>();
+        
+        foreach (var item in blogCatId)
+        {
+            addBlogCat.Add(new Blog_BlogCategoryEntity()
+            {
+                BlogCategoryId = item,
+                BlogId = blogId
+            });
+        }
+
+        bool resCat = _blogRepository.AddBlogsForCategory(addBlogCat);
+        TempData["Result"] = resCat ? "true" : "false";
         
         // upload image
          UploadDto uploadDto = new UploadDto();
@@ -93,10 +116,17 @@ public class AdminBlogController : Controller
     [HttpGet]
     public async Task<IActionResult> UpdateBlog(Guid id)
     {
+        // tags
         var tags = await _tagRepository.Get();
         ViewBag.Tag = tags.Result;
         
-        ViewBag.BlogTag = await _blogRepository.ShowBlogsForUpdate(id);
+        ViewBag.BlogTag = await _blogRepository.ShowBlogsTagForUpdate(id);
+        
+        // categories
+        var blogCats = await _blogCategoryRepository.Get();
+        ViewBag.BlogCat = blogCats.Result;
+        
+        ViewBag.BlogBlogCat = await _blogRepository.ShowBlogsCatForUpdate(id);
 
         
         var blog = await _blogRepository.GetById(id);
@@ -117,7 +147,7 @@ public class AdminBlogController : Controller
             var tags = await _tagRepository.Get();
             ViewBag.Tag = tags.Result;
             
-            ViewBag.Blog = await _blogRepository.ShowBlogsForUpdate(dto.BlogId);
+            ViewBag.Blog = await _blogRepository.ShowBlogsTagForUpdate(dto.BlogId);
 
             return View();
         }
@@ -159,7 +189,7 @@ public class AdminBlogController : Controller
         var tags = await _tagRepository.Get();
         ViewBag.Tag = tags.Result;
         
-        ViewBag.BlogTag = await _blogRepository.ShowBlogsForUpdate(id);
+        ViewBag.BlogTag = await _blogRepository.ShowBlogsTagForUpdate(id);
         
         var blog = await _blogRepository.GetById(id);
         if (blog.Result == null)
