@@ -4,20 +4,20 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace C1System;
 
 [Table("CustomerSuccess")]
-public class CustomerSuccessEntity : BannerEntity
+public class CustomerSuccessEntity
 {
-    [Key]
-    public Guid CustomerSuccessId { get; set; }
+    [Key] 
+    public Guid CustomerSuccessId { get; set; } = Guid.NewGuid();
 
     [Display(Name = "نام مدیرعامل")]
     [Required(ErrorMessage = "لطفا {0} را وارد کنید.")]
-    [MinLength(10, ErrorMessage = "تعداد {0} نباید کمتر از {1} باشد.")]
+    [MinLength(5, ErrorMessage = "تعداد {0} نباید کمتر از {1} باشد.")]
     [MaxLength(120, ErrorMessage = "تعداد {0} نباید بیشتر از {1} باشد.")]
     public string ManagerName { get; set; }
 
     [Display(Name = "سمت مدیرعامل")]
     [Required(ErrorMessage = "لطفا {0} را وارد کنید .")]
-    [MinLength(20, ErrorMessage = "تعداد {0} نباید کمتر از {1} باشد.")]
+    [MinLength(3, ErrorMessage = "تعداد {0} نباید کمتر از {1} باشد.")]
     [MaxLength(250, ErrorMessage = "تعداد {0} نباید بیشتر از {1} باشد.")]
     public string ManagerSide { get; set; }
 
@@ -35,7 +35,7 @@ public class CustomerSuccessEntity : BannerEntity
 
     [Display(Name = "حوزه فعالیت")]
     [Required(ErrorMessage = "لطفا {0} را وارد کنید .")]
-    [MinLength(10, ErrorMessage = "تعداد {0} نباید کمتر از {1} باشد.")]
+    [MinLength(5, ErrorMessage = "تعداد {0} نباید کمتر از {1} باشد.")]
     [MaxLength(300, ErrorMessage = "تعداد {0} نباید بیشتر از {1} باشد.")]
     public string ActivityName { get; set; }
 
@@ -62,10 +62,10 @@ public class CustomerSuccessEntity : BannerEntity
     public string? VideoTitle { get; set; }
 
     [Display(Name = "زیرعنوان ویدئو")]
-    [MinLength(15, ErrorMessage = "تعداد {0} نباید کمتر از {1} باشد.")]
+    [MinLength(5, ErrorMessage = "تعداد {0} نباید کمتر از {1} باشد.")]
     [MaxLength(350, ErrorMessage = "تعداد {0} نباید بیشتر از {1} باشد.")]
     public string? VideoSubTitle { get; set; }
-
-    [Display(Name = "گالری تصاویر")]
-    public string Media { get; set; }
+    //
+    // [Display(Name = "گالری تصاویر")]
+    // public string Media { get; set; }
 }
