@@ -40,6 +40,13 @@
                     </div>
                     
                     <div class="col-md-6 form-group mb-3">
+                        <label>انتخاب دسته بندی </label>
+                        <select class="form-control" id="select-blogCat" asp-items="@(new SelectList(ViewBag.BlogCat, "BlogCategoryId", "Title"))"></select>
+                        <button class="Add-BlogCat btn btn-success my-2" type="button">انتخاب</button>
+                        <div class="ListBlogCat"></div>
+                    </div>
+                    
+                    <div class="col-md-6 form-group mb-3">
                         <label>انتخاب برچسب ها</label>
                         <select class="form-control" id="select-tag" asp-items="@(new SelectList(ViewBag.Tag, "TagId", "Title"))"></select>
                         <button class="Add-Tag btn btn-success my-2" type="button">انتخاب</button>
@@ -82,6 +89,36 @@
             var text = content.find($("label")).text();
             var value = content.find($("input[type=hidden]")).val();
             $("#select-tag").append($('<option>', {
+                value: value,
+                text: text
+            }));
+            content.remove();
+        });
+    </script>
+    
+    <script>
+        //blog category
+        $(".Add-BlogCat").click(function () {
+            if ($("#select-blogCat").val()) {
+                var value = $("#select-blogCat").children("option:selected").val();
+                var text = $("#select-blogCat").children("option:selected").text();
+                $(".ListBlogCat").append(
+                    "<div style='background: #8080802b;height: 39px;width: 48%;border-radius: 5px;margin-bottom: 1%;margin-left: 1%;display:flex;color:whitesmoke;'>"
+                    + "<label style='display: flex;align-items: center;justify-items: center;' class='col-md-12'>" + text + "</label>"
+                    + "<input type='hidden' name='BlogCatId' value='" + value + "' />"
+                    + "<a style='display: flex;align-items: center;justify-items: center;' class='btn btn-danger remove-blogCat'>حذف</a>"
+                    + "</div>"
+
+                );
+                $("#select-blogCat").children("option:selected").remove();
+            }
+        });
+
+        $('.ListBlogCat').delegate(".remove-blogCat", 'click', function () {
+            var content = $(this).parent();
+            var text = content.find($("label")).text();
+            var value = content.find($("input[type=hidden]")).val();
+            $("#select-blogCat").append($('<option>', {
                 value: value,
                 text: text
             }));
