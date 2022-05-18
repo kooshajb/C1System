@@ -31,6 +31,7 @@ builder.Services.AddTransient<INewsLetterRepository, NewsLetterRepository>();
 builder.Services.AddTransient<ITagRepository, TagRepository>();
 builder.Services.AddTransient<IProjectRepository, ProjectRepository>();
 builder.Services.AddTransient<ICustomerSuccessRepository, CustomerSuccessRepository>();
+builder.Services.AddTransient<IConsultingRepository, ConsultingRepository>();
 builder.Services.AddTransient<IUploadRepository, UploadRepository>();
 builder.Services.AddTransient<IMediaRepository, MediaRepository>();
 builder.Services.AddTransient<UploadRepository>();
