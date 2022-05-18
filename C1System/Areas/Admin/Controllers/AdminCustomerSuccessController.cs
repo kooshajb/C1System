@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using C1System.Dtos.Media;
+using C1System.Media;
+using Microsoft.AspNetCore.Mvc;
 
 namespace C1System.Areas.Admin.Controllers;
 
@@ -6,10 +8,13 @@ namespace C1System.Areas.Admin.Controllers;
 public class AdminCustomerSuccessController : Controller
 {
     private readonly ICustomerSuccessRepository _customerSuccessRepository;
+    private readonly IUploadRepository _uploadRepository;
 
-    public AdminCustomerSuccessController(ICustomerSuccessRepository customerSuccessRepository)
+    public AdminCustomerSuccessController(ICustomerSuccessRepository customerSuccessRepository, IUploadRepository uploadRepository)
     {
         _customerSuccessRepository = customerSuccessRepository;
+        _uploadRepository = uploadRepository;
+
     }
 
     public async Task<IActionResult> Index()
@@ -29,7 +34,7 @@ public class AdminCustomerSuccessController : Controller
     }
     
     [HttpPost]
-    public async Task<IActionResult> AddCustomerSuccess(AddUpdateCustomerSuccessDto dto)
+    public async Task<IActionResult> AddCustomerSuccess(AddCustomerSuccessDto dto,  List<IFormFile> companyLogoFile, List<IFormFile> videoFile, List<IFormFile> videoCoverFile)
     {
         if (!ModelState.IsValid)
         {
@@ -41,8 +46,30 @@ public class AdminCustomerSuccessController : Controller
         //     return View(dto);
         // }
         
-        var customerSuccess = await _customerSuccessRepository.Add(dto);
-        Guid customerSuccessId = customerSuccess.Result.CustomerSuccessId;
+        var newCustomerSuccess = await _customerSuccessRepository.Add(dto);
+        Guid customerSuccessId = newCustomerSuccess.Result.CustomerSuccessId;
+        
+        //upload images and video
+        UploadDto uploadDto = new UploadDto();
+        List<IFormFile> fileResult = new List<IFormFile>();
+
+        uploadDto.CustomerSuccessId = newCustomerSuccess.Result.CustomerSuccessId;
+
+        foreach (var fileItem in companyLogoFile)
+        {
+            fileResult.Add(fileItem);
+        }
+        foreach (var audio in videoFile)
+        {
+            fileResult.Add(audio);
+        }
+        foreach (var audio in videoCoverFile)
+        {
+            fileResult.Add(audio);
+        }
+        uploadDto.Files = fileResult;
+        await _uploadRepository.UploadMedia(uploadDto);
+        
         return RedirectToAction(nameof(Index));
     }
 
@@ -60,7 +87,7 @@ public class AdminCustomerSuccessController : Controller
     }
     
     [HttpPost]
-    public async Task<IActionResult> UpdateCustomerSuccess(AddUpdateCustomerSuccessDto dto, Guid id)
+    public async Task<IActionResult> UpdateCustomerSuccess(UpdateCustomerSuccessDto dto, Guid id)
     {
         var customerSuccess = await _customerSuccessRepository.GetById(id);
         if (!ModelState.IsValid)
