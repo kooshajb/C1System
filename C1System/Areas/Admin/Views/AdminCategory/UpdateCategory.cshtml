@@ -43,7 +43,7 @@
                                     {
                                         <div class="position-relative" id="@mediaItem.MediaId">
                                             <img href="~/Medias/@mediaItem.FileName" target="_blank" class="w-20 rounded-2" src="~/Medias/@mediaItem.FileName" alt=""  />
-                                            <a class="position-absolute top-0 left-0 bg-white text-black rounded-circle p-1 pe-auto" asp-action="DeletePortfolioMediaById" asp-controller="AdminPortfolio" asp-route-id="@mediaItem.MediaId" asp-route-portfolioId="@Model.CategoryId"><i class="i-Close-Window"></i></a>
+                                            <a class="position-absolute top-0 left-0 bg-white text-black rounded-circle p-1 pe-auto" asp-action="DeleteCategoryMediaById" asp-controller="AdminCategory" asp-route-id="@mediaItem.MediaId" asp-route-categoryId="@Model.CategoryId"><i class="i-Close-Window"></i></a>
                                         </div>
                                     }
                                 }
@@ -85,7 +85,7 @@
                                               <source src="~/Medias/@mediaItem.FileName" type="video/mp4">
                                             Your browser does not support the video tag.
                                             </video>
-                                            <a class="position-absolute top-0 left-0 bg-white text-black rounded-circle p-1 pe-auto" asp-action="DeleteCategoryById" asp-controller="AdminCategory" asp-route-id="@mediaItem.MediaId" asp-route-categoryId="@Model.CategoryId"><i class="i-Close-Window"></i></a>
+                                            <a class="position-absolute top-0 left-0 bg-white text-black rounded-circle p-1 pe-auto" asp-action="DeleteCategoryMediaById" asp-controller="AdminCategory" asp-route-id="@mediaItem.MediaId" asp-route-categoryId="@Model.CategoryId"><i class="i-Close-Window"></i></a>
                                         </div>
                                     }
                                 }
