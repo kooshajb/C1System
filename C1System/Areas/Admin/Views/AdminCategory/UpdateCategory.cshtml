@@ -2,6 +2,7 @@
 
 @{
     ViewData["Title"] = "بروزرسانی خدمت";
+    List<UpdateCategoryMediaViewModel> categoriesMediaforupdate = ViewBag.IconCatImage;
 }
 
 <div class="col-md-12">
@@ -9,72 +10,78 @@
         <div class="card-body">
             <div class="card-title mb-3">بروز رسانی خدمت</div>
             <form asp-action="UpdateCategory" method="post" enctype="multipart/form-data">
-                    <input type="hidden" asp-for="CategoryId"/>
-                    <div class="row">
+                <input type="hidden" asp-for="CategoryId"/>
+                <div class="row">
+                   <div class="col-md-6 form-group mb-3">
+                       <label asp-for="Title">عنوان</label>
+                       <input asp-for="Title" class="form-control" placeholder="عنوان را وارد کنید">
+                       <span class="text-danger" asp-validation-for="Title"></span>
+                   </div>
+
+                   <div class="col-md-6 form-group mb-3">
+                       <label asp-for="SubTitle">زیرعنوان</label>
+                       <input asp-for="SubTitle" class="form-control" placeholder="زیرعنوان را وارد کنید">
+                       <span class="text-danger" asp-validation-for="SubTitle"></span>
+                   </div>
+
+                   <div class="col-md-6 form-group mb-3">
+                       <label asp-for="Description">توضیحات</label>
+                       <input asp-for="Description" class="form-control" placeholder="توضیحات را وارد کنید">
+                       <span class="text-danger" asp-validation-for="Description"></span>
+                   </div>
+
                     <div class="col-md-6 form-group mb-3">
-                        <label asp-for="Title">عنوان</label>
-                        <input asp-for="Title" class="form-control" placeholder="عنوان را وارد کنید">
-                        <span class="text-danger" asp-validation-for="Title"></span>
+                        <label>عکس آیکن خدمت</label>
+                        <input name="iconImageFile" type="file" class="form-control" multiple="multiple">
+                                                         
+                        @if (categoriesMediaforupdate != null)
+                        {
+                            <div class="d-flex justify-content-center align-items-center mt-5">
+                                @foreach (var mediaItem in categoriesMediaforupdate)
+                                {
+                                    <div class="position-relative" id="@mediaItem.MediaId">
+                                        <img href="~/Medias/@mediaItem.FileName" target="_blank" class="w-20 rounded-2" src="~/Medias/@mediaItem.FileName" alt=""  />
+                                        <a class="position-absolute top-0 left-0 bg-white text-black rounded-circle p-1 pe-auto" asp-action="DeleteCategoryById" asp-controller="AdminCategory" asp-route-id="@mediaItem.MediaId" asp-route-portfolioId="@Model.CategoryId"><i class="i-Close-Window"></i></a>
+                                    </div>
+                                }
+                            </div>
+                        }
                     </div>
 
                     <div class="col-md-6 form-group mb-3">
-                        <label asp-for="SubTitle">زیرعنوان</label>
-                        <input asp-for="SubTitle" class="form-control" placeholder="زیرعنوان را وارد کنید">
-                        <span class="text-danger" asp-validation-for="SubTitle"></span>
+                       <label asp-for="IntroDescription">متن معرفی</label>
+                       <input asp-for="IntroDescription" class="form-control" placeholder="متن معرفی را وارد کنید">
+                       <span class="text-danger" asp-validation-for="IntroDescription"></span>
+                   </div>
+
+                   <div class="col-md-6 form-group mb-3">
+                       <label asp-for="BannerTitle">عنوان بنر</label>
+                       <input asp-for="BannerTitle" class="form-control" placeholder="عنوان بنر را وارد کنید">
+                       <span class="text-danger" asp-validation-for="BannerTitle"></span>
                     </div>
 
-                    <div class="col-md-6 form-group mb-3">
-                        <label asp-for="Description">توضیحات</label>
-                        <input asp-for="Description" class="form-control" placeholder="توضیحات را وارد کنید">
-                        <span class="text-danger" asp-validation-for="Description"></span>
-                    </div>
-
-                    @* <div class="col-md-6 form-group mb-3"> *@
-                    @*     <label asp-for="IconImage">عکس آیکن خدمت</label> *@
-                    @*     <input asp-for="IconImage" class="form-control" placeholder="عکس آیکن خدمت را وارد کنید"> *@
-                    @*     <span class="text-danger" asp-validation-for="IconImage"></span> *@
-                    @* </div> *@
+                   <div class="col-md-6 form-group mb-3">
+                       <label asp-for="BannerDescription">توضیحات بنر</label>
+                       <input asp-for="BannerDescription" class="form-control" placeholder="توضیحات بنر را وارد کنید">
+                       <span class="text-danger" asp-validation-for="BannerDescription"></span>
+                   </div>
 
                     <div class="col-md-6 form-group mb-3">
-                        <label asp-for="IntroDescription">متن معرفی</label>
-                        <input asp-for="IntroDescription" class="form-control" placeholder="متن معرفی را وارد کنید">
-                        <span class="text-danger" asp-validation-for="IntroDescription"></span>
-                    </div>
-
-                    @* <div class="col-md-6 form-group mb-3"> *@
-                    @*     <label asp-for="IntroImage">تصویر معرفی خدمت</label> *@
-                    @*     <input asp-for="IntroImage" class="form-control" placeholder="تصویر معرفی خدمت را وارد کنید"> *@
-                    @*     <span class="text-danger" asp-validation-for="IntroImage"></span> *@
-                    @* </div> *@
-
-                    <div class="col-md-6 form-group mb-3">
-                        <label asp-for="BannerTitle">عنوان بنر</label>
-                        <input asp-for="BannerTitle" class="form-control" placeholder="عنوان بنر را وارد کنید">
-                        <span class="text-danger" asp-validation-for="BannerTitle"></span>
-                    </div>
-
-                    <div class="col-md-6 form-group mb-3">
-                        <label asp-for="BannerDescription">توضیحات بنر</label>
-                        <input asp-for="BannerDescription" class="form-control" placeholder="توضیحات بنر را وارد کنید">
-                        <span class="text-danger" asp-validation-for="BannerDescription"></span>
-                    </div>
-
-                    @* <div class="col-md-6 form-group mb-3"> *@
-                    @*     <label asp-for="BannerImage">عکس بنر</label> *@
-                    @*     <input asp-for="BannerImage" class="form-control" placeholder="عکس بنر را وارد کنید"> *@
-                    @*     <span class="text-danger" asp-validation-for="BannerImage"></span> *@
-                    @* </div> *@
-
-                    @* <div class="col-md-6 form-group mb-3"> *@
-                    @*     <label asp-for="IconMenuImage">آیکن منو خدمت</label> *@
-                    @*     <input asp-for="IconMenuImage" class="form-control" placeholder="آیکن منو خدمت را وارد کنید"> *@
-                    @*     <span class="text-danger" asp-validation-for="IconMenuImage"></span> *@
-                    @* </div> *@
-
-                    <div class="col-md-6 form-group mb-3">
-                        <label asp-for="VideoIntro">ویدئو معرفی خدمت</label>
-                        <input asp-for="VideoIntro" class="form-control" placeholder="ویدئو معرفی خدمت را وارد کنید">
-                        <span class="text-danger" asp-validation-for="VideoIntro"></span>
+                        <label>ویدئو معرفی خدمت</label>
+                        <input name="videoIntroFile" type="file" class="form-control" accept="video/mp4">
+                                                                             
+                        @if (categoriesMediaforupdate != null)
+                        {
+                            <div class="d-flex justify-content-center align-items-center mt-5">
+                                @foreach (var mediaItem in categoriesMediaforupdate)
+                                {
+                                    <div class="position-relative" id="@mediaItem.MediaId">
+                                        <img href="~/Medias/@mediaItem.FileName" target="_blank" class="w-20 rounded-2" src="~/Medias/@mediaItem.FileName" alt=""  />
+                                        <a class="position-absolute top-0 left-0 bg-white text-black rounded-circle p-1 pe-auto" asp-action="DeleteCategoryById" asp-controller="AdminCategory" asp-route-id="@mediaItem.MediaId" asp-route-portfolioId="@Model.CategoryId"><i class="i-Close-Window"></i></a>
+                                    </div>
+                                }
+                            </div>
+                        }
                     </div>
 
                     <div class="col-md-12">
