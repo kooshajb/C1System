@@ -7,8 +7,8 @@ namespace C1System;
 [Table("Technology")]
 public class TechnologyEntity
 {
-    [Key]
-    public Guid TechnologyId { get; set; }
+    [Key] 
+    public Guid TechnologyId { get; set; } = Guid.NewGuid();
     
     [Display(Name ="نام تکنولوژی")]
     [Required(ErrorMessage ="لطفا {0} را وارد کنید .")]
@@ -19,7 +19,6 @@ public class TechnologyEntity
     #region Relation
 
     public List<Technology_PortfolioEntity> TechnologyPortfolios { get; set; }
-    public List<MediaEntity> IconTechnology { get; set; }
 
     #endregion
 }
