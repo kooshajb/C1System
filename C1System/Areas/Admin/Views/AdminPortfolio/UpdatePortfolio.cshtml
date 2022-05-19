@@ -8,10 +8,11 @@
     List<GetTechnologyDto> technologies = ViewBag.Technology;
     List<UpdatePortfolioCatViewModel> portfoliosCatforupdate = ViewBag.PortfolioCat;
     List<UpdatePortfolioTechViewModel> portfoliosTechforupdate = ViewBag.PortfolioTech;
-    List<UpdatePortfolioMediaViewModel> portfoliosMediaforupdate = ViewBag.MediaImage;
-    
     List<UpdatePortfolioCatViewModel> existpropCat = new List<UpdatePortfolioCatViewModel>();
     List<UpdatePortfolioTechViewModel> existpropTech = new List<UpdatePortfolioTechViewModel>();
+    
+    List<UpdatePortfolioMediaViewModel> portfoliosMediaforupdate = ViewBag.MediaImage;
+
 }
 
 <div class="col-md-12">
@@ -60,10 +61,13 @@
                               <div class="d-flex justify-content-center align-items-center mt-5">
                                   @foreach (var mediaItem in portfoliosMediaforupdate)
                                   {
-                                      <div class="position-relative" id="@mediaItem.MediaId">
-                                          <img href="~/Medias/@mediaItem.FileName" target="_blank" class="w-20 rounded-2" src="~/Medias/@mediaItem.FileName" alt=""  />
-                                          <a class="position-absolute top-0 left-0 bg-white text-black rounded-circle p-1 pe-auto" asp-action="DeletePortfolioMediaById" asp-controller="AdminPortfolio" asp-route-id="@mediaItem.MediaId" asp-route-portfolioId="@Model.PortfolioId"><i class="i-Close-Window"></i></a>
-                                      </div>
+                                      @if (mediaItem.FileName.Contains("Portfolios/CompanyLogo"))
+                                      {
+                                          <div class="position-relative" id="@mediaItem.MediaId">
+                                              <img href="~/Medias/@mediaItem.FileName" target="_blank" class="w-20 rounded-2" src="~/Medias/@mediaItem.FileName" alt=""  />
+                                              <a class="position-absolute top-0 left-0 bg-white text-black rounded-circle p-1 pe-auto" asp-action="DeletePortfolioMediaById" asp-controller="AdminPortfolio" asp-route-id="@mediaItem.MediaId" asp-route-portfolioId="@Model.PortfolioId"><i class="i-Close-Window"></i></a>
+                                          </div>
+                                      }
                                   }
                               </div>
                           }
@@ -78,10 +82,13 @@
                              <div class="d-flex justify-content-center align-items-center mt-5">
                                  @foreach (var mediaItem in portfoliosMediaforupdate)
                                  {
-                                     <div class="position-relative" id="@mediaItem.MediaId">
-                                         <img href="~/Medias/@mediaItem.FileName" target="_blank" class="w-20 rounded-2" src="~/Medias/@mediaItem.FileName" alt=""  />
-                                         <a class="position-absolute top-0 left-0 bg-white text-black rounded-circle p-1 pe-auto" asp-action="DeletePortfolioMediaById" asp-controller="AdminPortfolio" asp-route-id="@mediaItem.MediaId" asp-route-portfolioId="@Model.PortfolioId"><i class="i-Close-Window"></i></a>
-                                     </div>
+                                     @if (mediaItem.FileName.Contains("Portfolios/FeatureImg"))
+                                     {
+                                         <div class="position-relative" id="@mediaItem.MediaId">
+                                             <img href="~/Medias/@mediaItem.FileName" target="_blank" class="w-20 rounded-2" src="~/Medias/@mediaItem.FileName" alt=""/>
+                                             <a class="position-absolute top-0 left-0 bg-white text-black rounded-circle p-1 pe-auto" asp-action="DeletePortfolioMediaById" asp-controller="AdminPortfolio" asp-route-id="@mediaItem.MediaId" asp-route-portfolioId="@Model.PortfolioId"><i class="i-Close-Window"></i></a>
+                                         </div>
+                                     }
                                  }
                              </div>
                          }
@@ -99,10 +106,13 @@
                              <div class="d-flex justify-content-center align-items-center mt-5">
                                  @foreach (var mediaItem in portfoliosMediaforupdate)
                                  {
-                                     <div class="position-relative" id="@mediaItem.MediaId">
-                                         <img href="~/Medias/@mediaItem.FileName" target="_blank" class="w-20 rounded-2" src="~/Medias/@mediaItem.FileName" alt=""  />
-                                         <a class="position-absolute top-0 left-0 bg-white text-black rounded-circle p-1 pe-auto" asp-action="DeletePortfolioMediaById" asp-controller="AdminPortfolio" asp-route-id="@mediaItem.MediaId" asp-route-portfolioId="@Model.PortfolioId"><i class="i-Close-Window"></i></a>
-                                     </div>
+                                     @if (mediaItem.FileName.Contains("Portfolios/Gallery"))
+                                     {
+                                         <div class="position-relative" id="@mediaItem.MediaId">
+                                             <img href="~/Medias/@mediaItem.FileName" target="_blank" class="w-20 rounded-2" src="~/Medias/@mediaItem.FileName" alt=""/>
+                                             <a class="position-absolute top-0 left-0 bg-white text-black rounded-circle p-1 pe-auto" asp-action="DeletePortfolioMediaById" asp-controller="AdminPortfolio" asp-route-id="@mediaItem.MediaId" asp-route-portfolioId="@Model.PortfolioId"><i class="i-Close-Window"></i></a>
+                                         </div>
+                                     }
                                  }
                              </div>
                          }
