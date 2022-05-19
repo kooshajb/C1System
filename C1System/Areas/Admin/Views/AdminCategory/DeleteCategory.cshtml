@@ -9,7 +9,7 @@
         <div class="card-body">
             <div class="card-title mb-3">حذف خدمت</div>
             <form asp-action="DeleteCategoryById" method="post" enctype="multipart/form-data">
-                    <div class="row">
+                <div class="row">
                     <div class="col-md-6 form-group mb-3">
                         <label asp-for="Title">عنوان</label>
                         <input readonly="readonly" asp-for="Title" class="form-control" placeholder="عنوان را وارد کنید">
@@ -27,30 +27,23 @@
                         <input readonly="readonly" asp-for="Description" class="form-control" placeholder="توضیحات را وارد کنید">
                         <span class="text-danger" asp-validation-for="Description"></span>
                     </div>
-
-                    @* <div class="col-md-6 form-group mb-3"> *@
-                    @*     <label asp-for="IconImage">عکس آیکن خدمت</label> *@
-                    @*     <input readonly="readonly" asp-for="IconImage" class="form-control" placeholder="عکس آیکن خدمت را وارد کنید"> *@
-                    @*     <span class="text-danger" asp-validation-for="IconImage"></span> *@
-                    @* </div> *@
-
+                    
+                    <div class="col-md-6 form-group mb-3">
+                        <label>عکس آیکن خدمت</label>
+                        <input name="iconImageFile" type="file" class="form-control">
+                    </div>
+                    
                     <div class="col-md-6 form-group mb-3">
                         <label asp-for="IntroDescription">متن معرفی</label>
                         <input readonly="readonly" asp-for="IntroDescription" class="form-control" placeholder="متن معرفی را وارد کنید">
                         <span class="text-danger" asp-validation-for="IntroDescription"></span>
                     </div>
 
-                    @* <div class="col-md-6 form-group mb-3"> *@
-                    @*     <label asp-for="IntroImage">تصویر معرفی خدمت</label> *@
-                    @*     <input readonly="readonly" asp-for="IntroImage" class="form-control" placeholder="تصویر معرفی خدمت را وارد کنید"> *@
-                    @*     <span class="text-danger" asp-validation-for="IntroImage"></span> *@
-                    @* </div> *@
-
                     <div class="col-md-6 form-group mb-3">
                         <label asp-for="BannerTitle">عنوان بنر</label>
                         <input readonly="readonly" asp-for="BannerTitle" class="form-control" placeholder="عنوان بنر را وارد کنید">
                         <span class="text-danger" asp-validation-for="BannerTitle"></span>
-                    </div>
+                     </div>
 
                     <div class="col-md-6 form-group mb-3">
                         <label asp-for="BannerDescription">توضیحات بنر</label>
@@ -58,21 +51,9 @@
                         <span class="text-danger" asp-validation-for="BannerDescription"></span>
                     </div>
 
-                    @* <div class="col-md-6 form-group mb-3"> *@
-                    @*     <label asp-for="BannerImage">عکس بنر</label> *@
-                    @*     <input readonly="readonly" asp-for="BannerImage" class="form-control" placeholder="عکس بنر را وارد کنید"> *@
-                    @*     <span class="text-danger" asp-validation-for="BannerImage"></span> *@
-                    @* </div> *@
-
-                    @* <div class="col-md-6 form-group mb-3"> *@
-                    @*     <label asp-for="IconMenuImage">آیکن منو خدمت</label> *@
-                    @*     <input readonly="readonly" asp-for="IconMenuImage" class="form-control" placeholder="آیکن منو خدمت را وارد کنید"> *@
-                    @*     <span class="text-danger" asp-validation-for="IconMenuImage"></span> *@
-                    @* </div> *@
-
                     <div class="col-md-6 form-group mb-3">
-                        <label asp-for="VideoIntro">ویدئو معرفی خدمت</label>
-                        <input readonly="readonly" asp-for="VideoIntro" class="form-control" placeholder="ویدئو معرفی خدمت را وارد کنید">
+                        <label>ویدئو معرفی خدمت</label>
+                        <input readonly="readonly" name="videoIntroFile" type="file" class="form-control" accept="video/mp4">
                         <span class="text-danger" asp-validation-for="VideoIntro"></span>
                     </div>
 
