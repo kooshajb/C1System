@@ -13,6 +13,7 @@ public class GetPortfolioDto
     public string? SiteAddress { get; set; }
     public string CompanyName { get; set; }
     public int? Point { get; set; }
+    public bool IsActive { get; set; }
     public int PortfolioSort { get; set; }
 }
 
