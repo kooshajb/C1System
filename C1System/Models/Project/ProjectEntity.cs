@@ -29,10 +29,6 @@ public class ProjectEntity
     [MaxLength(1000, ErrorMessage = "تعداد {0} نباید بیشتر از {1} باشد.")]
     public string Description { get; set; }
 
-    [Display(Name = "تصویر")]
-    [Required(ErrorMessage = "لطفا {0} را وارد کنید.")]
-    public string Picture { get; set; }
-    
     public bool? IsDelete { get; set; }
 
     [Display(Name = "درصد پیشرفت پروژه")]
@@ -41,33 +37,33 @@ public class ProjectEntity
     public int Progress { get; set; }
     
     [Display(Name = "باقی مانده تا تحویل")]
-    [Required(ErrorMessage = "لطفا {0} را وارد کنید.")]
-    public int RemainingUntil { get; set; }
+    public DateTime RemainingUntil { get; set; }
     
     [Display(Name = "باقی مانده پشتیبانی")]
-    [Required(ErrorMessage = "لطفا {0} را وارد کنید.")]
-    public int RemainingSupport { get; set; }
+    public DateTime RemainingSupport { get; set; }
     
-    // [Display(Name = "تصاویر")]
-    // public string Media { get; set; }
-    
-    //todo support status
-
+    [Display(Name = "تاریخ شروع پروژه")]
     public DateTime? StartDate { get; set; }
+    
+    [Display(Name = "تاریخ پایان پروژه")]
     public DateTime? EndDate { get; set; }
 
-    //vidoes
+    [Display(Name = "وضعیت پروژه")]
+    public ProjectStatusEnum ProjectStatus { get; set; }
+    
+    [Display(Name = "وضعیت پشتیبانی")]
+    public ProjectSupportStatusEnum ProjectSupportStatus { get; set; }
 
+    [Display(Name = "نوع پشتیبانی")]
+    public ProjectSupportTypeEnum ProjectSupportType { get; set; }
+    
+    [Display(Name = "دسته بندی فیلم")]
+    public ProjectVideoCategoryEnum ProjectVideoCategory { get; set; }
+    
     #region Relation
         
     public List<Project_ProjectTypeEntity> ProjectProjectTypes { get; set; }
-
     
     
-    //todo وضعیت پروژه
-    //todo نوع پشتیبانی 
-    //todo وضعیت پشتیبانی 
-    //todo ویدئو ها
     #endregion
-    
 }
