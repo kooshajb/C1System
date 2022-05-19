@@ -3,6 +3,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using C1System.Dtos.Media;
 using C1System.Media;
+using C1System.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 
 namespace C1System.Areas.Admin.Controllers;
@@ -33,8 +34,6 @@ public class AdminCategoryController : Controller
         var model = list.Result.Where(c => !c.IsDelete && c.ParentId == null).ToList();
         return View(model);
     }
-
-    [HttpGet]
     
     [HttpPost]
     public async Task<IActionResult> AddCategory(AddCategoryDto dto, List<IFormFile> iconImageFile, List<IFormFile> videoIntroFile)
@@ -98,21 +97,48 @@ public class AdminCategoryController : Controller
             TempData["NotFoundCategory"] = "true";
             return RedirectToAction(nameof(ShowAllCategories));
         }
+        
+        //image
+        UploadDto uploadDto = new UploadDto();
+        List<IFormFile> filesResult = new List<IFormFile>();
+        
+        List<UpdateCategoryMediaViewModel> mediaList = await _categoryRepository.ShowCategoriesMediaForUpdate(category.Result.CategoryId);
+        ViewBag.MediaImage = mediaList;
+        
         return View(category.Result);
     }
     
     [HttpPost]
-    public async Task<IActionResult> UpdateCategory(UpdateCategoryDto dto, Guid id)
+    public async Task<IActionResult> UpdateCategory(UpdateCategoryDto dto, List<IFormFile> iconImageFile, List<IFormFile> videoIntroFile)
     {
-        var category = await _categoryRepository.GetById(id);
+        var category = await _categoryRepository.GetById(dto.CategoryId);
         if (!ModelState.IsValid)
         {
             return View(category.Result);
         }
         
-        var updateCategory = await _categoryRepository.Update(id, dto);
+        var updateCategory = await _categoryRepository.Update(dto.CategoryId, dto);
         
         TempData["Result"] = updateCategory.Result != null ? "true" : "false";
+        
+        
+        //upload images and video
+        UploadDto uploadDto = new UploadDto();
+        List<IFormFile> filesResult = new List<IFormFile>();
+        
+        uploadDto.CategoryId = dto.CategoryId;
+        
+        foreach (var fileItem in iconImageFile)
+        {
+            filesResult.Add(fileItem);
+        }
+        foreach (var fileItem in videoIntroFile)
+        {
+            filesResult.Add(fileItem);
+        }
+        uploadDto.Files = filesResult;
+        await _uploadRepository.UploadMedia(uploadDto);
+        
         return RedirectToAction(nameof(ShowAllCategories));
     }
 
