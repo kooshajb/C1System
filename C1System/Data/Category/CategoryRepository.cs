@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
+using C1System.ViewModels;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 
@@ -17,6 +18,7 @@ public interface ICategoryRepository
     Task<GenericResponse<IEnumerable<GetCategoryDto>>> ShowAllSubCategories(Guid categoryId);
     bool ExistCategory(string title, Guid categoryId);
     Task<GenericResponse<List<GetCategoryDto>>> ShowSubCategory();
+    Task<List<UpdateCategoryMediaViewModel>> ShowCategoriesMediaForUpdate(Guid categoryId);
 }
 
 public class CategoryRepository : ICategoryRepository
@@ -97,5 +99,20 @@ public class CategoryRepository : ICategoryRepository
         IEnumerable<CategoryEntity> i = await _context.Set<CategoryEntity>().AsNoTracking()
            .Where(c => c.ParentId != null).ToListAsync();
        return new GenericResponse<List<GetCategoryDto>>(_mapper.Map<List<GetCategoryDto>>(i));
+    }
+    
+    public async Task<List<UpdateCategoryMediaViewModel>> ShowCategoriesMediaForUpdate(Guid categoryId)
+    {
+        var result = await (from p in _context.Categories
+            join m in _context.Media on p.CategoryId equals m.CategoryId
+            where (p.CategoryId == categoryId)
+            select new UpdateCategoryMediaViewModel()
+            {
+                CategoryId = p.CategoryId,
+                MediaId = m.Id,
+                FileName = m.FileName,
+            }).ToListAsync();
+        
+        return result;
     }
 }
