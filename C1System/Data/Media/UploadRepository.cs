@@ -74,14 +74,20 @@ public class UploadRepository : IUploadRepository
 
             if (model.PortfolioId != null)
             {
-                folder = "Portfolios";
+                if (file.Name == "galleryFile")
+                {
+                    folder = "Portfolios/Gallery";
+                }
+                else if (file.Name == "featureImgFile")
+                {
+                    folder = "Portfolios/FeatureImg";
+                }
+                else if (file.Name == "companyLogoFile")
+                {
+                    folder = "Portfolios/CompanyLogo";
+                }
                 List<MediaEntity> portfolioMedia =
                     _context.Set<MediaEntity>().ToList();
-                // if (portfolioMedia.Count > 0)
-                // {
-                //     _context.Set<MediaEntity>().RemoveRange(portfolioMedia);
-                //     _context.SaveChanges();
-                // }
             }
             
             if (model.CategoryId != null)
