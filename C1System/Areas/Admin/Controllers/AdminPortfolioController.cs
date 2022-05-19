@@ -250,16 +250,16 @@ public class AdminPortfolioController : Controller
     [HttpGet]
     public async Task<IActionResult> DeletePortfolio(Guid id)
     {
+        ViewBag.PortfolioCat = await _portfolioRepository.ShowPortfoliosCatForUpdate(id);
+        ViewBag.PortfolioTech = await _portfolioRepository.ShowPortfoliosTechForUpdate(id);
+        
         var portfolio = await _portfolioRepository.GetById(id);
         if (portfolio.Result == null)
         {
             TempData["NotFoundPortfolio"] = true;
             return RedirectToAction(nameof(Index));
         }
-        
-        ViewBag.PortfolioCat = await _portfolioRepository.ShowPortfoliosCatForUpdate(id);
-        ViewBag.PortfolioTech = await _portfolioRepository.ShowPortfoliosTechForUpdate(id);
-        
+
         //image
         UploadDto uploadDto = new UploadDto();
         List<IFormFile> filesResult = new List<IFormFile>();
