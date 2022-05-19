@@ -159,7 +159,7 @@ public class AdminPortfolioController : Controller
     }
     
     [HttpPost]
-    public async Task<IActionResult> UpdatePortfolio(UpdatePortfolioDto dto, List<Guid> categoryId, List<Guid> technologyId, List<IFormFile> files)
+    public async Task<IActionResult> UpdatePortfolio(UpdatePortfolioDto dto, List<Guid> categoryId, List<Guid> technologyId, List<IFormFile> galleryFile, List<IFormFile> featureImgFile, List<IFormFile> companyLogoFile)
     {
         if (!ModelState.IsValid)
         {
@@ -175,45 +175,26 @@ public class AdminPortfolioController : Controller
             return View();
         }
         
-        // if (files == null)
-        // {
-        //     ModelState.AddModelError("PortfolioImg", "لطفا یک تصویر برای نمونه کار انتخاب نمایید.");
-        //     return View(dto);
-        // }
-
+        //upload images
+        UploadDto uploadDto = new UploadDto();
+        List<IFormFile> filesResult = new List<IFormFile>();
         
+        uploadDto.PortfolioId = dto.PortfolioId;
         
-        
-        // var portfolio = await _portfolioRepository.Add(dto);
-        // Guid portfolioId = portfolio.Result.PortfolioId;
-        // if (portfolioId == null)
-        // {
-        //     TempData["Result"] = "false";
-        //     return RedirectToAction(nameof(Index));
-        // }
-        //
-        // //upload images
-        // UploadDto uploadDto = new UploadDto();
-        // List<IFormFile> filesResult = new List<IFormFile>();
-        //
-        // uploadDto.PortfolioId = dto.PortfolioId;
-        //
-        // foreach (var fileItem in files)
-        // {
-        //     filesResult.Add(fileItem);
-        // }
-        // uploadDto.Files = filesResult;
-        // await _uploadRepository.UploadMedia(uploadDto);
-        
-        
-        
-        
-        
-        // if (_portfolioRepository.ExistPortfolio(dto.Title, dto.PortfolioId))
-        // {
-        //     ModelState.AddModelError("PortfolioTitle", "نمونه کار تکراری است .");
-        //     return View(dto);
-        // }
+        foreach (var fileItem in galleryFile)
+        {
+            filesResult.Add(fileItem);
+        }
+        foreach (var fileItem in featureImgFile)
+        {
+            filesResult.Add(fileItem);
+        }
+        foreach (var fileItem in companyLogoFile)
+        {
+            filesResult.Add(fileItem);
+        }
+        uploadDto.Files = filesResult;
+        await _uploadRepository.UploadMedia(uploadDto);
         
         //category
         var updatePortfolio = _portfolioRepository.Update(dto.PortfolioId, dto);
