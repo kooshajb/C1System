@@ -46,7 +46,7 @@ public class ProjectRepository : IProjectRepository
         _context.Set<ProjectEntity>().Remove(_mapper.Map<ProjectEntity>(i.Result));
         await _context.SaveChangesAsync();
         return new GenericResponse(UtilitiesStatusCodes.Success,
-            $"Podcast {i.Result.Title} delete Success {i.Result.ProjectId}");
+            $"Project {i.Result.Title} delete Success {i.Result.ProjectId}");
     }
 
     public bool ExistProject(string title, Guid projectId)
@@ -73,11 +73,19 @@ public class ProjectRepository : IProjectRepository
         var i = _context.Set<ProjectEntity>()
                .Where(p => p.ProjectId == id).First();
 
-       i.Picture = dto.Picture;
        i.Title = dto.Title;
        i.SubTitle = dto.SubTitle;
-       i.IsDelete = dto.IsDelete;
-
+       i.Description = dto.Description;
+       i.Progress = dto.Progress;
+       // i.RemainingUntil = dto.RemainingUntil;
+       // i.RemainingSupport = dto.RemainingSupport;
+       i.StartDate = dto.StartDate;
+       i.EndDate = dto.EndDate;
+       i.ProjectStatus = dto.ProjectStatus;
+       i.ProjectSupportStatus = dto.ProjectSupportStatus;
+       i.ProjectSupportType = dto.ProjectSupportType;
+       i.ProjectVideoCategory = dto.ProjectVideoCategory;
+       
         _context.Set<ProjectEntity>().Update(i);
         await _context.SaveChangesAsync();
         return new GenericResponse<GetProjectDto>(_mapper.Map<GetProjectDto>(i));
