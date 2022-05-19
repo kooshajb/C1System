@@ -174,7 +174,6 @@ public class UploadRepository : IUploadRepository
             if(model.TechnologyId != null){
                 MediaEntity media = new MediaEntity
                 {
-               
                     FileName = url,
                     FileType = fileType,
                     TechnologyId = model.TechnologyId,
