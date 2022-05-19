@@ -20,8 +20,9 @@ public interface IPortfolioRepository
     Task<List<UpdatePortfolioTechViewModel>> ShowPortfoliosTechForUpdate(Guid portfolioId);
     bool DeletePortfolioForCategory(Guid portfolioId);
     bool DeletePortfolioForTechnology(Guid portfolioId);
-    bool DeletePortfolioForMedia(Guid mediaId);
+    // bool DeletePortfolioForMedia(Guid mediaId);
     Task<List<UpdatePortfolioMediaViewModel>> ShowPortfoliosMediaForUpdate(Guid portfolioId);
+    Task<List<UpdatePortfolioMediaViewModel>> DeleteMediasForPortfolio(Guid portfolioId);
 }
 
 public class PortfolioRepository : IPortfolioRepository
@@ -182,20 +183,20 @@ public class PortfolioRepository : IPortfolioRepository
         }
     }
     
-    public bool DeletePortfolioForMedia(Guid mediaId)
-    {
-        try
-        {
-            var media = _context.Media.Where(m => m.Id == mediaId);
-            _context.Media.RemoveRange(media);
-            _context.SaveChanges();
-            return true;
-        }
-        catch
-        {
-            return false;
-        }
-    }
+    // public bool DeletePortfolioForMedia(Guid mediaId)
+    // {
+        // try
+        // {
+        //     var media = _context.Media.Where(m => m.Id == mediaId);
+        //     _context.Media.RemoveRange(media);
+        //     _context.SaveChanges();
+        //     return true;
+        // }
+        // catch
+        // {
+        //     return false;
+        // }
+    // }
     
     public async Task<List<UpdatePortfolioMediaViewModel>> ShowPortfoliosMediaForUpdate(Guid portfolioId)
     {
@@ -210,5 +211,20 @@ public class PortfolioRepository : IPortfolioRepository
             }).ToListAsync();
         
         return result;
+    }
+    
+    public async Task<List<UpdatePortfolioMediaViewModel>> DeleteMediasForPortfolio(Guid portfolioId)
+    {
+        var resultTodelete = await (from p in _context.Portfolios
+            join m in _context.Media on p.PortfolioId equals m.PortfolioId
+            where (p.PortfolioId == portfolioId)
+            select new UpdatePortfolioMediaViewModel()
+            {
+                PortfolioId = p.PortfolioId,
+                MediaId = m.Id,
+                FileName = m.FileName,
+            }).ToListAsync();
+        
+        return resultTodelete;
     }
 }
