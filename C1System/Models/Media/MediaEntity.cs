@@ -9,7 +9,7 @@ namespace C1System.Media;
 public class MediaEntity : BaseEntity {
     [Required]
     public string FileName { get; set; }
-
+    
     [Required]
     public FileTypes FileType { get; set; }
 
