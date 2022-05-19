@@ -256,14 +256,34 @@ public class AdminPortfolioController : Controller
             TempData["NotFoundPortfolio"] = true;
             return RedirectToAction(nameof(Index));
         }
+        
+        ViewBag.PortfolioCat = await _portfolioRepository.ShowPortfoliosCatForUpdate(id);
+        ViewBag.PortfolioTech = await _portfolioRepository.ShowPortfoliosTechForUpdate(id);
+        
+        //image
+        UploadDto uploadDto = new UploadDto();
+        List<IFormFile> filesResult = new List<IFormFile>();
+        
+        List<UpdatePortfolioMediaViewModel> mediaList = await _portfolioRepository.ShowPortfoliosMediaForUpdate(portfolio.Result.PortfolioId);
+        ViewBag.MediaImage = mediaList;
+
         return View(portfolio.Result);
     }
     
     [HttpPost]
-    public async Task<IActionResult> DeletePortfolioById(Guid id)
+    public async Task<IActionResult> DeletePortfolioById(Guid portfolioId)
     {
-        var response = await _portfolioRepository.Delete(id);
-        TempData["ResultDelete"] = response.Status == UtilitiesStatusCodes.Success ? "true" : "false";
+
+        var portfolioMediaToDel = _portfolioRepository.DeleteMediasForPortfolio(portfolioId);
+        var resMedia = new GenericResponse();
+        foreach (var item in portfolioMediaToDel.Result)
+        {
+            resMedia = await _uploadRepository.DeleteMedia(item.MediaId);
+        }
+        TempData["ResultDelete"] = resMedia.Status == UtilitiesStatusCodes.Success  ? "true" : "false";
+
+        var resData = await _portfolioRepository.Delete(portfolioId);
+        TempData["ResultDelete"] = resData.Status == UtilitiesStatusCodes.Success  ? "true" : "false";
         return RedirectToAction(nameof(Index));
     }
     
@@ -271,6 +291,5 @@ public class AdminPortfolioController : Controller
     {
          var response =  await _uploadRepository.DeleteMedia(id);
          return RedirectToAction(nameof(UpdatePortfolio), new { id = portfolioId});
-
     }
 }
