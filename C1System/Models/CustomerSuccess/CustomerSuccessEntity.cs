@@ -39,9 +39,6 @@ public class CustomerSuccessEntity
     [MaxLength(300, ErrorMessage = "تعداد {0} نباید بیشتر از {1} باشد.")]
     public string ActivityName { get; set; }
 
-    [Display(Name = "لوگو شرکت")]
-    public string? CompanyLogo { get; set; }
-
     [Display(Name = "سخن مدیر")]
     [Required(ErrorMessage = "لطفا {0} را وارد کنید.")]
     public string ManagerSpeech { get; set; }
@@ -49,13 +46,7 @@ public class CustomerSuccessEntity
     [Display(Name = "توضیحات")]
     [Required(ErrorMessage = "لطفا {0} را وارد کنید.")]
     public string Description { get; set; }
-
-    [Display(Name = "فایل ویدئو")]
-    public string? VideoFile { get; set; }
-
-    [Display(Name = "عکس کاور ویدئو")]
-    public string? CoverVideoImage { get; set; }
-
+    
     [Display(Name = "عنوان ویدئو")]
     [MinLength(5, ErrorMessage = "تعداد {0} نباید کمتر از {1} باشد.")]
     [MaxLength(100, ErrorMessage = "تعداد {0} نباید بیشتر از {1} باشد.")]
@@ -65,7 +56,4 @@ public class CustomerSuccessEntity
     [MinLength(5, ErrorMessage = "تعداد {0} نباید کمتر از {1} باشد.")]
     [MaxLength(350, ErrorMessage = "تعداد {0} نباید بیشتر از {1} باشد.")]
     public string? VideoSubTitle { get; set; }
-    //
-    // [Display(Name = "گالری تصاویر")]
-    // public string Media { get; set; }
 }
