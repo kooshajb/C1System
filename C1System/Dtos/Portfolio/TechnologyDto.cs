@@ -10,6 +10,7 @@ public class GetTechnologyDto
 
 public class AddUpdateTechnologyDto
 {
+    public Guid TechnologyId { get; set; }
     public string Title { get; set; }
 }
 
