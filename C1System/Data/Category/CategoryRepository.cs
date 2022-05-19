@@ -20,6 +20,7 @@ public interface ICategoryRepository
     Task<GenericResponse<List<GetCategoryDto>>> ShowSubCategory();
     bool DeleteCategoryForMedia(Guid mediaId);
     Task<List<UpdateCategoryMediaViewModel>> ShowCategoriesMediaForUpdate(Guid categoryId);
+    Task<List<UpdateCategoryMediaViewModel>> DeleteMediasForCategory(Guid categoryId);
 }
 
 public class CategoryRepository : ICategoryRepository
@@ -131,4 +132,20 @@ public class CategoryRepository : ICategoryRepository
         
         return result;
     }
+    
+    public async Task<List<UpdateCategoryMediaViewModel>> DeleteMediasForCategory(Guid categoryId)
+    {
+        var resultTodelete = await (from p in _context.Categories
+            join m in _context.Media on p.CategoryId equals m.CategoryId
+            where (p.CategoryId == categoryId)
+            select new UpdateCategoryMediaViewModel()
+            {
+                CategoryId = p.CategoryId,
+                MediaId = m.Id,
+                FileName = m.FileName,
+            }).ToListAsync();
+        
+        return resultTodelete;
+    }
+
 }
