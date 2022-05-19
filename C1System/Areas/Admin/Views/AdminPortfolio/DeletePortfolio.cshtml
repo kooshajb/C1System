@@ -2,63 +2,142 @@
 
 @{
     ViewData["Title"] = "حذف نمونه کار";
+    List<UpdatePortfolioCatViewModel> portfoliosCatforupdate = ViewBag.PortfolioCat;
+    List<UpdatePortfolioTechViewModel> portfoliosTechforupdate = ViewBag.PortfolioTech;
+    
+    List<UpdatePortfolioMediaViewModel> portfoliosMediaforupdate = ViewBag.MediaImage;
 }
 
 <div class="col-md-12">
     <div class="card mb-4">
         <div class="card-body">
-            <div class="card-title mb-3">حذف خدمت</div>
+            <div class="card-title mb-3">حذف نمونه کار</div>
             <form asp-action="DeletePortfolioById" method="post" enctype="multipart/form-data">
-                 <div class="row">
-                   <div class="col-md-6 form-group mb-3">
-                       <label asp-for="Title">عنوان</label>
-                       <input readonly="readonly" asp-for="Title" class="form-control" placeholder="عنوان را وارد کنید">
-                       <span class="text-danger" asp-validation-for="Title"></span>
-                   </div>
+                <input asp-for="PortfolioId" type="hidden" />
+                    <div class="row">
+                      <div class="col-md-6 form-group mb-3">
+                          <label asp-for="Title">عنوان</label>
+                          <input readonly="readonly" asp-for="Title" class="form-control" placeholder="عنوان را وارد کنید">
+                      </div>
 
-                   <div class="col-md-6 form-group mb-3">
-                       <label asp-for="SubTitle">زیرعنوان</label>
-                       <input readonly="readonly" asp-for="SubTitle" class="form-control" placeholder="زیرعنوان را وارد کنید">
-                       <span class="text-danger" asp-validation-for="SubTitle"></span>
-                   </div>
+                      <div class="col-md-6 form-group mb-3">
+                          <label asp-for="SubTitle">زیرعنوان</label>
+                          <input readonly="readonly" asp-for="SubTitle" class="form-control" placeholder="زیرعنوان را وارد کنید">
+                      </div>
 
-                   <div class="col-md-6 form-group mb-3">
-                       <label asp-for="Description">توضیحات</label>
-                       <input readonly="readonly" asp-for="Description" class="form-control" placeholder="توضیحات را وارد کنید">
-                       <span class="text-danger" asp-validation-for="Description"></span>
-                   </div>
+                      <div class="col-md-6 form-group mb-3">
+                          <label asp-for="Description">توضیحات</label>
+                          <input readonly="readonly" asp-for="Description" class="form-control" placeholder="توضیحات را وارد کنید">
+                      </div>
 
-                   <div class="col-md-6 form-group mb-3">
-                       <label asp-for="SiteAddress">ادرس سایت</label>
-                       <input readonly="readonly" asp-for="SiteAddress" class="form-control" placeholder="آدرس سایت را وارد کنید">
-                       <span class="text-danger" asp-validation-for="SiteAddress"></span>
-                   </div>
+                      <div class="col-md-6 form-group mb-3">
+                          <label asp-for="SiteAddress">ادرس سایت</label>
+                          <input readonly="readonly" asp-for="SiteAddress" class="form-control" placeholder="آدرس سایت را وارد کنید">
+                      </div>
 
-                   <div class="col-md-6 form-group mb-3">
-                       <label asp-for="CompanyName">نام شرکت</label>
-                       <input readonly="readonly" asp-for="CompanyName" class="form-control" placeholder="نام شرکت را وارد کنید">
-                       <span class="text-danger" asp-validation-for="CompanyName"></span>
-                   </div>
+                      <div class="col-md-6 form-group mb-3">
+                          <label asp-for="CompanyName">نام شرکت</label>
+                          <input readonly="readonly" asp-for="CompanyName" class="form-control" placeholder="نام شرکت را وارد کنید">
+                      </div>
+                       
+                       <div class="col-md-6 form-group mb-3">
+                            <label>تصویر لوگو شرکت</label>
+                           @if (portfoliosMediaforupdate != null)
+                            {
+                                <div class="d-flex justify-content-center align-items-center mt-5">
+                                    @foreach (var mediaItem in portfoliosMediaforupdate)
+                                    {
+                                        @if (mediaItem.FileName.Contains("Portfolios/CompanyLogo"))
+                                        {
+                                            <div class="position-relative" id="@mediaItem.MediaId">
+                                                <img href="~/Medias/@mediaItem.FileName" target="_blank" class="w-20 rounded-2" src="~/Medias/@mediaItem.FileName" alt=""  />
+                                                <a class="position-absolute top-0 left-0 bg-white text-black rounded-circle p-1 pe-auto" asp-action="DeletePortfolioMediaById" asp-controller="AdminPortfolio" asp-route-id="@mediaItem.MediaId" asp-route-portfolioId="@Model.PortfolioId"><i class="i-Close-Window"></i></a>
+                                            </div>
+                                        }
+                                    }
+                                </div>
+                            }
+                        </div>
 
-                   @* <div class="col-md-6 form-group mb-3"> *@
-                   @*     <label asp-for="CompanyLogo">تصویر لوگو شرکت</label> *@
-                   @*     <input readonly="readonly" asp-for="CompanyLogo" class="form-control" placeholder="تصویر لوگو شرکت را وارد کنید"> *@
-                   @*     <span class="text-danger" asp-validation-for="CompanyLogo"></span> *@
-                   @* </div> *@
+                       <div class="col-md-6 form-group mb-3">
+                           <label>تصویر شاخص</label>
+                           @if (portfoliosMediaforupdate != null)
+                           {
+                               <div class="d-flex justify-content-center align-items-center mt-5">
+                                   @foreach (var mediaItem in portfoliosMediaforupdate)
+                                   {
+                                       @if (mediaItem.FileName.Contains("Portfolios/FeatureImg"))
+                                       {
+                                           <div class="position-relative" id="@mediaItem.MediaId">
+                                               <img href="~/Medias/@mediaItem.FileName" target="_blank" class="w-20 rounded-2" src="~/Medias/@mediaItem.FileName" alt=""/>
+                                               <a class="position-absolute top-0 left-0 bg-white text-black rounded-circle p-1 pe-auto" asp-action="DeletePortfolioMediaById" asp-controller="AdminPortfolio" asp-route-id="@mediaItem.MediaId" asp-route-portfolioId="@Model.PortfolioId"><i class="i-Close-Window"></i></a>
+                                           </div>
+                                       }
+                                   }
+                               </div>
+                           }
+                       </div>
+                     
+                       @* Medias *@
+                       <div class="col-md-6 form-group mb-3">
+                           <label>تصاویر</label>
+                            @if (portfoliosMediaforupdate != null)
+                            {
+                                 @* uploaded medias *@
+                               <div class="d-flex justify-content-center align-items-center mt-5">
+                                   @foreach (var mediaItem in portfoliosMediaforupdate)
+                                   {
+                                       @if (mediaItem.FileName.Contains("Portfolios/Gallery"))
+                                       {
+                                           <div class="position-relative" id="@mediaItem.MediaId">
+                                               <img href="~/Medias/@mediaItem.FileName" target="_blank" class="w-20 rounded-2" src="~/Medias/@mediaItem.FileName" alt=""/>
+                                               <a class="position-absolute top-0 left-0 bg-white text-black rounded-circle p-1 pe-auto" asp-action="DeletePortfolioMediaById" asp-controller="AdminPortfolio" asp-route-id="@mediaItem.MediaId" asp-route-portfolioId="@Model.PortfolioId"><i class="i-Close-Window"></i></a>
+                                           </div>
+                                       }
+                                   }
+                               </div>
+                           }
+                       </div>
+                       
+                       @* Categories *@
+                       <div class="col-md-6 form-group mb-3">
+                          <label>دسته بندی ها</label>
+                            @foreach (var item in portfoliosCatforupdate)
+                            {
+                              <div class="mb-2 d-flex align-items-center text-black w-50 border-4" style="background: #8080802b;height:39px;border-radius: 6px;">
+                                  @item.PortfolioTitle
+                              </div>
+                            }
+                       </div>
 
-                   @* <div class="col-md-6 form-group mb-3"> *@
-                   @*     <label asp-for="FeatureMedia">تصویر شاخص</label> *@
-                   @*     <input readonly="readonly" asp-for="FeatureMedia" class="form-control" placeholder="تصویر شاخص را وارد کنید"> *@
-                   @*     <span class="text-danger" asp-validation-for="FeatureMedia"></span> *@
-                   @* </div> *@
+                       @* Technologies *@
+                       <div class="col-md-6 form-group mb-3">
+                           <label>تکنولوژی ها</label>
+                           @foreach (var item in portfoliosTechforupdate)
+                           {
+                              <div class="mb-2 d-flex align-items-center text-black w-50 border-4" style="background: #8080802b;height:39px;border-radius: 6px;">
+                                  @item.TechnologyPortfolioId
+                              </div>
+                           }
+                       </div>
 
-                   <div class="col-md-6 form-group mb-3">
-                       <label>تصاویر</label>
-                       <input readonly="readonly" class="form-control" placeholder="تصاویر را وارد کنید">
-                   </div>
+                      <div class="col-md-6 form-group mb-3">
+                          <label asp-for="PortfolioSort">ترتیب نمونه کار</label>
+                          <input readonly="readonly" asp-for="PortfolioSort" class="form-control">
+                          <span class="text-danger">@Html.ValidationMessage("ErrorSort")</span>
+                      </div>
+                      
+                       <div class="col-md-6 form-group mb-3">
+                          <div class="form-check">
+                              <input readonly="readonly" class="form-check-input" asp-for="IsActive" type="checkbox">
+                              <label class="form-check-label" asp-for="IsActive">
+                                  آیا فعال باشد ؟!
+                              </label>
+                          </div>
+                      </div>
 
-                    <div class="col-md-12">
-                         <button asp-action="DeletePortfolioById" asp-controller="AdminPortfolio" asp-route-id="@Model.PortfolioId" class="btn btn-primary" type="submit">تایید</button>
+                       <div class="col-md-12">
+                         <button asp-action="DeletePortfolioById" asp-controller="AdminPortfolio" asp-route-portfolioId="@Model.PortfolioId" class="btn btn-primary" type="submit">تایید</button>
                          <a asp-action="Index" class="btn btn-danger m-1">لغو</a>
                     </div>
                </div>
