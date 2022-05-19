@@ -150,11 +150,34 @@ public class AdminCategoryController : Controller
             TempData["NotFoundCategory"] = true;
             return RedirectToAction(nameof(ShowAllCategories));
         }
+        
+        //image
+        UploadDto uploadDto = new UploadDto();
+        List<IFormFile> filesResult = new List<IFormFile>();
+        
+        List<UpdateCategoryMediaViewModel> mediaList = await _categoryRepository.ShowCategoriesMediaForUpdate(category.Result.CategoryId);
+        ViewBag.MediaImage = mediaList;
+        
         return View(category.Result);
     }
     
     [HttpPost]
     public async Task<IActionResult> DeleteCategoryById(Guid id, Guid categoryId)
+    {
+        var categoryMediaToDel = _categoryRepository.DeleteMediasForCategory(categoryId);
+        var resMedia = new GenericResponse();
+        foreach (var item in categoryMediaToDel.Result)
+        {
+            resMedia = await _uploadRepository.DeleteMedia(item.MediaId);
+        }
+        TempData["ResultDelete"] = resMedia.Status == UtilitiesStatusCodes.Success  ? "true" : "false";
+
+        var resData = await _categoryRepository.Delete(categoryId);
+        TempData["ResultDelete"] = resData.Status == UtilitiesStatusCodes.Success  ? "true" : "false";
+        return RedirectToAction(nameof(ShowAllCategories));
+    }
+    
+    public async Task<IActionResult> DeleteCategoryMediaById(Guid id, Guid categoryId)
     {
         var response =  await _uploadRepository.DeleteMedia(id);
         return RedirectToAction(nameof(UpdateCategory), new { id = categoryId});
