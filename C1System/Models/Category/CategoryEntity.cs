@@ -25,11 +25,7 @@ public class CategoryEntity
     [Display(Name = "توضیحات")]
     [Required(ErrorMessage = "لطفا {0} را وارد کنید .")]
     public string Description { get; set; }
-    
-    // [Display(Name = "تصویر آیکن")]
-    // [Required(ErrorMessage = "لطفا {0} را وارد کنید .")]
-    // public string IconImage { get; set; }
-    
+
     [Display(Name = "متن معرفی صفحه داخلی")]
     [Required(ErrorMessage = "لطفا {0} را وارد کنید.")]
     public string IntroDescription { get; set; }
@@ -52,10 +48,7 @@ public class CategoryEntity
     [ForeignKey("ParentId")]
     public CategoryEntity Parent { get; set; }
     
-    // public IEnumerable<Category_Product> CategoryProducts { get; set; }
-    
-    public List<MediaEntity> IconCategory { get; set; }
-    // public List<MediaEntity> VideoIntro { get; set; }
+    // public List<MediaEntity> IconCategory { get; set; }
     
     #endregion
 }
