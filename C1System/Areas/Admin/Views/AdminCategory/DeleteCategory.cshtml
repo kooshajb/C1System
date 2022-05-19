@@ -2,6 +2,7 @@
 
 @{
     ViewData["Title"] = "حذف خدمت";
+    List<UpdateCategoryMediaViewModel> categoriesMediaforupdate = ViewBag.MediaImage;
 }
 
 <div class="col-md-12">
@@ -27,12 +28,26 @@
                         <input readonly="readonly" asp-for="Description" class="form-control" placeholder="توضیحات را وارد کنید">
                         <span class="text-danger" asp-validation-for="Description"></span>
                     </div>
-                    
+
                     <div class="col-md-6 form-group mb-3">
                         <label>عکس آیکن خدمت</label>
-                        <input name="iconImageFile" type="file" class="form-control">
+                        @if (categoriesMediaforupdate != null)
+                        {
+                            <div class="d-flex justify-content-center align-items-center mt-5">
+                                @foreach (var mediaItem in categoriesMediaforupdate)
+                                {
+                                    @if (mediaItem.FileName.Contains("Categories/IconCategory"))
+                                    {
+                                        <div class="position-relative" id="@mediaItem.MediaId">
+                                            <img href="~/Medias/@mediaItem.FileName" target="_blank" class="w-20 rounded-2" src="~/Medias/@mediaItem.FileName" alt=""  />
+                                            <a class="position-absolute top-0 left-0 bg-white text-black rounded-circle p-1 pe-auto" asp-action="DeletePortfolioMediaById" asp-controller="AdminPortfolio" asp-route-id="@mediaItem.MediaId" asp-route-portfolioId="@Model.CategoryId"><i class="i-Close-Window"></i></a>
+                                        </div>
+                                    }
+                                }
+                            </div>
+                        }
                     </div>
-                    
+
                     <div class="col-md-6 form-group mb-3">
                         <label asp-for="IntroDescription">متن معرفی</label>
                         <input readonly="readonly" asp-for="IntroDescription" class="form-control" placeholder="متن معرفی را وارد کنید">
@@ -53,12 +68,28 @@
 
                     <div class="col-md-6 form-group mb-3">
                         <label>ویدئو معرفی خدمت</label>
-                        <input readonly="readonly" name="videoIntroFile" type="file" class="form-control" accept="video/mp4">
-                        <span class="text-danger" asp-validation-for="VideoIntro"></span>
+                        @if (categoriesMediaforupdate != null)
+                        {
+                            <div class="d-flex justify-content-center align-items-center mt-5">
+                                @foreach (var mediaItem in categoriesMediaforupdate)
+                                {
+                                    @if (mediaItem.FileName.Contains("Categories/VideoIntro"))
+                                    {
+                                        <div class="position-relative" id="@mediaItem.MediaId">
+                                            <video width="320" height="240" controls>
+                                                <source src="~/Medias/@mediaItem.FileName" type="video/mp4">
+                                                Your browser does not support the video tag.
+                                            </video>
+                                            <a class="position-absolute top-0 left-0 bg-white text-black rounded-circle p-1 pe-auto" asp-action="DeleteCategoryMediaById" asp-controller="AdminCategory" asp-route-id="@mediaItem.MediaId" asp-route-categoryId="@Model.CategoryId"><i class="i-Close-Window"></i></a>
+                                        </div>
+                                    }
+                                }
+                            </div>
+                        }
                     </div>
 
                     <div class="col-md-12">
-                        <button asp-action="DeleteCategoryById" asp-controller="AdminCategory" asp-route-id="@Model.CategoryId" class="btn btn-primary" type="submit">تایید</button>
+                        <button asp-action="DeleteCategoryById" asp-controller="AdminCategory" asp-route-categoryId="@Model.CategoryId" class="btn btn-primary" type="submit">تایید</button>
                         <a asp-action="ShowAllCategories" class="btn btn-danger m-1">لغو</a>
                     </div>
                 </div>
