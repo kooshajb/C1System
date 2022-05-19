@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using AutoMapper;
+using C1System.ViewModels;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 
@@ -16,6 +17,8 @@ public interface ITechnologyRepository
     Task<GenericResponse<GetTechnologyDto>> Update(Guid id, AddUpdateTechnologyDto dto);
     Task<GenericResponse> Delete(Guid id);
     bool ExistPodcast(string title, Guid technologyId);
+    Task<List<UpdateTechMediaViewModel>> ShowTechsMediaForUpdate(Guid technologyId);
+    Task<List<UpdateTechMediaViewModel>> DeleteMediasForTechnology(Guid technologyId);
 }
 
 public class TechnologyRepository : ITechnologyRepository
@@ -77,5 +80,35 @@ public class TechnologyRepository : ITechnologyRepository
     {
         return _context.Podcasts.Any(p =>
             p.Title == title && p.PodcastId != technologyId);
+    }
+    
+    public async Task<List<UpdateTechMediaViewModel>> ShowTechsMediaForUpdate(Guid technologyId)
+    {
+        var result = await (from p in _context.Technologies
+            join m in _context.Media on p.TechnologyId equals m.TechnologyId
+            where (p.TechnologyId == technologyId)
+            select new UpdateTechMediaViewModel()
+            {
+                TechnologyId = p.TechnologyId,
+                MediaId = m.Id,
+                FileName = m.FileName,
+            }).ToListAsync();
+        
+        return result;
+    }
+    
+    public async Task<List<UpdateTechMediaViewModel>> DeleteMediasForTechnology(Guid technologyId)
+    {
+        var resultTodelete = await (from p in _context.Technologies
+            join m in _context.Media on p.TechnologyId equals m.TechnologyId
+            where (p.TechnologyId == technologyId)
+            select new UpdateTechMediaViewModel()
+            {
+                TechnologyId = p.TechnologyId,
+                MediaId = m.Id,
+                FileName = m.FileName,
+            }).ToListAsync();
+        
+        return resultTodelete;
     }
 }
