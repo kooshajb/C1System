@@ -11,12 +11,6 @@
             <form asp-action="DeleteProjectById" method="post" enctype="multipart/form-data">
                 <div class="row">
                     <div class="col-md-6 form-group mb-3">
-                        <label asp-for="Picture">تصویر پروژه</label>
-                        <input asp-for="Picture" class="form-control" placeholder="تصویر پروژه را وارد کنید">
-                        <span class="text-danger" asp-validation-for="Picture"></span>
-                    </div>
-
-                    <div class="col-md-6 form-group mb-3">
                         <label asp-for="Title">عنوان</label>
                         <input asp-for="Title" class="form-control" placeholder="عنوان پروژه را وارد کنید">
                         <span class="text-danger" asp-validation-for="Title"></span>
@@ -33,8 +27,61 @@
                         <input asp-for="Description" class="form-control" placeholder="توضیحات پروژه را وارد کنید">
                         <span class="text-danger" asp-validation-for="Description"></span>
                     </div>
-                    @* media *@
+                    
+                    <div class="col-md-6 form-group mb-3">
+                        <label asp-for="Progress">درصد پیشرفت پروژه</label>
+                        <input asp-for="Progress" class="form-control" placeholder="درصد پیشرفت را وارد کنید">
+                        <span class="text-danger" asp-validation-for="Progress"></span>
+                    </div>
+                    
+                    <div class="col-md-6 form-group mb-3">
+                        <label asp-for="StartDate">تاریخ شروع</label>
+                        <input asp-for="StartDate" class="form-control" placeholder="تاریخ شروع را وارد کنید">
+                        <span class="text-danger" asp-validation-for="StartDate"></span>
+                    </div>
+                    
+                    <div class="col-md-6 form-group mb-3">
+                        <label asp-for="EndDate">تاریخ پایان</label>
+                        <input asp-for="EndDate" class="form-control" placeholder="تاریخ پایان را وارد کنید">
+                        <span class="text-danger" asp-validation-for="StartDate"></span>
+                    </div>
 
+                    <div class="col-md-6 form-group mb-3">
+                        <label asp-for="ProjectStatus">وضعیت پروژه</label>
+                        <select asp-for="ProjectStatus" class="custom-select" asp-items="Html.GetEnumSelectList<ProjectStatusEnum>()">
+                           <option value="">لطفا انتخاب کنید</option>
+                       </select>
+                       <span asp-validation-for="ProjectStatus" class="text-danger"></span>
+                    </div>
+                    
+                    <div class="col-md-6 form-group mb-3">
+                        <label asp-for="ProjectSupportStatus">وضعیت پشتیبانی</label>
+                        <select asp-for="ProjectSupportStatus" class="custom-select" asp-items="Html.GetEnumSelectList<ProjectSupportStatusEnum>()">
+                            <option value="">لطفا انتخاب کنید</option>
+                        </select>
+                        <span asp-validation-for="ProjectSupportStatus" class="text-danger"></span>
+                    </div>
+
+                    <div class="col-md-6 form-group mb-3">
+                        <label asp-for="ProjectSupportType">نوع پشتیبانی</label>
+                        <select asp-for="ProjectSupportType" class="custom-select" asp-items="Html.GetEnumSelectList<ProjectSupportTypeEnum>()">
+                            <option value="">لطفا انتخاب کنید</option>
+                        </select>
+                        <span asp-validation-for="ProjectSupportType" class="text-danger"></span>
+                    </div>
+                    
+                    <div class="col-md-6 form-group mb-3">
+                        <label asp-for="ProjectVideoCategory">دسته بندی ویدئو</label>
+                        <select asp-for="ProjectVideoCategory" class="custom-select" asp-items="Html.GetEnumSelectList<ProjectVideoCategoryEnum>()">
+                            <option value="">لطفا انتخاب کنید</option>
+                        </select>
+                        <span asp-validation-for="ProjectVideoCategory" class="text-danger"></span>
+                    </div>
+
+                    <div class="col-md-6 form-group mb-3">
+                        <label>تصویر شاخص</label>
+                        <input name="featureImgFile" type="file" class="form-control">
+                    </div>
                     <div class="col-md-12">
                         <button asp-action="DeleteProjectById" asp-controller="AdminProject" asp-route-id="@Model.ProjectId" class="btn btn-primary" type="submit">تایید</button>
                         <a asp-action="Index" class="btn btn-danger m-1">لغو</a>
