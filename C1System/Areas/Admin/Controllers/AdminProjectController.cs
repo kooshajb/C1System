@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using C1System.Dtos.Media;
+using C1System.Media;
+using Microsoft.AspNetCore.Mvc;
 
 namespace C1System.Areas.Admin.Controllers;
 
@@ -6,10 +8,12 @@ namespace C1System.Areas.Admin.Controllers;
 public class AdminProjectController : Controller
 {
     private readonly IProjectRepository _projectRepository;
+    private readonly IUploadRepository _uploadRepository;
 
-    public AdminProjectController(IProjectRepository projectRepository)
+    public AdminProjectController(IProjectRepository projectRepository, IUploadRepository uploadRepository)
     {
         _projectRepository = projectRepository;
+        _uploadRepository = uploadRepository;
     }
     
     public async Task<IActionResult> Index()
@@ -29,7 +33,7 @@ public class AdminProjectController : Controller
     }
     
     [HttpPost]
-    public async Task<IActionResult> AddProject(AddProjectDto dto)
+    public async Task<IActionResult> AddProject(AddProjectDto dto, List<IFormFile> featureFile)
     {
         if (!ModelState.IsValid)
         {
@@ -41,8 +45,23 @@ public class AdminProjectController : Controller
         //     return View(dto);
         // }
         
-        var project = await _projectRepository.Add(dto);
-        Guid projectId = project.Result.ProjectId;
+        var newProject = await _projectRepository.Add(dto);
+        Guid projectId = newProject.Result.ProjectId;
+        
+        //upload image
+        UploadDto uploadDto = new UploadDto();
+        List<IFormFile> fileResult = new List<IFormFile>();
+
+        uploadDto.ProjectId = newProject.Result.ProjectId;
+
+        foreach (var fileItem in featureFile)
+        {
+            fileResult.Add(fileItem);
+        }
+
+        uploadDto.Files = fileResult;
+        await _uploadRepository.UploadMedia(uploadDto);
+
         return RedirectToAction(nameof(Index));
     }
 
