@@ -92,7 +92,14 @@ public class UploadRepository : IUploadRepository
             
             if (model.CategoryId != null)
             {
-                folder = "Categories";
+                if (file.Name == "iconImageFile")
+                {
+                    folder = "Categories/IconCategory";
+                }
+                else if (file.Name == "videoIntroFile")
+                {
+                    folder = "Categories/VideoIntro";
+                }
                 List<MediaEntity> categoryMedia =
                     _context.Set<MediaEntity>().ToList();
             }
@@ -138,7 +145,6 @@ public class UploadRepository : IUploadRepository
             if(model.PortfolioId != null){
                 MediaEntity media = new MediaEntity
                 {
-               
                     FileName = url,
                     FileType = fileType,
                     PortfolioId = model.PortfolioId,
