@@ -18,6 +18,7 @@ public interface ICategoryRepository
     Task<GenericResponse<IEnumerable<GetCategoryDto>>> ShowAllSubCategories(Guid categoryId);
     bool ExistCategory(string title, Guid categoryId);
     Task<GenericResponse<List<GetCategoryDto>>> ShowSubCategory();
+    bool DeleteCategoryForMedia(Guid mediaId);
     Task<List<UpdateCategoryMediaViewModel>> ShowCategoriesMediaForUpdate(Guid categoryId);
 }
 
@@ -99,6 +100,21 @@ public class CategoryRepository : ICategoryRepository
         IEnumerable<CategoryEntity> i = await _context.Set<CategoryEntity>().AsNoTracking()
            .Where(c => c.ParentId != null).ToListAsync();
        return new GenericResponse<List<GetCategoryDto>>(_mapper.Map<List<GetCategoryDto>>(i));
+    }
+    
+    public bool DeleteCategoryForMedia(Guid mediaId)
+    {
+        try
+        {
+            var media = _context.Media.Where(m => m.Id == mediaId);
+            _context.Media.RemoveRange(media);
+            _context.SaveChanges();
+            return true;
+        }
+        catch
+        {
+            return false;
+        }
     }
     
     public async Task<List<UpdateCategoryMediaViewModel>> ShowCategoriesMediaForUpdate(Guid categoryId)
