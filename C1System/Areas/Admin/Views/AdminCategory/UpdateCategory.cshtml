@@ -2,7 +2,7 @@
 
 @{
     ViewData["Title"] = "بروزرسانی خدمت";
-    List<UpdateCategoryMediaViewModel> categoriesMediaforupdate = ViewBag.IconCatImage;
+    List<UpdateCategoryMediaViewModel> categoriesMediaforupdate = ViewBag.MediaImage;
 }
 
 <div class="col-md-12">
@@ -39,10 +39,13 @@
                             <div class="d-flex justify-content-center align-items-center mt-5">
                                 @foreach (var mediaItem in categoriesMediaforupdate)
                                 {
-                                    <div class="position-relative" id="@mediaItem.MediaId">
-                                        <img href="~/Medias/@mediaItem.FileName" target="_blank" class="w-20 rounded-2" src="~/Medias/@mediaItem.FileName" alt=""  />
-                                        <a class="position-absolute top-0 left-0 bg-white text-black rounded-circle p-1 pe-auto" asp-action="DeleteCategoryById" asp-controller="AdminCategory" asp-route-id="@mediaItem.MediaId" asp-route-portfolioId="@Model.CategoryId"><i class="i-Close-Window"></i></a>
-                                    </div>
+                                    @if (mediaItem.FileName.Contains("Categories/IconCategory"))
+                                    {
+                                        <div class="position-relative" id="@mediaItem.MediaId">
+                                            <img href="~/Medias/@mediaItem.FileName" target="_blank" class="w-20 rounded-2" src="~/Medias/@mediaItem.FileName" alt=""  />
+                                            <a class="position-absolute top-0 left-0 bg-white text-black rounded-circle p-1 pe-auto" asp-action="DeletePortfolioMediaById" asp-controller="AdminPortfolio" asp-route-id="@mediaItem.MediaId" asp-route-portfolioId="@Model.CategoryId"><i class="i-Close-Window"></i></a>
+                                        </div>
+                                    }
                                 }
                             </div>
                         }
@@ -75,15 +78,21 @@
                             <div class="d-flex justify-content-center align-items-center mt-5">
                                 @foreach (var mediaItem in categoriesMediaforupdate)
                                 {
-                                    <div class="position-relative" id="@mediaItem.MediaId">
-                                        <img href="~/Medias/@mediaItem.FileName" target="_blank" class="w-20 rounded-2" src="~/Medias/@mediaItem.FileName" alt=""  />
-                                        <a class="position-absolute top-0 left-0 bg-white text-black rounded-circle p-1 pe-auto" asp-action="DeleteCategoryById" asp-controller="AdminCategory" asp-route-id="@mediaItem.MediaId" asp-route-portfolioId="@Model.CategoryId"><i class="i-Close-Window"></i></a>
-                                    </div>
+                                    @if (mediaItem.FileName.Contains("Categories/VideoIntro"))
+                                    {
+                                        <div class="position-relative" id="@mediaItem.MediaId">
+                                            <video width="320" height="240" controls>
+                                              <source src="~/Medias/@mediaItem.FileName" type="video/mp4">
+                                            Your browser does not support the video tag.
+                                            </video>
+                                            <a class="position-absolute top-0 left-0 bg-white text-black rounded-circle p-1 pe-auto" asp-action="DeleteCategoryById" asp-controller="AdminCategory" asp-route-id="@mediaItem.MediaId" asp-route-categoryId="@Model.CategoryId"><i class="i-Close-Window"></i></a>
+                                        </div>
+                                    }
                                 }
                             </div>
                         }
                     </div>
-
+                    
                     <div class="col-md-12">
                         <button asp-action="UpdateCategory" asp-controller="AdminCategory" class="btn btn-primary" type="submit">تایید</button>
                         <a asp-action="ShowAllCategories" class="btn btn-danger m-1">لغو</a>
