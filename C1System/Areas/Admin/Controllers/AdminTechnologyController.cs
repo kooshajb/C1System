@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using C1System.Dtos.Media;
 using C1System.Media;
+using C1System.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 
 namespace C1System.Areas.Admin.Controllers;
@@ -74,21 +75,41 @@ public class AdminTechnologyController : Controller
             TempData["NotFoundTechnology"] = "true";
             return RedirectToAction(nameof(Index));
         }
+        //image
+        UploadDto uploadDto = new UploadDto();
+        List<IFormFile> filesResult = new List<IFormFile>();
+        
+        List<UpdateTechMediaViewModel> mediaList = await _technologyRepository.ShowTechsMediaForUpdate(technology.Result.TechnologyId);
+        ViewBag.MediaImage = mediaList;
+        
         return View(technology.Result);
     }
     
     [HttpPost]
-    public async Task<IActionResult> UpdateTechnology(AddUpdateTechnologyDto dto, Guid id)
+    public async Task<IActionResult> UpdateTechnology(AddUpdateTechnologyDto dto, List<IFormFile> iconTechFile)
     {
-        var technology = await _technologyRepository.GetById(id);
+        var technology = await _technologyRepository.GetById(dto.TechnologyId);
         if (!ModelState.IsValid)
         {
             return View(technology.Result);
         }
         
-        var updateTechnology = await _technologyRepository.Update(id, dto);
+        //upload images
+        UploadDto uploadDto = new UploadDto();
+        List<IFormFile> filesResult = new List<IFormFile>();
         
+        uploadDto.TechnologyId = dto.TechnologyId;
+        
+        foreach (var fileItem in iconTechFile)
+        {
+            filesResult.Add(fileItem);
+        }
+        uploadDto.Files = filesResult;
+        await _uploadRepository.UploadMedia(uploadDto);
+        
+        var updateTechnology = await _technologyRepository.Update(dto.TechnologyId, dto);
         TempData["Result"] = updateTechnology.Result != null ? "true" : "false";
+        
         return RedirectToAction(nameof(Index));
     }
 
@@ -101,14 +122,35 @@ public class AdminTechnologyController : Controller
             TempData["NotFoundTechnology"] = true;
             return RedirectToAction(nameof(Index));
         }
+        //image
+        UploadDto uploadDto = new UploadDto();
+        List<IFormFile> filesResult = new List<IFormFile>();
+        
+        List<UpdateTechMediaViewModel> mediaList = await _technologyRepository.ShowTechsMediaForUpdate(technology.Result.TechnologyId);
+        ViewBag.MediaImage = mediaList;
+        
         return View(technology.Result);
     }
     
     [HttpPost]
-    public async Task<IActionResult> DeleteTechnologyById(Guid id)
+    public async Task<IActionResult> DeleteTechnologyById(Guid technologyId)
     {
-        var response = await _technologyRepository.Delete(id);
-        TempData["ResultDelete"] = response.Status == UtilitiesStatusCodes.Success ? "true" : "false";
+        var techMediaToDel = _technologyRepository.DeleteMediasForTechnology(technologyId);
+        var resMedia = new GenericResponse();
+        foreach (var item in techMediaToDel.Result)
+        {
+            resMedia = await _uploadRepository.DeleteMedia(item.MediaId);
+        }
+        TempData["ResultDelete"] = resMedia.Status == UtilitiesStatusCodes.Success  ? "true" : "false";
+
+        var resData = await _technologyRepository.Delete(technologyId);
+        TempData["ResultDelete"] = resData.Status == UtilitiesStatusCodes.Success  ? "true" : "false";
         return RedirectToAction(nameof(Index));
+    }
+    
+    public async Task<IActionResult> DeleteTechnologyMediaById(Guid id, Guid technologyId)
+    {
+        var response =  await _uploadRepository.DeleteMedia(id);
+        return RedirectToAction(nameof(UpdateTechnology), new { id = technologyId});
     }
 }
