@@ -56,6 +56,11 @@ public class MediaEntity : BaseEntity {
     [ForeignKey("CustomerSuccessId")]
     public CustomerSuccessEntity? CustomerSuccess { get; set; }
     
+    public Guid? ProjectId { get; set; }
+
+    [ForeignKey("ProjectId")]
+    public ProjectEntity? Project { get; set; }
+    
     #endregion
     
     // public ProjectEntity? Project { get; set; }
