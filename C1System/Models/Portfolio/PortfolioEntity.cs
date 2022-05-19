@@ -54,7 +54,7 @@ public class PortfolioEntity
     #region Relation
     
     // public IEnumerable<Category_Product> CategoryProducts { get; set; }
-    public List<Technology_PortfolioEntity> TechnologyPortfolios { get; set; }
+    // public List<Technology_PortfolioEntity> TechnologyPortfolios { get; set; }
     // public List<MediaEntity> Media { get; set; }
 
     #endregion
