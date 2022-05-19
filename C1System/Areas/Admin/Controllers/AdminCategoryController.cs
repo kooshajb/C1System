@@ -117,11 +117,6 @@ public class AdminCategoryController : Controller
             return View(category.Result);
         }
         
-        var updateCategory = await _categoryRepository.Update(dto.CategoryId, dto);
-        
-        TempData["Result"] = updateCategory.Result != null ? "true" : "false";
-        
-        
         //upload images and video
         UploadDto uploadDto = new UploadDto();
         List<IFormFile> filesResult = new List<IFormFile>();
@@ -136,8 +131,12 @@ public class AdminCategoryController : Controller
         {
             filesResult.Add(fileItem);
         }
+
         uploadDto.Files = filesResult;
         await _uploadRepository.UploadMedia(uploadDto);
+        
+        var updateCategory = await _categoryRepository.Update(dto.CategoryId, dto);
+        TempData["Result"] = updateCategory.Result != null ? "true" : "false";
         
         return RedirectToAction(nameof(ShowAllCategories));
     }
@@ -155,10 +154,9 @@ public class AdminCategoryController : Controller
     }
     
     [HttpPost]
-    public async Task<IActionResult> DeleteCategoryById(Guid id)
+    public async Task<IActionResult> DeleteCategoryById(Guid id, Guid categoryId)
     {
-        var response = await _categoryRepository.Delete(id);
-        TempData["ResultDelete"] = response.Status == UtilitiesStatusCodes.Success ? "true" : "false";
-        return RedirectToAction(nameof(ShowAllCategories));
+        var response =  await _uploadRepository.DeleteMedia(id);
+        return RedirectToAction(nameof(UpdateCategory), new { id = categoryId});
     }
 }
