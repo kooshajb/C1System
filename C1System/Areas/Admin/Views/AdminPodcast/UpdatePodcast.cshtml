@@ -5,6 +5,9 @@
     List<GetTagDto> tags = ViewBag.Tag;
     List<UpdatePodcastTagViewModel> podcastsforupdate = ViewBag.PodcastTag;
     List<UpdatePodcastTagViewModel> existPodcastTag = new List<UpdatePodcastTagViewModel>();
+    
+    List<UpdatePodcastMediaViewModel> podcastsMediaforupdate = ViewBag.MediaImage;
+
 }
 
 <div class="col-md-12">
@@ -32,24 +35,57 @@
                         <span class="text-danger" asp-validation-for="StudyTime"></span>
                     </div>
 
-                    @* <div class="col-md-6 form-group mb-3"> *@
-                    @*     <label asp-for="FeatureImage">تصویر شاخص</label> *@
-                    @*     <input asp-for="FeatureImage" class="form-control" placeholder="تصویر را وارد کنید"> *@
-                    @*     <span class="text-danger" asp-validation-for="FeatureImage"></span> *@
-                    @* </div> *@
-
+                    <div class="col-md-6 form-group mb-3">
+                        <label>تصویر شاخص</label>
+                        <input name="featureImgFile" type="file" class="form-control">
+                                                        
+                        @if (podcastsMediaforupdate != null)
+                        {
+                            <div class="d-flex justify-content-center align-items-center mt-5">
+                                @foreach (var mediaItem in podcastsMediaforupdate)
+                                {
+                                    @if (mediaItem.FileName.Contains("Podcasts/FeatureImg"))
+                                    {
+                                        <div class="position-relative" id="@mediaItem.MediaId">
+                                            <img href="~/Medias/@mediaItem.FileName" target="_blank" class="w-20 rounded-2" src="~/Medias/@mediaItem.FileName" alt=""/>
+                                            <a class="position-absolute top-0 left-0 bg-white text-black rounded-circle p-1 pe-auto" asp-action="DeletePodcastMediaById" asp-controller="AdminPodcast" asp-route-id="@mediaItem.MediaId" asp-route-podcastId="@Model.PodcastId"><i class="i-Close-Window"></i></a>
+                                        </div>
+                                    }
+                                }
+                            </div>
+                        }
+                    </div>
+                    
                     <div class="col-md-6 form-group mb-3">
                         <label asp-for="Description">توضیحات</label>
                         <input asp-for="Description" class="form-control" placeholder="توضیحات را وارد کنید">
                         <span class="text-danger" asp-validation-for="Description"></span>
                     </div>
-
-                    @* <div class="col-md-6 form-group mb-3"> *@
-                    @*     <label asp-for="Audio">فایل صوت</label> *@
-                    @*     <input asp-for="Audio" class="form-control" placeholder="فایل صوت را وارد کنید"> *@
-                    @*     <span class="text-danger" asp-validation-for="Audio"></span> *@
-                    @* </div> *@
                     
+                    <div class="col-md-6 form-group mb-3">
+                        <label>فایل صوت</label>
+                        <input name="featureImgFile" type="file" class="form-control">
+                                                                            
+                        @if (podcastsMediaforupdate != null)
+                        {
+                            <div class="d-flex justify-content-center align-items-center mt-5">
+                                @foreach (var mediaItem in podcastsMediaforupdate)
+                                {
+                                    @if (mediaItem.FileName.Contains("Podcasts/Audios"))
+                                    {
+                                        <div class="position-relative" id="@mediaItem.MediaId">
+                                            <audio controls>
+                                              <source src="~/Medias/@mediaItem.FileName" type="audio/mpeg">
+                                              Your browser does not support the audio tag.
+                                            </audio>
+                                            <a class="position-absolute top-0 left-0 bg-white text-black rounded-circle p-1 pe-auto" asp-action="DeletePodcastMediaById" asp-controller="AdminPodcast" asp-route-id="@mediaItem.MediaId" asp-route-podcastId="@Model.PodcastId"><i class="i-Close-Window"></i></a>
+                                        </div>
+                                    }
+                                }
+                            </div>
+                        }
+                    </div>
+
                     @* tags *@
                      <div class="col-md-6 form-group mb-3">
                          <label>انتخاب برچسب ها</label>
