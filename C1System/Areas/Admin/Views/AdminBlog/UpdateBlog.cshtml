@@ -7,8 +7,10 @@
     List<UpdateBlogTagViewModel> existBlogTag = new List<UpdateBlogTagViewModel>();
     
     List<GetBlogCategoryDto> blogCats = ViewBag.BlogCat;
-    List<UpdateBlogBlogCategoryViewModel> blogCatsforupdate = ViewBag.BlogCat;
+    List<UpdateBlogBlogCategoryViewModel> blogCatsforupdate = ViewBag.BlogBlogCat;
     List<UpdateBlogBlogCategoryViewModel> existBlogBlogCat = new List<UpdateBlogBlogCategoryViewModel>();
+    
+    List<UpdateBlogMediaViewModel> blogsMediaforupdate = ViewBag.MediaImage;
 }
 
 <div class="col-md-12">
@@ -18,73 +20,87 @@
             <form asp-action="UpdateBlog" method="post" enctype="multipart/form-data">
                 <input type="hidden" asp-for="BlogId"/>
                 <div class="row">
-                       <div class="col-md-6 form-group mb-3">
-                           <label asp-for="Title">عنوان</label>
-                           <input asp-for="Title" class="form-control" placeholder="عنوان را وارد کنید">
-                           <span class="text-danger" asp-validation-for="Title"></span>
-                       </div>
-   
-                       <div class="col-md-6 form-group mb-3">
-                           <label asp-for="Description">توضیحات</label>
-                           <input asp-for="Description" class="form-control" placeholder="توضیحات را وارد کنید">
-                           <span class="text-danger" asp-validation-for="Description"></span>
-                       </div>
-   
-                       <div class="col-md-6 form-group mb-3">
-                           <label asp-for="Lid">متن چکیده</label>
-                           <input asp-for="Lid" class="form-control" placeholder="متن چکیده را وارد کنید">
-                           <span class="text-danger" asp-validation-for="Lid"></span>
-                       </div>
-   
-                       <div class="col-md-6 form-group mb-3">
-                           <label asp-for="StudyTime">زمان مطالعه</label>
-                           <input asp-for="StudyTime" class="form-control" placeholder="زمان مطالعه را وارد کنید">
-                           <span class="text-danger" asp-validation-for="StudyTime"></span>
-                       </div>
-   
-                       @* <div class="col-md-6 form-group mb-3"> *@
-                       @*     <label asp-for="FeatureImage">تصویر شاخص</label> *@
-                       @*     <input asp-for="FeatureImage" class="form-control" placeholder="تصویر شاخص را وارد کنید"> *@
-                       @*     <span class="text-danger" asp-validation-for="FeatureImage"></span> *@
-                       @* </div> *@
-                       
-                        @* categories blog *@
-                       <div class="col-md-6 form-group mb-3">
-                           <label>انتخاب دسته بندی پست</label>
-                           <select class="form-control" id="select-blogCat">
-                               @foreach (var blogcat in blogCats)
+                   <div class="col-md-6 form-group mb-3">
+                       <label asp-for="Title">عنوان</label>
+                       <input asp-for="Title" class="form-control" placeholder="عنوان را وارد کنید">
+                       <span class="text-danger" asp-validation-for="Title"></span>
+                   </div>
+
+                   <div class="col-md-6 form-group mb-3">
+                       <label asp-for="Description">توضیحات</label>
+                       <input asp-for="Description" class="form-control" placeholder="توضیحات را وارد کنید">
+                       <span class="text-danger" asp-validation-for="Description"></span>
+                   </div>
+
+                   <div class="col-md-6 form-group mb-3">
+                       <label asp-for="Lid">متن چکیده</label>
+                       <input asp-for="Lid" class="form-control" placeholder="متن چکیده را وارد کنید">
+                       <span class="text-danger" asp-validation-for="Lid"></span>
+                   </div>
+
+                   <div class="col-md-6 form-group mb-3">
+                       <label asp-for="StudyTime">زمان مطالعه</label>
+                       <input asp-for="StudyTime" class="form-control" placeholder="زمان مطالعه را وارد کنید">
+                       <span class="text-danger" asp-validation-for="StudyTime"></span>
+                   </div>
+
+                   <div class="col-md-6 form-group mb-3">
+                       <label>تصویر شاخص</label>
+                       <input name="featureImgFile" type="file" class="form-control">
+                                                        
+                       @if (blogsMediaforupdate != null)
+                       {
+                           <div class="d-flex justify-content-center align-items-center mt-5">
+                               @foreach (var mediaItem in blogsMediaforupdate)
                                {
-                                   if (blogCatsforupdate.Where(b => b.BlogCategoryId == blogcat.BlogCategoryId).Any())
+                                   @if (mediaItem.FileName.Contains("Blogs/FeatureImg"))
                                    {
-                                       existBlogTag.Add(new UpdateBlogTagViewModel()
-                                       {
-                                           TagId = blogcat.BlogCategoryId,
-                                           BlogTitle = blogcat.Title
-                                       });
+                                       <div class="position-relative" id="@mediaItem.MediaId">
+                                           <img href="~/Medias/@mediaItem.FileName" target="_blank" class="w-20 rounded-2" src="~/Medias/@mediaItem.FileName" alt=""  />
+                                           <a class="position-absolute top-0 left-0 bg-white text-black rounded-circle p-1 pe-auto" asp-action="DeleteBlogMediaById" asp-controller="AdminBlog" asp-route-id="@mediaItem.MediaId" asp-route-blogId="@Model.BlogId"><i class="i-Close-Window"></i></a>
+                                       </div>
                                    }
-                                   else
-                                   {
-                                       <option value="@blogcat.BlogCategoryId">@blogcat.Title</option>
-                                   }
-                               }
-                       
-                           </select>
-                           <button class="Add-blogCat btn btn-success my-2" type="button">انتخاب</button>
-                           <div class="ListBlogCat">
-                               @foreach (var item in existBlogBlogCat)
-                               {
-                                   <div class="mb-2 d-flex align-items-center text-black w-50 border-4" style="background: #8080802b;height:39px;border-radius: 6px;">
-                                       <label class="col-md-12">@item.BlogTitle</label>
-                                       <input type="hidden" name="BlogCatId" value="@item.BlogCategoryId"/>
-                                       <a class="btn btn-danger remove-blogCat">حذف</a>
-                                   </div>
                                }
                            </div>
+                       }
+                   </div>
+
+                   @* categories blog *@
+                   <div class="col-md-6 form-group mb-3">
+                       <label>انتخاب دسته بندی پست</label>
+                       <select class="form-control" id="select-blogCat">
+                           @foreach (var blogcat in blogCats)
+                           {
+                               if (blogCatsforupdate.Where(b => b.BlogCategoryId == blogcat.BlogCategoryId).Any())
+                               {
+                                   existBlogBlogCat.Add(new UpdateBlogBlogCategoryViewModel()
+                                   {
+                                       BlogCategoryId = blogcat.BlogCategoryId,
+                                       BlogTitle = blogcat.Title
+                                   });
+                               }
+                               else
+                               {
+                                   <option value="@blogcat.BlogCategoryId">@blogcat.Title</option>
+                               }
+                           }
+                   
+                       </select>
+                       <button class="Add-blogCat btn btn-success my-2" type="button">انتخاب</button>
+                       <div class="ListBlogCat">
+                           @foreach (var item in existBlogBlogCat)
+                           {
+                               <div class="mb-2 d-flex align-items-center text-black w-50 border-4" style="background: #8080802b;height:39px;border-radius: 6px;">
+                                   <label class="col-md-12">@item.BlogTitle</label>
+                                   <input type="hidden" name="BlogCatId" value="@item.BlogCategoryId"/>
+                                   <a class="btn btn-danger remove-blogCat">حذف</a>
+                               </div>
+                           }
                        </div>
-                       
-                       
-                       @* tags *@
-                    <div class="col-md-6 form-group mb-3">
+                   </div>
+                   
+                   @* tags *@
+                  <div class="col-md-6 form-group mb-3">
                         <label>انتخاب برچسب ها</label>
                         <select class="form-control" id="select-tag">
                             @foreach (var tag in tags)
@@ -117,11 +133,11 @@
                         </div>
                     </div>
                     
-                    <div class="col-md-12">
-                             <button asp-action="UpdateBlog" asp-controller="AdminBlog" class="btn btn-primary" type="submit">تایید</button>
-                             <a asp-action="Index" class="btn btn-danger m-1">لغو</a>
-                        </div>
-                   </div>
+                  <div class="col-md-12">
+                     <button asp-action="UpdateBlog" asp-controller="AdminBlog" class="btn btn-primary" type="submit">تایید</button>
+                     <a asp-action="Index" class="btn btn-danger m-1">لغو</a>
+                  </div>
+                </div>
             </form>
         </div>
     </div>
@@ -129,60 +145,61 @@
 
 
 @section Scripts{
-    <script>
-        $(".Add-Tag").click(function () {
-            if ($("#select-tag").val()) {
-                var value = $("#select-tag").children("option:selected").val();
-                var text = $("#select-tag").children("option:selected").text();
-                $(".ListTag").append(
-                    "<div style='background: #8080802b;height: 39px;width: 48%;border-radius: 5px;margin-bottom: 1%;margin-left: 1%;display:flex;color:whitesmoke;'>"
-                      + "<label style='display: flex;align-items: center;justify-items: center;' class='col-md-12'>" + text + "</label>"
-                      + "<input type='hidden' name='TagId' value='" + value + "' />"
-                      + "<a style='display: flex;align-items: center;justify-items: center;' class='btn btn-danger remove-tag'>حذف</a>"
-                      + "</div>"
-                );
-                $("#select-tag").children("option:selected").remove();
-            }
-        });
+<script>
+    $(".Add-Tag").click(function () {
+        if ($("#select-tag").val()) {
+            var value = $("#select-tag").children("option:selected").val();
+            var text = $("#select-tag").children("option:selected").text();
+            $(".ListTag").append(
+                "<div style='background: #8080802b;height: 39px;width: 48%;border-radius: 5px;margin-bottom: 1%;margin-left: 1%;display:flex;color:whitesmoke;'>"
+                  + "<label style='display: flex;align-items: center;justify-items: center;' class='col-md-12'>" + text + "</label>"
+                  + "<input type='hidden' name='TagId' value='" + value + "' />"
+                  + "<a style='display: flex;align-items: center;justify-items: center;' class='btn btn-danger remove-tag'>حذف</a>"
+                  + "</div>"
+            );
+            $("#select-tag").children("option:selected").remove();
+        }
+    });
 
-        $('.ListTag').delegate(".remove-tag", 'click', function () {
-            var content = $(this).parent();
-            var text = content.find($("label")).text();
-            var value = content.find($("input[type=hidden]")).val();
-            $("#select-tag").append($('<option>', {
-                value: value,
-                text: text
-            }));
-            content.remove();
-        });
-    </script>
-    
-    
-        <script>
-            $(".Add-BlogCat").click(function () {
-                if ($("#select-blogCat").val()) {
-                    var value = $("#select-blogCat").children("option:selected").val();
-                    var text = $("#select-blogCat").children("option:selected").text();
-                    $(".ListBlogCat").append(
-                        "<div style='background: #8080802b;height: 39px;width: 48%;border-radius: 5px;margin-bottom: 1%;margin-left: 1%;display:flex;color:whitesmoke;'>"
-                          + "<label style='display: flex;align-items: center;justify-items: center;' class='col-md-12'>" + text + "</label>"
-                          + "<input type='hidden' name='BlogCatId' value='" + value + "' />"
-                          + "<a style='display: flex;align-items: center;justify-items: center;' class='btn btn-danger remove-blogCat'>حذف</a>"
-                          + "</div>"
-                    );
-                    $("#select-blogCat").children("option:selected").remove();
-                }
-            });
-    
-            $('.ListBlogCat').delegate(".remove-blogCat", 'click', function () {
-                var content = $(this).parent();
-                var text = content.find($("label")).text();
-                var value = content.find($("input[type=hidden]")).val();
-                $("#select-blogCat").append($('<option>', {
-                    value: value,
-                    text: text
-                }));
-                content.remove();
-            });
-        </script>
+    $('.ListTag').delegate(".remove-tag", 'click', function () {
+        var content = $(this).parent();
+        var text = content.find($("label")).text();
+        var value = content.find($("input[type=hidden]")).val();
+        $("#select-tag").append($('<option>', {
+            value: value,
+            text: text
+        }));
+        content.remove();
+    });
+</script>
+
+ <script>
+//blog category
+$(".Add-BlogCat").click(function () {
+if ($("#select-blogCat").val()) {
+    var value = $("#select-blogCat").children("option:selected").val();
+    var text = $("#select-blogCat").children("option:selected").text();
+    $(".ListBlogCat").append(
+        "<div style='background: #8080802b;height: 39px;width: 48%;border-radius: 5px;margin-bottom: 1%;margin-left: 1%;display:flex;color:whitesmoke;'>"
+        + "<label style='display: flex;align-items: center;justify-items: center;' class='col-md-12'>" + text + "</label>"
+        + "<input type='hidden' name='BlogCatId' value='" + value + "' />"
+        + "<a style='display: flex;align-items: center;justify-items: center;' class='btn btn-danger remove-blogCat'>حذف</a>"
+        + "</div>"
+
+    );
+    $("#select-blogCat").children("option:selected").remove();
+}
+});
+
+$('.ListBlogCat').delegate(".remove-blogCat", 'click', function () {
+var content = $(this).parent();
+var text = content.find($("label")).text();
+var value = content.find($("input[type=hidden]")).val();
+$("#select-blogCat").append($('<option>', {
+    value: value,
+    text: text
+}));
+content.remove();
+});
+</script>
 }
