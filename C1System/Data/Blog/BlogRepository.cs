@@ -18,6 +18,8 @@ public interface IBlogRepository
     Task<List<UpdateBlogTagViewModel>> ShowBlogsTagForUpdate(Guid blogId);
     Task<List<UpdateBlogBlogCategoryViewModel>> ShowBlogsCatForUpdate(Guid blogCatId);
     bool DeleteBlogForTag(Guid blogId);
+    Task<List<UpdateBlogMediaViewModel>> ShowBlogsMediaForUpdate(Guid blogId);
+    Task<List<UpdateBlogMediaViewModel>> DeleteMediasForBlog(Guid blogId);
 }
 
 public class BlogRepository : IBlogRepository
@@ -157,5 +159,35 @@ public class BlogRepository : IBlogRepository
         {
             return true;
         }
+    }
+    
+    public async Task<List<UpdateBlogMediaViewModel>> ShowBlogsMediaForUpdate(Guid blogId)
+    {
+        var result = await (from p in _context.Blogs
+            join m in _context.Media on p.BlogId equals m.BlogId
+            where (p.BlogId == blogId)
+            select new UpdateBlogMediaViewModel()
+            {
+                BlogId = p.BlogId,
+                MediaId = m.Id,
+                FileName = m.FileName,
+            }).ToListAsync();
+        
+        return result;
+    }
+    
+    public async Task<List<UpdateBlogMediaViewModel>> DeleteMediasForBlog(Guid blogId)
+    {
+        var resultTodelete = await (from p in _context.Blogs
+            join m in _context.Media on p.BlogId equals m.BlogId
+            where (p.BlogId == blogId)
+            select new UpdateBlogMediaViewModel()
+            {
+                BlogId = p.BlogId,
+                MediaId = m.Id,
+                FileName = m.FileName,
+            }).ToListAsync();
+        
+        return resultTodelete;
     }
 }
