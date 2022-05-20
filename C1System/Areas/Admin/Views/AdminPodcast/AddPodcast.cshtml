@@ -50,6 +50,15 @@
                         <button class="Add-Tag btn btn-success my-2" type="button">انتخاب</button>
                         <div class="ListTag"></div>
                     </div>
+                    
+                    <div class="col-md-6 form-group mb-3">
+                        <div class="form-check">
+                            <input class="form-check-input" asp-for="IsActive" type="checkbox">
+                            <label class="form-check-label" asp-for="IsActive">
+                                آیا فعال باشد ؟!
+                            </label>
+                        </div>
+                    </div>
 
                     <div class="col-md-12">
                         <button asp-action="AddPodcast" asp-controller="AdminPodcast" class="btn btn-primary" type="submit">تایید</button>
