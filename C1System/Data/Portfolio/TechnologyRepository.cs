@@ -23,7 +23,7 @@ public interface ITechnologyRepository
 
 public class TechnologyRepository : ITechnologyRepository
 {
-     private readonly C1SystemContext _context;
+    private readonly C1SystemContext _context;
     private readonly IMapper _mapper;
 
     public TechnologyRepository(C1SystemContext context, IMapper mapper)
