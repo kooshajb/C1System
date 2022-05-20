@@ -113,7 +113,14 @@ public class UploadRepository : IUploadRepository
             
             if (model.PodcastId != null)
             {
-                folder = "Podcasts";
+                if (file.Name == "audioFile")
+                {
+                    folder = "Podcasts/Audios";
+                }
+                else if (file.Name == "featureImgFile")
+                {
+                    folder = "Podcasts/FeatureImg";
+                }
                 List<MediaEntity> podcastMedia =
                     _context.Set<MediaEntity>().ToList();
             }
@@ -159,7 +166,6 @@ public class UploadRepository : IUploadRepository
             if(model.CategoryId != null){
                 MediaEntity media = new MediaEntity
                 {
-               
                     FileName = url,
                     FileType = fileType,
                     CategoryId = model.CategoryId,
@@ -188,7 +194,6 @@ public class UploadRepository : IUploadRepository
             if(model.PodcastId != null){
                 MediaEntity media = new MediaEntity
                 {
-               
                     FileName = url,
                     FileType = fileType,
                     PodcastId = model.PodcastId,
