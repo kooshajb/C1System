@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using C1System.Dtos.Media;
 using C1System.Media;
+using C1System.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 
 namespace C1System.Areas.Admin.Controllers;
@@ -102,7 +103,6 @@ public class AdminPodcastController : Controller
         
         ViewBag.PodcastTag = await _podcastRepository.ShowPodcastsForUpdate(id);
 
-        
         var podcast = await _podcastRepository.GetById(id);
         if (podcast.Result == null)
         {
@@ -110,11 +110,18 @@ public class AdminPodcastController : Controller
             return RedirectToAction(nameof(Index));
         }
 
+        //image
+        UploadDto uploadDto = new UploadDto();
+        List<IFormFile> filesResult = new List<IFormFile>();
+        
+        List<UpdatePodcastMediaViewModel> mediaList = await _podcastRepository.ShowPodcastsMediaForUpdate(podcast.Result.PodcastId);
+        ViewBag.MediaImage = mediaList;
+        
         return View(podcast.Result);
     }
     
     [HttpPost]
-    public async Task<IActionResult> UpdatePodcast(UpdatePodcastDto dto, List<Guid> tagId)
+    public async Task<IActionResult> UpdatePodcast(UpdatePodcastDto dto, List<Guid> tagId, List<IFormFile> featureImgFile, List<IFormFile> audioFile)
     {
 
         if (!ModelState.IsValid)
@@ -126,6 +133,23 @@ public class AdminPodcastController : Controller
             
             return View();
         }
+        
+        //upload images
+        UploadDto uploadDto = new UploadDto();
+        List<IFormFile> filesResult = new List<IFormFile>();
+        
+        uploadDto.PodcastId = dto.PodcastId;
+        
+        foreach (var fileItem in featureImgFile)
+        {
+            filesResult.Add(fileItem);
+        }
+        foreach (var fileItem in audioFile)
+        {
+            filesResult.Add(fileItem);
+        }
+        uploadDto.Files = filesResult;
+        await _uploadRepository.UploadMedia(uploadDto);
         
         //tag
         var updatePodcast = _podcastRepository.Update(dto.PodcastId, dto);
@@ -173,14 +197,35 @@ public class AdminPodcastController : Controller
             TempData["NotFoundPodcast"] = true;
             return RedirectToAction(nameof(Index));
         }
+        //image
+        UploadDto uploadDto = new UploadDto();
+        List<IFormFile> filesResult = new List<IFormFile>();
+        
+        List<UpdatePodcastMediaViewModel> mediaList = await _podcastRepository.ShowPodcastsMediaForUpdate(podcast.Result.PodcastId);
+        ViewBag.MediaImage = mediaList;
+        
         return View(podcast.Result);
     }
     
     [HttpPost]
-    public async Task<IActionResult> DeletePodcastById(Guid id)
+    public async Task<IActionResult> DeletePodcastById(Guid podcastId)
     {
-        var response = await _podcastRepository.Delete(id);
-        TempData["ResultDelete"] = response.Status == UtilitiesStatusCodes.Success ? "true" : "false";
+        var podcastMediaToDel = _podcastRepository.DeleteMediasForPodcast(podcastId);
+        var resMedia = new GenericResponse();
+        foreach (var item in podcastMediaToDel.Result)
+        {
+            resMedia = await _uploadRepository.DeleteMedia(item.MediaId);
+        }
+        TempData["ResultDelete"] = resMedia.Status == UtilitiesStatusCodes.Success  ? "true" : "false";
+
+        var resData = await _podcastRepository.Delete(podcastId);
+        TempData["ResultDelete"] = resData.Status == UtilitiesStatusCodes.Success  ? "true" : "false";
         return RedirectToAction(nameof(Index));
+    }
+    
+    public async Task<IActionResult> DeletePodcastMediaById(Guid id, Guid podcastId)
+    {
+        var response =  await _uploadRepository.DeleteMedia(id);
+        return RedirectToAction(nameof(UpdatePodcast), new { id = podcastId});
     }
 }
