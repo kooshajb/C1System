@@ -127,7 +127,10 @@ public class UploadRepository : IUploadRepository
             
             if (model.BlogId != null)
             {
-                folder = "Blogs";
+                if (file.Name == "featureImgFile")
+                {
+                    folder = "Blogs/FeatureImg";
+                }
                 List<MediaEntity> blogMedia =
                     _context.Set<MediaEntity>().ToList();
             }
