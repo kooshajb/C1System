@@ -20,6 +20,8 @@ public interface IPodcastRepository
     bool AddPodcastsForTag(List<Tag_PodcastEntity> tagPodcasts);
     Task<List<UpdatePodcastTagViewModel>> ShowPodcastsForUpdate(Guid podcastId);
     bool DeletePodcastForTag(Guid podcastId);
+    Task<List<UpdatePodcastMediaViewModel>> ShowPodcastsMediaForUpdate(Guid podcastId);
+    Task<List<UpdatePodcastMediaViewModel>> DeleteMediasForPodcast(Guid podcastId);
 }
 
 public class PodcastRepository : IPodcastRepository
@@ -65,11 +67,8 @@ public class PodcastRepository : IPodcastRepository
         i.Title = dto.Title;
         i.StudyTime = dto.StudyTime;
         i.Description = dto.Description;
-        i.IsLike = dto.IsLike;
-        i.IsTopTag = dto.IsTopTag;
-        i.IsSelected = dto.IsSelected;
-        i.Point = dto.Point;
-        
+        i.IsActive = dto.IsActive;
+
         _context.Set<PodcastEntity>().Update(i);
         await _context.SaveChangesAsync();
         return new GenericResponse<GetPodcastDto>(_mapper.Map<GetPodcastDto>(i));
@@ -133,5 +132,35 @@ public class PodcastRepository : IPodcastRepository
         {
             return true;
         }
+    }
+    
+    public async Task<List<UpdatePodcastMediaViewModel>> ShowPodcastsMediaForUpdate(Guid podcastId)
+    {
+        var result = await (from p in _context.Podcasts
+            join m in _context.Media on p.PodcastId equals m.PodcastId
+            where (p.PodcastId == podcastId)
+            select new UpdatePodcastMediaViewModel()
+            {
+                PodcastId = p.PodcastId,
+                MediaId = m.Id,
+                FileName = m.FileName,
+            }).ToListAsync();
+        
+        return result;
+    }
+    
+    public async Task<List<UpdatePodcastMediaViewModel>> DeleteMediasForPodcast(Guid podcastId)
+    {
+        var resultTodelete = await (from p in _context.Podcasts
+            join m in _context.Media on p.PodcastId equals m.PodcastId
+            where (p.PodcastId == podcastId)
+            select new UpdatePodcastMediaViewModel()
+            {
+                PodcastId = p.PodcastId,
+                MediaId = m.Id,
+                FileName = m.FileName,
+            }).ToListAsync();
+        
+        return resultTodelete;
     }
 }
