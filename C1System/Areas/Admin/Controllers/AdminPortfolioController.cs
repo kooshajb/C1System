@@ -17,7 +17,7 @@ public class AdminPortfolioController : Controller
     private readonly ITechnologyRepository _technologyRepository;
     private readonly IUploadRepository _uploadRepository;
 
-    public AdminPortfolioController(IPortfolioRepository portfolioRepository, ICategoryRepository categoryRepository,ITechnologyRepository technologyRepository, IUploadRepository uploadRepository, IMediaRepository mediaRepository, IHostingEnvironment environment)
+    public AdminPortfolioController(IPortfolioRepository portfolioRepository, ICategoryRepository categoryRepository,ITechnologyRepository technologyRepository, IUploadRepository uploadRepository, IMediaRepository mediaRepository)
     {
         _portfolioRepository = portfolioRepository;
         _categoryRepository = categoryRepository;
@@ -273,7 +273,6 @@ public class AdminPortfolioController : Controller
     [HttpPost]
     public async Task<IActionResult> DeletePortfolioById(Guid portfolioId)
     {
-
         var portfolioMediaToDel = _portfolioRepository.DeleteMediasForPortfolio(portfolioId);
         var resMedia = new GenericResponse();
         foreach (var item in portfolioMediaToDel.Result)
