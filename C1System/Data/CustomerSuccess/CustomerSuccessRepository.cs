@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using C1System.ViewModels;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 
@@ -11,6 +12,8 @@ public interface ICustomerSuccessRepository
     Task<GenericResponse<GetCustomerSuccessDto>> Update(Guid id, UpdateCustomerSuccessDto dto);
     Task<GenericResponse> Delete(Guid id);
     bool ExistCustomerSuccess(string startupName, Guid customerSuccessId);
+    Task<List<UpdateCustomerSuccessMediaViewModel>> ShowCustomerSuccessMediaForUpdate(Guid customerSuccessId);
+    Task<List<UpdateCustomerSuccessMediaViewModel>> DeleteMediasForCustomerSuccess(Guid customerSuccessId);
 }
 
 public class CustomerSuccessRepository : ICustomerSuccessRepository
@@ -79,5 +82,35 @@ public class CustomerSuccessRepository : ICustomerSuccessRepository
     {
         return _context.CustomerSuccesses.Any(p =>
            p.ManagerName == startupName && p.CustomerSuccessId != customerSuccessId);
+    }
+    
+    public async Task<List<UpdateCustomerSuccessMediaViewModel>> ShowCustomerSuccessMediaForUpdate(Guid customerSuccessId)
+    {
+        var result = await (from p in _context.CustomerSuccesses
+            join m in _context.Media on p.CustomerSuccessId equals m.CustomerSuccessId
+            where (p.CustomerSuccessId == customerSuccessId)
+            select new UpdateCustomerSuccessMediaViewModel()
+            {
+                CustomerSuccessId = p.CustomerSuccessId,
+                MediaId = m.Id,
+                FileName = m.FileName,
+            }).ToListAsync();
+        
+        return result;
+    }
+    
+    public async Task<List<UpdateCustomerSuccessMediaViewModel>> DeleteMediasForCustomerSuccess(Guid customerSuccessId)
+    {
+        var resultTodelete = await (from p in _context.CustomerSuccesses
+            join m in _context.Media on p.CustomerSuccessId equals m.CustomerSuccessId
+            where (p.CustomerSuccessId == customerSuccessId)
+            select new UpdateCustomerSuccessMediaViewModel()
+            {
+                CustomerSuccessId = p.CustomerSuccessId,
+                MediaId = m.Id,
+                FileName = m.FileName,
+            }).ToListAsync();
+        
+        return resultTodelete;
     }
 }
