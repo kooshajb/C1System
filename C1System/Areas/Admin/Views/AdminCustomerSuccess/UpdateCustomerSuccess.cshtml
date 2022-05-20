@@ -2,6 +2,7 @@
 
 @{
     ViewData["Title"] = "بروزرسانی داستان موفقیت";
+    List<UpdateCustomerSuccessMediaViewModel> customerSuccessMediaforupdate = ViewBag.MediaImage;
 }
 
 <div class="col-md-12">
@@ -40,14 +41,29 @@
                        <input asp-for="ActivityName" class="form-control" placeholder="حوزه فعالیت را وارد کنید">
                        <span class="text-danger" asp-validation-for="ActivityName"></span>
                    </div>
+                    
+                   <div class="col-md-6 form-group mb-3">
+                       <label>لوگو شرکت</label>
+                       <input name="companyLogoFile" type="file" class="form-control">
+                                                       
+                       @if (customerSuccessMediaforupdate != null)
+                       {
+                           <div class="d-flex justify-content-center align-items-center mt-5">
+                               @foreach (var mediaItem in customerSuccessMediaforupdate)
+                               {
+                                   @if (mediaItem.FileName.Contains("CustomerSuccess/CompanyLogo"))
+                                   {
+                                       <div class="position-relative" id="@mediaItem.MediaId">
+                                           <img href="~/Medias/@mediaItem.FileName" target="_blank" class="w-20 rounded-2" src="~/Medias/@mediaItem.FileName" alt=""/>
+                                           <a class="position-absolute top-0 left-0 bg-white text-black rounded-circle p-1 pe-auto" asp-action="DeletePortfolioMediaById" asp-controller="AdminCustomerSuccess" asp-route-id="@mediaItem.MediaId" asp-route-customerSuccessId="@Model.CustomerSuccessId"><i class="i-Close-Window"></i></a>
+                                       </div>
+                                   }
+                               }
+                           </div>
+                       }
+                   </div>
 
-                   @* <div class="col-md-6 form-group mb-3"> *@
-                   @*     <label asp-for="CompanyLogo">لوگو شرکت</label> *@
-                   @*     <input asp-for="CompanyLogo" class="form-control" placeholder="لوگو شرکت را وارد کنید"> *@
-                   @*     <span class="text-danger" asp-validation-for="CompanyLogo"></span> *@
-                   @* </div> *@
-                   
-                    <div class="col-md-6 form-group mb-3">
+                   <div class="col-md-6 form-group mb-3">
                        <label asp-for="ManagerSpeech">سخن مدیر</label>
                        <input asp-for="ManagerSpeech" class="form-control" placeholder="سخن مدیر را وارد کنید">
                        <span class="text-danger" asp-validation-for="ManagerSpeech"></span>
@@ -58,18 +74,49 @@
                        <input asp-for="Description" class="form-control" placeholder="توضیحات را وارد کنید">
                        <span class="text-danger" asp-validation-for="Description"></span>
                    </div>
+                    
+                   <div class="col-md-6 form-group mb-3">
+                       <label>فایل ویدئو</label>
+                       <input name="videoFile" type="file" class="form-control">
+                                                       
+                       @if (customerSuccessMediaforupdate != null)
+                       {
+                           <div class="d-flex justify-content-center align-items-center mt-5">
+                               @foreach (var mediaItem in customerSuccessMediaforupdate)
+                               {
+                                   @if (mediaItem.FileName.Contains("CustomerSuccess/Videos"))
+                                   {
+                                       <div class="position-relative" id="@mediaItem.MediaId">
+                                           <img href="~/Medias/@mediaItem.FileName" target="_blank" class="w-20 rounded-2" src="~/Medias/@mediaItem.FileName" alt=""/>
+                                           <a class="position-absolute top-0 left-0 bg-white text-black rounded-circle p-1 pe-auto" asp-action="DeletePortfolioMediaById" asp-controller="AdminCustomerSuccess" asp-route-id="@mediaItem.MediaId" asp-route-customerSuccessId="@Model.CustomerSuccessId"><i class="i-Close-Window"></i></a>
+                                       </div>
+                                   }
+                               }
+                           </div>
+                       }
+                   </div>
+
+                    <div class="col-md-6 form-group mb-3">
+                       <label>کاور ویدئو</label>
+                       <input name="videoCoverFile" type="file" class="form-control">
+                                                                          
+                       @if (customerSuccessMediaforupdate != null)
+                       {
+                           <div class="d-flex justify-content-center align-items-center mt-5">
+                               @foreach (var mediaItem in customerSuccessMediaforupdate)
+                               {
+                                   @if (mediaItem.FileName.Contains("CustomerSuccess/VideoCover"))
+                                   {
+                                       <div class="position-relative" id="@mediaItem.MediaId">
+                                           <img href="~/Medias/@mediaItem.FileName" target="_blank" class="w-20 rounded-2" src="~/Medias/@mediaItem.FileName" alt=""/>
+                                           <a class="position-absolute top-0 left-0 bg-white text-black rounded-circle p-1 pe-auto" asp-action="DeletePortfolioMediaById" asp-controller="AdminCustomerSuccess" asp-route-id="@mediaItem.MediaId" asp-route-customerSuccessId="@Model.CustomerSuccessId"><i class="i-Close-Window"></i></a>
+                                       </div>
+                                   }
+                               }
+                           </div>
+                       }
+                   </div>
                    
-                   @* <div class="col-md-6 form-group mb-3"> *@
-                   @*     <label asp-for="VideoFile">فایل ویدئو</label> *@
-                   @*     <input asp-for="VideoFile" class="form-control" placeholder="فایل ویدئو را وارد کنید"> *@
-                   @*     <span class="text-danger" asp-validation-for="VideoFile"></span> *@
-                   @* </div> *@
-                   
-                   @* <div class="col-md-6 form-group mb-3"> *@
-                   @*     <label asp-for="CoverVideoImage">کاور ویدئو</label> *@
-                   @*     <input asp-for="CoverVideoImage" class="form-control" placeholder="کاور ویدئو را وارد کنید"> *@
-                   @*     <span class="text-danger" asp-validation-for="VideoFile"></span> *@
-                   @* </div> *@
                    
                    <div class="col-md-6 form-group mb-3">
                        <label asp-for="VideoTitle">عنوان ویدئو</label>
