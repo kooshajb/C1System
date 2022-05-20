@@ -32,23 +32,13 @@ public class PodcastEntity :BannerEntity
     [MinLength(200, ErrorMessage = "تعداد {0} نباید کمتر از {1} باشد.")]
     [MaxLength(1000, ErrorMessage = "تعداد {0} نباید بیشتر از {1} باشد.")]
     public string Description { get; set; }
-
-    [Display(Name ="علاقه مندی")]
-    public bool? IsLike { get; set; }
     
-    [Display(Name ="تگ محبوب")]
-    public bool? IsTopTag { get; set; }
+    [Display(Name ="فعال باشد؟")]
+    public bool IsActive { get; set; }
     
-    [Display(Name ="برگزیده")]
-    public bool? IsSelected { get; set; }
-    
-    [Display(Name ="امتیازدهی")]
-    public int? Point { get; set; }
-
     #region Relation
     
     public List<Tag_PodcastEntity> TagPodcasts { get; set; }
 
     #endregion
-    // public BookMarkEntity BookMark { get; set; }
 }
