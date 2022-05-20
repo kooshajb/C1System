@@ -1,5 +1,6 @@
 ﻿using C1System.Dtos.Media;
 using C1System.Media;
+using C1System.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 
 namespace C1System.Areas.Admin.Controllers;
@@ -34,7 +35,7 @@ public class AdminCustomerSuccessController : Controller
     }
     
     [HttpPost]
-    public async Task<IActionResult> AddCustomerSuccess(AddCustomerSuccessDto dto,  List<IFormFile> companyLogoFile, List<IFormFile> videoFile, List<IFormFile> videoCoverFile)
+    public async Task<IActionResult> AddCustomerSuccess(AddCustomerSuccessDto dto, List<IFormFile> companyLogoFile, List<IFormFile> videoFile, List<IFormFile> videoCoverFile)
     {
         if (!ModelState.IsValid)
         {
@@ -82,22 +83,49 @@ public class AdminCustomerSuccessController : Controller
             TempData["NotFoundCustomerSuccess"] = "true";
             return RedirectToAction(nameof(Index));
         }
-
+        //image
+        UploadDto uploadDto = new UploadDto();
+        List<IFormFile> filesResult = new List<IFormFile>();
+        
+        List<UpdateCustomerSuccessMediaViewModel> mediaList = await _customerSuccessRepository.ShowCustomerSuccessMediaForUpdate(customerSuccess.Result.CustomerSuccessId);
+        ViewBag.MediaImage = mediaList;
+        
         return View(customerSuccess.Result);
     }
     
     [HttpPost]
-    public async Task<IActionResult> UpdateCustomerSuccess(UpdateCustomerSuccessDto dto, Guid id)
+    public async Task<IActionResult> UpdateCustomerSuccess(UpdateCustomerSuccessDto dto, List<IFormFile> companyLogoFile, List<IFormFile> videoFile, List<IFormFile> videoCoverFile)
     {
-        var customerSuccess = await _customerSuccessRepository.GetById(id);
+        var customerSuccess = await _customerSuccessRepository.GetById(dto.CustomerSuccessId);
         if (!ModelState.IsValid)
         {
             return View(customerSuccess.Result);
         }
         
-        var updateCustomerSuccess = await _customerSuccessRepository.Update(id, dto);
-        
+        var updateCustomerSuccess = await _customerSuccessRepository.Update(dto.CustomerSuccessId, dto);
         TempData["Result"] = updateCustomerSuccess.Result != null ? "true" : "false";
+        
+        //upload images
+        UploadDto uploadDto = new UploadDto();
+        List<IFormFile> filesResult = new List<IFormFile>();
+        
+        uploadDto.CustomerSuccessId = dto.CustomerSuccessId;
+        
+        foreach (var fileItem in companyLogoFile)
+        {
+            filesResult.Add(fileItem);
+        }
+        foreach (var fileItem in videoFile)
+        {
+            filesResult.Add(fileItem);
+        }
+        foreach (var fileItem in videoCoverFile)
+        {
+            filesResult.Add(fileItem);
+        }
+        uploadDto.Files = filesResult;
+        await _uploadRepository.UploadMedia(uploadDto);
+        
         return RedirectToAction(nameof(Index));
     }
 
@@ -110,14 +138,35 @@ public class AdminCustomerSuccessController : Controller
             TempData["NotFoundCustomerSuccess"] = true;
             return RedirectToAction(nameof(Index));
         }
+        //image
+        UploadDto uploadDto = new UploadDto();
+        List<IFormFile> filesResult = new List<IFormFile>();
+        
+        List<UpdateCustomerSuccessMediaViewModel> mediaList = await _customerSuccessRepository.ShowCustomerSuccessMediaForUpdate(customerSuccess.Result.CustomerSuccessId);
+        ViewBag.MediaImage = mediaList;
+        
         return View(customerSuccess.Result);
     }
     
     [HttpPost]
-    public async Task<IActionResult> DeleteCustomerSuccessById(Guid id)
+    public async Task<IActionResult> DeleteCustomerSuccessById(Guid customerSuccessId)
     {
-        var response = await _customerSuccessRepository.Delete(id);
-        TempData["ResultDelete"] = response.Status == UtilitiesStatusCodes.Success ? "true" : "false";
+        var customerSuccessMediaToDel = _customerSuccessRepository.DeleteMediasForCustomerSuccess(customerSuccessId);
+        var resMedia = new GenericResponse();
+        foreach (var item in customerSuccessMediaToDel.Result)
+        {
+            resMedia = await _uploadRepository.DeleteMedia(item.MediaId);
+        }
+        TempData["ResultDelete"] = resMedia.Status == UtilitiesStatusCodes.Success  ? "true" : "false";
+
+        var resData = await _customerSuccessRepository.Delete(customerSuccessId);
+        TempData["ResultDelete"] = resData.Status == UtilitiesStatusCodes.Success  ? "true" : "false";
         return RedirectToAction(nameof(Index));
+    }
+    
+    public async Task<IActionResult> DeletePortfolioMediaById(Guid id, Guid customerSuccessId)
+    {
+        var response =  await _uploadRepository.DeleteMedia(id);
+        return RedirectToAction(nameof(UpdateCustomerSuccess), new { id = customerSuccessId});
     }
 }
